@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
+    <left>
+        <VBox prefHeight="350.0" prefWidth="206.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="fucklistview" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+        </VBox>
+    </left>
+    <top>
+        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="50.0" prefWidth="150.0" text="Java作业" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="34.0" />
+            </font>
+        </Label>
+    </top>
+    <center>
+        <GridPane BorderPane.alignment="CENTER">
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <children>
+            <Button fx:id="fuckbutton" mnemonicParsing="false" onAction="#actionFuck" text="Button" />
+         </children>
+        </GridPane>
+    </center>
+</BorderPane>
