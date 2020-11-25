@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -26,10 +27,11 @@ public class LearnListView extends Application {
         Text text = new Text("fuck");
         Text text1 = new Text("fucknew");
 
+
         GridPane gridPane = new GridPane();
         gridPane.setMinSize(500, 500);
 //        GridPane.setRowIndex();头一次见这么奇怪的方法
-
+        gridPane.setStyle("-fx-font-size: 20px");
         gridPane.add(text, 2, 2);
         gridPane.add(text1, 0, 1);
         Scene scene = new Scene(gridPane);
@@ -48,7 +50,8 @@ public class LearnListView extends Application {
                 return new ProCell();
             }
         });
-
+//        listView.setId();
+//listView.css
         listView.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
                     @Override
@@ -61,7 +64,6 @@ public class LearnListView extends Application {
 
         // gridPane.getChildren().addAll(text, text1);//可以增加多参数果然是有趣的紧
         stage.setTitle("learn listview");
-
         stage.setScene(scene);
         stage.show();
 
@@ -81,6 +83,7 @@ public class LearnListView extends Application {
             content = new HBox(new Label("fuck"), vBox);
             content.setSpacing(10);
 
+//content.setStyle('');
         }
 
         @Override
@@ -90,6 +93,9 @@ public class LearnListView extends Application {
 
                 //Color.web()
                 name.setText(problem.getName());
+                //  name.setFont(new Font(40));
+//                name
+                content.applyCss();
                 price.setText(problem.getQues());
                 setGraphic(content);
 

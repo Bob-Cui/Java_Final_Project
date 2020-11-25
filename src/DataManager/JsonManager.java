@@ -1,5 +1,6 @@
 package DataManager;
 
+import DataManager.Data.BigTitleData;
 import DataManager.Data.TitleData;
 import com.google.gson.Gson;
 
@@ -7,43 +8,24 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class JsonManager {
-    public static class Data {
-        private LinkedList<TitleData> datas;
+    /**
+     * @return 从配置文件中读出关于标题的数据并将其转化为一个大类
+     * @throws IOException
+     */
+    public static BigTitleData getBigTitleData() throws IOException {
+        CBFileManager cbFileManager = new CBFileManager();
+        Gson gson = new Gson();
+        BigTitleData bigTitleData;
 
-        public Data() {
-        }
+        String t = cbFileManager.readJson("source/title_data.json");
+        //竟然这种程度的报错也检查的出来真的是神了
+        bigTitleData = gson.fromJson(t, BigTitleData.class);
 
-        public LinkedList<TitleData> getDatas() {
-            return datas;
-        }
-
-        public void setDatas(LinkedList<TitleData> datas) {
-            this.datas = datas;
-        }
+        return bigTitleData;
     }
-
 
     public static void main(String[] args) throws IOException {
 
-        CBFileManager cbFileManager = new CBFileManager();
-        Gson gson = new Gson();
-      //  Data data = new Data();
-        TitleData titleData = new TitleData();
-
-        String t = cbFileManager.readJson("C:\\Users\\DELL\\Desktop\\qndy杨志强\\test2.json");
-
-     //   System.out.println(t);
-       titleData= gson.fromJson(t, TitleData.class);
-
-
-      for(TitleData.Subtitle c:titleData.getSubtitles())
-      {
-//          for
-          System.out.println(c.getTitle());
-      }
-    }
-
-    public static class Title {
 
     }
 
