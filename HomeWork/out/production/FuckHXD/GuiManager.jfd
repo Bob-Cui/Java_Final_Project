@@ -1,0 +1,88 @@
+JFDML JFormDesigner: "7.0.2.6.321" Java: "11.0.7" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class javax.swing.BoxLayout ) ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "text"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 1
+			} ) {
+				name: "panel2"
+				"preferredSize": new java.awt.Dimension( 180, 73 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label"
+					"horizontalAlignment": 0
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 9, false )
+					"alignmentX": 0.5f
+					"maximumSize": new java.awt.Dimension( 146, 40 )
+					"text": "输入文件名"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField1"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 6, false )
+					"minimumSize": new java.awt.Dimension( 40, 20 )
+					"preferredSize": new java.awt.Dimension( 30, 25 )
+					"margin": new java.awt.Insets( 2, 6, 2, 3 )
+					"maximumSize": new java.awt.Dimension( 150, 30 )
+					auxiliary() {
+						"JavaCodeGenerator.variableName": "nameInput"
+					}
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "confirm"
+					"text": "确定"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 5, false )
+					"maximumSize": new java.awt.Dimension( 78, 40 )
+					"minimumSize": new java.awt.Dimension( 78, 20 )
+					"preferredSize": new java.awt.Dimension( 50, 20 )
+					"alignmentX": 0.5f
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 1
+			} ) {
+				name: "panel3"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "文件修改框"
+					"enabled": false
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 131073, 11, false )
+					"alignmentX": 0.5f
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					"preferredSize": new java.awt.Dimension( 5, 90 )
+					"verticalScrollBarPolicy": 22
+					"alignmentY": 0.4f
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textArea1"
+						"maximumSize": new java.awt.Dimension( 2147483647, 300 )
+						"alignmentY": 0.6f
+						"preferredSize": new java.awt.Dimension( 1, 20 )
+						"rows": 100
+						auxiliary() {
+							"JavaCodeGenerator.variableName": "content"
+						}
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "修改文件"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 8, false )
+					"alignmentX": 0.5f
+					auxiliary() {
+						"JavaCodeGenerator.variableName": "changeContent"
+					}
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}

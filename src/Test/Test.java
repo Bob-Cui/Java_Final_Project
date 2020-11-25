@@ -3,16 +3,7 @@ package Test;
 import com.google.gson.Gson;
 
 public class Test {
-    public static void main(String[] args) {
 
-        System.out.println("dafasdf");
-
-        Gson gson = new Gson();
-        User user = new User("dasfsda", 3424, true);
-        String userJson = gson.toJson(user);
-
-        System.out.println(userJson);
-    }
 
     private static class User {
 
