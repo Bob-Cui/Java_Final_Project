@@ -1,4 +1,4 @@
-package main.java.sample;
+package main.java.CBGui;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -12,7 +12,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -20,7 +19,7 @@ import javafx.util.Callback;
 /**
  * 学习如何使用网格布局以及使用listview
  */
-public class Learn1 extends Application {
+public class LearnListView extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -54,7 +53,6 @@ public class Learn1 extends Application {
                 new ChangeListener<Number>() {
                     @Override
                     public void changed(ObservableValue<? extends Number> observableValue, Number last, Number t1) {
-                        //   System.out.println(listView.getItems().get(last.intValue()));
                         System.out.println(listView.getItems().get(t1.intValue()).toString());
                     }
                 }

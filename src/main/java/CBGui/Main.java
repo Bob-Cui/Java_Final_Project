@@ -8,10 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -24,30 +23,18 @@ import java.util.Objects;
 
 public class Main extends Application {
     private static Stage mainStage;
-    @FXML
-    private ListView<String> fucklistview;
 
     @FXML
-    private TextField mytext;
+    private VBox leftScene;
 
     @FXML
-    private Button find__build;
+    private TreeView<?> leftTree;
 
     @FXML
-    private Button contentChange;
-    @FXML
-    private Button fuckbutton;
+    private BorderPane mainScene;
 
-   // @//FXML
-    //private ListView<?> fucklistview;
 
-    @FXML
-    void actionFuck(ActionEvent event) {
-        initListView();
-    }
 
-    @FXML
-    private TextArea content;
 
     @FXML
     void deal_text(ActionEvent event) {
@@ -58,8 +45,7 @@ public class Main extends Application {
     @FXML
     private WebView test_View;
 
-    @FXML
-    private Button changeWeb;
+
 
     @FXML
     void changeWebView(ActionEvent event) throws MalformedURLException {
@@ -100,19 +86,6 @@ public class Main extends Application {
             mainStage.setScene(new Scene(root, 600, 600));
             mainStage.show();
         }
-    }
-
-    private void initListView() {
-        ObservableList<String> list = FXCollections.observableArrayList();
-        list.add("姓名：杨先生	年龄：18	性别：男");
-        list.add("姓名：杨女生1	年龄：18	性别：女");
-        list.add("姓名：杨女生2	年龄：18	性别：女");
-        list.add("姓名：杨女生3	年龄：18	性别：女");
-        list.add("姓名：杨女生4	年龄：18	性别：女");
-       fucklistview = new ListView<>(list);
-        fucklistview.setItems(list);
-
-
     }
 
     public void change() throws IOException {
