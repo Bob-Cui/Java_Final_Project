@@ -7,6 +7,6 @@ import javafx.application.Application;
  */
 public class Run {
     public static void main(String[] args) {
-        Application.launch(LearnTreeView.class, args);
+        Application.launch(LearnHTMLEditor.class, args);
     }
 }

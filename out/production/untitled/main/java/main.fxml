@@ -9,12 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
+<BorderPane fx:id="mainScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.CBGui.LearnFXML">
     <left>
-        <VBox fx:id="leftScene" prefHeight="353.0" prefWidth="140.0" BorderPane.alignment="CENTER">
-         <children>
-            <TreeView fx:id="leftTree" prefHeight="266.0" prefWidth="140.0" />
-         </children></VBox>
+        <VBox fx:id="leftScene" prefHeight="353.0" prefWidth="140.0" BorderPane.alignment="CENTER" />
     </left>
     <top>
         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="50.0" prefWidth="200.0" text="快乐学Java" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -30,7 +27,11 @@
             </rowConstraints>
          <columnConstraints>
             <ColumnConstraints />
+            <ColumnConstraints />
          </columnConstraints>
+         <children>
+            <Button fx:id="fuckButtom" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" />
+         </children>
         </GridPane>
     </center>
 </BorderPane>

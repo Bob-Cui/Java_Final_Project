@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 
-public class Main extends Application {
+public class FXMLLea extends Application {
     private static Stage mainStage;
 
     @FXML
@@ -34,8 +34,6 @@ public class Main extends Application {
     private BorderPane mainScene;
 
 
-
-
     @FXML
     void deal_text(ActionEvent event) {
 
@@ -44,7 +42,6 @@ public class Main extends Application {
 
     @FXML
     private WebView test_View;
-
 
 
     @FXML
@@ -80,7 +77,11 @@ public class Main extends Application {
         } else {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main.fxml")));
 
-         //   initListView();
+
+            Scene scene = new Scene(root, 700, 700);
+
+
+
 
             mainStage.setTitle("Hello World");
             mainStage.setScene(new Scene(root, 600, 600));

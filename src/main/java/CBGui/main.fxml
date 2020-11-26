@@ -30,7 +30,7 @@
             <ColumnConstraints />
          </columnConstraints>
          <children>
-            <Button fx:id="fuckButtom" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" />
+            <Button fx:id="fuckButtom" mnemonicParsing="false" onAction="#learnButton" text="Button" GridPane.columnIndex="1" />
          </children>
         </GridPane>
     </center>

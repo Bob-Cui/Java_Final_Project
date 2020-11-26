@@ -5,10 +5,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventType;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,7 +30,7 @@ public class LearnListView extends Application {
         GridPane gridPane = new GridPane();
         gridPane.setMinSize(500, 500);
 //        GridPane.setRowIndex();头一次见这么奇怪的方法
-        gridPane.setStyle("-fx-font-size: 20px");
+//        gridPane.setStyle("-fx-font-size: 20px");
         gridPane.add(text, 2, 2);
         gridPane.add(text1, 0, 1);
         Scene scene = new Scene(gridPane);
@@ -72,18 +71,46 @@ public class LearnListView extends Application {
 
     private class ProCell extends ListCell<Problem> {
         private HBox content;
+        private VBox mainConten;
         private Text name;
-        private Text price;
+        ToggleGroup select;
+
 
         public ProCell() {
             super();
-            name = new Text();
-            price = new Text();
-            VBox vBox = new VBox(name, price);
-            content = new HBox(new Label("fuck"), vBox);
-            content.setSpacing(10);
+            select = new ToggleGroup();
+            RadioButton A = new RadioButton("A");
+            RadioButton B = new RadioButton("B");
+            RadioButton C = new RadioButton("C");
+            RadioButton D = new RadioButton("D");
+            A.setToggleGroup(select);
+            B.setToggleGroup(select);
+            C.setToggleGroup(select);
+            D.setToggleGroup(select);
 
-//content.setStyle('');
+            A.setUserData("A");//这可真是神奇的获取数据的方式
+            B.setUserData("A");
+            C.setUserData("A");
+            D.setUserData("A");
+
+
+            select.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+                @Override
+                public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
+                    if (select.getSelectedToggle() != null) {
+
+
+                        System.out.println(select.getSelectedToggle().getUserData());
+                    }
+                }
+            });
+
+            name = new Text("这是一道题");
+            content = new HBox(A, B, C, D);
+            content.setSpacing(20);
+            mainConten = new VBox(name, content);
+            mainConten.setPrefHeight(100);
+
         }
 
         @Override
@@ -91,13 +118,9 @@ public class LearnListView extends Application {
             super.updateItem(problem, b);
             if (problem != null && !b) {
 
-                //Color.web()
                 name.setText(problem.getName());
-                //  name.setFont(new Font(40));
-//                name
                 content.applyCss();
-                price.setText(problem.getQues());
-                setGraphic(content);
+                setGraphic(mainConten);
 
             } else {
                 setGraphic(null);
