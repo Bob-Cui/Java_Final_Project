@@ -28,7 +28,8 @@ public class CBFileManager {
         System.out.println("张辉");
         System.out.println(cbFileManager.readJson("C:\\Users\\DELL\\Desktop\\qndy杨志强\\test1.json"));
 
-
+        String c = "fsdf";
+//        System.out.println();c.substring(3, 4);
     }
 
 

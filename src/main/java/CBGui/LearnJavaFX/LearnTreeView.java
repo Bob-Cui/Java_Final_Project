@@ -1,4 +1,4 @@
-package main.java.CBGui;
+package main.java.CBGui.LearnJavaFX;
 
 import DataManager.Data.BigTitleData;
 import DataManager.Data.TitleData;

@@ -1,4 +1,4 @@
-package main.java.CBGui;
+package main.java.CBGui.LearnJavaFX;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -49,8 +49,6 @@ public class LearnListView extends Application {
                 return new ProCell();
             }
         });
-//        listView.setId();
-//listView.css
         listView.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
                     @Override
@@ -67,6 +65,10 @@ public class LearnListView extends Application {
         stage.show();
 
 
+        Problem c=new Problem("fdsa","fdas","dsfa");
+
+
+        c.getAnswer();
     }
 
     private class ProCell extends ListCell<Problem> {
@@ -135,6 +137,12 @@ public class LearnListView extends Application {
         private String answer;
         private String ques;
 
+        public Problem(String name, String answer, String ques) {
+            this.name = name;
+            this.answer = answer;
+            this.ques = ques;
+        }
+
         public String getName() {
             return name;
         }
@@ -156,12 +164,6 @@ public class LearnListView extends Application {
         }
 
         public void setQues(String ques) {
-            this.ques = ques;
-        }
-
-        public Problem(String name, String answer, String ques) {
-            this.name = name;
-            this.answer = answer;
             this.ques = ques;
         }
 

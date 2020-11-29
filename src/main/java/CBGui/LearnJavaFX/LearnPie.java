@@ -1,4 +1,4 @@
-package main.java.CBGui;
+package main.java.CBGui.LearnJavaFX;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
