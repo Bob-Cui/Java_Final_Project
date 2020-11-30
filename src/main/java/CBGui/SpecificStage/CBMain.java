@@ -3,13 +3,15 @@ package main.java.CBGui.SpecificStage;
 import DataManager.Data.BigTitle;
 import DataManager.Data.Title;
 import DataManager.JsonManager;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Border;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -34,8 +36,16 @@ public class CBMain extends Stage {
     }
 
     private TreeItem<String> treeItem;
+
+    //三个listView使用的
     private ObservableList<Title> priTitle, midTitle, senTitle;
     private ListView<Title> priListView, midListView, senListView;
+
+    private VBox leftTitles, right;
+    //容纳左侧列表的VBox
+
+    private GridPane mainGrid;
+
 
     /**
      * 初始化用于展示三个级别的listView
@@ -48,7 +58,7 @@ public class CBMain extends Stage {
         midTitle = FXCollections.observableArrayList();
         senTitle = FXCollections.observableArrayList();
 
-
+//priTitle.
         priTitle.addAll(bigTitle.getPrimaryTitleList());
         midTitle.addAll(bigTitle.getMidTitleList());
         senTitle.addAll(bigTitle.getSenTitleList());
@@ -79,12 +89,30 @@ public class CBMain extends Stage {
                 return new TitleCell();
             }
         });
+
+        midListView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+
+                System.out.println(midListView.getSelectionModel().getSelectedIndex());
+
+            }
+        });
+
     }
 
+    /**
+     * 修改窗体的图标
+     */
+    private void setStageTitle() {
+        this.setTitle("谢哈哈的Java学习网站");
+        this.getIcons().add(new Image("file:Resource/icon.jpg"));
+    }
 
     public CBMain() throws IOException {
 
-
+        setStageTitle();
         initTitleListView();
         //初级教程题目的标签
         Label labelJavaPri = new Label(" Java  ");
@@ -127,28 +155,52 @@ public class CBMain extends Stage {
         hBoxSen.setStyle("-fx-background-color: darkolivegreen");
         //
 
-        VBox titlePri = new VBox(hBoxPri, priListView);
-        VBox titleMid = new VBox(hBoxMid, midListView);
-        VBox titleSenior = new VBox(hBoxSen, senListView);
 
         //手风琴布局尝试
-        TitledPane priTitledPane = new TitledPane("Java", priListView);
-        TitledPane midTitlePane = new TitledPane("Java", midListView);
-        TitledPane senTitlePane = new TitledPane("Java", senListView);
+        TitledPane priTitledPane = new TitledPane("Java  初级教程", priListView);
+        priTitledPane.setStyle("-fx-font-size: 18px;-fx-font-weight: bolder;-fx-text-fill: blueviolet");
+
+        TitledPane midTitlePane = new TitledPane("Java   中级教程", midListView);
+        midTitlePane.setStyle("-fx-font-size: 18px;-fx-font-weight: bolder;-fx-text-fill: blueviolet");
+
+        TitledPane senTitlePane = new TitledPane("Java   高级教程", senListView);
+        senTitlePane.setStyle("-fx-font-size: 18px;-fx-font-weight: bolder;-fx-text-fill: blueviolet");
 
 
-        Accordion accordion = new Accordion();
-
-        accordion.getPanes().addAll(priTitledPane, midTitlePane, senTitlePane);
-
-
+        Accordion priAccordion = new Accordion();
+        Accordion midAccordion = new Accordion();
+        Accordion senAccordion = new Accordion();
 
 
-        VBox leftTitles = new VBox(accordion);
+        priAccordion.getPanes().addAll(priTitledPane);
+        midAccordion.getPanes().addAll(midTitlePane);
+        senAccordion.getPanes().addAll(senTitlePane);
+        leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
+        leftTitles.setMinWidth(350);
+        leftTitles.setStyle("-fx-background-color: mediumspringgreen");
 
-        leftTitles.setMinWidth(300);
-        HBox mainhBox = new HBox(leftTitles);
-        Scene scene = new Scene(mainhBox, 800, 800);
+        Image image = new Image("file:Resource/slcj.png", 300, 300.0, false, false);
+        ImageView imageView = new ImageView(image);
+        mainGrid = new GridPane();
+
+        Text text = new Text("fd");
+        Text text1 = new Text("fd");
+        Text text2 = new Text("fd");
+        Text text3 = new Text("fd");
+        Text text4 = new Text("fd");
+        Text text5 = new Text("fd");
+        mainGrid.add(imageView, 2, 2);
+
+        mainGrid.add(text, 1, 1);
+        mainGrid.add(text2, 3, 3);
+
+
+        mainGrid.setStyle("-fx-background-color: blue");
+        mainGrid.setScaleShape(true);
+        HBox mainhBox = new HBox(leftTitles, mainGrid);
+        // mainhBox.setStyle("-fx-background-color: red");
+
+        Scene scene = new Scene(mainhBox, 1000, 500);
 
         this.setScene(scene);
     }
@@ -159,19 +211,41 @@ public class CBMain extends Stage {
     private class TitleCell extends ListCell<Title> {
         private Text name;
         private HBox mainHBox;
-        private RadioButton finished;
+        private CheckBox finished;
+
 
         public TitleCell() {
             super();
             name = new Text();
             name.setFont(new Font("黑体", 20));
-            finished = new RadioButton();
+
+            {//实现字体放大 变小的特效
+                name.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+
+//鼠标进入的特效
+                        name.setFont(new Font("黑体", 25));
+
+                    }
+                });
+                name.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        name.setFont(new Font("黑体", 20));
+
+                    }
+                });
+            }
+
+            finished = new CheckBox();
+            finished.setStyle("-fx-background-color:red");//这个红色体现不出来
             finished.setText("已完成");
-          //  finished.setBorder(new Border(10,10,10,10));
-//            finished.setAlignment();
-            //    finished.setMinWidth(50);
-            //     finished.setMinHeight(50);
-            //  finished.setMaxWidth(30);
+
+            finished.setSelected(true);
+            finished.setStyle("-fx-font-size: 15;-fx-text-fill: blue");
+            finished.setDisable(true);
+
 
             mainHBox = new HBox(name, finished);
 
@@ -181,8 +255,9 @@ public class CBMain extends Stage {
         protected void updateItem(Title title, boolean b) {
             super.updateItem(title, b);
             if (title != null && !b) {
-
                 name.setText(title.getName());
+
+
                 setGraphic(mainHBox);
 
             } else {
