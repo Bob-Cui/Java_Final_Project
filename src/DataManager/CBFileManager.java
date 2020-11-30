@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class CBFileManager {
 
-    public String readJson(String address) throws IOException {
+    public static String readJson(String address) throws IOException {
 
         FileReader fileReader = new FileReader(address);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -26,7 +26,7 @@ public class CBFileManager {
         CBFileManager cbFileManager = new CBFileManager();
 
         System.out.println("张辉");
-        System.out.println(cbFileManager.readJson("C:\\Users\\DELL\\Desktop\\qndy杨志强\\test1.json"));
+        System.out.println(readJson("C:\\Users\\DELL\\Desktop\\qndy杨志强\\test1.json"));
 
         String c = "fsdf";
 //        System.out.println();c.substring(3, 4);

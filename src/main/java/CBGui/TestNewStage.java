@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 
-public class FXMLLea extends Application {
+public class TestNewStage extends Application {
     private static Stage mainStage;
 
     @FXML

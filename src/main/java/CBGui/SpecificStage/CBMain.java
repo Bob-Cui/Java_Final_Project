@@ -1,88 +1,182 @@
 package main.java.CBGui.SpecificStage;
 
-import DataManager.Data.BigTitleData;
-import DataManager.Data.TitleData;
+import DataManager.Data.BigTitle;
+import DataManager.Data.Title;
 import DataManager.JsonManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
 public class CBMain extends Stage {
 
-
-    private TreeItem<String> treeItem;
-
-
-    private void init_treeItem()
-    {
-        TreeItem<String> rootItem = new TreeItem<>("快乐学JAVA");
-
-        rootItem.setExpanded(true);
-
-        BigTitleData bigTitleData = null;
-        try {
-            bigTitleData = JsonManager.getBigTitleData();
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     *
+     */
+    public static void main(String[] args) throws IOException {
+        BigTitle bigTitle = JsonManager.getTitleData();
+        for (Title title : bigTitle.getPrimaryTitleList()) {
+            System.out.println(title.getName());
         }
-        //越来越佩服自己了
-        for (TitleData c : bigTitleData.getDatas()) {
-
-            TreeItem<String> item = new TreeItem<>(c.getTitle());
-
-            for (TitleData.Subtitle c1 : c.getSubtitles()) {
-
-                TreeItem<String> item1 = new TreeItem<>(c1.getTitle());
-                for (String str : c1.getSubtitles()) {
-                    TreeItem<String> item2 = new TreeItem<>(str);
-                    item1.getChildren().add(item2);
-                }
-                item.getChildren().add(item1);
-            }
-            rootItem.getChildren().add(item);
-        }
-
-
-        TreeView<String> tree = new TreeView<>(rootItem);
-
-        tree.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-
-                System.out.println(tree.getTreeItemLevel(tree.getTreeItem(t1.intValue())));
-                System.out.println(tree.getTreeItem(t1.intValue()));
-
-            }
-        });
-        tree.setStyle("-fx-font-size: 25px");
-
-        tree.setMaxWidth(500);
-        tree.setMinWidth(500);
 
     }
-    public CBMain() {
+
+    private TreeItem<String> treeItem;
+    private ObservableList<Title> priTitle, midTitle, senTitle;
+    private ListView<Title> priListView, midListView, senListView;
+
+    /**
+     * 初始化用于展示三个级别的listView
+     */
+    private void initTitleListView() throws IOException {
+
+        BigTitle bigTitle = JsonManager.getTitleData();
+
+        priTitle = FXCollections.observableArrayList();
+        midTitle = FXCollections.observableArrayList();
+        senTitle = FXCollections.observableArrayList();
 
 
+        priTitle.addAll(bigTitle.getPrimaryTitleList());
+        midTitle.addAll(bigTitle.getMidTitleList());
+        senTitle.addAll(bigTitle.getSenTitleList());
 
 
+        priListView = new ListView<>(priTitle);
+        midListView = new ListView<>(midTitle);
+        senListView = new ListView<>(senTitle);
+
+        /**
+         *        设置样式
+         */
+        priListView.setCellFactory(new Callback<ListView<Title>, ListCell<Title>>() {
+            @Override
+            public ListCell<Title> call(ListView<Title> titleListView) {
+                return new TitleCell();
+            }
+        });
+        midListView.setCellFactory(new Callback<ListView<Title>, ListCell<Title>>() {
+            @Override
+            public ListCell<Title> call(ListView<Title> titleListView) {
+                return new TitleCell();
+            }
+        });
+        senListView.setCellFactory(new Callback<ListView<Title>, ListCell<Title>>() {
+            @Override
+            public ListCell<Title> call(ListView<Title> titleListView) {
+                return new TitleCell();
+            }
+        });
+    }
 
 
-//         Image image = new Image("C:\\Users\\DELL\\Desktop\\JavaFinalProject\\Resource\\slcj.png",false);
-//        Image image3 = new Image("file:src/slcj.png", 400, 400, false, false);
-//
-//        ImageView imageView = new ImageView();
-//        imageView.setImage(image3);
-//
-//      //  HBox hBox = new HBox(tree, imageView);
-//        Scene scene = new Scene(hBox);
-//        this.setScene(scene);
+    public CBMain() throws IOException {
+
+
+        initTitleListView();
+        //初级教程题目的标签
+        Label labelJavaPri = new Label(" Java  ");
+        Label labelPri = new Label("初级教程");
+        labelJavaPri.setTextFill(Color.WHITE);
+        labelPri.setTextFill(Color.WHITE);
+
+
+        labelJavaPri.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
+        labelPri.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
+        HBox hBoxPri = new HBox(labelJavaPri, labelPri);
+        hBoxPri.setStyle("-fx-background-color: darkolivegreen");
+        //
+
+
+        //中级教程题目的标签
+        Label labelJavaMid = new Label(" Java  ");
+        Label labelMid = new Label("中级教程");
+
+        labelJavaMid.setTextFill(Color.WHITE);
+        labelMid.setTextFill(Color.WHITE);
+        labelJavaMid.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
+        labelMid.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
+        HBox hBoxMid = new HBox(labelJavaMid, labelMid);
+        hBoxMid.setStyle("-fx-background-color: darkolivegreen");
+        //
+
+
+        //高级教程题目的标签
+        Label labelJavaSen = new Label(" Java  ");
+        Label labelSen = new Label("高级教程");
+
+        labelJavaSen.setTextFill(Color.WHITE);
+        labelSen.setTextFill(Color.WHITE);
+
+        labelJavaSen.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
+        labelSen.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
+        HBox hBoxSen = new HBox(labelJavaSen, labelSen);
+
+        hBoxSen.setStyle("-fx-background-color: darkolivegreen");
+        //
+
+        VBox titlePri = new VBox(hBoxPri, priListView);
+        VBox titleMid = new VBox(hBoxMid, midListView);
+        VBox titleSenior = new VBox(hBoxSen, senListView);
+
+
+        VBox leftTitles = new VBox(titlePri, titleMid, titleSenior);
+
+        leftTitles.setMinWidth(300);
+        HBox mainhBox = new HBox(leftTitles);
+        Scene scene = new Scene(mainhBox, 800, 800);
+
+        this.setScene(scene);
+    }
+
+    /**
+     * 设置listView的样式专用类
+     */
+    private class TitleCell extends ListCell<Title> {
+        private Text name;
+        private HBox mainHBox;
+        private RadioButton finished;
+
+        public TitleCell() {
+            super();
+            name = new Text();
+            name.setFont(new Font("黑体", 20));
+            finished = new RadioButton();
+            finished.setText("已完成");
+          //  finished.setBorder(new Border(10,10,10,10));
+//            finished.setAlignment();
+            //    finished.setMinWidth(50);
+            //     finished.setMinHeight(50);
+            //  finished.setMaxWidth(30);
+
+            mainHBox = new HBox(name, finished);
+
+        }
+
+        @Override
+        protected void updateItem(Title title, boolean b) {
+            super.updateItem(title, b);
+            if (title != null && !b) {
+
+                name.setText(title.getName());
+                setGraphic(mainHBox);
+
+            } else {
+                setGraphic(null);
+            }
+
+        }
     }
 }

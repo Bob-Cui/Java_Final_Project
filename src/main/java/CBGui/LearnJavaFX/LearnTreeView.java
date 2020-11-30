@@ -22,47 +22,47 @@ public class LearnTreeView extends Application {
     public void start(Stage stage) throws Exception {
 
 
-        TreeItem<String> rootItem = new TreeItem<>("快乐学JAVA");
+//        TreeItem<String> rootItem = new TreeItem<>("快乐学JAVA");
+//
+//        rootItem.setExpanded(true);
+//
+//        BigTitleData bigTitleData = JsonManager.getBigTitleData();
+//        //越来越佩服自己了
+//        for (TitleData c : bigTitleData.getDatas()) {
+//
+//            TreeItem<String> item = new TreeItem<>(c.getTitle());
+//
+//            for (TitleData.Subtitle c1 : c.getSubtitles()) {
+//
+//                TreeItem<String> item1 = new TreeItem<>(c1.getTitle());
+//                for (String str : c1.getSubtitles()) {
+//                    TreeItem<String> item2 = new TreeItem<>(str);
+//                    item1.getChildren().add(item2);
+//                }
+//                item.getChildren().add(item1);
+//            }
+//            rootItem.getChildren().add(item);
+//        }
 
-        rootItem.setExpanded(true);
 
-        BigTitleData bigTitleData = JsonManager.getBigTitleData();
-        //越来越佩服自己了
-        for (TitleData c : bigTitleData.getDatas()) {
-
-            TreeItem<String> item = new TreeItem<>(c.getTitle());
-
-            for (TitleData.Subtitle c1 : c.getSubtitles()) {
-
-                TreeItem<String> item1 = new TreeItem<>(c1.getTitle());
-                for (String str : c1.getSubtitles()) {
-                    TreeItem<String> item2 = new TreeItem<>(str);
-                    item1.getChildren().add(item2);
-                }
-                item.getChildren().add(item1);
-            }
-            rootItem.getChildren().add(item);
-        }
-
-
-
-        TreeView<String> tree = new TreeView<>(rootItem);
-
-        tree.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-
-                System.out.println(tree.getTreeItemLevel(tree.getTreeItem(t1.intValue())));
-                System.out.println(tree.getTreeItem(t1.intValue()));
-
-            }
-        });
-        tree.setStyle("-fx-font-size: 25px");
+//
+//        TreeView<String> tree = new TreeView<>(rootItem);
+//
+//        tree.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+//
+//                System.out.println(tree.getTreeItemLevel(tree.getTreeItem(t1.intValue())));
+//                System.out.println(tree.getTreeItem(t1.intValue()));
+//
+//            }
+//        });
+//        tree.setStyle("-fx-font-size: 25px");
 
         StackPane root = new StackPane();
 
 
-        root.getChildren().add(tree);
+       // root.getChildren().add(tree);
         stage.setScene(new Scene(root, 600, 600));
         stage.show();
 

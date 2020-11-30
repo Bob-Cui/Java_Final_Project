@@ -51,6 +51,14 @@ public class TitleData {
         return subtitles;
     }
 
+    @Override
+    public String toString() {
+        return "TitleData{" +
+                "title='" + title + '\'' +
+                ", subtitles=" + subtitles +
+                '}';
+    }
+
     public void setSubtitles(LinkedList<Subtitle> subtitles) {
         this.subtitles = subtitles;
     }
