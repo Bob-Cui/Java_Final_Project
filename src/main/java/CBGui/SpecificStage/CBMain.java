@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class CBMain extends Stage {
@@ -44,7 +47,7 @@ public class CBMain extends Stage {
     private VBox leftTitles, right;
     //容纳左侧列表的VBox
 
-    private GridPane mainGrid;
+//    private GridPane mainGrid;
 
 
     /**
@@ -87,16 +90,6 @@ public class CBMain extends Stage {
             @Override
             public ListCell<Title> call(ListView<Title> titleListView) {
                 return new TitleCell();
-            }
-        });
-
-        midListView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-
-
-                System.out.println(midListView.getSelectionModel().getSelectedIndex());
-
             }
         });
 
@@ -173,15 +166,24 @@ public class CBMain extends Stage {
 
 
         priAccordion.getPanes().addAll(priTitledPane);
-        midAccordion.getPanes().addAll(midTitlePane);
-        senAccordion.getPanes().addAll(senTitlePane);
-        leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
-        leftTitles.setMinWidth(350);
-        leftTitles.setStyle("-fx-background-color: mediumspringgreen");
 
-        Image image = new Image("file:Resource/slcj.png", 300, 300.0, false, false);
+//        priAccordion.setStyle("-fx-padding: 20px");
+        midAccordion.getPanes().addAll(midTitlePane);
+
+//        midAccordion.setStyle("-fx-padding: 20px");
+
+        senAccordion.getPanes().addAll(senTitlePane);
+//        senAccordion.setStyle("-fx-padding: 20px");
+        leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
+
+
+        leftTitles.setMinWidth(400);
+        leftTitles.setStyle("-fx-spacing: 50px;-fx-background-color: mediumspringgreen");
+
+
+        Image image = new Image("file:Resource/JAVA.jpg", 250, 250.0, false, false);
         ImageView imageView = new ImageView(image);
-        mainGrid = new GridPane();
+//        mainGrid = new GridPane();
 
         Text text = new Text("fd");
         Text text1 = new Text("fd");
@@ -189,18 +191,42 @@ public class CBMain extends Stage {
         Text text3 = new Text("fd");
         Text text4 = new Text("fd");
         Text text5 = new Text("fd");
-        mainGrid.add(imageView, 2, 2);
 
-        mainGrid.add(text, 1, 1);
-        mainGrid.add(text2, 3, 3);
+        GridPane mainGrid = new GridPane();
 
 
-        mainGrid.setStyle("-fx-background-color: blue");
-        mainGrid.setScaleShape(true);
+        Button button = new Button();
+        button.setText("查看我的学习进度");
+
+        Button button1 = new Button();
+        button.setText("查看我的得分");
+
+        Button button2 = new Button();
+        button2.setText("查看我的笔记");
+
+        //VBox vBox = new VBox(button);
+
+        mainGrid.add(text2, 1, 0);
+        //  mainGrid.add(vBox, 1, 2);
+        mainGrid.add(button, 0, 2);
+        mainGrid.add(button1, 1, 2);
+        mainGrid.add(button2, 2, 2);
+
+
+        mainGrid.add(imageView, 1, 1);
+
+
+        mainGrid.setHgap(30);
+        mainGrid.setVgap(40);
+
+
         HBox mainhBox = new HBox(leftTitles, mainGrid);
         // mainhBox.setStyle("-fx-background-color: red");
 
-        Scene scene = new Scene(mainhBox, 1000, 500);
+
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension dimension = kit.getScreenSize();
+        Scene scene = new Scene(mainhBox, dimension.width / 2, dimension.height / 2);
 
         this.setScene(scene);
     }
@@ -217,23 +243,22 @@ public class CBMain extends Stage {
         public TitleCell() {
             super();
             name = new Text();
-            name.setFont(new Font("黑体", 20));
-
+            name.setStyle("-fx-font-size: 20;-fx-font-family: '黑体'");
             {//实现字体放大 变小的特效
                 name.setOnMouseEntered(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
 
-//鼠标进入的特效
-                        name.setFont(new Font("黑体", 25));
-
+                        //鼠标进入的特效
+                        name.setStyle("-fx-font-family: '黑体';-fx-font-size: 21;");
+                        name.setFill(Color.RED);
                     }
                 });
                 name.setOnMouseExited(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        name.setFont(new Font("黑体", 20));
-
+                        name.setStyle("-fx-font-size: 20;-fx-font-family: '黑体';");
+                        name.setFill(Color.BLACK);
                     }
                 });
             }
