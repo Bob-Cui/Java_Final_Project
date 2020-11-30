@@ -131,8 +131,20 @@ public class CBMain extends Stage {
         VBox titleMid = new VBox(hBoxMid, midListView);
         VBox titleSenior = new VBox(hBoxSen, senListView);
 
+        //手风琴布局尝试
+        TitledPane priTitledPane = new TitledPane("Java", priListView);
+        TitledPane midTitlePane = new TitledPane("Java", midListView);
+        TitledPane senTitlePane = new TitledPane("Java", senListView);
 
-        VBox leftTitles = new VBox(titlePri, titleMid, titleSenior);
+
+        Accordion accordion = new Accordion();
+
+        accordion.getPanes().addAll(priTitledPane, midTitlePane, senTitlePane);
+
+
+
+
+        VBox leftTitles = new VBox(accordion);
 
         leftTitles.setMinWidth(300);
         HBox mainhBox = new HBox(leftTitles);
