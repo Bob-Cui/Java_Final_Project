@@ -66,7 +66,7 @@ public class PopUpThing extends Application {
         if (e.getSource() == btnscene1) {
 
             learnPage.showAndWait();
-
+            PopUpThing popUpThing = new PopUpThing();
 
         } else {
             newStage.close();

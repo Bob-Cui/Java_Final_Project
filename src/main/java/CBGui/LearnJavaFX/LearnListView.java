@@ -41,19 +41,29 @@ public class LearnListView extends Application {
 
         ListView<Problem> listView = new ListView<>(fuck);
 
+//        listView.setCellFactory(new Callback<ListView<Problem>, ListCell<Problem>>() {
+//            @Override
+//            public ListCell<Problem> call(ListView<Problem> problemListView) {
+//
+//
+//                return new ProCell();
+//            }
+//        });
+
         listView.setCellFactory(new Callback<ListView<Problem>, ListCell<Problem>>() {
             @Override
             public ListCell<Problem> call(ListView<Problem> problemListView) {
-
-
                 return new ProCell();
             }
         });
+
         listView.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
                     @Override
                     public void changed(ObservableValue<? extends Number> observableValue, Number last, Number t1) {
-                        System.out.println(listView.getItems().get(t1.intValue()).toString());
+//                        System.out.println(listView.getItems().get(t1.intValue()).toString());
+                        System.out.println("dafsd ");
+
                     }
                 }
         );
@@ -65,7 +75,7 @@ public class LearnListView extends Application {
         stage.show();
 
 
-        Problem c=new Problem("fdsa","fdas","dsfa");
+        Problem c = new Problem("fdsa", "fdas", "dsfa");
 
 
         c.getAnswer();
@@ -91,21 +101,28 @@ public class LearnListView extends Application {
             D.setToggleGroup(select);
 
             A.setUserData("A");//这可真是神奇的获取数据的方式
-            B.setUserData("A");
-            C.setUserData("A");
-            D.setUserData("A");
+            B.setUserData("B");
+            C.setUserData("C");
+            D.setUserData("D");
 
 
+//            select.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+//                @Override
+//                public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
+//                    if (select.getSelectedToggle() != null) {
+//
+//
+//                        System.out.println(select.getSelectedToggle().getUserData());
+//                    }
+//                }
+//            });
             select.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
                 @Override
                 public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                    if (select.getSelectedToggle() != null) {
-
-
-                        System.out.println(select.getSelectedToggle().getUserData());
-                    }
+                    System.out.println(select.getSelectedToggle().getUserData());
                 }
             });
+
 
             name = new Text("这是一道题");
             content = new HBox(A, B, C, D);
@@ -117,7 +134,7 @@ public class LearnListView extends Application {
 
         @Override
         protected void updateItem(Problem problem, boolean b) {
-            super.updateItem(problem, b);
+//            super.updateItem(problem, b);
             if (problem != null && !b) {
 
                 name.setText(problem.getName());

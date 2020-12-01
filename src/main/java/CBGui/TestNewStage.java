@@ -1,8 +1,6 @@
 package main.java.CBGui;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import main.java.CBGui.SpecificStage.CBMain;
+import main.java.CBGui.SpecificStage.XCYMain;
 
 import java.io.*;
 import java.io.IOException;
@@ -71,28 +69,12 @@ public class TestNewStage extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-//        mainStage = primaryStage;
 
-        primaryStage = new CBMain();
+        primaryStage = new XCYMain();
         primaryStage.show();
 
 
-        //        URL url = getClass().getClassLoader().getResource("main.fxml");
-//        if (url == null) {
-//            System.out.println("找不到文件");
-//        } else {
-//            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main.fxml")));
-//
-//
-//            Scene scene = new Scene(root, 700, 700);
-//
-//
-//
-//
-//            mainStage.setTitle("Hello World");
-//            mainStage.setScene(new Scene(root, 600, 600));
-//            mainStage.show();
-//        }
+
     }
 
     public void change() throws IOException {

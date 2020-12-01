@@ -3,6 +3,8 @@ package main.java.CBGui.SpecificStage;
 import DataManager.Data.BigTitle;
 import DataManager.Data.Title;
 import DataManager.JsonManager;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -24,8 +26,9 @@ import javafx.util.Callback;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
-public class CBMain extends Stage {
+public class XCYMain extends Stage {
 
     /**
      *
@@ -45,9 +48,7 @@ public class CBMain extends Stage {
     private ListView<Title> priListView, midListView, senListView;
 
     private VBox leftTitles, right;
-    //容纳左侧列表的VBox
 
-//    private GridPane mainGrid;
 
 
     /**
@@ -93,6 +94,22 @@ public class CBMain extends Stage {
             }
         });
 
+        priListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                try {
+                    LearnStage learnStage=new LearnStage();
+
+                    learnStage.showAndWait();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+
+
     }
 
     /**
@@ -103,7 +120,7 @@ public class CBMain extends Stage {
         this.getIcons().add(new Image("file:Resource/icon.jpg"));
     }
 
-    public CBMain() throws IOException {
+    public XCYMain() throws IOException {
 
         setStageTitle();
         initTitleListView();
@@ -238,12 +255,17 @@ public class CBMain extends Stage {
         private Text name;
         private HBox mainHBox;
         private CheckBox finished;
+//        private Checkbox
 
-
+        
+        
         public TitleCell() {
             super();
             name = new Text();
-            name.setStyle("-fx-font-size: 20;-fx-font-family: '黑体'");
+            name.setStyle("-fx-font-size: 20;-fx-font-family: '黑体';-fx-text-fill: blue");
+
+
+
             {//实现字体放大 变小的特效
                 name.setOnMouseEntered(new EventHandler<MouseEvent>() {
                     @Override
@@ -269,6 +291,9 @@ public class CBMain extends Stage {
 
             finished.setSelected(true);
             finished.setStyle("-fx-font-size: 15;-fx-text-fill: blue");
+
+
+
             finished.setDisable(true);
 
 
