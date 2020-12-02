@@ -1,19 +1,9 @@
 package main.java.CBGui.LearnJavaFX;
 
-import DataManager.Data.BigTitleData;
-import DataManager.Data.TitleData;
-import DataManager.JsonManager;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
-import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class LearnTreeView extends Application {
 

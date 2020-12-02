@@ -1,13 +1,10 @@
 package DataManager;
 
 import DataManager.Data.BigTitle;
-import DataManager.Data.BigTitleData;
 import DataManager.Data.Title;
-import DataManager.Data.TitleData;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.LinkedList;
 
 public class JsonManager {
     /**

@@ -8,17 +8,28 @@ import java.util.LinkedList;
 public class BigTitle {
 
 
-    public BigTitle(LinkedList<Title> primaryTitleList, LinkedList<Title> midTitleList, LinkedList<Title> senTitleList) {
-        PriTitleList = primaryTitleList;
-        MidTitleList = midTitleList;
-        SenTitleList = senTitleList;
-    }
+
+
+
 
     private LinkedList<Title> PriTitleList;
     private LinkedList<Title> MidTitleList;
     private LinkedList<Title> SenTitleList;
 
 
+
+
+    /**
+     *
+     * @param primaryTitleList
+     * @param midTitleList
+     * @param senTitleList
+     */
+    public BigTitle(LinkedList<Title> primaryTitleList, LinkedList<Title> midTitleList, LinkedList<Title> senTitleList) {
+        PriTitleList = primaryTitleList;
+        MidTitleList = midTitleList;
+        SenTitleList = senTitleList;
+    }
 
     public LinkedList<Title> getPrimaryTitleList() {
         return PriTitleList;

@@ -1,5 +1,7 @@
 package DataManager.Data;
 
+import java.util.Date;
+
 /**
  * listView中title专用的数据类
  */
@@ -7,7 +9,17 @@ public class Title {
 
 
     private String name;
+
+
     private String resource;
+
+    //这一章的内容是否可以看
+
+
+
+
+
+
     //代表展示这个东西的网页
 
     public String getResource() {
