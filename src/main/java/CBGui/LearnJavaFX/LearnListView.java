@@ -91,7 +91,7 @@ public class LearnListView extends Application {
         public ProCell() {
             super();
             select = new ToggleGroup();
-            RadioButton A = new RadioButton("A");
+            RadioButton A = new RadioButton("Afasdfsadf");
             RadioButton B = new RadioButton("B");
             RadioButton C = new RadioButton("C");
             RadioButton D = new RadioButton("D");
@@ -100,7 +100,7 @@ public class LearnListView extends Application {
             C.setToggleGroup(select);
             D.setToggleGroup(select);
 
-            A.setUserData("A");//这可真是神奇的获取数据的方式
+            A.setUserData("Afgdsdfgsdf gddsald");//这可真是神奇的获取数据的方式
             B.setUserData("B");
             C.setUserData("C");
             D.setUserData("D");

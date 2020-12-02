@@ -17,6 +17,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import main.java.CBGui.LearnJavaFX.LearnListView;
+import main.java.CBGui.SpecificStage.MyBox.ProblemVBox;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -86,13 +87,11 @@ public class LearnStage extends Stage {
         Text text = new Text("请回答以下的问题");
         text.setStyle("-fx-font-size: 30px");
 
-        Circle circle = new Circle();
 
-        circle.setRadius(10);
 
         HBox hBox = new HBox();
-
-        rVbox = new VBox(text, problemListView,circle);
+        ProblemVBox problemVBox = new ProblemVBox();
+        rVbox = new VBox(text,problemVBox);
         hBox = new HBox(webView, rVbox);
         scene = new Scene(hBox);
         this.setScene(scene);
