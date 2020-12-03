@@ -1,13 +1,15 @@
 package main.java.CBGui.SpecificStage;
 
-import DataManager.Data.BigTitle;
-import DataManager.Data.Title;
-import DataManager.JsonManager;
+
+import DataManager.Data.TitleManager;
+import DataManager.PreProcessing.BigTitle;
+import DataManager.PreProcessing.JsonManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -15,11 +17,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -33,23 +35,18 @@ public class XCYMain extends Stage {
     /**
      *
      */
-    public static void main(String[] args) throws IOException {
-        BigTitle bigTitle = JsonManager.getTitleData();
-        for (Title title : bigTitle.getPrimaryTitleList()) {
-            System.out.println(title.getName());
-        }
 
-    }
 
     private TreeItem<String> treeItem;
 
     //三个listView使用的
-    private ObservableList<Title> priTitle, midTitle, senTitle;
-    private ListView<Title> priListView, midListView, senListView;
+    private ObservableList<TitleManager> priTitle, midTitle, senTitle;
+    private ListView<TitleManager> priListView, midListView, senListView;
 
     private VBox leftTitles, right;
 
 
+    private FlowPane leftFlowPane, mainFlowPane;
 
     /**
      * 初始化用于展示三个级别的listView
@@ -63,33 +60,36 @@ public class XCYMain extends Stage {
         senTitle = FXCollections.observableArrayList();
 
 //priTitle.
-        priTitle.addAll(bigTitle.getPrimaryTitleList());
-        midTitle.addAll(bigTitle.getMidTitleList());
-        senTitle.addAll(bigTitle.getSenTitleList());
+//        priTitle.addAll(bigTitle.getPrimaryTitleList());
+//        midTitle.addAll(bigTitle.getMidTitleList());
+//        senTitle.addAll(bigTitle.getSenTitleList());
 
 
         priListView = new ListView<>(priTitle);
         midListView = new ListView<>(midTitle);
         senListView = new ListView<>(senTitle);
 
+        midListView.setDisable(true);
+
+
         /**
          *        设置样式
          */
-        priListView.setCellFactory(new Callback<ListView<Title>, ListCell<Title>>() {
+        priListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
             @Override
-            public ListCell<Title> call(ListView<Title> titleListView) {
+            public ListCell<TitleManager> call(ListView<TitleManager> titleListView) {
                 return new TitleCell();
             }
         });
-        midListView.setCellFactory(new Callback<ListView<Title>, ListCell<Title>>() {
+        midListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
             @Override
-            public ListCell<Title> call(ListView<Title> titleListView) {
+            public ListCell<TitleManager> call(ListView<TitleManager> titleListView) {
                 return new TitleCell();
             }
         });
-        senListView.setCellFactory(new Callback<ListView<Title>, ListCell<Title>>() {
+        senListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
             @Override
-            public ListCell<Title> call(ListView<Title> titleListView) {
+            public ListCell<TitleManager> call(ListView<TitleManager> titleListView) {
                 return new TitleCell();
             }
         });
@@ -98,7 +98,7 @@ public class XCYMain extends Stage {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 try {
-                    LearnStage learnStage=new LearnStage();
+                    LearnStage learnStage = new LearnStage();
 
                     learnStage.showAndWait();
                 } catch (MalformedURLException e) {
@@ -107,7 +107,6 @@ public class XCYMain extends Stage {
 
             }
         });
-
 
 
     }
@@ -184,23 +183,18 @@ public class XCYMain extends Stage {
 
         priAccordion.getPanes().addAll(priTitledPane);
 
-//        priAccordion.setStyle("-fx-padding: 20px");
         midAccordion.getPanes().addAll(midTitlePane);
 
-//        midAccordion.setStyle("-fx-padding: 20px");
 
         senAccordion.getPanes().addAll(senTitlePane);
-//        senAccordion.setStyle("-fx-padding: 20px");
         leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
 
 
-        leftTitles.setMinWidth(400);
         leftTitles.setStyle("-fx-spacing: 50px;-fx-background-color: mediumspringgreen");
 
 
         Image image = new Image("file:Resource/JAVA.jpg", 250, 250.0, false, false);
         ImageView imageView = new ImageView(image);
-//        mainGrid = new GridPane();
 
         Text text = new Text("fd");
         Text text1 = new Text("fd");
@@ -236,14 +230,21 @@ public class XCYMain extends Stage {
         mainGrid.setHgap(30);
         mainGrid.setVgap(40);
 
+        leftFlowPane = new FlowPane(priAccordion, midAccordion, senAccordion);
 
-        HBox mainhBox = new HBox(leftTitles, mainGrid);
-        // mainhBox.setStyle("-fx-background-color: red");
+        //HBox mainhBox = new HBox(leftTitles, mainGrid);
+
+
+        mainFlowPane = new FlowPane(leftFlowPane, mainGrid);
 
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension dimension = kit.getScreenSize();
-        Scene scene = new Scene(mainhBox, dimension.width / 2, dimension.height / 2);
+        Scene scene = new Scene(mainFlowPane, dimension.width / 2, dimension.height / 2);
+
+        //主窗体的大小是不可以更改的
+        this.setResizable(false);
+
 
         this.setScene(scene);
     }
@@ -251,19 +252,17 @@ public class XCYMain extends Stage {
     /**
      * 设置listView的样式专用类
      */
-    private class TitleCell extends ListCell<Title> {
+    private class TitleCell extends ListCell<TitleManager> {
         private Text name;
         private HBox mainHBox;
         private CheckBox finished;
 //        private Checkbox
 
-        
-        
+
         public TitleCell() {
             super();
             name = new Text();
             name.setStyle("-fx-font-size: 20;-fx-font-family: '黑体';-fx-text-fill: blue");
-
 
 
             {//实现字体放大 变小的特效
@@ -293,7 +292,6 @@ public class XCYMain extends Stage {
             finished.setStyle("-fx-font-size: 15;-fx-text-fill: blue");
 
 
-
             finished.setDisable(true);
 
 
@@ -302,7 +300,7 @@ public class XCYMain extends Stage {
         }
 
         @Override
-        protected void updateItem(Title title, boolean b) {
+        protected void updateItem(TitleManager title, boolean b) {
             super.updateItem(title, b);
             if (title != null && !b) {
                 name.setText(title.getName());
