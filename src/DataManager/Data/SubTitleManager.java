@@ -1,11 +1,16 @@
 package DataManager.Data;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.LinkedList;
 
 public class SubTitleManager {
     private boolean ableToLearn;
     private TitleType titleType;
     private LinkedList<TitleManager> linkedListTitle;
+    /**
+     * 题库
+     */
 
 
     public SubTitleManager() {

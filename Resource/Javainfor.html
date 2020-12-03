@@ -3,7 +3,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width initial-scale=1'>
-    <title>Java 简介</title>
+    <title>Javainfor</title>
     <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext'
           rel='stylesheet' type='text/css'/>
     <style type='text/css'>html {
@@ -1662,16 +1662,68 @@
 </head>
 <body class='typora-export os-windows'>
 <div id='write' class=''><h1><a name="java-简介" class="md-header-anchor"></a><span>Java 简介</span></h1>
-    <p><span>Java 是由 Sun Microsystems 公司于 1995 年 5 月推出的 Java 面向对象程序设计语言和 Java 平台的总称。由 James Gosling和同事们共同研发，并在 1995 年正式推出。</span>
+    <h2><a name="什么是java语言" class="md-header-anchor"></a><span>什么是Java语言</span></h2>
+    <p><span>简单地说，Java 是由 Sun Microsystems 公司于 1995 年推出的一门面向对象程序设计语言。2010 年 Oracle 公司收购 Sun Microsystems，之后由 Oracle 公司负责 Java 的维护和版本升级。</span>
     </p>
-    <p><span>后来 Sun 公司被 Oracle （甲骨文）公司收购，Java 也随之成为 Oracle 公司的产品。</span></p>
-    <p><span>Java分为三个体系：</span></p>
-    <ul>
-        <li><span>JavaSE（J2SE）（Java2 Platform Standard Edition，java平台标准版）</span></li>
-        <li><span>JavaEE(J2EE)(Java 2 Platform,Enterprise Edition，java平台企业版)</span></li>
-        <li><span>JavaME(J2ME)(Java 2 Platform Micro Edition，java平台微型版)。</span></li>
-    </ul>
-    <p><span>2005 年 6 月，JavaOne 大会召开，SUN 公司公开 Java SE 6。此时，Java 的各种版本已经更名，以取消其中的数字 &quot;2&quot;：J2EE 更名为 Java EE，J2SE 更名为Java SE，J2ME 更名为 Java ME。</span>
+    <p><span>其实，Java 还是一个平台。Java 平台由 Java 虚拟机（Java Virtual Machine，JVM）和 Java 应用编程接口（Application Programming Interface，API）构成。Java 应用编程接口为此提供了一个独立于操作系统的标准接口，可分为基本部分和扩展部分。在硬件或操作系统平台上安装一个 Java 平台之后，Java 应用程序就可运行。</span>
+    </p>
+    <p><span>Java 平台已经嵌入了几乎所有的操作系统。这样 Java 程序只编译一次，就可以在各种系统中运行。Java 应用编程接口已经从 1.1x 版本发展到 1.2 版本。常用的 Java 平台基于 Java 1.6，最新版本为 Java 1.8。</span>
+    </p>
+    <p><span>Java 发展至今，就力图使之无所不能。在世界编程语言排行榜中，近年来 Java 一直稳居第一名，比第二名的C语言高出几个百分点。</span></p>
+    <p>&nbsp;</p>
+    <p><img src="http://c.biancheng.net/uploads/allimg/200103/5-2001031G545249.png" referrerpolicy="no-referrer"
+            alt="世界编程语言排行榜"></p>
+    <p>
+        <span>按应用范围，Java 可分为 3 个体系，即 Java SE、Java EE 和 Java ME。下面简单介绍这 3 个体系。</span></p>
+    <h3><a name="java-se" class="md-header-anchor"></a><span>Java SE</span></h3>
+    <p><span>Java SE（Java Platform Standard Edition，Java 平台标准版）以前称为 J2SE，它允许开发和部署在桌面、服务器、嵌入式环境和实时环境中使用的 Java 应用程序。Java SE 包含了支持 Java Web 服务开发的类，并为 Java EE 提供基础，如 Java 语言基础、JDBC 操作、I/O 操作、网络通信以及多线程等技术。图 1 所示为 Java SE 的体系结构。</span>
+    </p>
+    <p>&nbsp;</p>
+    <p><a href='http://c.biancheng.net/uploads/allimg/190903/5-1ZZ3155933O7.jpg'><img
+            src="http://c.biancheng.net/uploads/allimg/190903/5-1ZZ3155933O7.jpg" referrerpolicy="no-referrer"
+            alt="Java SE的体系结构"></a>
+        <span>图1 Java SE的体系结构（</span><a href='http://c.biancheng.net/uploads/allimg/190903/5-1ZZ3155933O7.jpg'><span>点此查看原图</span></a><span>）</span>
+    </p>
+    <h3><a name="java-ee" class="md-header-anchor"></a><span>Java EE</span></h3>
+    <p><span>Java EE（Java Platform Enterprise Edition，Java 平台企业版）以前称为 J2EE。企业版本帮助开发和部署可移植、健壮、可伸缩且安全的服务器端 Java 应用程序。Java EE 是在 Java SE 基础上构建的，它提供 Web 服务、组件模型、管理和通信 API，可以用来实现企业级的面向服务体系结构（Service Oriented Architecture，SOA）和 Web 2.0 应用程序。</span>
+    </p>
+    <h3><a name="java-me" class="md-header-anchor"></a><span>Java ME</span></h3>
+    <p><span>Java ME（Java Platform Micro Edition，Java 平台微型版）以前称为 J2ME，也叫 K-JAVA。 Java ME 为在移动设备和嵌入式设备（比如手机、PDA、电视机顶盒和打印机）上运行的应用程序提供一个健壮且灵活的环境。</span>
+    </p>
+    <p>
+        <span>Java ME 包括灵活的用户界面、健壮的安全模型、丰富的内置网络协议以及对可以动态下载的联网和离线应用程序。基于 Java ME 规范的应用程序 只需编写一次就可以用于许多设备，而且可以利用每个设备的本机功能。</span>
+    </p>
+    <h2><a name="java语言的特点" class="md-header-anchor"></a><span>Java语言的特点</span></h2>
+    <p><span>Java 语言的风格很像 C 语言和 </span><a href='http://c.biancheng.net/cplus/'><span>C++</span></a><span> 语言，是一种纯粹的面向对象语言，它继承了 C++ 语言面向对象的技术核心，但是拋弃了 C++ 的一些缺点，比如说容易引起错误的指针以及多继承等，同时也增加了垃圾回收机制，释放掉不被使用的内存空间，解决了管理内存空间的烦恼。</span>
+    </p>
+    <p><span>Java 语言是一种分布式的面向对象语言，具有面向对象、平台无关性、简单性、解释执行、多线程、安全性等很多特点，下面针对这些特点进行逐一介绍。</span></p>
+    <h3><a name="面向对象" class="md-header-anchor"></a><span>面向对象</span></h3>
+    <p><span>Java 是一种面向对象的语言，它对对象中的类、对象、继承、封装、多态、接口、包等均有很好的支持。为了简单起见，Java 只支持类之间的单继承，但是可以使用接口来实现多继承。使用 Java 语言开发程序，需要采用面向对象的思想设计程序和编写代码。</span>
+    </p>
+    <h3><a name="平台无关性" class="md-header-anchor"></a><span>平台无关性</span></h3>
+    <p><span>平台无关性的具体表现在于，Java 是“一次编写，到处运行（Write Once，Run any Where）”的语言，因此采用 Java 语言编写的程序具有很好的可移植性，而保证这一点的正是 Java 的虚拟机机制。在引入虚拟机之后，Java 语言在不同的平台上运行不需要重新编译。</span>
+    </p>
+    <p><span>Java 语言使用 Java 虚拟机机制屏蔽了具体平台的相关信息，使得 Java 语言编译的程序只需生成虚拟机上的目标代码，就可以在多种平台上不加修改地运行。</span></p>
+    <h3><a name="简单性" class="md-header-anchor"></a><span>简单性</span></h3>
+    <p><span>Java 语言的语法与 C 语言和 C++ 语言很相近，使得很多程序员学起来很容易。对 Java 来说，它舍弃了很多 C++ 中难以理解的特性，如操作符的重载和多继承等，而且 Java 语言不使用指针，加入了垃圾回收机制，解决了程序员需要管理内存的问题，使编程变得更加简单。</span>
+    </p>
+    <h3><a name="解释执行" class="md-header-anchor"></a><span>解释执行</span></h3>
+    <p><span>Java 程序在 Java 平台运行时会被编译成字节码文件，然后可以在有 Java 环境的操作系统上运行。在运行文件时，Java 的解释器对这些字节码进行解释执行，执行过程中需要加入的类在连接阶段被载入到运行环境中。</span>
+    </p>
+    <h3><a name="多线程" class="md-header-anchor"></a><span>多线程</span></h3>
+    <p><span>Java 语言是多线程的，这也是 Java 语言的一大特性，它必须由 Thread 类和它的子类来创建。Java 支持多个线程同时执行，并提供多线程之间的同步机制。任何一个线程都有自己的 run() 方法，要执行的方法就写在 run() 方法体内。</span>
+    </p>
+    <h3><a name="分布式" class="md-header-anchor"></a><span>分布式</span></h3>
+    <p><span>Java 语言支持 Internet 应用的开发，在 Java 的基本应用编程接口中就有一个网络应用编程接口，它提供了网络应用编程的类库，包括 URL、URLConnection、Socket 等。Java 的 RIM 机制也是开发分布式应用的重要手段。</span>
+    </p>
+    <h3><a name="健壮性" class="md-header-anchor"></a><span>健壮性</span></h3>
+    <p><span>Java 的强类型机制、异常处理、垃圾回收机制等都是 Java 健壮性的重要保证。对指针的丢弃是 Java 的一大进步。另外，Java 的异常机制也是健壮性的一大体现。</span></p>
+    <h3><a name="高性能" class="md-header-anchor"></a><span>高性能</span></h3>
+    <p><span>Java 的高性能主要是相对其他高级脚本语言来说的，随着 JIT（Just in Time）的发展，Java 的运行速度也越来越高。</span></p>
+    <h3><a name="安全性" class="md-header-anchor"></a><span>安全性</span></h3>
+    <p><span>Java 通常被用在网络环境中，为此，Java 提供了一个安全机制以防止恶意代码的攻击。除了 Java 语言具有许多的安全特性以外，Java 还对通过网络下载的类增加一个安全防范机制，分配不同的名字空间以防替代本地的同名类，并包含安全管理机制。</span>
+    </p>
+    <p><span>Java 语言的众多特性使其在众多的编程语言中占有较大的市场份额，Java 语言对对象的支持和强大的 API 使得编程工作变得更加容易和快捷，大大降低了程序的开发成本。Java 的“一次编写，到处执行”正是它吸引众多商家和编程人员的一大优势。</span>
     </p>
     <hr/>
     <h2><a name="主要特性" class="md-header-anchor"></a><span>主要特性</span></h2>
@@ -1754,9 +1806,10 @@
                 href='https://www.jetbrains.com/idea/'><span>IntelliJ IDEA</span></a><span>、</span><a
                 href='https://netbeans.org/'><span>NetBeans</span></a><span> 等。</span></li>
     </ul>
-    <pre lang="java" class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" spellcheck="false"><div
-            class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div
-            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 16.8px;"><textarea
+    <p><span>安装好以上的工具后，我们就可以输出Java的第一个程序 &quot;Hello World！&quot;</span></p>
+    <pre lang="java " class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false"><div
+            class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java "><div
+            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea
             autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
             style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
             class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
@@ -1766,29 +1819,58 @@
             style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
             role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
             class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
-            class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
-                                                                      style="position: relative;"><div
+            class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div
             class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
             class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
             class="cm-keyword">public</span> <span class="cm-keyword">class</span> <span
-            class="cm-def">HelloWorld</span> {</span></pre></div><pre class=" CodeMirror-line "
-                                                                      role="presentation"><span role="presentation"
-                                                                                                style="padding-right: 0.1px;"> &nbsp; &nbsp;<span
-            class="cm-keyword">public</span> <span class="cm-keyword">static</span> <span
-            class="cm-variable-3">void</span> <span class="cm-variable">main</span>(<span
-            class="cm-variable-3">String</span>[] <span class="cm-variable">args</span>) {</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span
-            class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span
-            class="cm-variable">println</span>(<span class="cm-string">"Hello World"</span>);</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre
+            class="cm-def">HelloWorld</span> { &nbsp;</span></pre></div><pre class=" CodeMirror-line "
+                                                                             role="presentation"><span
+            role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span
+            class="cm-keyword">static</span> <span class="cm-variable-3">void</span> <span
+            class="cm-variable">main</span>(<span class="cm-variable-3">String</span>[] <span
+            class="cm-variable">args</span>) { &nbsp; &nbsp; &nbsp; </span></pre><pre class=" CodeMirror-line "
+                                                                                      role="presentation"><span
+            role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">System</span>.<span
+            class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-string">"Hello World"</span>); </span></pre><div
+            class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+            role="presentation" style="padding-right: 0.1px;"> &nbsp;  } </span></pre></div><div class=""
+                                                                                                 style="position: relative;"><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div
+                                                                style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div
             style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 112px;"></div><div
             class="CodeMirror-gutters" style="display: none; height: 112px;"></div></div></div></pre>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p></div>
+    <h1><a name="java-的跨平台能力" class="md-header-anchor"></a><span>Java 的跨平台能力</span></h1>
+    <p><span>相信大家已经了解到Java具有跨平台的特性，可以“一次编译，到处运行”，在Windows下编写的程序，无需任何修改就可以在Linux下运行，这是C和C++很难做到的。</span></p>
+    <p><span>那么，跨平台是怎样实现的呢？这就要谈及Java虚拟机（Java Virtual Machine，简称 JVM）。</span></p>
+    <p><span>JVM也是一个软件，不同的平台有不同的版本。我们编写的Java源码，编译后会生成一种 .class 文件，称为字节码文件。Java虚拟机就是负责将字节码文件翻译成特定平台下的机器码然后运行。也就是说，只要在不同平台上安装对应的JVM，就可以运行字节码文件，运行我们编写的Java程序。</span>
+    </p>
+    <p><span>而这个过程中，我们编写的Java程序没有做任何改变，仅仅是通过JVM这一”中间层“，就能在不同平台上运行，真正实现了”一次编译，到处运行“的目的。</span></p>
+    <p><span>JVM是一个”桥梁“，是一个”中间件“，是实现跨平台的关键，Java代码首先被编译成字节码文件，再由JVM将字节码文件翻译成机器语言，从而达到运行Java程序的目的。</span></p>
+    <p><span>注意：编译的结果不是生成机器码，而是生成字节码，字节码不能直接运行，必须通过JVM翻译成机器码才能运行。不同平台下编译生成的字节码是一样的，但是由JVM翻译成的机器码却不一样。</span></p>
+    <p><span>所以，运行Java程序必须有JVM的支持，因为编译的结果不是机器码，必须要经过JVM的再次翻译才能执行。即使你将Java程序打包成可执行文件（例如 .exe），仍然需要JVM的支持。</span></p>
+    <p><span>注意：跨平台的是Java程序，不是JVM。JVM是用C/C++开发的，是编译后的机器码，不能跨平台，不同平台下需要安装不同版本的JVM。</span></p>
+    <p>
+        <img src="http://www.weixueyuan.net/uploads/allimg/141124/1-141124004531137.png" referrerpolicy="no-referrer"
+             alt="img">
+        <span>图1  JVM实现跨平台</span></p>
+    <h2><a name="关于jvm的执行效率" class="md-header-anchor"></a><span>关于JVM的执行效率</span></h2>
+    <p><span>Java 推出的前几年，人们有不同的看法，解释字节码肯定比全速运行机器码慢很多，牺牲性能换来跨平台的优势是否值得？</span></p>
+    <p><span>然而，JVM 有一个选项，可以将使用最频繁的字节码翻译成机器码并保存，这一过程被称为即时编译。这种方式确实很有效，致使微软的 .NET 平台也使用了虚拟机。</span></p>
+    <p>
+        <span>现在的及时编译器已经相当出色，甚至成了传统编译器的竞争对手，某些情况下甚至超过了传统编译器，原因是JVM可以监控运行时信息。例如，即时编译器可以监控使用频率高的代码并进行优化，可以消除函数调用（即“内嵌”）。</span>
+    </p>
+    <p><span>但是，Java 毕竟有一些C/C++没有的额外的开销，关键应用程序速度较慢。比如Java采用了与平台无关的绘图方式，GUI程序（客户端程序）执行要慢；虚拟机启动也需要时间。</span></p>
+    <h2><a name="客户端市场的折戟" class="md-header-anchor"></a><span>客户端市场的折戟</span></h2>
+    <p><span>Java 的GUI库称不上出色，界面不算友好，大部分用户不太习惯；Java 的客户端资源消耗也比较大，大数据量的应用和功能复杂的应用性能堪忧。</span></p>
+    <p><span>更加不能接受的是，微软因自身利益和SUN分家后，Windows 便不再预装JVM了，用户安装你的程序之前，必须要安装JVM并正确设置，你可以要求普通用户安装你的软件，但是你能期望他了解JVM的有关知识并正确安装设置吗？</span>
+    </p>
+    <p>
+        <span>虽然你可以将JVM集成在你的程序中，自动安装并设置，不让用户干预，但是你希望附带一个比你的程序还要大好多的JVM吗？一个软件这样做或许可以接受，成千上万个软件都这样做，那用户要安装多少个JVM？磁盘空间要浪费多少？</span>
+    </p>
+    <p><span>所以，直接投放市场的面向普通用户的客户端程序，用Java开发的很少，大部分Java开发的客户端是给企业内部员工使用，员工领到电脑时，技术部已经给配置好了。如果你希望从事客户端开发，建议学习 C/C++ 和 .NET，它们在Window客户端开发方面有较大的优势。</span>
+    </p>
+    <p><span>种种原因，注定了Java客户端不利于推向市场，让普通用户接受。不过话又说回来，客户端开发也不是Java的初衷，Java最初是面向嵌入式的，却随着互联网的兴起而快速成长，在Web开发上大显身手。</span></p>
+</div>
 </body>
 </html>

@@ -34,9 +34,28 @@ public class JsonManager {
         return bigTitle;
     }
 
-    public static void main(String[] args) throws IOException {
+    /**
+     *
+     * @return 返回管理
+     * @throws IOException
+     */
+    public static BigTitleManager getBigTitleManager() throws IOException {
+        CBFileManager cbFileManager = new CBFileManager();
+        Gson gson = new Gson();
 
+        BigTitleManager bigTitleManager;
 
+        String t = CBFileManager.readJson("config.json");
+
+        bigTitleManager = gson.fromJson(t, BigTitleManager.class);
+        return bigTitleManager;
+    }
+
+    /**
+     * 这个函数是用于处理我目前遇到的旧数据处理类向新数据处理类的转换问题的
+     * @throws IOException
+     */
+    public void preProcessing() throws IOException {
         BigTitle bigTitle = getTitleData();
         BigTitleManager bigTitleManager = new BigTitleManager();
 
@@ -66,6 +85,12 @@ public class JsonManager {
         FileWriter fileWriter = new FileWriter("config.json");
         fileWriter.write(gson.toJson(bigTitleManager));
         fileWriter.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+
+
+
 
 
     }

@@ -3,6 +3,7 @@ package DataManager.Data;
 import com.google.gson.annotations.Expose;
 
 import java.util.Date;
+import java.util.LinkedList;
 
 /**
  * 每一个章节对应的资源
@@ -23,7 +24,12 @@ public class TitleManager {
      */
     private boolean learned;
 
-//    @Expose(serialize = false, deserialize = false)
+    /**
+     * 每一个章节对应一个题库
+     */
+    @Expose(serialize = false, deserialize = false)
+    private LinkedList<SelectProblem> selectProblemLinkedList;
+
 
     /**
      * 是否还需要提醒这个人学习这一章节

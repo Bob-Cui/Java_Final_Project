@@ -1,15 +1,14 @@
 package main.java.CBGui.SpecificStage;
 
 
+import DataManager.Data.BigTitleManager;
 import DataManager.Data.TitleManager;
-import DataManager.PreProcessing.BigTitle;
 import DataManager.PreProcessing.JsonManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -23,18 +22,22 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 public class XCYMain extends Stage {
 
     /**
-     *
+     * Java介绍网页的相对地址
      */
+    private final String INTROJAVAPATH = "Resource/Javainfor.html";
 
 
     private TreeItem<String> treeItem;
@@ -49,15 +52,34 @@ public class XCYMain extends Stage {
     private FlowPane leftFlowPane, mainFlowPane;
 
     /**
+     * 用来展示有关Java的介绍
+     */
+    private WebView introJavaWebView;
+
+    private void initWebPage() throws MalformedURLException {
+        introJavaWebView = new WebView();
+        File file = new File(INTROJAVAPATH);
+        URL url = file.toURI().toURL();
+        introJavaWebView.getEngine().load(url.toString());
+
+
+    }
+
+    /**
      * 初始化用于展示三个级别的listView
      */
     private void initTitleListView() throws IOException {
 
-        BigTitle bigTitle = JsonManager.getTitleData();
-
+//        BigTitle bigTitle = JsonManager.getTitleData();
+        BigTitleManager bigTitleManager = JsonManager.getBigTitleManager();
         priTitle = FXCollections.observableArrayList();
         midTitle = FXCollections.observableArrayList();
         senTitle = FXCollections.observableArrayList();
+
+        priTitle.addAll(bigTitleManager.getPriSubTitleManager().getLinkedListTitle());
+        midTitle.addAll(bigTitleManager.getMidSubTitleManager().getLinkedListTitle());
+        senTitle.addAll(bigTitleManager.getSenSubTitleManager().getLinkedListTitle());
+
 
 //priTitle.
 //        priTitle.addAll(bigTitle.getPrimaryTitleList());
@@ -123,6 +145,7 @@ public class XCYMain extends Stage {
 
         setStageTitle();
         initTitleListView();
+        initWebPage();
         //初级教程题目的标签
         Label labelJavaPri = new Label(" Java  ");
         Label labelPri = new Label("初级教程");
@@ -181,27 +204,29 @@ public class XCYMain extends Stage {
         Accordion senAccordion = new Accordion();
 
 
-        priAccordion.getPanes().addAll(priTitledPane);
+        /**
+         *设置手风琴布局的样式
+         */
+        {
+            priAccordion.getPanes().addAll(priTitledPane);
+            priAccordion.setExpandedPane(priTitledPane);
 
-        midAccordion.getPanes().addAll(midTitlePane);
+            midAccordion.getPanes().addAll(midTitlePane);
+            midAccordion.setExpandedPane(midTitlePane);
+
+            senAccordion.getPanes().addAll(senTitlePane);
+            senAccordion.setExpandedPane(senTitlePane);
+        }
 
 
-        senAccordion.getPanes().addAll(senTitlePane);
         leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
-
-
         leftTitles.setStyle("-fx-spacing: 50px;-fx-background-color: mediumspringgreen");
 
 
         Image image = new Image("file:Resource/JAVA.jpg", 250, 250.0, false, false);
         ImageView imageView = new ImageView(image);
 
-        Text text = new Text("fd");
-        Text text1 = new Text("fd");
         Text text2 = new Text("fd");
-        Text text3 = new Text("fd");
-        Text text4 = new Text("fd");
-        Text text5 = new Text("fd");
 
         GridPane mainGrid = new GridPane();
 
@@ -234,16 +259,23 @@ public class XCYMain extends Stage {
 
         //HBox mainhBox = new HBox(leftTitles, mainGrid);
 
-
-        mainFlowPane = new FlowPane(leftFlowPane, mainGrid);
+        HBox hBox = new HBox(mainGrid, introJavaWebView);
+//        mainFlowPane = new FlowPane(leftFlowPane, hBox);
+        HBox main = new HBox(leftFlowPane, hBox);
 
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension dimension = kit.getScreenSize();
-        Scene scene = new Scene(mainFlowPane, dimension.width / 2, dimension.height / 2);
+        introJavaWebView.setMinWidth(dimension.width / 2);
+//        mainFlowPane.setMinHeight(dimension.height);
+////        mainGrid.setBackground(Color);
+//        mainFlowPane.setStyle("-fx-background-color: #4183C4");
+
+
+        Scene scene = new Scene(main, 3 * dimension.width / 4, dimension.height);
 
         //主窗体的大小是不可以更改的
-        this.setResizable(false);
+        //  this.setResizable(false);
 
 
         this.setScene(scene);
@@ -262,7 +294,7 @@ public class XCYMain extends Stage {
         public TitleCell() {
             super();
             name = new Text();
-            name.setStyle("-fx-font-size: 20;-fx-font-family: '黑体';-fx-text-fill: blue");
+            name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';-fx-text-fill: blue");
 
 
             {//实现字体放大 变小的特效
@@ -271,14 +303,14 @@ public class XCYMain extends Stage {
                     public void handle(MouseEvent mouseEvent) {
 
                         //鼠标进入的特效
-                        name.setStyle("-fx-font-family: '黑体';-fx-font-size: 21;");
+                        name.setStyle("-fx-font-family: '黑体';-fx-font-size: 20;");
                         name.setFill(Color.RED);
                     }
                 });
                 name.setOnMouseExited(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        name.setStyle("-fx-font-size: 20;-fx-font-family: '黑体';");
+                        name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';");
                         name.setFill(Color.BLACK);
                     }
                 });
