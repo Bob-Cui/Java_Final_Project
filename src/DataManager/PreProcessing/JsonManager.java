@@ -5,6 +5,7 @@ import DataManager.CBFileManager;
 import DataManager.Data.*;
 import com.google.gson.Gson;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class JsonManager {
@@ -50,54 +51,64 @@ public class JsonManager {
      *
      * @throws IOException
      */
-    public void preProcessing() throws IOException {
+    public static void preProcessing() throws IOException {
 //        BigTitle bigTitle = getTitleData();
-//        BigTitleManager bigTitleManager = new BigTitleManager();
-//
-//
-//        SubTitleManager subTitleManagerpri = new SubTitleManager(TitleType.PRIMARY);
-//        SubTitleManager subTitleManagermid = new SubTitleManager(TitleType.INTERMEDIATE);
-//        SubTitleManager subTitleManagersen = new SubTitleManager(TitleType.ADVANCED);
-//
-//
-//        for (Title title : bigTitle.getPriTitleList()) {
-//            subTitleManagerpri.getLinkedListTitle().add(new TitleManager(title.getName()));
-//        }
-//        for (Title title : bigTitle.getMidTitleList()) {
-//            subTitleManagermid.getLinkedListTitle().add(new TitleManager(title.getName()));
-//        }
-//        for (Title title : bigTitle.getSenTitleList()) {
-//            subTitleManagersen.getLinkedListTitle().add(new TitleManager(title.getName()));
-//        }
-//
-//        bigTitleManager.setPriSubTitleManager(subTitleManagerpri);
-//        bigTitleManager.setMidSubTitleManager(subTitleManagermid);
-//        bigTitleManager.setSenSubTitleManager(subTitleManagersen);
-//
-//
-//        Gson gson = new Gson();
-//
-//        FileWriter fileWriter = new FileWriter("config.json");
-//        fileWriter.write(gson.toJson(bigTitleManager));
-//        fileWriter.close();
+        BigTitleManager bigTitleManager = getBigTitleManager();
+
+        NewBigTitleManager newBigTitleManager = new NewBigTitleManager();
+
+
+        NewSubTitleManager newSubTitleManagerPri = new NewSubTitleManager(true);
+
+        int i = 0;
+        for (SubTitleManager subTitleManager : bigTitleManager.getSubTitleManagerLinkedLists()) {
+
+            NewSubTitleManager newSubTitleManager = new NewSubTitleManager(false);
+
+            for (TitleManager titleManager : subTitleManager.getTitleList()) {
+                NewTitleManager newTitleManager = new NewTitleManager(titleManager.getName(), titleManager.getResource(), false);
+
+                int j=1;
+                for (SelectProblem selectProblem:titleManager.getSelectProblemList()) {
+
+                    newTitleManager.getIntegerSelectProblemHashMap().put(j, selectProblem);
+                    j++;
+                }
+                newSubTitleManager.getStringNewTitleManagerHashMap().put(titleManager.getName(), newTitleManager);
+
+
+            }
+            String t = "";
+            if (i == 0) {
+                t = "Java初级教程";
+            } else if (i == 1) {
+                t = "Java中级教程";
+            } else if (i == 2) {
+                t = "Java高级教程";
+            }
+            System.out.println(t);
+            newBigTitleManager.getStringNewSubTitleManagerHashMap().put(t, newSubTitleManager);
+
+            i++;
+
+        }
+
+
+        Gson gson = new Gson();
+
+        String c = gson.toJson(newBigTitleManager);
+
+        FileWriter fileWriter = new FileWriter("final.json");
+        fileWriter.write(c);
+        fileWriter.close();
+
+
+
+
     }
 
     public static void main(String[] args) throws IOException {
-
-        /**
-         * 文件数据读取成功
-         */
-        BigTitleManager bigTitleManager = getBigTitleManager();
-        for (SubTitleManager subTitleManager : bigTitleManager.getSubTitleManagerLinkedLists()) {
-
-            for (TitleManager titleManager : subTitleManager.getTitleList()) {
-                for (SelectProblem selectProblem : titleManager.getSelectProblemList()) {
-
-                    System.out.println(selectProblem.getContent());
-                }
-            }
-
-        }
+        preProcessing();
     }
 
 

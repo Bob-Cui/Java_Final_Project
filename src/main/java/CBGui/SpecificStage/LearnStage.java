@@ -114,6 +114,9 @@ public class LearnStage extends Stage {
         hBox = new HBox(webView, rVbox);
         scene = new Scene(hBox);
         this.setScene(scene);
+
+
+
     }
 
     /**
