@@ -25,14 +25,25 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import lombok.SneakyThrows;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class XCYMain extends Stage {
+
+
+    public static void main(String[] args) throws IOException {
+        FileReader fileReader = new FileReader("src\\pages\\Java对象和类.html");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String str;
+        while ((str = bufferedReader.readLine()) != null) {
+            System.out.println(str);
+        }
+//        while ((str=fileReader))
+    }
 
     /**
      * Java介绍网页的相对地址
@@ -65,6 +76,14 @@ public class XCYMain extends Stage {
 
     }
 
+    private void newInitTitleListView() throws IOException {
+        BigTitleManager bigTitleManager = JsonManager.getBigTitleManager();
+
+
+
+
+    }
+
     /**
      * 初始化用于展示三个级别的listView
      */
@@ -76,9 +95,10 @@ public class XCYMain extends Stage {
         midTitle = FXCollections.observableArrayList();
         senTitle = FXCollections.observableArrayList();
 
-        priTitle.addAll(bigTitleManager.getPriSubTitleManager().getLinkedListTitle());
-        midTitle.addAll(bigTitleManager.getMidSubTitleManager().getLinkedListTitle());
-        senTitle.addAll(bigTitleManager.getSenSubTitleManager().getLinkedListTitle());
+        priTitle.addAll(bigTitleManager.getSubTitleManagerLinkedLists().getFirst().getTitleList());
+//        priTitle.addAll(bigTitleManager.getPriSubTitleManager().getLinkedListTitle());
+//        midTitle.addAll(bigTitleManager.getMidSubTitleManager().getLinkedListTitle());
+//        senTitle.addAll(bigTitleManager.getSenSubTitleManager().getLinkedListTitle());
 
 
 //priTitle.
@@ -117,16 +137,19 @@ public class XCYMain extends Stage {
         });
 
         priListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            //@SneakyThrows
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 try {
-                    LearnStage learnStage = new LearnStage();
 
+                    TitleManager titleManager = priListView.getItems().get(t1.intValue());
+
+
+                    LearnStage learnStage = new LearnStage(titleManager);
                     learnStage.showAndWait();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-
             }
         });
 

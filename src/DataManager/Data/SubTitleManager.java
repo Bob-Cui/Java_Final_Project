@@ -1,13 +1,11 @@
 package DataManager.Data;
 
-import com.google.gson.annotations.Expose;
-
 import java.util.LinkedList;
 
 public class SubTitleManager {
     private boolean ableToLearn;
     private TitleType titleType;
-    private LinkedList<TitleManager> linkedListTitle;
+    private LinkedList<TitleManager> titleList;
     /**
      * 题库
      */
@@ -16,20 +14,20 @@ public class SubTitleManager {
     public SubTitleManager() {
         ableToLearn = false;
         titleType = TitleType.PRIMARY;
-        linkedListTitle = new LinkedList<>();
+        titleList = new LinkedList<>();
 
     }
 
     public SubTitleManager(TitleType titleType) {
         this.titleType = titleType;
         ableToLearn = false;
-        linkedListTitle = new LinkedList<>();
+        titleList = new LinkedList<>();
     }
 
     public SubTitleManager(boolean ableToLearn, TitleType titleType, LinkedList<TitleManager> linkedListTitle) {
         this.ableToLearn = ableToLearn;
         this.titleType = titleType;
-        this.linkedListTitle = linkedListTitle;
+        this.titleList = linkedListTitle;
     }
 
     public boolean isAbleToLearn() {
@@ -48,11 +46,11 @@ public class SubTitleManager {
         this.titleType = titleType;
     }
 
-    public LinkedList<TitleManager> getLinkedListTitle() {
-        return linkedListTitle;
+    public LinkedList<TitleManager> getTitleList() {
+        return titleList;
     }
 
-    public void setLinkedListTitle(LinkedList<TitleManager> linkedListTitle) {
-        this.linkedListTitle = linkedListTitle;
+    public void setTitleList(LinkedList<TitleManager> titleList) {
+        this.titleList = titleList;
     }
 }

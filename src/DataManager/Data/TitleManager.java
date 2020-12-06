@@ -27,8 +27,8 @@ public class TitleManager {
     /**
      * 每一个章节对应一个题库
      */
-    @Expose(serialize = false, deserialize = false)
-    private LinkedList<SelectProblem> selectProblemLinkedList;
+    //@Expose(serialize = false, deserialize = false)
+    private LinkedList<SelectProblem> selectProblemList;
 
 
     /**
@@ -42,8 +42,41 @@ public class TitleManager {
         return learned;
     }
 
+    public TitleManager(String name, String resource, boolean learned, LinkedList<SelectProblem> selectProblemList, boolean remindUser, Date lastRead) {
+        this.name = name;
+        this.resource = resource;
+        this.learned = learned;
+        this.selectProblemList = selectProblemList;
+        this.remindUser = remindUser;
+        this.lastRead = lastRead;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+
     public void setLearned(boolean learned) {
         this.learned = learned;
+    }
+
+    public LinkedList<SelectProblem> getSelectProblemList() {
+        return selectProblemList;
+    }
+
+    public void setSelectProblemList(LinkedList<SelectProblem> selectProblemList) {
+        this.selectProblemList = selectProblemList;
     }
 
     public boolean isRemindUser() {
@@ -60,38 +93,5 @@ public class TitleManager {
 
     public void setLastRead(Date lastRead) {
         this.lastRead = lastRead;
-    }
-
-    /**
-     * @param name 构造时输入这个章节的名字
-     */
-    public TitleManager(String name) {
-        this.name = name;
-        this.resource = "";
-        this.learned = false;
-        this.remindUser = false;
-        lastRead = new Date();
-    }
-
-
-    public String getResource() {
-        return resource;
-    }
-
-    public void setResource(String resource) {
-        this.resource = resource;
-    }
-
-    public TitleManager(String name, String resource) {
-        this.name = name;
-        this.resource = resource;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

@@ -61,7 +61,7 @@ public class LearnListView extends Application {
                 new ChangeListener<Number>() {
                     @Override
                     public void changed(ObservableValue<? extends Number> observableValue, Number last, Number t1) {
-//                        System.out.println(listView.getItems().get(t1.intValue()).toString());
+                        System.out.println(listView.getItems().get(t1.intValue()).toString());
                         System.out.println("dafsd ");
 
                     }

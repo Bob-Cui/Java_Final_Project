@@ -7,48 +7,27 @@ import java.util.LinkedList;
  */
 public class BigTitleManager {
 
-
-    private SubTitleManager priSubTitleManager;
-    private SubTitleManager midSubTitleManager;
-    private SubTitleManager senSubTitleManager;
-
     /**
-     * 无参数构造函数
+     *
+     * 修改原来的设计
      */
+    private LinkedList<SubTitleManager> subTitleManagerLinkedLists;
+
     public BigTitleManager() {
-        priSubTitleManager = new SubTitleManager();
-        midSubTitleManager = new SubTitleManager();
-        senSubTitleManager = new SubTitleManager();
+        subTitleManagerLinkedLists = new LinkedList<>();
     }
 
-    public BigTitleManager(SubTitleManager priSubTitleManager, SubTitleManager midSubTitleManager, SubTitleManager senSubTitleManager) {
-        this.priSubTitleManager = priSubTitleManager;
-        this.midSubTitleManager = midSubTitleManager;
-        this.senSubTitleManager = senSubTitleManager;
+
+    public BigTitleManager(LinkedList<SubTitleManager> subTitleManagerLinkedLists) {
+        this.subTitleManagerLinkedLists = subTitleManagerLinkedLists;
     }
 
-    public SubTitleManager getPriSubTitleManager() {
-        return priSubTitleManager;
+    public LinkedList<SubTitleManager> getSubTitleManagerLinkedLists() {
+        return subTitleManagerLinkedLists;
     }
 
-    public void setPriSubTitleManager(SubTitleManager priSubTitleManager) {
-        this.priSubTitleManager = priSubTitleManager;
-    }
-
-    public SubTitleManager getMidSubTitleManager() {
-        return midSubTitleManager;
-    }
-
-    public void setMidSubTitleManager(SubTitleManager midSubTitleManager) {
-        this.midSubTitleManager = midSubTitleManager;
-    }
-
-    public SubTitleManager getSenSubTitleManager() {
-        return senSubTitleManager;
-    }
-
-    public void setSenSubTitleManager(SubTitleManager senSubTitleManager) {
-        this.senSubTitleManager = senSubTitleManager;
+    public void setSubTitleManagerLinkedLists(LinkedList<SubTitleManager> subTitleManagerLinkedLists) {
+        this.subTitleManagerLinkedLists = subTitleManagerLinkedLists;
     }
 }
 

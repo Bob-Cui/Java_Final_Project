@@ -2,14 +2,9 @@ package DataManager.PreProcessing;
 
 import DataManager.CBFileManager;
 
-import DataManager.Data.BigTitleManager;
-import DataManager.Data.SubTitleManager;
-import DataManager.Data.TitleManager;
-import DataManager.Data.TitleType;
+import DataManager.Data.*;
 import com.google.gson.Gson;
 
-import javax.swing.*;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class JsonManager {
@@ -35,7 +30,6 @@ public class JsonManager {
     }
 
     /**
-     *
      * @return 返回管理
      * @throws IOException
      */
@@ -45,7 +39,7 @@ public class JsonManager {
 
         BigTitleManager bigTitleManager;
 
-        String t = CBFileManager.readJson("config.json");
+        String t = CBFileManager.readJson("src\\new.json");
 
         bigTitleManager = gson.fromJson(t, BigTitleManager.class);
         return bigTitleManager;
@@ -53,46 +47,57 @@ public class JsonManager {
 
     /**
      * 这个函数是用于处理我目前遇到的旧数据处理类向新数据处理类的转换问题的
+     *
      * @throws IOException
      */
     public void preProcessing() throws IOException {
-        BigTitle bigTitle = getTitleData();
-        BigTitleManager bigTitleManager = new BigTitleManager();
-
-
-        SubTitleManager subTitleManagerpri = new SubTitleManager(TitleType.PRIMARY);
-        SubTitleManager subTitleManagermid = new SubTitleManager(TitleType.INTERMEDIATE);
-        SubTitleManager subTitleManagersen = new SubTitleManager(TitleType.ADVANCED);
-
-
-        for (Title title : bigTitle.getPriTitleList()) {
-            subTitleManagerpri.getLinkedListTitle().add(new TitleManager(title.getName()));
-        }
-        for (Title title : bigTitle.getMidTitleList()) {
-            subTitleManagermid.getLinkedListTitle().add(new TitleManager(title.getName()));
-        }
-        for (Title title : bigTitle.getSenTitleList()) {
-            subTitleManagersen.getLinkedListTitle().add(new TitleManager(title.getName()));
-        }
-
-        bigTitleManager.setPriSubTitleManager(subTitleManagerpri);
-        bigTitleManager.setMidSubTitleManager(subTitleManagermid);
-        bigTitleManager.setSenSubTitleManager(subTitleManagersen);
-
-
-        Gson gson = new Gson();
-
-        FileWriter fileWriter = new FileWriter("config.json");
-        fileWriter.write(gson.toJson(bigTitleManager));
-        fileWriter.close();
+//        BigTitle bigTitle = getTitleData();
+//        BigTitleManager bigTitleManager = new BigTitleManager();
+//
+//
+//        SubTitleManager subTitleManagerpri = new SubTitleManager(TitleType.PRIMARY);
+//        SubTitleManager subTitleManagermid = new SubTitleManager(TitleType.INTERMEDIATE);
+//        SubTitleManager subTitleManagersen = new SubTitleManager(TitleType.ADVANCED);
+//
+//
+//        for (Title title : bigTitle.getPriTitleList()) {
+//            subTitleManagerpri.getLinkedListTitle().add(new TitleManager(title.getName()));
+//        }
+//        for (Title title : bigTitle.getMidTitleList()) {
+//            subTitleManagermid.getLinkedListTitle().add(new TitleManager(title.getName()));
+//        }
+//        for (Title title : bigTitle.getSenTitleList()) {
+//            subTitleManagersen.getLinkedListTitle().add(new TitleManager(title.getName()));
+//        }
+//
+//        bigTitleManager.setPriSubTitleManager(subTitleManagerpri);
+//        bigTitleManager.setMidSubTitleManager(subTitleManagermid);
+//        bigTitleManager.setSenSubTitleManager(subTitleManagersen);
+//
+//
+//        Gson gson = new Gson();
+//
+//        FileWriter fileWriter = new FileWriter("config.json");
+//        fileWriter.write(gson.toJson(bigTitleManager));
+//        fileWriter.close();
     }
 
     public static void main(String[] args) throws IOException {
 
+        /**
+         * 文件数据读取成功
+         */
+        BigTitleManager bigTitleManager = getBigTitleManager();
+        for (SubTitleManager subTitleManager : bigTitleManager.getSubTitleManagerLinkedLists()) {
 
+            for (TitleManager titleManager : subTitleManager.getTitleList()) {
+                for (SelectProblem selectProblem : titleManager.getSelectProblemList()) {
 
+                    System.out.println(selectProblem.getContent());
+                }
+            }
 
-
+        }
     }
 
 

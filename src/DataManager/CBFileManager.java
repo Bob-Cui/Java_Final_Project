@@ -16,7 +16,7 @@ public class CBFileManager {
         StringBuffer stringBuffer = new StringBuffer();
 
 
-        while ((strLine= bufferedReader.readLine())!=null) {
+        while ((strLine = bufferedReader.readLine()) != null) {
             stringBuffer.append(strLine);
         }
         return stringBuffer.toString();
