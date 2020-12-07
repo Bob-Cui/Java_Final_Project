@@ -1,7 +1,7 @@
 package main.java.CBGui.SpecificStage;
 
+import DataManager.Data.NewTitleManager;
 import DataManager.Data.Problem;
-import DataManager.Data.SelectItem;
 import DataManager.Data.SelectProblem;
 import DataManager.Data.TitleManager;
 import javafx.beans.value.ChangeListener;
@@ -12,14 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import main.java.CBGui.LearnJavaFX.LearnCircleButton;
-import main.java.CBGui.LearnJavaFX.LearnListView;
-import main.java.CBGui.SpecificStage.MyBox.ProblemVBox;
+import main.java.CBGui.SpecificStage.XCYBox.ProblemVBox;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -91,32 +88,27 @@ public class LearnStage extends Stage {
 
     }
 
+
     /**
-     * 这个构造函数使实际应用的过程中会被调用的构造函数
+     * 新的构造函数，真是有趣的紧
      *
-     * @param titleManager 每一个titleManager对应一个学习页面
+     * @param newTitleManager
      * @throws MalformedURLException
      */
-    public LearnStage(TitleManager titleManager) throws MalformedURLException {
-
+    public LearnStage(NewTitleManager newTitleManager) throws MalformedURLException {
         WebView webView = new WebView();
-        File file = new File(titleManager.getResource() + ".html");
-        System.out.println(titleManager.getResource());
+        File file = new File(newTitleManager.getResource() + ".html");
+        System.out.println(newTitleManager.getResource());
         URL url = file.toURI().toURL();
         webView.getEngine().load(url.toString());
         Text text = new Text("请回答以下的问题");
         text.setStyle("-fx-font-size: 30px");
         HBox hBox = new HBox();
-        //控制传入ProblemVBox中的参数是切换需要展示的问题的关键
-        ProblemVBox problemVBox = new ProblemVBox(titleManager);
-       // problemVBox.setMaxWidth(300);
+        ProblemVBox problemVBox = new ProblemVBox(newTitleManager);
         rVbox = new VBox(text, problemVBox);
         hBox = new HBox(webView, rVbox);
         scene = new Scene(hBox);
         this.setScene(scene);
-
-
-
     }
 
     /**
@@ -143,21 +135,7 @@ public class LearnStage extends Stage {
         this.setScene(scene);
     }
 
-    @Override
-    public void toBack() {
-        super.toBack();
 
-        System.out.println("dsfasdf");
-    }
-
-    @Override
-    public void close() {
-        super.close();
-
-
-        System.out.println("被关掉了");
-
-    }
 
     public LearnStage(String address) {
 

@@ -1,5 +1,6 @@
 package DataManager.Data;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class NewTitleManager {
@@ -17,17 +18,27 @@ public class NewTitleManager {
      * 这个人是否学习过这一个章节
      */
     private boolean learned;
+    private Date date;
 
     /**
      * 每一个章节对应一个题库
      */
-    private HashMap<Integer, SelectProblem> integerSelectProblemHashMap;
+    private HashMap<Integer, NewSelectProblem> integerSelectProblemHashMap;
+
+
+
 
     public NewTitleManager(String name, String resource, boolean learned) {
         this.name = name;
         this.resource = resource;
         this.learned = learned;
-        this.integerSelectProblemHashMap = new HashMap<>();
+
+        date = new Date();
+
+        integerSelectProblemHashMap = new HashMap<>();
+
+
+
     }
 
     public String getName() {
@@ -54,11 +65,19 @@ public class NewTitleManager {
         this.learned = learned;
     }
 
-    public HashMap<Integer, SelectProblem> getIntegerSelectProblemHashMap() {
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public HashMap<Integer, NewSelectProblem> getIntegerSelectProblemHashMap() {
         return integerSelectProblemHashMap;
     }
 
-    public void setIntegerSelectProblemHashMap(HashMap<Integer, SelectProblem> integerSelectProblemHashMap) {
+    public void setIntegerSelectProblemHashMap(HashMap<Integer, NewSelectProblem> integerSelectProblemHashMap) {
         this.integerSelectProblemHashMap = integerSelectProblemHashMap;
     }
 }

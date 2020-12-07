@@ -2,6 +2,8 @@ package main.java.CBGui.SpecificStage;
 
 
 import DataManager.Data.BigTitleManager;
+import DataManager.Data.NewBigTitleManager;
+import DataManager.Data.NewTitleManager;
 import DataManager.Data.TitleManager;
 import DataManager.PreProcessing.JsonManager;
 import javafx.beans.value.ChangeListener;
@@ -31,6 +33,8 @@ import java.awt.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class XCYMain extends Stage {
 
@@ -54,13 +58,18 @@ public class XCYMain extends Stage {
     private TreeItem<String> treeItem;
 
     //三个listView使用的
-    private ObservableList<TitleManager> priTitle, midTitle, senTitle;
-    private ListView<TitleManager> priListView, midListView, senListView;
+    private ObservableList<NewTitleManager> priTitle, midTitle, senTitle;
+    private ListView<NewTitleManager> priListView, midListView, senListView;
 
     private VBox leftTitles, right;
 
 
     private FlowPane leftFlowPane, mainFlowPane;
+
+    /**
+     * 所有数据的来源
+     */
+    private NewBigTitleManager newBigTitleManager;
 
     /**
      * 用来展示有关Java的介绍
@@ -80,8 +89,6 @@ public class XCYMain extends Stage {
         BigTitleManager bigTitleManager = JsonManager.getBigTitleManager();
 
 
-
-
     }
 
     /**
@@ -89,71 +96,68 @@ public class XCYMain extends Stage {
      */
     private void initTitleListView() throws IOException {
 
-//        BigTitle bigTitle = JsonManager.getTitleData();
-        BigTitleManager bigTitleManager = JsonManager.getBigTitleManager();
+
+        newBigTitleManager = JsonManager.getNewBigTitleManager();
         priTitle = FXCollections.observableArrayList();
         midTitle = FXCollections.observableArrayList();
         senTitle = FXCollections.observableArrayList();
 
-        priTitle.addAll(bigTitleManager.getSubTitleManagerLinkedLists().getFirst().getTitleList());
-//        priTitle.addAll(bigTitleManager.getPriSubTitleManager().getLinkedListTitle());
-//        midTitle.addAll(bigTitleManager.getMidSubTitleManager().getLinkedListTitle());
-//        senTitle.addAll(bigTitleManager.getSenSubTitleManager().getLinkedListTitle());
 
-
-//priTitle.
-//        priTitle.addAll(bigTitle.getPrimaryTitleList());
-//        midTitle.addAll(bigTitle.getMidTitleList());
-//        senTitle.addAll(bigTitle.getSenTitleList());
+        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getStringNewTitleManagerHashMap().entrySet()) {
+            priTitle.add(item.getValue());
+        }
+        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getStringNewTitleManagerHashMap().entrySet()) {
+            midTitle.add(item.getValue());
+        }
 
 
         priListView = new ListView<>(priTitle);
         midListView = new ListView<>(midTitle);
         senListView = new ListView<>(senTitle);
 
-        midListView.setDisable(true);
+//        midListView.setDisable(true);
 
 
         /**
          *        设置样式
          */
-        priListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
+        priListView.setCellFactory(new Callback<ListView<NewTitleManager>, ListCell<NewTitleManager>>() {
             @Override
-            public ListCell<TitleManager> call(ListView<TitleManager> titleListView) {
-                return new TitleCell();
-            }
-        });
-        midListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
-            @Override
-            public ListCell<TitleManager> call(ListView<TitleManager> titleListView) {
-                return new TitleCell();
-            }
-        });
-        senListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
-            @Override
-            public ListCell<TitleManager> call(ListView<TitleManager> titleListView) {
-                return new TitleCell();
+            public ListCell<NewTitleManager> call(ListView<NewTitleManager> newTitleManagerListView) {
+                return new NewTitleCell();
             }
         });
 
+        midListView.setCellFactory(new Callback<ListView<NewTitleManager>, ListCell<NewTitleManager>>() {
+            @Override
+            public ListCell<NewTitleManager> call(ListView<NewTitleManager> newTitleManagerListView) {
+                return new NewTitleCell();
+            }
+        });
+        senListView.setCellFactory(new Callback<ListView<NewTitleManager>, ListCell<NewTitleManager>>() {
+            @Override
+            public ListCell<NewTitleManager> call(ListView<NewTitleManager> newTitleManagerListView) {
+                return new NewTitleCell();
+            }
+        });
+//
         priListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             //@SneakyThrows
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 try {
 
-                    TitleManager titleManager = priListView.getItems().get(t1.intValue());
+
+                    NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
 
 
-                    LearnStage learnStage = new LearnStage(titleManager);
+                    LearnStage learnStage = new LearnStage(newTitleManager);
                     learnStage.showAndWait();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
             }
         });
-
-
     }
 
     /**
@@ -305,8 +309,75 @@ public class XCYMain extends Stage {
     }
 
     /**
-     * 设置listView的样式专用类
+     * 设置新的listView的样式专用类
      */
+
+    private class NewTitleCell extends ListCell<NewTitleManager> {
+        private Text name;
+        private HBox mainHBox;
+        private CheckBox finished;
+
+        //        private Checkbox
+        public NewTitleCell() {
+            super();
+            name = new Text();
+            name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';-fx-text-fill: blue");
+
+
+            {//实现字体放大 变小的特效
+                name.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+
+                        //鼠标进入的特效
+                        name.setStyle("-fx-font-family: '黑体';-fx-font-size: 20;");
+                        name.setFill(Color.RED);
+                    }
+                });
+                name.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';");
+                        name.setFill(Color.BLACK);
+                    }
+                });
+            }
+
+            finished = new CheckBox();
+            finished.setStyle("-fx-background-color:red");//这个红色体现不出来
+            finished.setText("已完成");
+
+
+            finished.setSelected(true);
+            finished.setStyle("-fx-font-size: 15;-fx-text-fill: blue");
+
+
+            finished.setDisable(true);
+
+
+            mainHBox = new HBox(name, finished);
+
+        }
+
+        @Override
+        protected void updateItem(NewTitleManager newTitleManager, boolean b) {
+            super.updateItem(newTitleManager, b);
+            if (newTitleManager != null && !b) {
+
+                if (newTitleManager.isLearned()) {
+                    finished.setSelected(true);
+                } else {
+                    finished.setSelected(false);
+                }
+                name.setText(newTitleManager.getName());
+                setGraphic(mainHBox);
+            } else {
+                setGraphic(null);
+            }
+        }
+    }
+
+
     private class TitleCell extends ListCell<TitleManager> {
         private Text name;
         private HBox mainHBox;
@@ -342,7 +413,6 @@ public class XCYMain extends Stage {
             finished = new CheckBox();
             finished.setStyle("-fx-background-color:red");//这个红色体现不出来
             finished.setText("已完成");
-
             finished.setSelected(true);
             finished.setStyle("-fx-font-size: 15;-fx-text-fill: blue");
 
