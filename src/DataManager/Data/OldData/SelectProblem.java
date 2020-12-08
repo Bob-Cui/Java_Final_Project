@@ -1,6 +1,6 @@
-package DataManager.Data;
+package DataManager.Data.OldData;
 
-public class SelectProblem extends Problem{
+public class SelectProblem extends Problem {
     private String A;
     private String B;
     private String C;
@@ -12,6 +12,8 @@ public class SelectProblem extends Problem{
 
     //你的选择
     private char youChoice;
+
+
     public SelectProblem(String a, String b, String c, String d, char ans) {
         super();
         A = a;

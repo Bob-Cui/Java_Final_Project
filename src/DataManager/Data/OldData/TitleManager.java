@@ -1,6 +1,4 @@
-package DataManager.Data;
-
-import com.google.gson.annotations.Expose;
+package DataManager.Data.OldData;
 
 import java.util.Date;
 import java.util.LinkedList;

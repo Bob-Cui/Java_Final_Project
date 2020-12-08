@@ -1,0 +1,254 @@
+{
+  "integerNewSelectProblemHashMap": {
+    "1": {
+      "id": 1,
+      "problem": "整型数据类型中，需要内存空间最少的是( )",
+      "A": "short",
+      "B": "long",
+      "C": "int",
+      "D": "byte",
+      "answer": "D",
+      "yourAnswer": "A"
+    },
+    "2": {
+      "id": 2,
+      "problem": "Java语言中，int类型在内存中所占的位数为( )",
+      "A": "8",
+      "B": "16",
+      "C": "32",
+      "D": "64",
+      "answer": "C",
+      "yourAnswer": "A"
+    },
+    "3": {
+      "id": 3,
+      "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+      "A": "0",
+      "B": "5",
+      "C": "10",
+      "D": "其他",
+      "answer": "C",
+      "yourAnswer": "A"
+    },
+    "4": {
+      "id": 4,
+      "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+      "A": "16",
+      "B": "12",
+      "C": "28",
+      "D": "21",
+      "answer": "B",
+      "yourAnswer": "A"
+    },
+    "5": {
+      "id": 5,
+      "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+      "A": "System.out.println(a.i)",
+      "B": "a.method1()",
+      "C": "A.method1()",
+      "D": "A.method2()",
+      "answer": "C",
+      "yourAnswer": "A"
+    },
+    "6": {
+      "id": 6,
+      "problem": "算术表达式1+2/3-4*5的值为( )",
+      "A": "1",
+      "B": "-19",
+      "C": "-5",
+      "D": "0",
+      "answer": "B",
+      "yourAnswer": "A"
+    },
+    "7": {
+      "id": 7,
+      "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+      "A": "求最大数",
+      "B": "求最小数",
+      "C": "找到数组最后一个元素",
+      "D": "编译出错",
+      "answer": "B",
+      "yourAnswer": "A"
+    },
+    "8": {
+      "id": 8,
+      "problem": "运算符优先级别排序正确的是( )",
+      "A": "由高向低分别是：()、!、算术运算符、关系运算符、逻辑运算符、赋值运算符；",
+      "B": "由高向低分别是：()、关系运算符、算术运算符、赋值运算符、!、逻辑运算符；",
+      "C": "由高向低分别是：()、算术运算符、逻辑运算符、关系运算符、!、赋值运算符；",
+      "D": "由高向低分别是：()、!、关系运算符、赋值运算符、算术运算符、逻辑运算符；",
+      "answer": "A",
+      "yourAnswer": "A"
+    },
+    "9": {
+      "id": 9,
+      "problem": "以下程序的运行结果是：( )public class Increment{        public static void main(String args[]) {          int a;             a \u003d 6;             System.out.print(a);             System.out.print(a++);             System.out.print(a);         }    }",
+      "A": "666",
+      "B": "667",
+      "C": "677",
+      "D": "676",
+      "answer": "B",
+      "yourAnswer": "A"
+    },
+    "10": {
+      "id": 10,
+      "problem": "Java application中的主类需包含main方法，main方法的返回类型是什么( )",
+      "A": "int",
+      "B": "float",
+      "C": "double",
+      "D": "void",
+      "answer": "D",
+      "yourAnswer": "A"
+    },
+    "11": {
+      "id": 11,
+      "problem": "在Java中，一个类可同时定义许多同名的方法，这些方法的形式参数个数、类型或顺序各不相同，传回的值也可以不相同。这种面向对象程序的特性称为( )",
+      "A": "隐藏",
+      "B": "覆盖",
+      "C": "重载",
+      "D": "Java不支持此特性",
+      "answer": "C",
+      "yourAnswer": "A"
+    },
+    "12": {
+      "id": 12,
+      "problem": "下面哪一个操作符的优先级最高？( )",
+      "A": "\u0026\u0026",
+      "B": "||",
+      "C": "!",
+      "D": "( )",
+      "answer": "D",
+      "yourAnswer": "A"
+    },
+    "13": {
+      "id": 13,
+      "problem": "有如下程序段，执行完该程序段后total的值为：( )int total \u003d 0; for ( int i \u003d 0; i \u003c 4; i++ ){     if ( i \u003d\u003d 1) continue;        if ( i \u003d\u003d 2) break;                                 total +\u003d i; }   ",
+      "A": "0",
+      "B": "1",
+      "C": "3",
+      "D": "6",
+      "answer": "A",
+      "yourAnswer": "A"
+    },
+    "14": {
+      "id": 14,
+      "problem": "整型数据类型中，需要内存空间最少的是( )",
+      "A": "short",
+      "B": "long",
+      "C": "int",
+      "D": "byte",
+      "answer": "D",
+      "yourAnswer": "A"
+    },
+    "15": {
+      "id": 15,
+      "problem": "Java语言中，int类型在内存中所占的位数为( )",
+      "A": "8",
+      "B": "16",
+      "C": "32",
+      "D": "64",
+      "answer": "C",
+      "yourAnswer": "A"
+    },
+    "16": {
+      "id": 16,
+      "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+      "A": "0",
+      "B": "5",
+      "C": "10",
+      "D": "其他",
+      "answer": "C",
+      "yourAnswer": "A"
+    },
+    "17": {
+      "id": 17,
+      "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+      "A": "16",
+      "B": "12",
+      "C": "28",
+      "D": "21",
+      "answer": "B",
+      "yourAnswer": "A"
+    },
+    "18": {
+      "id": 18,
+      "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+      "A": "System.out.println(a.i)",
+      "B": "a.method1()",
+      "C": "A.method1()",
+      "D": "A.method2()",
+      "answer": "C",
+      "yourAnswer": "A"
+    },
+    "19": {
+      "id": 19,
+      "problem": "算术表达式1+2/3-4*5的值为( )",
+      "A": "1",
+      "B": "-19",
+      "C": "-5",
+      "D": "0",
+      "answer": "B",
+      "yourAnswer": "A"
+    },
+    "20": {
+      "id": 20,
+      "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+      "A": "求最大数",
+      "B": "求最小数",
+      "C": "找到数组最后一个元素",
+      "D": "编译出错",
+      "answer": "B",
+      "yourAnswer": "A"
+    },
+    "21": {
+      "id": 21,
+      "problem": "运算符优先级别排序正确的是( )",
+      "A": "由高向低分别是：()、!、算术运算符、关系运算符、逻辑运算符、赋值运算符；",
+      "B": "由高向低分别是：()、关系运算符、算术运算符、赋值运算符、!、逻辑运算符；",
+      "C": "由高向低分别是：()、算术运算符、逻辑运算符、关系运算符、!、赋值运算符；",
+      "D": "由高向低分别是：()、!、关系运算符、赋值运算符、算术运算符、逻辑运算符；",
+      "answer": "A",
+      "yourAnswer": "A"
+    },
+    "22": {
+      "id": 22,
+      "problem": "以下程序的运行结果是：( )public class Increment{        public static void main(String args[]) {          int a;             a \u003d 6;             System.out.print(a);             System.out.print(a++);             System.out.print(a);         }    }",
+      "A": "666",
+      "B": "667",
+      "C": "677",
+      "D": "676",
+      "answer": "B",
+      "yourAnswer": "A"
+    },
+    "23": {
+      "id": 23,
+      "problem": "Java application中的主类需包含main方法，main方法的返回类型是什么( )",
+      "A": "int",
+      "B": "float",
+      "C": "double",
+      "D": "void",
+      "answer": "D",
+      "yourAnswer": "A"
+    },
+    "24": {
+      "id": 24,
+      "problem": "在Java中，一个类可同时定义许多同名的方法，这些方法的形式参数个数、类型或顺序各不相同，传回的值也可以不相同。这种面向对象程序的特性称为( )",
+      "A": "隐藏",
+      "B": "覆盖",
+      "C": "重载",
+      "D": "Java不支持此特性",
+      "answer": "C",
+      "yourAnswer": "A"
+    },
+    "25": {
+      "id": 25,
+      "problem": "下面哪一个操作符的优先级最高？( )",
+      "A": "\u0026\u0026",
+      "B": "||",
+      "C": "!",
+      "D": "( )",
+      "answer": "D",
+      "yourAnswer": "A"
+    }
+  }
+}

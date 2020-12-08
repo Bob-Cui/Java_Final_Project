@@ -1,11 +1,10 @@
 package DataManager;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CBFileManager {
+public class XCYFileManager {
 
     public static String readJson(String address) throws IOException {
 
@@ -23,7 +22,7 @@ public class CBFileManager {
     }
 
     public static void main(String[] args) throws IOException {
-        CBFileManager cbFileManager = new CBFileManager();
+        XCYFileManager cbFileManager = new XCYFileManager();
 
         System.out.println("张辉");
         System.out.println(readJson("C:\\Users\\DELL\\Desktop\\qndy杨志强\\test1.json"));

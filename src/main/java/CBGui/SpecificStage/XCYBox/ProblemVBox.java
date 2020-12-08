@@ -2,8 +2,6 @@ package main.java.CBGui.SpecificStage.XCYBox;
 
 import DataManager.Data.NewSelectProblem;
 import DataManager.Data.NewTitleManager;
-import DataManager.Data.SelectProblem;
-import DataManager.Data.TitleManager;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -57,7 +55,7 @@ public class ProblemVBox extends VBox {
     /**
      * private Map<int, SelectProblem>这个东西会报错
      */
-    private Map<Integer, SelectProblem> selectProblemMap;
+//    private Map<Integer, SelectProblem> selectProblemMap;
     private Button proID;
     /**
      * 决定你现在正在做哪一道题

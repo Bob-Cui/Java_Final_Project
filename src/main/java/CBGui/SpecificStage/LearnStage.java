@@ -1,9 +1,8 @@
 package main.java.CBGui.SpecificStage;
 
 import DataManager.Data.NewTitleManager;
-import DataManager.Data.Problem;
-import DataManager.Data.SelectProblem;
-import DataManager.Data.TitleManager;
+import DataManager.Data.OldData.Problem;
+import DataManager.Data.OldData.SelectProblem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

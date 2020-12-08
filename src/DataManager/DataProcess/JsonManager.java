@@ -1,18 +1,16 @@
-package DataManager.PreProcessing;
+package DataManager.DataProcess;
 
-import DataManager.CBFileManager;
+import DataManager.XCYFileManager;
 
 import DataManager.Data.*;
+import DataManager.Data.OldData.*;
 import com.google.gson.Gson;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 public class JsonManager {
-    /**
-     * @return 从配置文件中读出关于标题的数据并将其转化为一个大类
-     * @throws IOException
-     */
 
 
     /**
@@ -22,10 +20,10 @@ public class JsonManager {
      * @throws IOException
      */
     public static BigTitle getTitleData() throws IOException {
-        CBFileManager cbFileManager = new CBFileManager();
+        XCYFileManager cbFileManager = new XCYFileManager();
         Gson gson = new Gson();
         BigTitle bigTitle;
-        String t = CBFileManager.readJson("source/list_title.json");
+        String t = XCYFileManager.readJson("source/list_title.json");
         bigTitle = gson.fromJson(t, BigTitle.class);
         return bigTitle;
     }
@@ -35,12 +33,12 @@ public class JsonManager {
      * @throws IOException
      */
     public static BigTitleManager getBigTitleManager() throws IOException {
-        CBFileManager cbFileManager = new CBFileManager();
+        XCYFileManager cbFileManager = new XCYFileManager();
         Gson gson = new Gson();
 
         BigTitleManager bigTitleManager;
 
-        String t = CBFileManager.readJson("src\\new.json");
+        String t = XCYFileManager.readJson("src\\new.json");
 
         bigTitleManager = gson.fromJson(t, BigTitleManager.class);
         return bigTitleManager;
@@ -53,10 +51,10 @@ public class JsonManager {
      * @throws IOException
      */
     public static NewBigTitleManager getNewBigTitleManager() throws IOException {
-        CBFileManager cbFileManager = new CBFileManager();
+        XCYFileManager cbFileManager = new XCYFileManager();
         Gson gson = new Gson();
         BigTitleManager bigTitleManager;
-        String t = CBFileManager.readJson("final.json");
+        String t = XCYFileManager.readJson("final.json");
         return gson.fromJson(t, NewBigTitleManager.class);
     }
 
@@ -76,18 +74,18 @@ public class JsonManager {
 
         int i = 0;
         for (SubTitleManager subTitleManager : bigTitleManager.getSubTitleManagerLinkedLists()) {
-
             NewSubTitleManager newSubTitleManager = new NewSubTitleManager(false);
-
+            int k = 1;
             for (TitleManager titleManager : subTitleManager.getTitleList()) {
                 NewTitleManager newTitleManager = new NewTitleManager(titleManager.getName(), titleManager.getResource(), false);
-
                 int j = 1;
                 for (SelectProblem selectProblem : titleManager.getSelectProblemList()) {
                     NewSelectProblem newSelectProblem = new NewSelectProblem(j, selectProblem.getContent(), selectProblem.getA(), selectProblem.getB(), selectProblem.getC(), selectProblem.getD(), selectProblem.getAns());
                     newTitleManager.getIntegerSelectProblemHashMap().put(j, newSelectProblem);
                     j++;
                 }
+                newSubTitleManager.getIntegerNewTitleManagerHashMap().put(k, newTitleManager);
+                k++;
                 newSubTitleManager.getStringNewTitleManagerHashMap().put(titleManager.getName(), newTitleManager);
             }
             String t = "";
@@ -100,16 +98,10 @@ public class JsonManager {
             }
             System.out.println(t);
             newBigTitleManager.getStringNewSubTitleManagerHashMap().put(t, newSubTitleManager);
-
             i++;
-
         }
-
-
         Gson gson = new Gson();
-
         String c = gson.toJson(newBigTitleManager);
-
         FileWriter fileWriter = new FileWriter("final.json");
         fileWriter.write(c);
         fileWriter.close();
@@ -117,8 +109,10 @@ public class JsonManager {
 
     }
 
+
     /**
      * 把所有题的答案全部都换成A
+     *
      * @throws IOException
      */
     public static void preDealAnswer() throws IOException {
@@ -171,8 +165,71 @@ public class JsonManager {
         fileWriter.write(c);
         fileWriter.close();
     }
+
+    /**
+     * 将原来的包含题目数据的json读取之后转换为新的文件
+     *
+     * @return 返回一个包含所有问题的问题类
+     * @throws IOException
+     */
+    public static void getProblemsToNewProblems(String address, String to) throws IOException {
+        XCYFileManager cbFileManager = new XCYFileManager();
+        Gson gson = new Gson();
+
+
+        Problems problems;
+        String string = XCYFileManager.readJson(address);
+
+        problems = gson.fromJson(string, Problems.class);
+
+        NewProblems newProblems = new NewProblems();
+
+        for (int i = 0; i < problems.getSelectProblemLinkedList().size(); i++) {
+            SelectProblem selectProblem = problems.getSelectProblemLinkedList().get(i);
+            NewSelectProblem newSelectProblem = new NewSelectProblem(i + 1, selectProblem.getContent(), selectProblem.getA(), selectProblem.getB(), selectProblem.getC(), selectProblem.getD(), selectProblem.getAns());
+
+            newProblems.getIntegerNewSelectProblemHashMap().put(i + 1, newSelectProblem);
+        }
+        FileWriter fileWriter = new FileWriter(to);
+        fileWriter.write(gson.toJson(newProblems));
+        fileWriter.close();
+    }
+
+    /**
+     * 调用三次将文件进行转换
+     *
+     * @throws IOException
+     */
+    public static void dealTestQuestions() throws IOException {
+        getProblemsToNewProblems("C:\\Users\\DELL\\Desktop\\JavaFinalProject\\src\\Source\\初级测试题.json", "pritest.json");
+        getProblemsToNewProblems("C:\\Users\\DELL\\Desktop\\JavaFinalProject\\src\\Source\\中级测试题.json", "midtest.json");
+        getProblemsToNewProblems("C:\\Users\\DELL\\Desktop\\JavaFinalProject\\src\\Source\\高级测试题.json", "sentest.json");
+    }
+
+
+    /**
+     * 读取一个测试题json文件并返回响应的类
+     * @param address
+     * @throws IOException
+     * @return
+     */
+    public static NewProblems getNewProblems(String address) throws IOException {
+        XCYFileManager xcyFileManager = new XCYFileManager();
+        Gson gson = new Gson();
+        String string = XCYFileManager.readJson(address);
+        return gson.fromJson(string, NewProblems.class);
+    }
+
     public static void main(String[] args) throws IOException {
-      preDealAnswer();
+
+        NewProblems newProblems = getNewProblems("C:\\Users\\DELL\\Desktop\\JavaFinalProject\\src\\Source\\midtest.json");
+
+        for(Map.Entry<Integer,NewSelectProblem>integerNewSelectProblemEntry:newProblems.getIntegerNewSelectProblemHashMap().entrySet())
+        {
+
+
+            System.out.println(integerNewSelectProblemEntry.getValue().getProblem());
+        }
     }
 
 

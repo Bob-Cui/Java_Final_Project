@@ -1,8 +1,5 @@
 package DataManager.Data;
 
-import DataManager.Data.NewTitleManager;
-import DataManager.Data.TitleType;
-
 import java.util.HashMap;
 
 public class NewSubTitleManager {
@@ -10,6 +7,15 @@ public class NewSubTitleManager {
     private boolean ableToLearn;
 
     private HashMap<String, NewTitleManager> stringNewTitleManagerHashMap;
+    private HashMap<Integer, NewTitleManager> integerNewTitleManagerHashMap;
+
+    public HashMap<Integer, NewTitleManager> getIntegerNewTitleManagerHashMap() {
+        return integerNewTitleManagerHashMap;
+    }
+
+    public void setIntegerNewTitleManagerHashMap(HashMap<Integer, NewTitleManager> integerNewTitleManagerHashMap) {
+        this.integerNewTitleManagerHashMap = integerNewTitleManagerHashMap;
+    }
 
     public NewSubTitleManager(boolean ableToLearn, HashMap<String, NewTitleManager> stringNewTitleManagerHashMap) {
         this.ableToLearn = ableToLearn;
@@ -19,6 +25,7 @@ public class NewSubTitleManager {
     public NewSubTitleManager(boolean ableToLearn) {
         this.ableToLearn = ableToLearn;
         this.stringNewTitleManagerHashMap = new HashMap<>();
+        this.integerNewTitleManagerHashMap = new HashMap<>();
     }
 
     public boolean isAbleToLearn() {

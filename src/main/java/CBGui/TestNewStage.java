@@ -77,6 +77,12 @@ public class TestNewStage extends Application {
 
     }
 
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        System.out.println("应用停止了");
+    }
+
     public void change() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main.fxml")));
         mainStage.setTitle("Hello World");

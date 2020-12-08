@@ -1,16 +1,15 @@
 package main.java.CBGui.SpecificStage;
 
 
-import DataManager.Data.BigTitleManager;
-import DataManager.Data.NewBigTitleManager;
-import DataManager.Data.NewTitleManager;
-import DataManager.Data.TitleManager;
-import DataManager.PreProcessing.JsonManager;
+import DataManager.Data.*;
+import DataManager.Data.OldData.BigTitleManager;
+import DataManager.DataProcess.JsonManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -23,20 +22,23 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
-import lombok.SneakyThrows;
 
 import java.awt.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class XCYMain extends Stage {
+
+
+    private static final int DAY = 24 * 60 * 60;
 
 
     public static void main(String[] args) throws IOException {
@@ -76,6 +78,16 @@ public class XCYMain extends Stage {
      */
     private WebView introJavaWebView;
 
+    /**
+     * 有趣的关于查看学习进度的按钮
+     * 实际上这并不是一个严格意义上的按钮而是用两个圆叠加形成的效果
+     */
+    private Group checkProgress;
+    private Circle checkProgressCircleButtom, checkProgressCircleUp;
+
+
+    private Button priTest, Mid;
+
     private void initWebPage() throws MalformedURLException {
         introJavaWebView = new WebView();
         File file = new File(INTROJAVAPATH);
@@ -109,8 +121,9 @@ public class XCYMain extends Stage {
         for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getStringNewTitleManagerHashMap().entrySet()) {
             midTitle.add(item.getValue());
         }
-
-
+        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").getStringNewTitleManagerHashMap().entrySet()) {
+            senTitle.add(item.getValue());
+        }
         priListView = new ListView<>(priTitle);
         midListView = new ListView<>(midTitle);
         senListView = new ListView<>(senTitle);
@@ -169,7 +182,7 @@ public class XCYMain extends Stage {
     }
 
     public XCYMain() throws IOException {
-
+        closeAndWrite();
         setStageTitle();
         initTitleListView();
         initWebPage();
@@ -234,16 +247,15 @@ public class XCYMain extends Stage {
         /**
          *设置手风琴布局的样式
          */
-        {
-            priAccordion.getPanes().addAll(priTitledPane);
-            priAccordion.setExpandedPane(priTitledPane);
 
-            midAccordion.getPanes().addAll(midTitlePane);
-            midAccordion.setExpandedPane(midTitlePane);
+        priAccordion.getPanes().addAll(priTitledPane);
+        priAccordion.setExpandedPane(priTitledPane);
 
-            senAccordion.getPanes().addAll(senTitlePane);
-            senAccordion.setExpandedPane(senTitlePane);
-        }
+        midAccordion.getPanes().addAll(midTitlePane);
+        midAccordion.setExpandedPane(midTitlePane);
+
+        senAccordion.getPanes().addAll(senTitlePane);
+        senAccordion.setExpandedPane(senTitlePane);
 
 
         leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
@@ -259,10 +271,11 @@ public class XCYMain extends Stage {
 
 
         Button button = new Button();
-        button.setText("查看我的学习进度");
+        button.setText("更新我的学习进度");
+        button.setStyle("-fx-font-size: 30px");
 
         Button button1 = new Button();
-        button.setText("查看我的得分");
+        //  button.setText("查看我的得分");
 
         Button button2 = new Button();
         button2.setText("查看我的笔记");
@@ -286,7 +299,7 @@ public class XCYMain extends Stage {
 
         //HBox mainhBox = new HBox(leftTitles, mainGrid);
 
-        HBox hBox = new HBox(mainGrid, introJavaWebView);
+        HBox hBox = new HBox(mainGrid);
 //        mainFlowPane = new FlowPane(leftFlowPane, hBox);
         HBox main = new HBox(leftFlowPane, hBox);
 
@@ -294,9 +307,6 @@ public class XCYMain extends Stage {
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension dimension = kit.getScreenSize();
         introJavaWebView.setMinWidth(dimension.width / 2);
-//        mainFlowPane.setMinHeight(dimension.height);
-////        mainGrid.setBackground(Color);
-//        mainFlowPane.setStyle("-fx-background-color: #4183C4");
 
 
         Scene scene = new Scene(main, 3 * dimension.width / 4, dimension.height);
@@ -360,6 +370,11 @@ public class XCYMain extends Stage {
         }
 
         @Override
+        protected void finalize() throws Throwable {
+            super.finalize();
+        }
+
+        @Override
         protected void updateItem(NewTitleManager newTitleManager, boolean b) {
             super.updateItem(newTitleManager, b);
             if (newTitleManager != null && !b) {
@@ -378,65 +393,35 @@ public class XCYMain extends Stage {
     }
 
 
-    private class TitleCell extends ListCell<TitleManager> {
-        private Text name;
-        private HBox mainHBox;
-        private CheckBox finished;
-//        private Checkbox
+    /**
+     * 检查是否有需要复习的章节
+     */
+    private void reviewOrNot() {
+        for (Map.Entry<String, NewSubTitleManager> item1 : newBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
 
+//            for ()
 
-        public TitleCell() {
-            super();
-            name = new Text();
-            name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';-fx-text-fill: blue");
-
-
-            {//实现字体放大 变小的特效
-                name.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-
-                        //鼠标进入的特效
-                        name.setStyle("-fx-font-family: '黑体';-fx-font-size: 20;");
-                        name.setFill(Color.RED);
-                    }
-                });
-                name.setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';");
-                        name.setFill(Color.BLACK);
-                    }
-                });
-            }
-
-            finished = new CheckBox();
-            finished.setStyle("-fx-background-color:red");//这个红色体现不出来
-            finished.setText("已完成");
-            finished.setSelected(true);
-            finished.setStyle("-fx-font-size: 15;-fx-text-fill: blue");
-
-
-            finished.setDisable(true);
-
-
-            mainHBox = new HBox(name, finished);
 
         }
 
-        @Override
-        protected void updateItem(TitleManager title, boolean b) {
-            super.updateItem(title, b);
-            if (title != null && !b) {
-                name.setText(title.getName());
 
-
-                setGraphic(mainHBox);
-
-            } else {
-                setGraphic(null);
-            }
-
-        }
     }
+
+    /**
+     * 关闭的时候将内容写入配置文件中
+     */
+    private void closeAndWrite() {
+        this.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                if (windowEvent.getEventType() == WindowEvent.WINDOW_CLOSE_REQUEST) {
+                    //               System.out.println("窗口关闭了");
+
+
+                }
+            }
+        });
+    }
+
+
 }
