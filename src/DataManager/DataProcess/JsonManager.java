@@ -84,9 +84,9 @@ public class JsonManager {
                     newTitleManager.getIntegerSelectProblemHashMap().put(j, newSelectProblem);
                     j++;
                 }
-                newSubTitleManager.getIntegerNewTitleManagerHashMap().put(k, newTitleManager);
+                newSubTitleManager.getIntegerNewTitleManagerTreeMap().put(k, newTitleManager);
                 k++;
-                newSubTitleManager.getStringNewTitleManagerHashMap().put(titleManager.getName(), newTitleManager);
+                newSubTitleManager.getStringNewTitleManagerTreeMap().put(titleManager.getName(), newTitleManager);
             }
             String t = "";
             if (i == 0) {
@@ -121,7 +121,7 @@ public class JsonManager {
         NewBigTitleManager newBigTitleManager = new NewBigTitleManager();
 
 
-        NewSubTitleManager newSubTitleManagerPri = new NewSubTitleManager(true);
+       // NewSubTitleManager newSubTitleManagerPri = new NewSubTitleManager(true);
 
         int i = 0;
         for (SubTitleManager subTitleManager : bigTitleManager.getSubTitleManagerLinkedLists()) {
@@ -142,7 +142,7 @@ public class JsonManager {
                     newTitleManager.getIntegerSelectProblemHashMap().put(j, newSelectProblem);
                     j++;
                 }
-                newSubTitleManager.getStringNewTitleManagerHashMap().put(titleManager.getName(), newTitleManager);
+                newSubTitleManager.getStringNewTitleManagerTreeMap().put(titleManager.getName(), newTitleManager);
             }
             String t = "";
             if (i == 0) {
@@ -222,15 +222,16 @@ public class JsonManager {
 
     public static void main(String[] args) throws IOException {
 
-        NewProblems newProblems = getNewProblems("C:\\Users\\DELL\\Desktop\\JavaFinalProject\\src\\Source\\midtest.json");
-
-        for(Map.Entry<Integer,NewSelectProblem>integerNewSelectProblemEntry:newProblems.getIntegerNewSelectProblemHashMap().entrySet())
-        {
-
-
-            System.out.println(integerNewSelectProblemEntry.getValue().getProblem());
-        }
+//        NewProblems newProblems = getNewProblems("C:\\Users\\DELL\\Desktop\\JavaFinalProject\\src\\Source\\midtest.json");
+//
+//        for(Map.Entry<Integer,NewSelectProblem>integerNewSelectProblemEntry:newProblems.getIntegerNewSelectProblemHashMap().entrySet())
+//        {
+//
+//
+//            System.out.println(integerNewSelectProblemEntry.getValue().getProblem());
+//        }
+//    }
+preProcessing();
+        preDealAnswer();
     }
-
-
 }

@@ -23,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -33,28 +34,18 @@ import java.awt.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.Map;
 
 public class XCYMain extends Stage {
 
 
     private static final int DAY = 24 * 60 * 60;
-
-
-    public static void main(String[] args) throws IOException {
-        FileReader fileReader = new FileReader("src\\pages\\Java对象和类.html");
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String str;
-        while ((str = bufferedReader.readLine()) != null) {
-            System.out.println(str);
-        }
-//        while ((str=fileReader))
-    }
-
     /**
      * Java介绍网页的相对地址
      */
-    private final String INTROJAVAPATH = "Resource/Javainfor.html";
+    private static final String INTROJAVAPATH = "Resource/Javainfor.html";
+    private static final String PRIMARY = "Java初级教程", MIDDLE = "Java中级教程", SENIOR = "Java高级教程";
 
 
     private TreeItem<String> treeItem;
@@ -86,8 +77,13 @@ public class XCYMain extends Stage {
     private Circle checkProgressCircleButtom, checkProgressCircleUp;
 
 
-    private Button priTest, Mid;
+    private Button priTest, midTest, senTest;
 
+    /**
+     * 目前还没有什么用
+     *
+     * @throws MalformedURLException
+     */
     private void initWebPage() throws MalformedURLException {
         introJavaWebView = new WebView();
         File file = new File(INTROJAVAPATH);
@@ -97,11 +93,16 @@ public class XCYMain extends Stage {
 
     }
 
-    private void newInitTitleListView() throws IOException {
-        BigTitleManager bigTitleManager = JsonManager.getBigTitleManager();
+
+    /**
+     *
+     */
+
+    private void updateLearningProgress() {
 
 
     }
+
 
     /**
      * 初始化用于展示三个级别的listView
@@ -115,15 +116,34 @@ public class XCYMain extends Stage {
         senTitle = FXCollections.observableArrayList();
 
 
-        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getStringNewTitleManagerHashMap().entrySet()) {
-            priTitle.add(item.getValue());
+//        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getStringNewTitleManagerTreeMap()entrySet()) {
+//            priTitle.add(item.getValue());
+//        }
+//        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getStringNewTitleManagerHashMap().entrySet()) {
+//            midTitle.add(item.getValue());
+//        }
+//        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").getStringNewTitleManagerHashMap().entrySet()) {
+//            senTitle.add(item.getValue());
+//        }
+//        Iterator iteratorPri = newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().keySet().iterator();
+//        while (iteratorPri.hasNext()) {
+//            priTitle.add(newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().get(iteratorPri.next()));
+//        }
+
+
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+            priTitle.add(integerNewTitleManagerEntry.getValue());
+            System.out.println(integerNewTitleManagerEntry.getValue().getName());
         }
-        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getStringNewTitleManagerHashMap().entrySet()) {
-            midTitle.add(item.getValue());
+
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+            midTitle.add(integerNewTitleManagerEntry.getValue());
         }
-        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").getStringNewTitleManagerHashMap().entrySet()) {
-            senTitle.add(item.getValue());
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+            senTitle.add(integerNewTitleManagerEntry.getValue());
         }
+
+
         priListView = new ListView<>(priTitle);
         midListView = new ListView<>(midTitle);
         senListView = new ListView<>(senTitle);
@@ -158,16 +178,77 @@ public class XCYMain extends Stage {
             //@SneakyThrows
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                try {
+
+                if (newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").isAbleToLearn()) {
+                    try {
 
 
-                    NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
+                        NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
 
 
-                    LearnStage learnStage = new LearnStage(newTitleManager);
-                    learnStage.showAndWait();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
+                        LearnStage learnStage = new LearnStage(newTitleManager);
+                        learnStage.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+
+                    Alert fail = new Alert(Alert.AlertType.WARNING);
+                    fail.setTitle("没有权限");
+                    fail.setHeaderText("请学习之前的章节");
+                    fail.setContentText("你没有完成之前章节的学习,不能学习这一章");
+                    fail.showAndWait();
+                }
+            }
+        });
+        midListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+
+                if (newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").isAbleToLearn()) {
+                    try {
+
+
+                        NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
+
+
+                        LearnStage learnStage = new LearnStage(newTitleManager);
+                        learnStage.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+
+                    Alert fail = new Alert(Alert.AlertType.WARNING);
+                    fail.setTitle("没有权限");
+                    fail.setHeaderText("请学习之前的章节");
+                    fail.setContentText("你没有完成之前章节的学习,不能学习这一章");
+                    fail.showAndWait();
+                }
+            }
+        });
+
+        senListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                if (newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").isAbleToLearn()) {
+                    try {
+
+
+                        NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
+
+
+                        LearnStage learnStage = new LearnStage(newTitleManager);
+                        learnStage.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Alert fail = new Alert(Alert.AlertType.WARNING);
+                    fail.setTitle("没有权限");
+                    fail.setHeaderText("请学习之前的章节");
+                    fail.setContentText("你没有完成之前章节的学习,不能学习这一章");
+                    fail.showAndWait();
                 }
             }
         });
@@ -252,14 +333,27 @@ public class XCYMain extends Stage {
         priAccordion.setExpandedPane(priTitledPane);
 
         midAccordion.getPanes().addAll(midTitlePane);
-        midAccordion.setExpandedPane(midTitlePane);
+//        midAccordion.setExpandedPane(midTitlePane);
 
         senAccordion.getPanes().addAll(senTitlePane);
-        senAccordion.setExpandedPane(senTitlePane);
+//        senAccordion.setExpandedPane(senTitlePane);
 
 
-        leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
-        leftTitles.setStyle("-fx-spacing: 50px;-fx-background-color: mediumspringgreen");
+        {
+            priTest = new Button();
+            priTest.setText("初级考核测试");
+            priTest.setStyle("-fx-font-size: 15px");
+
+            midTest = new Button();
+            midTest.setText("中级考核测试");
+            midTest.setStyle("-fx-font-size: 15px");
+
+            senTest = new Button();
+            senTest.setText("高级考核测试");
+            senTest.setStyle("-fx-font-size: 15px");
+        }
+        leftTitles = new VBox(priAccordion, priTest, midAccordion, midTest, senAccordion, senTest);
+        leftTitles.setStyle("-fx-spacing: 5px;-fx-background-color: mediumspringgreen");
 
 
         Image image = new Image("file:Resource/JAVA.jpg", 250, 250.0, false, false);
@@ -280,12 +374,52 @@ public class XCYMain extends Stage {
         Button button2 = new Button();
         button2.setText("查看我的笔记");
 
-        //VBox vBox = new VBox(button);
+        //加一个环形按钮
+        {
+
+            checkProgress = new Group();
+            checkProgressCircleButtom = new Circle();
+            checkProgressCircleButtom.setRadius(30);
+            checkProgressCircleButtom.setFill(Color.CORAL);
+
+            checkProgressCircleUp = new Circle();
+            checkProgressCircleUp.setRadius(25);
+            checkProgressCircleUp.setFill(Color.BLUEVIOLET);
+            Text text = new Text();
+            text.setText("更新进度");
+            text.setStyle("-fx-font-size: 15;");
+
+
+            checkProgressCircleUp.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    checkProgressCircleUp.setFill(Color.WHITE);
+                }
+            });
+
+            checkProgressCircleUp.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    checkProgressCircleUp.setFill(Color.BLUEVIOLET);
+
+                }
+            });
+            checkProgressCircleUp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    checkProgress();
+                }
+            });
+            text.setX(-25);
+            text.setY(2);
+            checkProgress.getChildren().add(checkProgressCircleButtom);
+            checkProgress.getChildren().add(checkProgressCircleUp);
+            checkProgress.getChildren().add(text);
+        }
+
 
         mainGrid.add(text2, 1, 0);
-        //  mainGrid.add(vBox, 1, 2);
-        mainGrid.add(button, 0, 2);
-        mainGrid.add(button1, 1, 2);
+        mainGrid.add(checkProgress, 1, 2);
         mainGrid.add(button2, 2, 2);
 
 
@@ -295,13 +429,12 @@ public class XCYMain extends Stage {
         mainGrid.setHgap(30);
         mainGrid.setVgap(40);
 
-        leftFlowPane = new FlowPane(priAccordion, midAccordion, senAccordion);
 
         //HBox mainhBox = new HBox(leftTitles, mainGrid);
 
         HBox hBox = new HBox(mainGrid);
 //        mainFlowPane = new FlowPane(leftFlowPane, hBox);
-        HBox main = new HBox(leftFlowPane, hBox);
+        HBox main = new HBox(leftTitles, hBox);
 
 
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -309,7 +442,9 @@ public class XCYMain extends Stage {
         introJavaWebView.setMinWidth(dimension.width / 2);
 
 
-        Scene scene = new Scene(main, 3 * dimension.width / 4, dimension.height);
+
+        main.setStyle("-fx-background-color: cadetblue");
+        Scene scene = new Scene(main,   dimension.width / 2, dimension.height);
 
         //主窗体的大小是不可以更改的
         //  this.setResizable(false);
@@ -394,9 +529,41 @@ public class XCYMain extends Stage {
 
 
     /**
+     * 更新我目前学习进度
+     */
+    private void checkProgress() {
+
+        //为什么这个循环是这样写的
+        if (checkAbleLearn(PRIMARY) && checkAbleLearn(MIDDLE)) {
+            newBigTitleManager.getStringNewSubTitleManagerHashMap().get(SENIOR).setAbleToLearn(true);
+            Alert success = new Alert(Alert.AlertType.INFORMATION);
+            success.setTitle("进度更新");
+            success.setHeaderText("解锁新的权限");
+            success.setContentText("你可以学习Java高级教程了");
+            success.showAndWait();
+
+
+        } else if (checkAbleLearn(PRIMARY)) {
+            newBigTitleManager.getStringNewSubTitleManagerHashMap().get(MIDDLE).setAbleToLearn(true);
+            Alert success = new Alert(Alert.AlertType.INFORMATION);
+            success.setTitle("进度更新");
+            success.setHeaderText("解锁新的权限");
+            success.setContentText("你可以学习Java中级教程了");
+            success.showAndWait();
+        }
+        else {
+
+            Alert fail = new Alert(Alert.AlertType.INFORMATION);
+            fail.setTitle("没有进展");
+            fail.setHeaderText("未能解锁新的权限");
+            fail.setContentText("请继续认真学习");
+            fail.showAndWait();
+        }
+    }
+    /**
      * 检查是否有需要复习的章节
      */
-    private void reviewOrNot() {
+    private void reviewTheLearner() {
         for (Map.Entry<String, NewSubTitleManager> item1 : newBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
 
 //            for ()
@@ -416,12 +583,26 @@ public class XCYMain extends Stage {
             public void handle(WindowEvent windowEvent) {
                 if (windowEvent.getEventType() == WindowEvent.WINDOW_CLOSE_REQUEST) {
                     //               System.out.println("窗口关闭了");
-
-
+/**
+ * 这里需要有一个函数将我们对NewBigTitleManager的修改写回到配置文件里，这一点很重要
+ */
                 }
             }
         });
     }
+
+    /**
+     * @param name 检查这个章节的内容是否学完了
+     * @return
+     */
+    private boolean checkAbleLearn(String name) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get(name).getIntegerNewTitleManagerTreeMap().entrySet()) {
+            if (!integerNewTitleManagerEntry.getValue().isLearned())
+                return false;
+        }
+        return true;
+    }
+
 
 
 }

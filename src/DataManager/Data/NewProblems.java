@@ -1,6 +1,7 @@
 package DataManager.Data;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * 用于测试集
@@ -8,21 +9,17 @@ import java.util.HashMap;
 public class NewProblems {
 
 
-    private HashMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap;
+    private TreeMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap;
 
     public NewProblems() {
-        integerNewSelectProblemHashMap = new HashMap<>();
+        integerNewSelectProblemHashMap = new TreeMap<>();
     }
 
-    public NewProblems(HashMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap) {
-        this.integerNewSelectProblemHashMap = integerNewSelectProblemHashMap;
-    }
-
-    public HashMap<Integer, NewSelectProblem> getIntegerNewSelectProblemHashMap() {
+    public TreeMap<Integer, NewSelectProblem> getIntegerNewSelectProblemHashMap() {
         return integerNewSelectProblemHashMap;
     }
 
-    public void setIntegerNewSelectProblemHashMap(HashMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap) {
+    public void setIntegerNewSelectProblemHashMap(TreeMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap) {
         this.integerNewSelectProblemHashMap = integerNewSelectProblemHashMap;
     }
 }

@@ -2,6 +2,7 @@ package DataManager.Data;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class NewTitleManager {
 
@@ -18,12 +19,26 @@ public class NewTitleManager {
      * 这个人是否学习过这一个章节
      */
     private boolean learned;
+
+    private boolean remind;
+
+    public boolean isRemind() {
+        return remind;
+    }
+
+    public void setRemind(boolean remind) {
+        this.remind = remind;
+    }
+
+    /**
+     * 上一次学习完成之后的的时间
+     */
     private Date date;
 
     /**
      * 每一个章节对应一个题库
      */
-    private HashMap<Integer, NewSelectProblem> integerSelectProblemHashMap;
+    private TreeMap<Integer, NewSelectProblem> integerSelectProblemHashMap;
 
 
 
@@ -33,12 +48,9 @@ public class NewTitleManager {
         this.resource = resource;
         this.learned = learned;
 
+        remind = false;
         date = new Date();
-
-        integerSelectProblemHashMap = new HashMap<>();
-
-
-
+        integerSelectProblemHashMap = new TreeMap<>();
     }
 
     public String getName() {
@@ -73,11 +85,11 @@ public class NewTitleManager {
         this.date = date;
     }
 
-    public HashMap<Integer, NewSelectProblem> getIntegerSelectProblemHashMap() {
+    public TreeMap<Integer, NewSelectProblem> getIntegerSelectProblemHashMap() {
         return integerSelectProblemHashMap;
     }
 
-    public void setIntegerSelectProblemHashMap(HashMap<Integer, NewSelectProblem> integerSelectProblemHashMap) {
+    public void setIntegerSelectProblemHashMap(TreeMap<Integer, NewSelectProblem> integerSelectProblemHashMap) {
         this.integerSelectProblemHashMap = integerSelectProblemHashMap;
     }
 }

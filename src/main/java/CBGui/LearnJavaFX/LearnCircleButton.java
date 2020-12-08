@@ -81,6 +81,12 @@ public class LearnCircleButton extends Application {
                 circle.setFill(Color.RED);
             }
         });
+        circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
 
 
         hBox.getChildren().add(group);

@@ -10,7 +10,10 @@ import main.java.CBGui.LearnJavaFX.LearnListView;
  */
 public class Run {
     public static void main(String[] args) {
-        Application.launch(LearnCircleButton.class, args);
+        Application.launch(TestNewStage.class, args);
+
+
+
     }
 
 
