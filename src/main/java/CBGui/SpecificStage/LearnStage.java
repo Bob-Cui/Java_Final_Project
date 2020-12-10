@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -87,12 +88,19 @@ public class LearnStage extends Stage {
 
     }
 
+    /**
+     * 修改窗体的名字，设置窗体的图标
+     * @param titleName 窗体的名字
+     */
+    private void setStageTitle(String titleName) {
+        this.setTitle(titleName);
+        this.getIcons().add(new Image("file:Resource/icon.jpg"));
+    }
 
     /**
-     * 新的构造函数，真是有趣的紧
-     *
-     * @param newTitleManager
-     * @throws MalformedURLException
+     * 新的构造函数，构造函数传入了数据
+     * @param newTitleManager 这个窗体在建立的时候所需要的数据
+     * @throws MalformedURLException 不需要知道原因的异常
      */
     public LearnStage(NewTitleManager newTitleManager) throws MalformedURLException {
         WebView webView = new WebView();
@@ -103,36 +111,38 @@ public class LearnStage extends Stage {
         Text text = new Text("请回答以下的问题");
         text.setStyle("-fx-font-size: 30px");
         HBox hBox = new HBox();
+        setStageTitle(newTitleManager.getName());
+
         ProblemVBox problemVBox = new ProblemVBox(newTitleManager);
+
+
         rVbox = new VBox(text, problemVBox);
         hBox = new HBox(webView, rVbox);
         scene = new Scene(hBox);
+       // problemVBox.setMinWidth(scene.getWidth()/2);
+        //problemVBox.setMaxWidth(scene.getWidth()/2);
         this.setScene(scene);
     }
 
-    /**
-     * 先写一个默认的构造函数试一试
-     *
-     * @throws MalformedURLException
-     */
-    public LearnStage() throws MalformedURLException {
-        WebView webView = new WebView();
-        File file = new File("C:\\Users\\DELL\\Desktop\\Java.html");
-        URL url = file.toURI().toURL();
-        webView.getEngine().load(url.toString());
-        // initProblemList();
-        Text text = new Text("请回答以下的问题");
-        text.setStyle("-fx-font-size: 30px");
 
-
-        HBox hBox = new HBox();
-        //控制传入ProblemVBox中的参数是切换需要展示的问题的关键
-        ProblemVBox problemVBox = new ProblemVBox();
-        rVbox = new VBox(text, problemVBox);
-        hBox = new HBox(webView, rVbox);
-        scene = new Scene(hBox);
-        this.setScene(scene);
-    }
+//    public LearnStage() throws MalformedURLException {
+//        WebView webView = new WebView();
+//        File file = new File("C:\\Users\\DELL\\Desktop\\Java.html");
+//        URL url = file.toURI().toURL();
+//        webView.getEngine().load(url.toString());
+//        // initProblemList();
+//        Text text = new Text("请回答以下的问题");
+//        text.setStyle("-fx-font-size: 30px");
+//
+//
+//        HBox hBox = new HBox();
+//        //控制传入ProblemVBox中的参数是切换需要展示的问题的关键
+//        ProblemVBox problemVBox = new ProblemVBox();
+//        rVbox = new VBox(text, problemVBox);
+//        hBox = new HBox(webView, rVbox);
+//        scene = new Scene(hBox);
+//        this.setScene(scene);
+//    }
 
 
 

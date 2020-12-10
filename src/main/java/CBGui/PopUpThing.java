@@ -24,15 +24,15 @@ public class PopUpThing extends Application {
 
     private Stage mainStage;
     @Override
-    public void start(Stage primaryStage) throws MalformedURLException {
+    public void start(Stage primaryStage) {
         thestage = primaryStage;
-        learnPage = new LearnStage();
+        learnPage = new LearnStage("");
         //参数转存 方法外可使用
         //创建组件
         btnscene1 = new Button("Click to go to Other Scene");
         btnscene2 = new Button("Click to go back to First Scene");
-        btnscene1.setOnAction(e -> ButtonClicked(e));
-        btnscene2.setOnAction(e -> ButtonClicked(e));
+        btnscene1.setOnAction(this::ButtonClicked);//这是什么神奇的用法？？？？？？ method reference
+        btnscene2.setOnAction(this::ButtonClicked);
         lblscene1 = new Label("Scene 1");
         lblscene2 = new Label("Scene 2");
         //创建面板

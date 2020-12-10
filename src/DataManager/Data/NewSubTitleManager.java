@@ -11,7 +11,13 @@ public class NewSubTitleManager {
     private TreeMap<Integer, NewTitleManager> integerNewTitleManagerTreeMap;
 
 
+    public TreeMap<String, NewTitleManager> getStringNewTitleManagerTreeMap() {
+        return stringNewTitleManagerTreeMap;
+    }
 
+    public TreeMap<Integer, NewTitleManager> getIntegerNewTitleManagerTreeMap() {
+        return integerNewTitleManagerTreeMap;
+    }
 
     public NewSubTitleManager(boolean ableToLearn) {
         this.ableToLearn = ableToLearn;

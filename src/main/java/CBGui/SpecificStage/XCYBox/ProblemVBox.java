@@ -43,8 +43,8 @@ public class ProblemVBox extends VBox {
     private final Text textC;
     private final Text textD;
 
-    private HBox problemHBox;
-    private final Text problemContent;
+    private VBox problemVBox;
+    private Text problemContent;
 
 
     private VBox selectvBox;
@@ -52,6 +52,7 @@ public class ProblemVBox extends VBox {
 
     private Button submit;
 
+    private final static int step=25;
     /**
      * private Map<int, SelectProblem>这个东西会报错
      */
@@ -110,15 +111,15 @@ public class ProblemVBox extends VBox {
             nowQuestion = 1;
         }
         problemContent = new Text();
-        problemContent.setText(dataSource.getIntegerSelectProblemHashMap().get(1).getProblem());
+        problemContent.setText(dealTitle(dataSource.getIntegerSelectProblemHashMap().get(1).getProblem(),step));
         problemContent.setStyle("-fx-font-size: 25px");
         {
             proID = new Button();
             proID.setText("1");
-            proID.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-font-size: 20px");
-            proID.setDisable(true);
-            problemHBox = new HBox(proID, problemContent);
-            problemHBox.setStyle("-fx-spacing: 15px");
+            proID.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-font-size: 18px");
+           // proID.setDisable(true);
+            problemVBox = new VBox(proID, problemContent);
+            problemVBox.setStyle("-fx-spacing: 15px");
         }
 
         {
@@ -166,9 +167,9 @@ public class ProblemVBox extends VBox {
                     newSelectProblem.setYourAnswer('D');
                 }
             });
-            textA = new Text(dataSource.getIntegerSelectProblemHashMap().get(1).getA());
+            textA = new Text(dealTitle(dataSource.getIntegerSelectProblemHashMap().get(1).getA(),step));
 
-            textB = new Text(dataSource.getIntegerSelectProblemHashMap().get(1).getB());
+            textB = new Text(dealTitle(dataSource.getIntegerSelectProblemHashMap().get(1).getB(),step));
             textC = new Text(dataSource.getIntegerSelectProblemHashMap().get(1).getC());
             textD = new Text(dataSource.getIntegerSelectProblemHashMap().get(1).getD());
 
@@ -218,18 +219,19 @@ public class ProblemVBox extends VBox {
             button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;");
 
             button.setOnMouseClicked(mouseEvent -> {
-                int step = 30;
 
                 int id = (int) button.getUserData();
                 proID.setText(String.valueOf(id));
 
                 NewSelectProblem choosedOne = dataSource.getIntegerSelectProblemHashMap().get(id);
                 problemContent.setText(dealTitle(choosedOne.getProblem(), step));
-                System.out.println(choosedOne.getProblem());
-                a.setText(dealTitle(choosedOne.getA(), step));
-                b.setText(dealTitle(choosedOne.getB(), step));
-                c.setText(dealTitle(choosedOne.getC(), step));
-                d.setText(dealTitle(choosedOne.getD(), step));
+             //  System.out.println(choosedOne.getProblem());
+                textA.setText(dealTitle(choosedOne.getA(), step));
+                textB.setText(dealTitle(choosedOne.getB(), step));
+                textC.setText(dealTitle(choosedOne.getC(), step));
+                textD.setText(dealTitle(choosedOne.getD(), step));
+                System.out.println(dealTitle(choosedOne.getA(), step));
+                System.out.println(dealTitle(choosedOne.getB(), step));
                 a.setSelected(false);
                 b.setSelected(false);
                 c.setSelected(false);
@@ -240,14 +242,16 @@ public class ProblemVBox extends VBox {
         }
 
 
-        problemHBox.setMinHeight(200);
-        selectvBox.setMinHeight(200);
+//        problemHBox.setMinHeight(200);
+//        selectvBox.setMinHeight(200);
 
         initSubmitButton();
+        VBox vBox = new VBox();
+//        FlowPane flowPane = new FlowPane(problemHBox, selectvBox);
 
-        FlowPane flowPane = new FlowPane(problemHBox, selectvBox);
-        flowPane.setMinHeight(500);
-        this.getChildren().addAll(flowPane, changeProblem, submit);
+        vBox.getChildren().addAll(problemVBox, selectvBox);
+//        flowPane.setMinHeight(500);
+        this.getChildren().addAll(vBox, changeProblem, submit);
 
 
         this.setStyle("-fx-spacing: 60px;-fx-padding: 15px");
@@ -300,20 +304,24 @@ public class ProblemVBox extends VBox {
         });
     }
 
-    private String dealTitle(String input, int step) {
+    public static String dealTitle(String input, int step) {
         if (input.length() <= step) {
-            return input;
+            String ans=input;
+            for (int i = 0; i <step-input.length() ; i++) {
+              ans += ' ';
+            }
+            return ans;
         }
         String ans = "";
         for (int i = 0; i < input.length(); i++) {
-            if ((i + 1) % step == 0) {
+            ans += input.charAt(i);
+            if ((i+1) % step == 0) {
                 ans += '\n';
             }
-            ans += input.charAt(i);
+
         }
         return ans;
     }
-
     public ProblemVBox() {
         problemContent = new Text();
         problemContent.setText("这是一个问题");
@@ -326,8 +334,8 @@ public class ProblemVBox extends VBox {
             button.setText("1");
             button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-font-size: 20px");
             button.setDisable(true);
-            problemHBox = new HBox(button, problemContent);
-            problemHBox.setStyle("-fx-spacing: 15px");
+            problemVBox = new VBox(button, problemContent);
+            problemVBox.setStyle("-fx-spacing: 15px");
         }
 
 
@@ -409,51 +417,13 @@ public class ProblemVBox extends VBox {
             dHBox.setStyle("-fx-spacing: 25px");
         }
 
-        selectvBox = new VBox(aHBox, bHBox, cHBox, dHBox);
-        selectvBox.setStyle("-fx-spacing: 20px");
 
-        a.setToggleGroup(toggleGroup);
-        b.setToggleGroup(toggleGroup);
-        c.setToggleGroup(toggleGroup);
-        d.setToggleGroup(toggleGroup);
+}
 
+    public static void main(String[] args) {
 
-        changeProblem = new FlowPane();
-
-        for (int i = 0; i < 20; i++) {
-            Button button = new Button();
-            button.setText(String.valueOf(i));
-            button.setMinHeight(35);
-            button.setMinWidth(35);
-            button.setUserData(String.valueOf(i));
-            button.setStyle("-fx-background-radius: 30px;-fx-border-radius: 30px;");
-
-            button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    problemContent.setText(button.getUserData().toString());
-//                    if(toggleGroup.getSelectedToggle()!=null)
-                    a.setUserData("第" + button.getUserData().toString() + "题 A");
-                    b.setUserData("第" + button.getUserData().toString() + "题 B");
-                    c.setUserData("第" + button.getUserData().toString() + "题 C");
-                    d.setUserData("第" + button.getUserData().toString() + "题 D");
-                    a.setUserData(2);
-                }
-            });
-            changeProblem.getChildren().add(button);
-
-
-        }
-
-
-        this.getChildren().addAll(problemHBox, selectvBox, changeProblem);
-
-
-        this.setStyle("-fx-spacing: 60px;-fx-padding: 15px");
-        /**
-         * Spacing 定义Box中不同元素的间隔
-         * Padding（填充）属性定义元素边框与元素内容之间的空间。padding 简写属性在一个声明中设置所有内边距属性。
-         */
-
+        String a = "一个类可同时定义许多同名的方法，这些方法的形式参数个数、类型或顺序各不相同，传回的值也可以不相同，这种特性称为（ ";
+        System.out.println(dealTitle(a,5));
     }
 }
+
