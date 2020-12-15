@@ -8,25 +8,11 @@ import com.google.gson.Gson;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 public class JsonManager {
 
 
-    /**
-     * 读取listView中需要用到的数据
-     *
-     * @return
-     * @throws IOException
-     */
-    public static BigTitle getTitleData() throws IOException {
-        XCYFileManager cbFileManager = new XCYFileManager();
-        Gson gson = new Gson();
-        BigTitle bigTitle;
-        String t = XCYFileManager.readJson("source/list_title.json");
-        bigTitle = gson.fromJson(t, BigTitle.class);
-        return bigTitle;
-    }
+    public static final String XCYCONFIGFILE = "final_test.json";
 
     /**
      * @return 返回管理
@@ -121,7 +107,7 @@ public class JsonManager {
         NewBigTitleManager newBigTitleManager = new NewBigTitleManager();
 
 
-       // NewSubTitleManager newSubTitleManagerPri = new NewSubTitleManager(true);
+        // NewSubTitleManager newSubTitleManagerPri = new NewSubTitleManager(true);
 
         int i = 0;
         for (SubTitleManager subTitleManager : bigTitleManager.getSubTitleManagerLinkedLists()) {
@@ -209,9 +195,10 @@ public class JsonManager {
 
     /**
      * 读取一个测试题json文件并返回响应的类
+     *
      * @param address
-     * @throws IOException
      * @return
+     * @throws IOException
      */
     public static NewProblems getNewProblems(String address) throws IOException {
         XCYFileManager xcyFileManager = new XCYFileManager();
@@ -220,18 +207,61 @@ public class JsonManager {
         return gson.fromJson(string, NewProblems.class);
     }
 
+
+    /**
+     * @param data 用于写回NewBigTitleManager数据
+     * @throws IOException
+     */
+    public static void writeConfigure(NewBigTitleManager data) throws IOException {
+        //FileWriter fileWriter = new FileWriter(XCYCONFIGFILE,true);加上true,这说明要在文件之后写入
+        //不加true说明要将原来的文件整体清空，写入新的文件
+        FileWriter fileWriter = new FileWriter(XCYCONFIGFILE);
+/**
+ * 依然是熟悉的Gson转换器
+ */
+        Gson gson = new Gson();
+
+        String str = gson.toJson(data);
+
+        fileWriter.write(str);
+
+
+        //要记住关掉这个文件写入器
+        fileWriter.close();
+
+    }
+
+    /**
+     * 用于写测试数据
+     * @param newProblems
+     * @param title 你要写回的数据属于哪一个文件，初级、中级、高级
+     * @throws IOException
+     */
+    public static void writeTestData(NewProblems newProblems,String title) throws IOException {
+        //FileWriter fileWriter = new FileWriter(XCYCONFIGFILE,true);加上true,这说明要在文件之后写入
+        //不加true说明要将原来的文件整体清空，写入新的文件
+        FileWriter fileWriter = new FileWriter(XCYCONFIGFILE);
+/**
+ * 依然是熟悉的Gson转换器
+ */
+        Gson gson = new Gson();
+        /**
+         * 转换为json字符串
+         */
+        String str = gson.toJson(newProblems);
+
+        fileWriter.write(str);
+
+
+        //要记住关掉这个文件写入器
+        fileWriter.close();
+
+    }
+
     public static void main(String[] args) throws IOException {
 
-//        NewProblems newProblems = getNewProblems("C:\\Users\\DELL\\Desktop\\JavaFinalProject\\src\\Source\\midtest.json");
-//
-//        for(Map.Entry<Integer,NewSelectProblem>integerNewSelectProblemEntry:newProblems.getIntegerNewSelectProblemHashMap().entrySet())
-//        {
-//
-//
-//            System.out.println(integerNewSelectProblemEntry.getValue().getProblem());
-//        }
-//    }
-preProcessing();
+
+        preProcessing();
         preDealAnswer();
     }
 }

@@ -2,7 +2,6 @@ package main.java.CBGui.SpecificStage;
 
 
 import DataManager.Data.*;
-import DataManager.Data.OldData.BigTitleManager;
 import DataManager.DataProcess.JsonManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,7 +22,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -34,13 +32,16 @@ import java.awt.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class XCYMain extends Stage {
 
-
-    private static final int DAY = 24 * 60 * 60;
+    /**
+     * 注意这个地方计算的是毫秒数，所以还要乘上1000
+     */
+    private static final int DAY = 24 * 60 * 60 * 1000;
     /**
      * Java介绍网页的相对地址
      */
@@ -61,13 +62,21 @@ public class XCYMain extends Stage {
 
     /**
      * 所有数据的来源
+     * 我们将这个变量变成静态变量其目的就是为了能在不同的类中自由的访问这个变量，并进行数据的修改
      */
-    private NewBigTitleManager newBigTitleManager;
+    public static NewBigTitleManager newBigTitleManager;
 
     /**
      * 用来展示有关Java的介绍
      */
     private WebView introJavaWebView;
+
+
+    /**
+     * 有关三个考试的按钮
+     */
+    private Button priTest, midTest, senTest;
+
 
     /**
      * 有趣的关于查看学习进度的按钮
@@ -75,9 +84,25 @@ public class XCYMain extends Stage {
      */
     private Group checkProgress;
     private Circle checkProgressCircleButtom, checkProgressCircleUp;
+    /**
+     *
+     */
+    private Group remainYouLearn;
+    private Circle remainYouCircleButtom, remainYouCircleUp;
 
 
-    private Button priTest, midTest, senTest;
+    /**
+     * 初始化所有的数据来源
+     */
+    static {
+        try {
+            newBigTitleManager = JsonManager.getNewBigTitleManager();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     /**
      * 目前还没有什么用
@@ -98,11 +123,6 @@ public class XCYMain extends Stage {
      *
      */
 
-    private void updateLearningProgress() {
-
-
-    }
-
 
     /**
      * 初始化用于展示三个级别的listView
@@ -110,25 +130,10 @@ public class XCYMain extends Stage {
     private void initTitleListView() throws IOException {
 
 
-        newBigTitleManager = JsonManager.getNewBigTitleManager();
+        // newBigTitleManager = JsonManager.getNewBigTitleManager();
         priTitle = FXCollections.observableArrayList();
         midTitle = FXCollections.observableArrayList();
         senTitle = FXCollections.observableArrayList();
-
-
-//        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getStringNewTitleManagerTreeMap()entrySet()) {
-//            priTitle.add(item.getValue());
-//        }
-//        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getStringNewTitleManagerHashMap().entrySet()) {
-//            midTitle.add(item.getValue());
-//        }
-//        for (Map.Entry<String, NewTitleManager> item : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").getStringNewTitleManagerHashMap().entrySet()) {
-//            senTitle.add(item.getValue());
-//        }
-//        Iterator iteratorPri = newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().keySet().iterator();
-//        while (iteratorPri.hasNext()) {
-//            priTitle.add(newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().get(iteratorPri.next()));
-//        }
 
 
         for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
@@ -260,9 +265,13 @@ public class XCYMain extends Stage {
     private void setStageTitle() {
         this.setTitle("谢哈哈的Java学习网站");
         this.getIcons().add(new Image("file:Resource/icon.jpg"));
+        ImageView imageView = new ImageView(new Image("file:Resource/icon.jpg"));
     }
 
     public XCYMain() throws IOException {
+        //提醒学习
+
+
         closeAndWrite();
         setStageTitle();
         initTitleListView();
@@ -273,6 +282,8 @@ public class XCYMain extends Stage {
         labelJavaPri.setTextFill(Color.WHITE);
         labelPri.setTextFill(Color.WHITE);
 
+
+        reviewTheLearner();
 
         labelJavaPri.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
         labelPri.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
@@ -358,6 +369,8 @@ public class XCYMain extends Stage {
 
         Image image = new Image("file:Resource/JAVA.jpg", 250, 250.0, false, false);
         ImageView imageView = new ImageView(image);
+//        imageView.setStyle("-fx-border-radius: 40px;-fx-background-radius:40px");
+
 
         Text text2 = new Text("fd");
 
@@ -374,22 +387,22 @@ public class XCYMain extends Stage {
         Button button2 = new Button();
         button2.setText("查看我的笔记");
 
-        //加一个环形按钮
+        //加一个环形按钮，关于检查进度
         {
 
             checkProgress = new Group();
             checkProgressCircleButtom = new Circle();
-            checkProgressCircleButtom.setRadius(30);
+            checkProgressCircleButtom.setRadius(28);
             checkProgressCircleButtom.setFill(Color.CORAL);
 
             checkProgressCircleUp = new Circle();
             checkProgressCircleUp.setRadius(25);
-            checkProgressCircleUp.setFill(Color.BLUEVIOLET);
+            // checkProgressCircleUp.setFill(Color.BLUEVIOLET);
             Text text = new Text();
             text.setText("更新进度");
             text.setStyle("-fx-font-size: 15;");
 
-
+            //checkProgressCircleUp.setStyle("-fx-background-image:url('file:Resource/icon.jpg') ");
             checkProgressCircleUp.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -410,13 +423,19 @@ public class XCYMain extends Stage {
                     checkProgress();
                 }
             });
-            text.setX(-25);
+
+            text.setX(-45);
             text.setY(2);
             checkProgress.getChildren().add(checkProgressCircleButtom);
             checkProgress.getChildren().add(checkProgressCircleUp);
+            //  checkProgress.getChildren().add(new ImageView(new Image("file:Resource/icon.jpg")));
             checkProgress.getChildren().add(text);
         }
+        //再加一个圆形按钮，用于提醒这个人学习
+        {
 
+
+        }
 
         mainGrid.add(text2, 1, 0);
         mainGrid.add(checkProgress, 1, 2);
@@ -442,9 +461,8 @@ public class XCYMain extends Stage {
         introJavaWebView.setMinWidth(dimension.width / 2);
 
 
-
         main.setStyle("-fx-background-color: cadetblue");
-        Scene scene = new Scene(main,   dimension.width / 2, dimension.height);
+        Scene scene = new Scene(main, dimension.width / 2, dimension.height);
 
         //主窗体的大小是不可以更改的
         //  this.setResizable(false);
@@ -452,6 +470,7 @@ public class XCYMain extends Stage {
 
         this.setScene(scene);
     }
+
 
     /**
      * 设置新的listView的样式专用类
@@ -531,10 +550,16 @@ public class XCYMain extends Stage {
     /**
      * 更新我目前学习进度
      */
-    private void checkProgress() {
+    public static void checkProgress() {
 
-        //为什么这个循环是这样写的
-        if (checkAbleLearn(PRIMARY) && checkAbleLearn(MIDDLE)) {
+
+        boolean priFinished = checkFinishedTitle(PRIMARY);
+        boolean midFinished = checkFinishedTitle(MIDDLE);
+        boolean senFinished = checkFinishedTitle(SENIOR);
+
+//        if (checkFinishedTitle(PRIMARY) && checkFinishedTitle(MIDDLE))
+
+        if (priFinished && midFinished) {
             newBigTitleManager.getStringNewSubTitleManagerHashMap().get(SENIOR).setAbleToLearn(true);
             Alert success = new Alert(Alert.AlertType.INFORMATION);
             success.setTitle("进度更新");
@@ -543,35 +568,73 @@ public class XCYMain extends Stage {
             success.showAndWait();
 
 
-        } else if (checkAbleLearn(PRIMARY)) {
+        } else if (priFinished) {
             newBigTitleManager.getStringNewSubTitleManagerHashMap().get(MIDDLE).setAbleToLearn(true);
             Alert success = new Alert(Alert.AlertType.INFORMATION);
             success.setTitle("进度更新");
             success.setHeaderText("解锁新的权限");
             success.setContentText("你可以学习Java中级教程了");
             success.showAndWait();
-        }
-        else {
+        } else {
 
             Alert fail = new Alert(Alert.AlertType.INFORMATION);
             fail.setTitle("没有进展");
+
+            String unFininshTitle = null;
+
+            if (!priFinished) {
+                unFininshTitle = "Java初级教程";
+            } else if (!midFinished) {
+                unFininshTitle = "Java中级教程";
+            }
             fail.setHeaderText("未能解锁新的权限");
-            fail.setContentText("请继续认真学习");
+            fail.setContentText("请继续认真学习" + unFininshTitle + "内的其他章节");
             fail.showAndWait();
         }
     }
+
     /**
      * 检查是否有需要复习的章节
      */
-    private void reviewTheLearner() {
-        for (Map.Entry<String, NewSubTitleManager> item1 : newBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
+    private int reviewTheLearner() {
+        boolean flag = false;
 
-//            for ()
+        LinkedList<NewTitleManager> remainList = new LinkedList<>();
 
 
+        for (Map.Entry<String, NewSubTitleManager> stringNewSubTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
+            if (!stringNewSubTitleManagerEntry.getValue().isAbleToLearn()) {
+                continue;
+            }
+            for (Map.Entry<String, NewTitleManager> stringNewTitleManagerEntry : stringNewSubTitleManagerEntry.getValue().getStringNewTitleManagerTreeMap().entrySet()) {
+
+                /**
+                 * 如果这个人没有学的话是不需要提醒的
+                 */
+
+                if (!stringNewTitleManagerEntry.getValue().isLearned()) {
+                    continue;
+                }
+                Date now = new Date();
+                long span = now.getTime() - stringNewTitleManagerEntry.getValue().getDate().getTime();
+//                System.out.println(c/DAY);
+//if()
+
+
+            }
         }
-
-
+        /**
+         * 经过遍历之后仍然是负值
+         */
+        if (!flag) {
+            Alert nothing = new Alert(Alert.AlertType.INFORMATION);
+            nothing.setTitle("无需复习");
+            nothing.setHeaderText("");
+            nothing.setContentText("请开始进一步的学习");
+            nothing.showAndWait();
+            return 0;
+        }
+        return 0;
     }
 
     /**
@@ -595,14 +658,13 @@ public class XCYMain extends Stage {
      * @param name 检查这个章节的内容是否学完了
      * @return
      */
-    private boolean checkAbleLearn(String name) {
+    public static boolean checkFinishedTitle(String name) {
         for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get(name).getIntegerNewTitleManagerTreeMap().entrySet()) {
             if (!integerNewTitleManagerEntry.getValue().isLearned())
                 return false;
         }
         return true;
     }
-
 
 
 }

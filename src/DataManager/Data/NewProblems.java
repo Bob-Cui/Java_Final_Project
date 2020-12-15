@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 /**
- * 用于测试集
+ * 用于测试题
  */
 public class NewProblems {
 

@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -15,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import main.java.CBGui.SpecificStage.XCYBox.ProblemVBox;
 
@@ -22,6 +24,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedList;
+
+import static main.java.CBGui.SpecificStage.XCYMain.checkProgress;
 
 /**
  * 专用于展示学习Java的内容用的页面
@@ -90,6 +94,7 @@ public class LearnStage extends Stage {
 
     /**
      * 修改窗体的名字，设置窗体的图标
+     *
      * @param titleName 窗体的名字
      */
     private void setStageTitle(String titleName) {
@@ -99,6 +104,7 @@ public class LearnStage extends Stage {
 
     /**
      * 新的构造函数，构造函数传入了数据
+     *
      * @param newTitleManager 这个窗体在建立的时候所需要的数据
      * @throws MalformedURLException 不需要知道原因的异常
      */
@@ -119,31 +125,21 @@ public class LearnStage extends Stage {
         rVbox = new VBox(text, problemVBox);
         hBox = new HBox(webView, rVbox);
         scene = new Scene(hBox);
-       // problemVBox.setMinWidth(scene.getWidth()/2);
+        // problemVBox.setMinWidth(scene.getWidth()/2);
         //problemVBox.setMaxWidth(scene.getWidth()/2);
         this.setScene(scene);
+
+        /**
+         *每一个学习界面在关闭的时候都要调用checkProgress函数来更新这个人自己的学习进度
+         */
+        this.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+//                System.out.println("页面关闭了");
+                checkProgress();
+            }
+        });
     }
-
-
-//    public LearnStage() throws MalformedURLException {
-//        WebView webView = new WebView();
-//        File file = new File("C:\\Users\\DELL\\Desktop\\Java.html");
-//        URL url = file.toURI().toURL();
-//        webView.getEngine().load(url.toString());
-//        // initProblemList();
-//        Text text = new Text("请回答以下的问题");
-//        text.setStyle("-fx-font-size: 30px");
-//
-//
-//        HBox hBox = new HBox();
-//        //控制传入ProblemVBox中的参数是切换需要展示的问题的关键
-//        ProblemVBox problemVBox = new ProblemVBox();
-//        rVbox = new VBox(text, problemVBox);
-//        hBox = new HBox(webView, rVbox);
-//        scene = new Scene(hBox);
-//        this.setScene(scene);
-//    }
-
 
 
     public LearnStage(String address) {
