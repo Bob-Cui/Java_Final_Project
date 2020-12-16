@@ -8,11 +8,18 @@ import com.google.gson.Gson;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 public class JsonManager {
 
-
+    /**
+     * 总数据的地址
+     */
     public static final String XCYCONFIGFILE = "final_test.json";
+    public static final String PRITEST = "src/Source/pritest.json";
+    public static final String MIDTEST = "src/Source/midtest.json";
+    public static final String SENTEST = "src/Source/sentest.json";
+
 
     /**
      * @return 返回管理
@@ -39,7 +46,6 @@ public class JsonManager {
     public static NewBigTitleManager getNewBigTitleManager() throws IOException {
         XCYFileManager cbFileManager = new XCYFileManager();
         Gson gson = new Gson();
-        BigTitleManager bigTitleManager;
         String t = XCYFileManager.readJson("final.json");
         return gson.fromJson(t, NewBigTitleManager.class);
     }
@@ -233,11 +239,12 @@ public class JsonManager {
 
     /**
      * 用于写测试数据
+     *
      * @param newProblems
-     * @param title 你要写回的数据属于哪一个文件，初级、中级、高级
+     * @param title       你要写回的数据属于哪一个文件，初级、中级、高级
      * @throws IOException
      */
-    public static void writeTestData(NewProblems newProblems,String title) throws IOException {
+    public static void writeTestData(NewProblems newProblems, String title) throws IOException {
         //FileWriter fileWriter = new FileWriter(XCYCONFIGFILE,true);加上true,这说明要在文件之后写入
         //不加true说明要将原来的文件整体清空，写入新的文件
         FileWriter fileWriter = new FileWriter(XCYCONFIGFILE);
@@ -249,19 +256,64 @@ public class JsonManager {
          * 转换为json字符串
          */
         String str = gson.toJson(newProblems);
-
         fileWriter.write(str);
-
-
         //要记住关掉这个文件写入器
         fileWriter.close();
 
     }
 
+    /**
+     * 操又要换数据结构了
+     */
+    public static void toNewDataWithProblems() throws IOException {
+
+        NewBigTitleManager newBigTitleManager = getNewBigTitleManager();
+
+        NewNewBigTitleManager newNewBigTitleManager = new NewNewBigTitleManager();
+
+        newNewBigTitleManager.setStringNewSubTitleManagerHashMap(newBigTitleManager.getStringNewSubTitleManagerHashMap());
+        newNewBigTitleManager.setPriNewProblems(getNewProblems(PRITEST));
+        newNewBigTitleManager.setMidNewProblems(getNewProblems(MIDTEST));
+        newNewBigTitleManager.setSenNewProblems(getNewProblems(SENTEST));
+
+
+        Gson gson = new Gson();
+
+        toFile("data_with_test.json", gson.toJson(newNewBigTitleManager));
+
+    }
+
+    /**
+     * 将一个字符串写入文件
+     * 这里面还有路径的问题！！！！！！！！
+     *
+     * @param name    文件的文件名
+     * @param content
+     * @throws IOException
+     */
+    public static void toFile(String name, String content) throws IOException {
+        FileWriter fileWriter = new FileWriter(name);
+        fileWriter.write(content);
+        fileWriter.close();
+    }
+
+    /**
+     * 获得最新的数据
+     * 目前用这个函数
+     * @return
+     */
+    public static NewNewBigTitleManager getNewNewBigTitleManager() throws IOException {
+
+        XCYFileManager cbFileManager = new XCYFileManager();
+        Gson gson = new Gson();
+        String t = XCYFileManager.readJson("src/Source/data_with_test.json");
+        return gson.fromJson(t, NewNewBigTitleManager.class);
+    }
+
+
     public static void main(String[] args) throws IOException {
 
 
-        preProcessing();
-        preDealAnswer();
+        toNewDataWithProblems();
     }
 }

@@ -22,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -64,7 +65,7 @@ public class XCYMain extends Stage {
      * 所有数据的来源
      * 我们将这个变量变成静态变量其目的就是为了能在不同的类中自由的访问这个变量，并进行数据的修改
      */
-    public static NewBigTitleManager newBigTitleManager;
+    public static NewNewBigTitleManager newNewBigTitleManager;
 
     /**
      * 用来展示有关Java的介绍
@@ -92,11 +93,213 @@ public class XCYMain extends Stage {
 
 
     /**
+     * 用于盛放四个按钮的VBox
+     */
+    private HBox buttonHBox;
+
+    /**
+     * 初始化四个按钮
+     */
+    private void initButtonHBox() {
+        buttonHBox = new HBox();
+/**
+ * 用于实现鼠标移入缩放的效果
+ */
+        double changeScale = 1.2;
+        Image checkProgressImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+
+        {//检查进度按钮
+            Button checkProgress = new Button();
+
+            checkProgress.setGraphic(new ImageView(checkProgressImage));
+            /**
+             * 扩大、缩放的效果
+             */
+            checkProgress.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    checkProgress.setScaleX(changeScale);
+                    checkProgress.setScaleY(changeScale);
+                }
+            });
+            checkProgress.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    checkProgress.setScaleX(1);
+                    checkProgress.setScaleY(1);
+                }
+            });
+            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你进行复习");
+            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
+            tooltip.setGraphic(new ImageView(image));
+            tooltip.setFont(new Font(20));
+            checkProgress.setTooltip(tooltip);
+            checkProgress.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+
+            buttonHBox.getChildren().add(checkProgress);
+
+        }
+        {
+            /**
+             * 提醒这个人去学习的
+             */
+
+            Image remindYouLearnImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+            Button remindYouLearn = new Button();
+            remindYouLearn.setGraphic(new ImageView(remindYouLearnImage));
+            /**
+             * 扩大、缩放的效果
+             */
+            {//鼠标动作
+                remindYouLearn.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        remindYouLearn.setScaleX(changeScale);
+                        remindYouLearn.setScaleY(changeScale);
+                    }
+                });
+                remindYouLearn.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        remindYouLearn.setScaleX(1);
+                        remindYouLearn.setScaleY(1);
+                    }
+                });
+                remindYouLearn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+
+
+
+
+
+                    }
+                });
+
+
+            }
+
+            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你进行复习");
+            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
+            tooltip.setGraphic(new ImageView(image));
+            tooltip.setFont(new Font(20));
+            remindYouLearn.setTooltip(tooltip);
+            remindYouLearn.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            buttonHBox.getChildren().add(remindYouLearn);
+
+
+        }
+        {
+            /**
+             * 最新的Java进度按钮
+             */
+            Image updateJavaImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+            Button updateJava = new Button();
+
+            updateJava.setGraphic(new ImageView(updateJavaImage));
+
+            /**
+             * 文字置于图片之下
+             */
+
+            updateJava.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    updateJava.setScaleX(changeScale);
+                    updateJava.setScaleY(changeScale);
+                }
+            });
+            updateJava.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    updateJava.setScaleX(1);
+                    updateJava.setScaleY(1);
+                }
+            });
+            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你查看有关java的最新动态");
+            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
+            tooltip.setGraphic(new ImageView(image));
+            tooltip.setFont(new Font(20));
+
+            updateJava.setTooltip(tooltip);
+            updateJava.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+
+            buttonHBox.getChildren().add(updateJava);
+
+        }
+        {
+            /**
+             * 学习数据统计功能
+             */
+            Image learningDataImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+            Button learningData = new Button();
+            learningData.setGraphic(new ImageView(learningDataImage));
+
+
+            learningData.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    learningData.setScaleX(changeScale);
+                    learningData.setScaleY(changeScale);
+                }
+            });
+            learningData.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    learningData.setScaleX(1);
+                    learningData.setScaleY(1);
+                }
+            });
+            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你查看统计并查看自己在该平台上学习Java的数据");
+            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
+            tooltip.setGraphic(new ImageView(image));
+            tooltip.setFont(new Font(20));
+            learningData.setTooltip(tooltip);
+            learningData.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            buttonHBox.getChildren().add(learningData);
+
+        }
+        {
+            /**
+             * 打死我,这就是最后一个功能不能继续增加了
+             */
+            Image myNoteBookImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+            Button myNoteBook = new Button();
+            myNoteBook.setGraphic(new ImageView(myNoteBookImage));
+
+            myNoteBook.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    myNoteBook.setScaleX(changeScale);
+                    myNoteBook.setScaleY(changeScale);
+                }
+            });
+            myNoteBook.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    myNoteBook.setScaleX(1);
+                    myNoteBook.setScaleY(1);
+                }
+            });
+            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你查看统计并查看自己在该平台学习过程中所记录的笔记");
+            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
+            tooltip.setGraphic(new ImageView(image));
+            tooltip.setFont(new Font(20));
+            myNoteBook.setTooltip(tooltip);
+            myNoteBook.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            buttonHBox.getChildren().add(myNoteBook);
+        }
+        buttonHBox.setSpacing(60);
+
+    }
+
+
+    /**
      * 初始化所有的数据来源
      */
     static {
         try {
-            newBigTitleManager = JsonManager.getNewBigTitleManager();
+            newNewBigTitleManager = JsonManager.getNewNewBigTitleManager();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -136,15 +339,15 @@ public class XCYMain extends Stage {
         senTitle = FXCollections.observableArrayList();
 
 
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             priTitle.add(integerNewTitleManagerEntry.getValue());
             System.out.println(integerNewTitleManagerEntry.getValue().getName());
         }
 
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             midTitle.add(integerNewTitleManagerEntry.getValue());
         }
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             senTitle.add(integerNewTitleManagerEntry.getValue());
         }
 
@@ -152,10 +355,6 @@ public class XCYMain extends Stage {
         priListView = new ListView<>(priTitle);
         midListView = new ListView<>(midTitle);
         senListView = new ListView<>(senTitle);
-
-//        midListView.setDisable(true);
-
-
         /**
          *        设置样式
          */
@@ -184,7 +383,7 @@ public class XCYMain extends Stage {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
 
-                if (newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").isAbleToLearn()) {
+                if (newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").isAbleToLearn()) {
                     try {
 
 
@@ -210,7 +409,7 @@ public class XCYMain extends Stage {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
 
-                if (newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").isAbleToLearn()) {
+                if (newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").isAbleToLearn()) {
                     try {
 
 
@@ -225,6 +424,11 @@ public class XCYMain extends Stage {
                 } else {
 
                     Alert fail = new Alert(Alert.AlertType.WARNING);
+                    Image image = new Image("file:src/Source/icon.jpg", 25, 25, true, true);
+
+
+                    Label dog = new Label("", new ImageView(image));
+                    // fail.setGraphic();
                     fail.setTitle("没有权限");
                     fail.setHeaderText("请学习之前的章节");
                     fail.setContentText("你没有完成之前章节的学习,不能学习这一章");
@@ -236,7 +440,7 @@ public class XCYMain extends Stage {
         senListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                if (newBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").isAbleToLearn()) {
+                if (newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").isAbleToLearn()) {
                     try {
 
 
@@ -263,9 +467,8 @@ public class XCYMain extends Stage {
      * 修改窗体的图标
      */
     private void setStageTitle() {
-        this.setTitle("谢哈哈的Java学习网站");
-        this.getIcons().add(new Image("file:Resource/icon.jpg"));
-        ImageView imageView = new ImageView(new Image("file:Resource/icon.jpg"));
+//        this.setTitle("谢哈哈的Java学习网站");
+        this.getIcons().add(new Image("file:src/Source/cqyj.png"));
     }
 
     public XCYMain() throws IOException {
@@ -283,7 +486,7 @@ public class XCYMain extends Stage {
         labelPri.setTextFill(Color.WHITE);
 
 
-        reviewTheLearner();
+//        reviewTheLearner();
 
         labelJavaPri.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
         labelPri.setStyle("-fx-font-size: 30px;-fx-font-family: '黑体';-fx-font-weight: bolder");
@@ -330,11 +533,27 @@ public class XCYMain extends Stage {
         TitledPane senTitlePane = new TitledPane("Java   高级教程", senListView);
         senTitlePane.setStyle("-fx-font-size: 18px;-fx-font-weight: bolder;-fx-text-fill: blueviolet");
 
+        {
+            double len = 40;
+            Image imagePri = new Image("file:src/Source/pricq.png", len, len, true, true);
+            Label dogPri = new Label("", new ImageView(imagePri));
+            priTitledPane.setGraphic(dogPri);
 
+
+            Image imageMid = new Image("file:src/Source/midcq.png", len, len, true, true);
+            Label dogMid = new Label("", new ImageView(imageMid));
+            midTitlePane.setGraphic(dogMid);
+
+
+            Image imageSen = new Image("file:src/Source/sencq.png", len, len, true, true);
+            Label dogSen = new Label("", new ImageView(imageSen));
+            senTitlePane.setGraphic(dogSen);
+
+
+        }
         Accordion priAccordion = new Accordion();
         Accordion midAccordion = new Accordion();
         Accordion senAccordion = new Accordion();
-
 
         /**
          *设置手风琴布局的样式
@@ -342,7 +561,6 @@ public class XCYMain extends Stage {
 
         priAccordion.getPanes().addAll(priTitledPane);
         priAccordion.setExpandedPane(priTitledPane);
-
         midAccordion.getPanes().addAll(midTitlePane);
 //        midAccordion.setExpandedPane(midTitlePane);
 
@@ -351,121 +569,71 @@ public class XCYMain extends Stage {
 
 
         {
+
+/**
+ * 有趣的是三个按钮不能只用一个图，必须用三张图
+ */
+            double len = 38;
+            Image image1 = new Image("file:src/Source/test.png", len, len, false, false);
+            ImageView imageView1 = new ImageView(image1);
             priTest = new Button();
             priTest.setText("初级考核测试");
-            priTest.setStyle("-fx-font-size: 15px");
+            priTest.setStyle("-fx-font-size: 23px");
+            priTest.setGraphic(imageView1);
 
+
+            Image image2 = new Image("file:src/Source/test.png", len, len, false, false);
+            ImageView imageView2 = new ImageView(image2);
             midTest = new Button();
             midTest.setText("中级考核测试");
-            midTest.setStyle("-fx-font-size: 15px");
+            midTest.setStyle("-fx-font-size: 23px");
+            midTest.setGraphic(imageView2);
 
+
+            Image image3 = new Image("file:src/Source/test.png", len, len, false, false);
+            ImageView imageView3 = new ImageView(image3);
             senTest = new Button();
             senTest.setText("高级考核测试");
-            senTest.setStyle("-fx-font-size: 15px");
+
+            senTest.setStyle("-fx-font-size: 23px");
+            senTest.setGraphic(imageView3);
+
         }
         leftTitles = new VBox(priAccordion, priTest, midAccordion, midTest, senAccordion, senTest);
-        leftTitles.setStyle("-fx-spacing: 5px;-fx-background-color: mediumspringgreen");
+        leftTitles.setStyle("-fx-spacing: 5px;");
 
 
-        Image image = new Image("file:Resource/JAVA.jpg", 250, 250.0, false, false);
-        ImageView imageView = new ImageView(image);
+        Image imag1e = new Image("file:Resource/JAVA.jpg", 800, 800.0, false, false);
+        ImageView imageView = new ImageView(imag1e);
 //        imageView.setStyle("-fx-border-radius: 40px;-fx-background-radius:40px");
 
 
-        Text text2 = new Text("fd");
-
         GridPane mainGrid = new GridPane();
+        initButtonHBox();
 
 
-        Button button = new Button();
-        button.setText("更新我的学习进度");
-        button.setStyle("-fx-font-size: 30px");
-
-        Button button1 = new Button();
-        //  button.setText("查看我的得分");
-
-        Button button2 = new Button();
-        button2.setText("查看我的笔记");
-
-        //加一个环形按钮，关于检查进度
-        {
-
-            checkProgress = new Group();
-            checkProgressCircleButtom = new Circle();
-            checkProgressCircleButtom.setRadius(28);
-            checkProgressCircleButtom.setFill(Color.CORAL);
-
-            checkProgressCircleUp = new Circle();
-            checkProgressCircleUp.setRadius(25);
-            // checkProgressCircleUp.setFill(Color.BLUEVIOLET);
-            Text text = new Text();
-            text.setText("更新进度");
-            text.setStyle("-fx-font-size: 15;");
-
-            //checkProgressCircleUp.setStyle("-fx-background-image:url('file:Resource/icon.jpg') ");
-            checkProgressCircleUp.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    checkProgressCircleUp.setFill(Color.WHITE);
-                }
-            });
-
-            checkProgressCircleUp.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    checkProgressCircleUp.setFill(Color.BLUEVIOLET);
-
-                }
-            });
-            checkProgressCircleUp.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    checkProgress();
-                }
-            });
-
-            text.setX(-45);
-            text.setY(2);
-            checkProgress.getChildren().add(checkProgressCircleButtom);
-            checkProgress.getChildren().add(checkProgressCircleUp);
-            //  checkProgress.getChildren().add(new ImageView(new Image("file:Resource/icon.jpg")));
-            checkProgress.getChildren().add(text);
-        }
-        //再加一个圆形按钮，用于提醒这个人学习
-        {
-
-
-        }
-
-        mainGrid.add(text2, 1, 0);
-        mainGrid.add(checkProgress, 1, 2);
-        mainGrid.add(button2, 2, 2);
-
-
+        mainGrid.add(buttonHBox, 1, 0);
         mainGrid.add(imageView, 1, 1);
 
-
-        mainGrid.setHgap(30);
+        mainGrid.setHgap(300);
         mainGrid.setVgap(40);
 
 
-        //HBox mainhBox = new HBox(leftTitles, mainGrid);
-
         HBox hBox = new HBox(mainGrid);
-//        mainFlowPane = new FlowPane(leftFlowPane, hBox);
-        HBox main = new HBox(leftTitles, hBox);
+        HBox main = new HBox(leftTitles, mainGrid);
 
+        mainGrid.setStyle("-fx-background-image: url(" + "file:src/Source/backcq.jpg" + ");");
+        mainGrid.setMinWidth(1500);
 
+        leftTitles.setStyle("-fx-background-image: url(" + "file:Resource/JAVA.jpg " + ") ;");
+        leftTitles.setMinWidth(300);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension dimension = kit.getScreenSize();
         introJavaWebView.setMinWidth(dimension.width / 2);
 
 
-        main.setStyle("-fx-background-color: cadetblue");
+        main.setStyle("-fx-background-color: #6495ED");
         Scene scene = new Scene(main, dimension.width / 2, dimension.height);
-
-        //主窗体的大小是不可以更改的
-        //  this.setResizable(false);
 
 
         this.setScene(scene);
@@ -480,10 +648,14 @@ public class XCYMain extends Stage {
         private Text name;
         private HBox mainHBox;
         private CheckBox finished;
+        private boolean hasDog;
+        private Label aDog;
 
         //        private Checkbox
         public NewTitleCell() {
             super();
+
+            hasDog = false;
             name = new Text();
             name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';-fx-text-fill: blue");
 
@@ -509,7 +681,7 @@ public class XCYMain extends Stage {
 
             finished = new CheckBox();
             finished.setStyle("-fx-background-color:red");//这个红色体现不出来
-            finished.setText("已完成");
+            finished.setText("完成");
 
 
             finished.setSelected(true);
@@ -518,9 +690,12 @@ public class XCYMain extends Stage {
 
             finished.setDisable(true);
 
+            double len = 25;
+            Image imag = new Image("file:src/Source/listcq.png", len, len, true, true);
+            aDog = new Label("", new ImageView(imag));
 
-            mainHBox = new HBox(name, finished);
-
+            mainHBox = new HBox(aDog, name, finished);
+            mainHBox.setSpacing(15);
         }
 
         @Override
@@ -535,9 +710,22 @@ public class XCYMain extends Stage {
 
                 if (newTitleManager.isLearned()) {
                     finished.setSelected(true);
+
+                    Image image = new Image("file:src/Source/icon.jpg", 25, 25, true, true);
+
+                    if (!hasDog) {
+                        Label dog = new Label("", new ImageView(image));
+                        mainHBox.getChildren().add(dog);
+                        hasDog = true;
+
+                    }
+
                 } else {
                     finished.setSelected(false);
+
+
                 }
+
                 name.setText(newTitleManager.getName());
                 setGraphic(mainHBox);
             } else {
@@ -560,7 +748,7 @@ public class XCYMain extends Stage {
 //        if (checkFinishedTitle(PRIMARY) && checkFinishedTitle(MIDDLE))
 
         if (priFinished && midFinished) {
-            newBigTitleManager.getStringNewSubTitleManagerHashMap().get(SENIOR).setAbleToLearn(true);
+            newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get(SENIOR).setAbleToLearn(true);
             Alert success = new Alert(Alert.AlertType.INFORMATION);
             success.setTitle("进度更新");
             success.setHeaderText("解锁新的权限");
@@ -569,7 +757,7 @@ public class XCYMain extends Stage {
 
 
         } else if (priFinished) {
-            newBigTitleManager.getStringNewSubTitleManagerHashMap().get(MIDDLE).setAbleToLearn(true);
+            newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get(MIDDLE).setAbleToLearn(true);
             Alert success = new Alert(Alert.AlertType.INFORMATION);
             success.setTitle("进度更新");
             success.setHeaderText("解锁新的权限");
@@ -602,7 +790,7 @@ public class XCYMain extends Stage {
         LinkedList<NewTitleManager> remainList = new LinkedList<>();
 
 
-        for (Map.Entry<String, NewSubTitleManager> stringNewSubTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
+        for (Map.Entry<String, NewSubTitleManager> stringNewSubTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
             if (!stringNewSubTitleManagerEntry.getValue().isAbleToLearn()) {
                 continue;
             }
@@ -659,7 +847,7 @@ public class XCYMain extends Stage {
      * @return
      */
     public static boolean checkFinishedTitle(String name) {
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get(name).getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get(name).getIntegerNewTitleManagerTreeMap().entrySet()) {
             if (!integerNewTitleManagerEntry.getValue().isLearned())
                 return false;
         }
