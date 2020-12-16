@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import main.java.CBGui.SpecificStage.XCYMain;
+import main.java.CBGui.SpecificStage.SuperCB;
 
 import java.io.*;
 import java.io.IOException;
@@ -70,7 +70,7 @@ public class TestNewStage extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-        primaryStage = new XCYMain();
+        primaryStage = new SuperCB();
         primaryStage.show();
 
 

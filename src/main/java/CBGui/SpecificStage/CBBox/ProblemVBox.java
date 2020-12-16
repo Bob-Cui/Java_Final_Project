@@ -1,4 +1,4 @@
-package main.java.CBGui.SpecificStage.XCYBox;
+package main.java.CBGui.SpecificStage.CBBox;
 
 import DataManager.Data.NewSelectProblem;
 import DataManager.Data.NewTitleManager;

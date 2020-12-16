@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import main.java.CBGui.SpecificStage.XCYBox.ProblemVBox;
+import main.java.CBGui.SpecificStage.CBBox.ProblemVBox;
 
 import java.io.File;
 import java.net.MalformedURLException;
