@@ -1,0 +1,1966 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+    <title>Java 异常处理</title>
+    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'/>
+    <style type='text/css'>html {
+        overflow-x: initial !important;
+    }
+
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --select-text-bg-color: #B5D6FC;
+        --select-text-font-color: auto;
+        --monospace: "Lucida Console", Consolas, "Courier", monospace;
+    }
+
+    html {
+        font-size: 14px;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        margin: 0px;
+        padding: 0px;
+        height: auto;
+        bottom: 0px;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        font-size: 1rem;
+        line-height: 1.42857;
+        overflow-x: hidden;
+        background: inherit;
+        tab-size: 4;
+    }
+
+    iframe {
+        margin: auto;
+    }
+
+    a.url {
+        word-break: break-all;
+    }
+
+    a:active, a:hover {
+        outline: 0px;
+    }
+
+    .in-text-selection, ::selection {
+        text-shadow: none;
+        background: var(--select-text-bg-color);
+        color: var(--select-text-font-color);
+    }
+
+    #write {
+        margin: 0px auto;
+        height: auto;
+        width: inherit;
+        word-break: normal;
+        overflow-wrap: break-word;
+        position: relative;
+        white-space: normal;
+        overflow-x: visible;
+        padding-top: 40px;
+    }
+
+    #write.first-line-indent p {
+        text-indent: 2em;
+    }
+
+    #write.first-line-indent li p, #write.first-line-indent p * {
+        text-indent: 0px;
+    }
+
+    #write.first-line-indent li {
+        margin-left: 2em;
+    }
+
+    .for-image #write {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    body.typora-export {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .typora-export .footnote-line, .typora-export li, .typora-export p {
+        white-space: pre-wrap;
+    }
+
+    .typora-export .task-list-item input {
+        pointer-events: none;
+    }
+
+    @media screen and (max-width: 500px) {
+        body.typora-export {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        #write {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .CodeMirror-sizer {
+            margin-left: 0px !important;
+        }
+
+        .CodeMirror-gutters {
+            display: none !important;
+        }
+    }
+
+    #write li > figure:last-child {
+        margin-bottom: 0.5rem;
+    }
+
+    #write ol, #write ul {
+        position: relative;
+    }
+
+    img {
+        max-width: 100%;
+        vertical-align: middle;
+        image-orientation: from-image;
+    }
+
+    button, input, select, textarea {
+        color: inherit;
+        font: inherit;
+    }
+
+    input[type="checkbox"], input[type="radio"] {
+        line-height: normal;
+        padding: 0px;
+    }
+
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+
+    #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre {
+        width: inherit;
+    }
+
+    #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p {
+        position: relative;
+    }
+
+    p {
+        line-height: inherit;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        break-after: avoid-page;
+        break-inside: avoid;
+        orphans: 4;
+    }
+
+    p {
+        orphans: 4;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    h4 {
+        font-size: 1.4rem;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+    }
+
+    h6 {
+        font-size: 1rem;
+    }
+
+    .md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .md-blockmeta {
+        color: rgb(204, 204, 204);
+        font-weight: 700;
+        font-style: italic;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    sup.md-footnote {
+        padding: 2px 4px;
+        background-color: rgba(238, 238, 238, 0.7);
+        color: rgb(85, 85, 85);
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    sup.md-footnote a, sup.md-footnote a:hover {
+        color: inherit;
+        text-transform: inherit;
+        text-decoration: inherit;
+    }
+
+    #write input[type="checkbox"] {
+        cursor: pointer;
+        width: inherit;
+        height: inherit;
+    }
+
+    figure {
+        overflow-x: auto;
+        margin: 1.2em 0px;
+        max-width: calc(100% + 16px);
+        padding: 0px;
+    }
+
+    figure > table {
+        margin: 0px;
+    }
+
+    tr {
+        break-inside: avoid;
+        break-after: auto;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0px;
+        width: 100%;
+        overflow: auto;
+        break-inside: auto;
+        text-align: left;
+    }
+
+    table.md-table td {
+        min-width: 32px;
+    }
+
+    .CodeMirror-gutters {
+        border-right: 0px;
+        background-color: inherit;
+    }
+
+    .CodeMirror-linenumber {
+        user-select: none;
+    }
+
+    .CodeMirror {
+        text-align: left;
+    }
+
+    .CodeMirror-placeholder {
+        opacity: 0.3;
+    }
+
+    .CodeMirror pre {
+        padding: 0px 4px;
+    }
+
+    .CodeMirror-lines {
+        padding: 0px;
+    }
+
+    div.hr:focus {
+        cursor: none;
+    }
+
+    #write pre {
+        white-space: pre-wrap;
+    }
+
+    #write.fences-no-line-wrapping pre {
+        white-space: pre;
+    }
+
+    #write pre.ty-contain-cm {
+        white-space: normal;
+    }
+
+    .CodeMirror-gutters {
+        margin-right: 4px;
+    }
+
+    .md-fences {
+        font-size: 0.9rem;
+        display: block;
+        break-inside: avoid;
+        text-align: left;
+        overflow: visible;
+        white-space: pre;
+        background: inherit;
+        position: relative !important;
+    }
+
+    .md-diagram-panel {
+        width: 100%;
+        margin-top: 10px;
+        text-align: center;
+        padding-top: 0px;
+        padding-bottom: 8px;
+        overflow-x: auto;
+    }
+
+    #write .md-fences.mock-cm {
+        white-space: pre-wrap;
+    }
+
+    .md-fences.md-fences-with-lineno {
+        padding-left: 0px;
+    }
+
+    #write.fences-no-line-wrapping .md-fences.mock-cm {
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    .md-fences.mock-cm.md-fences-with-lineno {
+        padding-left: 8px;
+    }
+
+    .CodeMirror-line, twitterwidget {
+        break-inside: avoid;
+    }
+
+    .footnotes {
+        opacity: 0.8;
+        font-size: 0.9rem;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .footnotes + .footnotes {
+        margin-top: 0px;
+    }
+
+    .md-reset {
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        outline: 0px;
+        vertical-align: top;
+        background: 0px 0px;
+        text-decoration: none;
+        text-shadow: none;
+        float: none;
+        position: static;
+        width: auto;
+        height: auto;
+        white-space: nowrap;
+        cursor: inherit;
+        -webkit-tap-highlight-color: transparent;
+        line-height: normal;
+        font-weight: 400;
+        text-align: left;
+        box-sizing: content-box;
+        direction: ltr;
+    }
+
+    li div {
+        padding-top: 0px;
+    }
+
+    blockquote {
+        margin: 1rem 0px;
+    }
+
+    li .mathjax-block, li p {
+        margin: 0.5rem 0px;
+    }
+
+    li {
+        margin: 0px;
+        position: relative;
+    }
+
+    blockquote > :last-child {
+        margin-bottom: 0px;
+    }
+
+    blockquote > :first-child, li > :first-child {
+        margin-top: 0px;
+    }
+
+    .footnotes-area {
+        color: rgb(136, 136, 136);
+        margin-top: 0.714rem;
+        padding-bottom: 0.143rem;
+        white-space: normal;
+    }
+
+    #write .footnote-line {
+        white-space: pre-wrap;
+    }
+
+    @media print {
+        body, html {
+            border: 1px solid transparent;
+            height: 99%;
+            break-after: avoid;
+            break-before: avoid;
+            font-variant-ligatures: no-common-ligatures;
+        }
+
+        #write {
+            margin-top: 0px;
+            padding-top: 0px;
+            border-color: transparent !important;
+        }
+
+        .typora-export * {
+            -webkit-print-color-adjust: exact;
+        }
+
+        html.blink-to-pdf {
+            font-size: 13px;
+        }
+
+        .typora-export #write {
+            break-after: avoid;
+        }
+
+        .typora-export #write::after {
+            height: 0px;
+        }
+
+        .is-mac table {
+            break-inside: avoid;
+        }
+    }
+
+    .footnote-line {
+        margin-top: 0.714em;
+        font-size: 0.7em;
+    }
+
+    a img, img a {
+        cursor: pointer;
+    }
+
+    pre.md-meta-block {
+        font-size: 0.8rem;
+        min-height: 0.8rem;
+        white-space: pre-wrap;
+        background: rgb(204, 204, 204);
+        display: block;
+        overflow-x: hidden;
+    }
+
+    p > .md-image:only-child:not(.md-img-error) img, p > img:only-child {
+        display: block;
+        margin: auto;
+    }
+
+    #write.first-line-indent p > .md-image:only-child:not(.md-img-error) img {
+        left: -2em;
+        position: relative;
+    }
+
+    p > .md-image:only-child {
+        display: inline-block;
+        width: 100%;
+    }
+
+    #write .MathJax_Display {
+        margin: 0.8em 0px 0px;
+    }
+
+    .md-math-block {
+        width: 100%;
+    }
+
+    .md-math-block:not(:empty)::after {
+        display: none;
+    }
+
+    [contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus {
+        outline: 0px;
+        box-shadow: none;
+    }
+
+    .md-task-list-item {
+        position: relative;
+        list-style-type: none;
+    }
+
+    .task-list-item.md-task-list-item {
+        padding-left: 0px;
+    }
+
+    .md-task-list-item > input {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        margin-left: -1.2em;
+        margin-top: calc(1em - 10px);
+        border: none;
+    }
+
+    .math {
+        font-size: 1rem;
+    }
+
+    .md-toc {
+        min-height: 3.58rem;
+        position: relative;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+
+    .md-toc-content {
+        position: relative;
+        margin-left: 0px;
+    }
+
+    .md-toc-content::after, .md-toc::after {
+        display: none;
+    }
+
+    .md-toc-item {
+        display: block;
+        color: rgb(65, 131, 196);
+    }
+
+    .md-toc-item a {
+        text-decoration: none;
+    }
+
+    .md-toc-inner:hover {
+        text-decoration: underline;
+    }
+
+    .md-toc-inner {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .md-toc-h1 .md-toc-inner {
+        margin-left: 0px;
+        font-weight: 700;
+    }
+
+    .md-toc-h2 .md-toc-inner {
+        margin-left: 2em;
+    }
+
+    .md-toc-h3 .md-toc-inner {
+        margin-left: 4em;
+    }
+
+    .md-toc-h4 .md-toc-inner {
+        margin-left: 6em;
+    }
+
+    .md-toc-h5 .md-toc-inner {
+        margin-left: 8em;
+    }
+
+    .md-toc-h6 .md-toc-inner {
+        margin-left: 10em;
+    }
+
+    @media screen and (max-width: 48em) {
+        .md-toc-h3 .md-toc-inner {
+            margin-left: 3.5em;
+        }
+
+        .md-toc-h4 .md-toc-inner {
+            margin-left: 5em;
+        }
+
+        .md-toc-h5 .md-toc-inner {
+            margin-left: 6.5em;
+        }
+
+        .md-toc-h6 .md-toc-inner {
+            margin-left: 8em;
+        }
+    }
+
+    a.md-toc-inner {
+        font-size: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+    }
+
+    .footnote-line a:not(.reversefootnote) {
+        color: inherit;
+    }
+
+    .md-attr {
+        display: none;
+    }
+
+    .md-fn-count::after {
+        content: ".";
+    }
+
+    code, pre, samp, tt {
+        font-family: var(--monospace);
+    }
+
+    kbd {
+        margin: 0px 0.1em;
+        padding: 0.1em 0.6em;
+        font-size: 0.8em;
+        color: rgb(36, 39, 41);
+        background: rgb(255, 255, 255);
+        border: 1px solid rgb(173, 179, 185);
+        border-radius: 3px;
+        box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    .md-comment {
+        color: rgb(162, 127, 3);
+        opacity: 0.8;
+        font-family: var(--monospace);
+    }
+
+    code {
+        text-align: left;
+        vertical-align: initial;
+    }
+
+    a.md-print-anchor {
+        white-space: pre !important;
+        border-width: initial !important;
+        border-style: none !important;
+        border-color: initial !important;
+        display: inline-block !important;
+        position: absolute !important;
+        width: 1px !important;
+        right: 0px !important;
+        outline: 0px !important;
+        background: 0px 0px !important;
+        text-decoration: initial !important;
+        text-shadow: initial !important;
+    }
+
+    .md-inline-math .MathJax_SVG .noError {
+        display: none !important;
+    }
+
+    .html-for-mac .inline-math-svg .MathJax_SVG {
+        vertical-align: 0.2px;
+    }
+
+    .md-math-block .MathJax_SVG_Display {
+        text-align: center;
+        margin: 0px;
+        position: relative;
+        text-indent: 0px;
+        max-width: none;
+        max-height: none;
+        min-height: 0px;
+        min-width: 100%;
+        width: auto;
+        overflow-y: hidden;
+        display: block !important;
+    }
+
+    .MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display {
+        width: auto;
+        margin: inherit;
+        display: inline-block !important;
+    }
+
+    .MathJax_SVG .MJX-monospace {
+        font-family: var(--monospace);
+    }
+
+    .MathJax_SVG .MJX-sans-serif {
+        font-family: sans-serif;
+    }
+
+    .MathJax_SVG {
+        display: inline;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        zoom: 90%;
+        text-indent: 0px;
+        text-align: left;
+        text-transform: none;
+        letter-spacing: normal;
+        word-spacing: normal;
+        overflow-wrap: normal;
+        white-space: nowrap;
+        float: none;
+        direction: ltr;
+        max-width: none;
+        max-height: none;
+        min-width: 0px;
+        min-height: 0px;
+        border: 0px;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .MathJax_SVG * {
+        transition: none 0s ease 0s;
+    }
+
+    .MathJax_SVG_Display svg {
+        vertical-align: middle !important;
+        margin-bottom: 0px !important;
+        margin-top: 0px !important;
+    }
+
+    .os-windows.monocolor-emoji .md-emoji {
+        font-family: "Segoe UI Symbol", sans-serif;
+    }
+
+    .md-diagram-panel > svg {
+        max-width: 100%;
+    }
+
+    [lang="flow"] svg, [lang="mermaid"] svg {
+        max-width: 100%;
+        height: auto;
+    }
+
+    [lang="mermaid"] .node text {
+        font-size: 1rem;
+    }
+
+    table tr th {
+        border-bottom: 0px;
+    }
+
+    video {
+        max-width: 100%;
+        display: block;
+        margin: 0px auto;
+    }
+
+    iframe {
+        max-width: 100%;
+        width: 100%;
+        border: none;
+    }
+
+    .highlight td, .highlight tr {
+        border: 0px;
+    }
+
+    svg[id^="mermaidChart"] {
+        line-height: 1em;
+    }
+
+    mark {
+        background: rgb(255, 255, 0);
+        color: rgb(0, 0, 0);
+    }
+
+    .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong {
+        color: inherit;
+    }
+
+    mark .md-meta {
+        color: rgb(0, 0, 0);
+        opacity: 0.3 !important;
+    }
+
+    @media print {
+        .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 {
+            break-inside: avoid;
+        }
+    }
+
+
+    .CodeMirror {
+        height: auto;
+    }
+
+    .CodeMirror.cm-s-inner {
+        background: inherit;
+    }
+
+    .CodeMirror-scroll {
+        overflow: auto hidden;
+        z-index: 3;
+    }
+
+    .CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler {
+        background-color: rgb(255, 255, 255);
+    }
+
+    .CodeMirror-gutters {
+        border-right: 1px solid rgb(221, 221, 221);
+        background: inherit;
+        white-space: nowrap;
+    }
+
+    .CodeMirror-linenumber {
+        padding: 0px 3px 0px 5px;
+        text-align: right;
+        color: rgb(153, 153, 153);
+    }
+
+    .cm-s-inner .cm-keyword {
+        color: rgb(119, 0, 136);
+    }
+
+    .cm-s-inner .cm-atom, .cm-s-inner.cm-atom {
+        color: rgb(34, 17, 153);
+    }
+
+    .cm-s-inner .cm-number {
+        color: rgb(17, 102, 68);
+    }
+
+    .cm-s-inner .cm-def {
+        color: rgb(0, 0, 255);
+    }
+
+    .cm-s-inner .cm-variable {
+        color: rgb(0, 0, 0);
+    }
+
+    .cm-s-inner .cm-variable-2 {
+        color: rgb(0, 85, 170);
+    }
+
+    .cm-s-inner .cm-variable-3 {
+        color: rgb(0, 136, 85);
+    }
+
+    .cm-s-inner .cm-string {
+        color: rgb(170, 17, 17);
+    }
+
+    .cm-s-inner .cm-property {
+        color: rgb(0, 0, 0);
+    }
+
+    .cm-s-inner .cm-operator {
+        color: rgb(152, 26, 26);
+    }
+
+    .cm-s-inner .cm-comment, .cm-s-inner.cm-comment {
+        color: rgb(170, 85, 0);
+    }
+
+    .cm-s-inner .cm-string-2 {
+        color: rgb(255, 85, 0);
+    }
+
+    .cm-s-inner .cm-meta {
+        color: rgb(85, 85, 85);
+    }
+
+    .cm-s-inner .cm-qualifier {
+        color: rgb(85, 85, 85);
+    }
+
+    .cm-s-inner .cm-builtin {
+        color: rgb(51, 0, 170);
+    }
+
+    .cm-s-inner .cm-bracket {
+        color: rgb(153, 153, 119);
+    }
+
+    .cm-s-inner .cm-tag {
+        color: rgb(17, 119, 0);
+    }
+
+    .cm-s-inner .cm-attribute {
+        color: rgb(0, 0, 204);
+    }
+
+    .cm-s-inner .cm-header, .cm-s-inner.cm-header {
+        color: rgb(0, 0, 255);
+    }
+
+    .cm-s-inner .cm-quote, .cm-s-inner.cm-quote {
+        color: rgb(0, 153, 0);
+    }
+
+    .cm-s-inner .cm-hr, .cm-s-inner.cm-hr {
+        color: rgb(153, 153, 153);
+    }
+
+    .cm-s-inner .cm-link, .cm-s-inner.cm-link {
+        color: rgb(0, 0, 204);
+    }
+
+    .cm-negative {
+        color: rgb(221, 68, 68);
+    }
+
+    .cm-positive {
+        color: rgb(34, 153, 34);
+    }
+
+    .cm-header, .cm-strong {
+        font-weight: 700;
+    }
+
+    .cm-del {
+        text-decoration: line-through;
+    }
+
+    .cm-em {
+        font-style: italic;
+    }
+
+    .cm-link {
+        text-decoration: underline;
+    }
+
+    .cm-error {
+        color: red;
+    }
+
+    .cm-invalidchar {
+        color: red;
+    }
+
+    .cm-constant {
+        color: rgb(38, 139, 210);
+    }
+
+    .cm-defined {
+        color: rgb(181, 137, 0);
+    }
+
+    div.CodeMirror span.CodeMirror-matchingbracket {
+        color: rgb(0, 255, 0);
+    }
+
+    div.CodeMirror span.CodeMirror-nonmatchingbracket {
+        color: rgb(255, 34, 34);
+    }
+
+    .cm-s-inner .CodeMirror-activeline-background {
+        background: inherit;
+    }
+
+    .CodeMirror {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .CodeMirror-scroll {
+        height: 100%;
+        outline: 0px;
+        position: relative;
+        box-sizing: content-box;
+        background: inherit;
+    }
+
+    .CodeMirror-sizer {
+        position: relative;
+    }
+
+    .CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar {
+        position: absolute;
+        z-index: 6;
+        display: none;
+    }
+
+    .CodeMirror-vscrollbar {
+        right: 0px;
+        top: 0px;
+        overflow: hidden;
+    }
+
+    .CodeMirror-hscrollbar {
+        bottom: 0px;
+        left: 0px;
+        overflow: hidden;
+    }
+
+    .CodeMirror-scrollbar-filler {
+        right: 0px;
+        bottom: 0px;
+    }
+
+    .CodeMirror-gutter-filler {
+        left: 0px;
+        bottom: 0px;
+    }
+
+    .CodeMirror-gutters {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        padding-bottom: 30px;
+        z-index: 3;
+    }
+
+    .CodeMirror-gutter {
+        white-space: normal;
+        height: 100%;
+        box-sizing: content-box;
+        padding-bottom: 30px;
+        margin-bottom: -32px;
+        display: inline-block;
+    }
+
+    .CodeMirror-gutter-wrapper {
+        position: absolute;
+        z-index: 4;
+        background: 0px 0px !important;
+        border: none !important;
+    }
+
+    .CodeMirror-gutter-background {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        z-index: 4;
+    }
+
+    .CodeMirror-gutter-elt {
+        position: absolute;
+        cursor: default;
+        z-index: 4;
+    }
+
+    .CodeMirror-lines {
+        cursor: text;
+    }
+
+    .CodeMirror pre {
+        border-radius: 0px;
+        border-width: 0px;
+        background: 0px 0px;
+        font-family: inherit;
+        font-size: inherit;
+        margin: 0px;
+        white-space: pre;
+        overflow-wrap: normal;
+        color: inherit;
+        z-index: 2;
+        position: relative;
+        overflow: visible;
+    }
+
+    .CodeMirror-wrap pre {
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        word-break: normal;
+    }
+
+    .CodeMirror-code pre {
+        border-right: 30px solid transparent;
+        width: fit-content;
+    }
+
+    .CodeMirror-wrap .CodeMirror-code pre {
+        border-right: none;
+        width: auto;
+    }
+
+    .CodeMirror-linebackground {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        z-index: 0;
+    }
+
+    .CodeMirror-linewidget {
+        position: relative;
+        z-index: 2;
+        overflow: auto;
+    }
+
+    .CodeMirror-wrap .CodeMirror-scroll {
+        overflow-x: hidden;
+    }
+
+    .CodeMirror-measure {
+        position: absolute;
+        width: 100%;
+        height: 0px;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    .CodeMirror-measure pre {
+        position: static;
+    }
+
+    .CodeMirror div.CodeMirror-cursor {
+        position: absolute;
+        visibility: hidden;
+        border-right: none;
+        width: 0px;
+    }
+
+    .CodeMirror div.CodeMirror-cursor {
+        visibility: hidden;
+    }
+
+    .CodeMirror-focused div.CodeMirror-cursor {
+        visibility: inherit;
+    }
+
+    .cm-searching {
+        background: rgba(255, 255, 0, 0.4);
+    }
+
+    @media print {
+        .CodeMirror div.CodeMirror-cursor {
+            visibility: hidden;
+        }
+    }
+
+
+    :root {
+        --side-bar-bg-color: #fafafa;
+        --control-text-color: #777;
+    }
+
+    @include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+    /* open-sans-regular - latin-ext_latin */
+    /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: rgb(51, 51, 51);
+        line-height: 1.6;
+    }
+
+    #write {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 30px;
+        padding-bottom: 100px;
+    }
+
+    @media only screen and (min-width: 1400px) {
+        #write {
+            max-width: 1024px;
+        }
+    }
+
+    @media only screen and (min-width: 1800px) {
+        #write {
+            max-width: 1200px;
+        }
+    }
+
+    #write > ul:first-child,
+    #write > ol:first-child {
+        margin-top: 30px;
+    }
+
+    a {
+        color: #4183C4;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        position: relative;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        line-height: 1.4;
+        cursor: text;
+    }
+
+    h1:hover a.anchor,
+    h2:hover a.anchor,
+    h3:hover a.anchor,
+    h4:hover a.anchor,
+    h5:hover a.anchor,
+    h6:hover a.anchor {
+        text-decoration: none;
+    }
+
+    h1 tt,
+    h1 code {
+        font-size: inherit;
+    }
+
+    h2 tt,
+    h2 code {
+        font-size: inherit;
+    }
+
+    h3 tt,
+    h3 code {
+        font-size: inherit;
+    }
+
+    h4 tt,
+    h4 code {
+        font-size: inherit;
+    }
+
+    h5 tt,
+    h5 code {
+        font-size: inherit;
+    }
+
+    h6 tt,
+    h6 code {
+        font-size: inherit;
+    }
+
+    h1 {
+        font-size: 2.25em;
+        line-height: 1.2;
+        border-bottom: 1px solid #eee;
+    }
+
+    h2 {
+        font-size: 1.75em;
+        line-height: 1.225;
+        border-bottom: 1px solid #eee;
+    }
+
+    /*@media print {
+        .typora-export h1,
+        .typora-export h2 {
+            border-bottom: none;
+            padding-bottom: initial;
+        }
+
+        .typora-export h1::after,
+        .typora-export h2::after {
+            content: "";
+            display: block;
+            height: 100px;
+            margin-top: -96px;
+            border-top: 1px solid #eee;
+        }
+    }*/
+
+    h3 {
+        font-size: 1.5em;
+        line-height: 1.43;
+    }
+
+    h4 {
+        font-size: 1.25em;
+    }
+
+    h5 {
+        font-size: 1em;
+    }
+
+    h6 {
+        font-size: 1em;
+        color: #777;
+    }
+
+    p,
+    blockquote,
+    ul,
+    ol,
+    dl,
+    table {
+        margin: 0.8em 0;
+    }
+
+    li > ol,
+    li > ul {
+        margin: 0 0;
+    }
+
+    hr {
+        height: 2px;
+        padding: 0;
+        margin: 16px 0;
+        background-color: #e7e7e7;
+        border: 0 none;
+        overflow: hidden;
+        box-sizing: content-box;
+    }
+
+    li p.first {
+        display: inline-block;
+    }
+
+    ul,
+    ol {
+        padding-left: 30px;
+    }
+
+    ul:first-child,
+    ol:first-child {
+        margin-top: 0;
+    }
+
+    ul:last-child,
+    ol:last-child {
+        margin-bottom: 0;
+    }
+
+    blockquote {
+        border-left: 4px solid #dfe2e5;
+        padding: 0 15px;
+        color: #777777;
+    }
+
+    blockquote blockquote {
+        padding-right: 0;
+    }
+
+    table {
+        padding: 0;
+        word-break: initial;
+    }
+
+    table tr {
+        border-top: 1px solid #dfe2e5;
+        margin: 0;
+        padding: 0;
+    }
+
+    table tr:nth-child(2n),
+    thead {
+        background-color: #f8f8f8;
+    }
+
+    table tr th {
+        font-weight: bold;
+        border: 1px solid #dfe2e5;
+        border-bottom: 0;
+        margin: 0;
+        padding: 6px 13px;
+    }
+
+    table tr td {
+        border: 1px solid #dfe2e5;
+        margin: 0;
+        padding: 6px 13px;
+    }
+
+    table tr th:first-child,
+    table tr td:first-child {
+        margin-top: 0;
+    }
+
+    table tr th:last-child,
+    table tr td:last-child {
+        margin-bottom: 0;
+    }
+
+    .CodeMirror-lines {
+        padding-left: 4px;
+    }
+
+    .code-tooltip {
+        box-shadow: 0 1px 1px 0 rgba(0, 28, 36, .3);
+        border-top: 1px solid #eef2f2;
+    }
+
+    .md-fences,
+    code,
+    tt {
+        border: 1px solid #e7eaed;
+        background-color: #f8f8f8;
+        border-radius: 3px;
+        padding: 0;
+        padding: 2px 4px 0px 4px;
+        font-size: 0.9em;
+    }
+
+    code {
+        background-color: #f3f4f4;
+        padding: 0 2px 0 2px;
+    }
+
+    .md-fences {
+        margin-bottom: 15px;
+        margin-top: 15px;
+        padding-top: 8px;
+        padding-bottom: 6px;
+    }
+
+
+    .md-task-list-item > input {
+        margin-left: -1.3em;
+    }
+
+    @media print {
+        html {
+            font-size: 13px;
+        }
+
+        table,
+        pre {
+            page-break-inside: avoid;
+        }
+
+        pre {
+            word-wrap: break-word;
+        }
+    }
+
+    .md-fences {
+        background-color: #f8f8f8;
+    }
+
+    #write pre.md-meta-block {
+        padding: 1rem;
+        font-size: 85%;
+        line-height: 1.45;
+        background-color: #f7f7f7;
+        border: 0;
+        border-radius: 3px;
+        color: #777777;
+        margin-top: 0 !important;
+    }
+
+    .mathjax-block > .code-tooltip {
+        bottom: .375rem;
+    }
+
+    .md-mathjax-midline {
+        background: #fafafa;
+    }
+
+    #write > h3.md-focus:before {
+        left: -1.5625rem;
+        top: .375rem;
+    }
+
+    #write > h4.md-focus:before {
+        left: -1.5625rem;
+        top: .285714286rem;
+    }
+
+    #write > h5.md-focus:before {
+        left: -1.5625rem;
+        top: .285714286rem;
+    }
+
+    #write > h6.md-focus:before {
+        left: -1.5625rem;
+        top: .285714286rem;
+    }
+
+    .md-image > .md-meta {
+        /*border: 1px solid #ddd;*/
+        border-radius: 3px;
+        padding: 2px 0px 0px 4px;
+        font-size: 0.9em;
+        color: inherit;
+    }
+
+    .md-tag {
+        color: #a7a7a7;
+        opacity: 1;
+    }
+
+    .md-toc {
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .sidebar-tabs {
+        border-bottom: none;
+    }
+
+    #typora-quick-open {
+        border: 1px solid #ddd;
+        background-color: #f8f8f8;
+    }
+
+    #typora-quick-open-item {
+        background-color: #FAFAFA;
+        border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    /** focus mode */
+    .on-focus-mode blockquote {
+        border-left-color: rgba(85, 85, 85, 0.12);
+    }
+
+    header, .context-menu, .megamenu-content, footer {
+        font-family: "Segoe UI", "Arial", sans-serif;
+    }
+
+    .file-node-content:hover .file-node-icon,
+    .file-node-content:hover .file-node-open-state {
+        visibility: visible;
+    }
+
+    .mac-seamless-mode #typora-sidebar {
+        background-color: #fafafa;
+        background-color: var(--side-bar-bg-color);
+    }
+
+    .md-lang {
+        color: #b4654d;
+    }
+
+    .html-for-mac .context-menu {
+        --item-hover-bg-color: #E6F0FE;
+    }
+
+    #md-notification .btn {
+        border: 0;
+    }
+
+    .dropdown-menu .divider {
+        border-color: #e5e5e5;
+    }
+
+    .ty-preferences .window-content {
+        background-color: #fafafa;
+    }
+
+    .ty-preferences .nav-group-item.active {
+        color: white;
+        background: #999;
+    }
+
+
+    </style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write' class=''><h1><a name="java-异常处理" class="md-header-anchor"></a><span>Java 异常处理</span></h1>
+    <p><span> 异常是程序中的一些错误，但并不是所有的错误都是异常，并且错误有时候是可以避免的。 </span></p>
+    <p><span>比如说，你的代码少了一个分号，那么运行出来结果是提示是错误 java.lang.Error；如果你用System.out.println(11/0)，那么你是因为你用0做了除数，会抛出 java.lang.ArithmeticException 的异常。 </span>
+    </p>
+    <p><span>异常发生的原因有很多，通常包含以下几大类：</span></p>
+    <ul>
+        <li><span>用户输入了非法数据。</span></li>
+        <li><span>要打开的文件不存在。</span></li>
+        <li><span>网络通信时连接中断，或者JVM内存溢出。</span></li>
+    </ul>
+    <p><span>这些异常有的是因为用户错误引起，有的是程序错误引起的，还有其它一些是因为物理错误引起的。-</span></p>
+    <p><span>要理解Java异常处理是如何工作的，你需要掌握以下三种类型的异常：</span></p>
+    <ul>
+        <li><strong><span>检查性异常：</span></strong><span>最具代表的检查性异常是用户错误或问题引起的异常，这是程序员无法预见的。例如要打开一个不存在文件时，一个异常就发生了，这些异常在编译时不能被简单地忽略。</span>
+        </li>
+        <li><strong><span>运行时异常：</span></strong><span> 运行时异常是可能被程序员避免的异常。与检查性异常相反，运行时异常可以在编译时被忽略。</span></li>
+        <li>
+            <strong><span>错误：</span></strong><span> 错误不是异常，而是脱离程序员控制的问题。错误在代码中通常被忽略。例如，当栈溢出时，一个错误就发生了，它们在编译也检查不到的。</span>
+        </li>
+    </ul>
+    <hr/>
+    <h2><a name="exception-类的层次" class="md-header-anchor"></a><span>Exception 类的层次</span></h2>
+    <p><span>所有的异常类是从 java.lang.Exception 类继承的子类。</span></p>
+    <p><span>Exception 类是 Throwable 类的子类。除了Exception类外，Throwable还有一个子类Error 。</span></p>
+    <p><span>Java 程序通常不捕获错误。错误一般发生在严重故障时，它们在Java程序处理的范畴之外。</span></p>
+    <p><span>Error 用来指示运行时环境发生的错误。</span></p>
+    <p><span>例如，JVM 内存溢出。一般地，程序不会从错误中恢复。</span></p>
+    <p><span>异常类有两个主要的子类：IOException 类和 RuntimeException 类。</span></p>
+    <p><img src="https://www.runoob.com/wp-content/uploads/2013/12/12-130Q1234I6223.jpg" referrerpolicy="no-referrer"
+            alt="img"></p>
+    <p><span>在 Java 内置类中(接下来会说明)，有大部分常用检查性和非检查性异常。</span></p>
+    <hr/>
+    <h2><a name="java-内置异常类" class="md-header-anchor"></a><span>Java 内置异常类</span></h2>
+    <p><span>Java 语言定义了一些异常类在 java.lang 标准包中。</span></p>
+    <p><span>标准运行时异常类的子类是最常见的异常类。由于 java.lang 包是默认加载到所有的 Java 程序的，所以大部分从运行时异常类继承而来的异常都可以直接使用。</span></p>
+    <p><span>Java 根据各个类库也定义了一些其他的异常，下面的表中列出了 Java 的非检查性异常。 </span></p>
+    <figure>
+        <table>
+            <thead>
+            <tr>
+                <th><strong><span>异常</span></strong></th>
+                <th><strong><span>描述</span></strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><span>ArithmeticException</span></td>
+                <td><span>当出现异常的运算条件时，抛出此异常。例如，一个整数&quot;除以零&quot;时，抛出此类的一个实例。</span></td>
+            </tr>
+            <tr>
+                <td><span>ArrayIndexOutOfBoundsException</span></td>
+                <td><span>用非法索引访问数组时抛出的异常。如果索引为负或大于等于数组大小，则该索引为非法索引。</span></td>
+            </tr>
+            <tr>
+                <td><span>ArrayStoreException</span></td>
+                <td><span>试图将错误类型的对象存储到一个对象数组时抛出的异常。</span></td>
+            </tr>
+            <tr>
+                <td><span>ClassCastException</span></td>
+                <td><span>当试图将对象强制转换为不是实例的子类时，抛出该异常。</span></td>
+            </tr>
+            <tr>
+                <td><span>IllegalArgumentException</span></td>
+                <td><span>抛出的异常表明向方法传递了一个不合法或不正确的参数。</span></td>
+            </tr>
+            <tr>
+                <td><span>IllegalMonitorStateException</span></td>
+                <td><span>抛出的异常表明某一线程已经试图等待对象的监视器，或者试图通知其他正在等待对象的监视器而本身没有指定监视器的线程。</span></td>
+            </tr>
+            <tr>
+                <td><span>IllegalStateException</span></td>
+                <td><span>在非法或不适当的时间调用方法时产生的信号。换句话说，即 Java 环境或 Java 应用程序没有处于请求操作所要求的适当状态下。</span></td>
+            </tr>
+            <tr>
+                <td><span>IllegalThreadStateException</span></td>
+                <td><span>线程没有处于请求操作所要求的适当状态时抛出的异常。</span></td>
+            </tr>
+            <tr>
+                <td><span>IndexOutOfBoundsException</span></td>
+                <td><span>指示某排序索引（例如对数组、字符串或向量的排序）超出范围时抛出。</span></td>
+            </tr>
+            <tr>
+                <td><span>NegativeArraySizeException</span></td>
+                <td><span>如果应用程序试图创建大小为负的数组，则抛出该异常。</span></td>
+            </tr>
+            <tr>
+                <td><span>NullPointerException</span></td>
+                <td><span>当应用程序试图在需要对象的地方使用 </span><code>null</code><span> 时，抛出该异常</span></td>
+            </tr>
+            <tr>
+                <td><span>NumberFormatException</span></td>
+                <td><span>当应用程序试图将字符串转换成一种数值类型，但该字符串不能转换为适当格式时，抛出该异常。</span></td>
+            </tr>
+            <tr>
+                <td><span>SecurityException</span></td>
+                <td><span>由安全管理器抛出的异常，指示存在安全侵犯。</span></td>
+            </tr>
+            <tr>
+                <td><span>StringIndexOutOfBoundsException</span></td>
+                <td><span>此异常由 </span><code>String</code><span> 方法抛出，指示索引或者为负，或者超出字符串的大小。</span></td>
+            </tr>
+            <tr>
+                <td><span>UnsupportedOperationException</span></td>
+                <td><span>当不支持请求的操作时，抛出该异常。</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </figure>
+    <p><span>下面的表中列出了 Java 定义在 java.lang 包中的检查性异常类。</span></p>
+    <figure>
+        <table>
+            <thead>
+            <tr>
+                <th><strong><span>异常</span></strong></th>
+                <th><strong><span>描述</span></strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><span>ClassNotFoundException</span></td>
+                <td><span>应用程序试图加载类时，找不到相应的类，抛出该异常。</span></td>
+            </tr>
+            <tr>
+                <td><span>CloneNotSupportedException</span></td>
+                <td>
+                    <span>当调用 </span><code>Object</code><span> 类中的 </span><code>clone</code><span> 方法克隆对象，但该对象的类无法实现 </span><code>Cloneable</code><span> 接口时，抛出该异常。</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>IllegalAccessException</span></td>
+                <td><span>拒绝访问一个类的时候，抛出该异常。</span></td>
+            </tr>
+            <tr>
+                <td><span>InstantiationException</span></td>
+                <td><span>当试图使用 </span><code>Class</code><span> 类中的 </span><code>newInstance</code><span> 方法创建一个类的实例，而指定的类对象因为是一个接口或是一个抽象类而无法实例化时，抛出该异常。</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>InterruptedException</span></td>
+                <td><span>一个线程被另一个线程中断，抛出该异常。</span></td>
+            </tr>
+            <tr>
+                <td><span>NoSuchFieldException</span></td>
+                <td><span>请求的变量不存在</span></td>
+            </tr>
+            <tr>
+                <td><span>NoSuchMethodException</span></td>
+                <td><span>请求的方法不存在</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </figure>
+    <hr/>
+    <h2><a name="异常方法" class="md-header-anchor"></a><span>异常方法</span></h2>
+    <p><span>下面的列表是 Throwable 类的主要方法:</span></p>
+    <figure>
+        <table>
+            <thead>
+            <tr>
+                <th><strong><span>序号</span></strong></th>
+                <th><strong><span>方法及说明</span></strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><span>1</span></td>
+                <td>
+                    <strong><span>public String getMessage()</span></strong><span>  </span><span>			</span><span>返回关于发生的异常的详细信息。这个消息在Throwable 类的构造函数中初始化了。</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>2</span></td>
+                <td>
+                    <strong><span>public Throwable getCause()</span></strong><span>  </span><span>			</span><span>返回一个Throwable 对象代表异常原因。</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>3</span></td>
+                <td><strong><span>public String toString()</span></strong><span>  </span><span>			</span><span>使用getMessage()的结果返回类的串级名字。</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>4</span></td>
+                <td>
+                    <strong><span>public void printStackTrace()</span></strong><span>  </span><span>			</span><span>打印toString()结果和栈层次到System.err，即错误输出流。</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>5</span></td>
+                <td>
+                    <strong><span>public StackTraceElement [] getStackTrace()</span></strong><span>  </span><span>			</span><span>返回一个包含堆栈层次的数组。下标为0的元素代表栈顶，最后一个元素代表方法调用堆栈的栈底。</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>6</span></td>
+                <td>
+                    <strong><span>public Throwable fillInStackTrace()</span></strong><span>  </span><span>			</span><span>用当前的调用栈层次填充Throwable 对象栈层次，添加到栈层次任何先前信息中。</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </figure>
+    <hr/>
+    <h2><a name="捕获异常" class="md-header-anchor"></a><span>捕获异常</span></h2>
+    <p><span>使用 try 和 catch 关键字可以捕获异常。try/catch 代码块放在异常可能发生的地方。</span></p>
+    <p><span>try/catch代码块中的代码称为保护代码，使用 try/catch 的语法如下：</span></p>
+    <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div
+            class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div
+            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea
+            autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+            style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+            class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                 cm-not-content="true"></div><div
+            class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                         style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+            style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+            role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div
+            class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+            class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline"
+                                                                      style="position: relative;"><div
+            class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+            class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                style="padding-right: 0.1px;">try</span></pre></div><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                style="padding-right: 0.1px;">{</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; // 程序代码</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}catch(ExceptionName e1)</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                style="padding-right: 0.1px;">{</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; //Catch 块</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div
+            style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 157px;"></div><div
+            class="CodeMirror-gutters" style="display: none; height: 157px;"></div></div></div></pre>
+    <p><span>Catch 语句包含要捕获异常类型的声明。当保护代码块中发生一个异常时，try 后面的 catch 块就会被检查。</span></p>
+    <p><span>如果发生的异常包含在 catch 块中，异常会被传递到该 catch 块，这和传递一个参数到方法是一样。</span></p>
+    <h3><a name="实例" class="md-header-anchor"></a><span>实例</span></h3>
+    <p><span>下面的例子中声明有两个元素的一个数组，当代码试图访问数组的第三个元素的时候就会抛出一个异常。</span></p>
+    <h2><a name="exceptestjava-文件代码" class="md-header-anchor"></a><span>ExcepTest.java 文件代码：</span></h2>
+    <p><span>// 文件名 : ExcepTest.java import java.io.*; public class ExcepTest{    public static void main(String args[]){      try{         int a[] = new int[2];         System.out.println(&quot;Access element three :&quot; + a[3]);      }catch(ArrayIndexOutOfBoundsException e){         System.out.println(&quot;Exception thrown  :&quot; + e);      }      System.out.println(&quot;Out of the block&quot;);   } }</span>
+    </p>
+    <p><span>以上代码编译运行输出结果如下：</span></p>
+    <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div
+            class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div
+            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea
+            autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+            style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+            class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                 cm-not-content="true"></div><div
+            class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                         style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+            style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+            role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+            class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+            class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div
+            class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+            class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Exception thrown  :java.lang.ArrayIndexOutOfBoundsException: 3</span></pre></div><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Out of the block</span></pre></div></div></div></div></div><div
+            style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 45px;"></div><div
+            class="CodeMirror-gutters" style="display: none; height: 45px;"></div></div></div></pre>
+    <hr/>
+    <h2><a name="多重捕获块" class="md-header-anchor"></a><span>多重捕获块</span></h2>
+    <p><span>一个 try 代码块后面跟随多个 catch 代码块的情况就叫多重捕获。</span></p>
+    <p><span>多重捕获块的语法如下所示：</span></p>
+    <p><span>try{   // 程序代码 }catch(异常类型1 异常的变量名1){  // 程序代码 }catch(异常类型2 异常的变量名2){  // 程序代码 }catch(异常类型3 异常的变量名3){  // 程序代码 }</span>
+    </p>
+    <p><span>上面的代码段包含了 3 个 catch块。</span></p>
+    <p><span>可以在 try 语句后面添加任意数量的 catch 块。</span></p>
+    <p><span>如果保护代码中发生异常，异常被抛给第一个 catch 块。</span></p>
+    <p><span>如果抛出异常的数据类型与 ExceptionType1 匹配，它在这里就会被捕获。</span></p>
+    <p><span>如果不匹配，它会被传递给第二个 catch 块。</span></p>
+    <p><span>如此，直到异常被捕获或者通过所有的 catch 块。</span></p>
+    <h3><a name="实例-n160" class="md-header-anchor"></a><span>实例</span></h3>
+    <p><span>该实例展示了怎么使用多重 try/catch。</span></p>
+    <p><span>try {    file = new FileInputStream(fileName);    x = (byte) file.read(); } catch(FileNotFoundException f) { // Not valid!    f.printStackTrace();    return -1; } catch(IOException i) {    i.printStackTrace();    return -1; }</span>
+    </p>
+    <hr/>
+    <h2><a name="throwsthrow-关键字" class="md-header-anchor"></a><span>throws/throw 关键字：</span></h2>
+    <p><span>如果一个方法没有捕获到一个检查性异常，那么该方法必须使用 throws 关键字来声明。throws 关键字放在方法签名的尾部。</span></p>
+    <p><span>也可以使用 throw 关键字抛出一个异常，无论它是新实例化的还是刚捕获到的。</span></p>
+    <p><span>下面方法的声明抛出一个 RemoteException 异常：</span></p>
+    <p><span>import java.io.*; public class className {  public void deposit(double amount) throws RemoteException  {    // Method implementation    throw new RemoteException();  }  //Remainder of class definition }</span>
+    </p>
+    <p><span>一个方法可以声明抛出多个异常，多个异常之间用逗号隔开。</span></p>
+    <p><span>例如，下面的方法声明抛出 RemoteException 和 InsufficientFundsException：</span></p>
+    <p><span>import java.io.*; public class className {   public void withdraw(double amount) throws RemoteException,                              InsufficientFundsException   {       // Method implementation   }   //Remainder of class definition }</span>
+    </p>
+    <hr/>
+    <h2><a name="finally关键字" class="md-header-anchor"></a><span>finally关键字</span></h2>
+    <p><span>finally 关键字用来创建在 try 代码块后面执行的代码块。</span></p>
+    <p><span>无论是否发生异常，finally 代码块中的代码总会被执行。</span></p>
+    <p><span>在 finally 代码块中，可以运行清理类型等收尾善后性质的语句。</span></p>
+    <p><span>finally 代码块出现在 catch 代码块最后，语法如下：</span></p>
+    <p><span>try{  // 程序代码 }catch(异常类型1 异常的变量名1){  // 程序代码 }catch(异常类型2 异常的变量名2){  // 程序代码 }finally{  // 程序代码 }</span>
+    </p>
+    <h3><a name="实例-n179" class="md-header-anchor"></a><span>实例</span></h3>
+    <h2><a name="exceptestjava-文件代码-n180" class="md-header-anchor"></a><span>ExcepTest.java 文件代码：</span></h2>
+    <p><span>public class ExcepTest{  public static void main(String args[]){    int a[] = new int[2];    try{       System.out.println(&quot;Access element three :&quot; + a[3]);    }catch(ArrayIndexOutOfBoundsException e){       System.out.println(&quot;Exception thrown  :&quot; + e);    }    finally{       a[0] = 6;       System.out.println(&quot;First element value: &quot; +a[0]);       System.out.println(&quot;The finally statement is executed&quot;);    }  } }</span>
+    </p>
+    <p><span>以上实例编译运行结果如下：</span></p>
+    <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div
+            class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div
+            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea
+            autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+            style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+            class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                 cm-not-content="true"></div><div
+            class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                         style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+            style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+            role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div
+            class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div
+            class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div
+            class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+            class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Exception thrown  :java.lang.ArrayIndexOutOfBoundsException: 3</span></pre></div><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">First element value: 6</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">The finally statement is executed</span></pre></div></div></div></div></div><div
+            style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 67px;"></div><div
+            class="CodeMirror-gutters" style="display: none; height: 67px;"></div></div></div></pre>
+    <p><span>注意下面事项：</span></p>
+    <ul>
+        <li><span>catch 不能独立于 try 存在。</span></li>
+        <li><span>在 try/catch 后面添加 finally 块并非强制性要求的。</span></li>
+        <li><span>try 代码后不能既没 catch 块也没 finally 块。</span></li>
+        <li><span>try, catch, finally 块之间不能添加任何代码。</span></li>
+    </ul>
+    <hr/>
+    <h2><a name="声明自定义异常" class="md-header-anchor"></a><span>声明自定义异常</span></h2>
+    <p><span>在 Java 中你可以自定义异常。编写自己的异常类时需要记住下面的几点。</span></p>
+    <ul>
+        <li><span>所有异常都必须是 Throwable 的子类。</span></li>
+        <li><span>如果希望写一个检查性异常类，则需要继承 Exception 类。</span></li>
+        <li><span>如果你想写一个运行时异常类，那么需要继承 RuntimeException 类。</span></li>
+    </ul>
+    <p><span>可以像下面这样定义自己的异常类：</span></p>
+    <p><span>class MyException extends Exception{ }</span></p>
+    <p><span>只继承Exception 类来创建的异常类是检查性异常类。</span></p>
+    <p><span>下面的 InsufficientFundsException 类是用户定义的异常类，它继承自 Exception。</span></p>
+    <p><span>一个异常类和其它任何类一样，包含有变量和方法。</span></p>
+    <h3><a name="实例-n209" class="md-header-anchor"></a><span>实例</span></h3>
+    <p><span>以下实例是一个银行账户的模拟，通过银行卡的号码完成识别，可以进行存钱和取钱的操作。</span></p>
+    <h2><a name="insufficientfundsexceptionjava-文件代码" class="md-header-anchor"></a><span>InsufficientFundsException.java 文件代码：</span>
+    </h2>
+    <p><span>// 文件名InsufficientFundsException.java import java.io.*;  //自定义异常类，继承Exception类 public class InsufficientFundsException extends Exception {  //此处的amount用来储存当出现异常（取出钱多于余额时）所缺乏的钱  private double amount;  public InsufficientFundsException(double amount)  {    this.amount = amount;  }   public double getAmount()  {    return amount;  } }</span>
+    </p>
+    <p><span>为了展示如何使用我们自定义的异常类，</span></p>
+    <p><span>在下面的 CheckingAccount 类中包含一个 withdraw() 方法抛出一个 InsufficientFundsException 异常。</span></p>
+    <h2><a name="checkingaccountjava-文件代码" class="md-header-anchor"></a><span>CheckingAccount.java 文件代码：</span></h2>
+    <p><span>// 文件名称 CheckingAccount.java import java.io.*;  //此类模拟银行账户 public class CheckingAccount {  //balance为余额，number为卡号   private double balance;   private int number;   public CheckingAccount(int number)   {      this.number = number;   }  //方法：存钱   public void deposit(double amount)   {      balance += amount;   }  //方法：取钱   public void withdraw(double amount) throws                              InsufficientFundsException   {      if(amount &lt;= balance)      {         balance -= amount;      }      else      {         double needs = amount - balance;         throw new InsufficientFundsException(needs);      }   }  //方法：返回余额   public double getBalance()   {      return balance;   }  //方法：返回卡号   public int getNumber()   {      return number;   } }</span>
+    </p>
+    <p><span>下面的 BankDemo 程序示范了如何调用 CheckingAccount 类的 deposit() 和 withdraw() 方法。</span></p>
+    <h2><a name="bankdemojava-文件代码" class="md-header-anchor"></a><span>BankDemo.java 文件代码：</span></h2>
+    <p><span>//文件名称 BankDemo.java public class BankDemo {   public static void main(String [] args)   {      CheckingAccount c = new CheckingAccount(101);      System.out.println(&quot;Depositing $500...&quot;);      c.deposit(500.00);      try      {         System.out.println(&quot;\nWithdrawing $100...&quot;);         c.withdraw(100.00);         System.out.println(&quot;\nWithdrawing $600...&quot;);         c.withdraw(600.00);      }catch(InsufficientFundsException e)      {         System.out.println(&quot;Sorry, but you are short $&quot;                                  + e.getAmount());         e.printStackTrace();      }    } }</span>
+    </p>
+    <p><span>编译上面三个文件，并运行程序 BankDemo，得到结果如下所示：</span></p>
+    <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div
+            class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div
+            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea
+            autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
+            style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
+            class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler"
+                                                                                 cm-not-content="true"></div><div
+            class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer"
+                                                         style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div
+            style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div
+            role="presentation" style="position: relative; outline: none;"><div
+            class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div
+            style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div
+            class="CodeMirror-activeline" style="position: relative;"><div
+            class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
+            class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Depositing $500...</span></pre></div><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
+            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                                                     style="padding-right: 0.1px;">Withdrawing $100...</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
+            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                                                     style="padding-right: 0.1px;">Withdrawing $600...</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Sorry, but you are short $200.0</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">InsufficientFundsException</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at CheckingAccount.withdraw(CheckingAccount.java:25)</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  at BankDemo.main(BankDemo.java:13)</span></pre></div></div></div></div></div><div
+            style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 202px;"></div><div
+            class="CodeMirror-gutters" style="display: none; height: 202px;"></div></div></div></pre>
+    <hr/>
+    <h2><a name="通用异常" class="md-header-anchor"></a><span>通用异常</span></h2>
+    <p><span>在Java中定义了两种类型的异常和错误。</span></p>
+    <ul>
+        <li>
+            <strong><span>JVM(Java*</span></strong><span>*虚拟机</span><strong></strong><span>)** </span><strong><span>异常：</span></strong><span>由 JVM 抛出的异常或错误。例如：NullPointerException 类，ArrayIndexOutOfBoundsException 类，ClassCastException 类。</span>
+        </li>
+        <li><strong><span>程序级异常：</span></strong><span>由程序或者API程序抛出的异常。例如 IllegalArgumentException 类，IllegalStateException 类。</span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
