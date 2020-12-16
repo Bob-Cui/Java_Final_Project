@@ -1,9 +1,9 @@
 package DataManager.DataProcess;
 
-import DataManager.XCYFileManager;
 
 import DataManager.Data.*;
 import DataManager.Data.OldData.*;
+import DataManager.XCYFileManager;
 import com.google.gson.Gson;
 
 import java.io.FileWriter;
@@ -26,15 +26,7 @@ public class JsonManager {
      * @throws IOException
      */
     public static BigTitleManager getBigTitleManager() throws IOException {
-        XCYFileManager cbFileManager = new XCYFileManager();
-        Gson gson = new Gson();
-
-        BigTitleManager bigTitleManager;
-
-        String t = XCYFileManager.readJson("src\\new.json");
-
-        bigTitleManager = gson.fromJson(t, BigTitleManager.class);
-        return bigTitleManager;
+        return null;
     }
 
     /**
