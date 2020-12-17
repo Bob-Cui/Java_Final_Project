@@ -169,9 +169,13 @@ public class XCYMain extends Stage {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
 
-
-
-
+/**
+ * 展开艾宾浩斯曲线的页面
+ */
+                        if (mouseEvent.getClickCount() == 2) {
+                            EbbinghausStage ebbinghausStage = new EbbinghausStage();
+                            ebbinghausStage.showAndWait();
+                        }
 
                     }
                 });
@@ -179,7 +183,7 @@ public class XCYMain extends Stage {
 
             }
 
-            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你进行复习");
+            Tooltip tooltip = new Tooltip("双击按钮\n系统会帮助你进行复习");
             Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
             tooltip.setGraphic(new ImageView(image));
             tooltip.setFont(new Font(20));
@@ -259,36 +263,36 @@ public class XCYMain extends Stage {
             buttonHBox.getChildren().add(learningData);
 
         }
-        {
-            /**
-             * 打死我,这就是最后一个功能不能继续增加了
-             */
-            Image myNoteBookImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
-            Button myNoteBook = new Button();
-            myNoteBook.setGraphic(new ImageView(myNoteBookImage));
-
-            myNoteBook.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    myNoteBook.setScaleX(changeScale);
-                    myNoteBook.setScaleY(changeScale);
-                }
-            });
-            myNoteBook.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    myNoteBook.setScaleX(1);
-                    myNoteBook.setScaleY(1);
-                }
-            });
-            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你查看统计并查看自己在该平台学习过程中所记录的笔记");
-            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
-            tooltip.setGraphic(new ImageView(image));
-            tooltip.setFont(new Font(20));
-            myNoteBook.setTooltip(tooltip);
-            myNoteBook.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
-            buttonHBox.getChildren().add(myNoteBook);
-        }
+//        {
+//            /**
+//             * 打死我,这就是最后一个功能不能继续增加了
+//             */
+//            Image myNoteBookImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+//            Button myNoteBook = new Button();
+//            myNoteBook.setGraphic(new ImageView(myNoteBookImage));
+//
+//            myNoteBook.setOnMouseEntered(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    myNoteBook.setScaleX(changeScale);
+//                    myNoteBook.setScaleY(changeScale);
+//                }
+//            });
+//            myNoteBook.setOnMouseExited(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    myNoteBook.setScaleX(1);
+//                    myNoteBook.setScaleY(1);
+//                }
+//            });
+//            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你查看统计并查看自己在该平台学习过程中所记录的笔记");
+//            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
+//            tooltip.setGraphic(new ImageView(image));
+//            tooltip.setFont(new Font(20));
+//            myNoteBook.setTooltip(tooltip);
+//            myNoteBook.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+//            buttonHBox.getChildren().add(myNoteBook);
+//        }
         buttonHBox.setSpacing(60);
 
     }
@@ -603,7 +607,7 @@ public class XCYMain extends Stage {
         leftTitles.setStyle("-fx-spacing: 5px;");
 
 
-        Image imag1e = new Image("file:Resource/JAVA.jpg", 800, 800.0, false, false);
+        Image imag1e = new Image("file:Resource/JAVA.jpg", 500, 500.0, false, false);
         ImageView imageView = new ImageView(imag1e);
 //        imageView.setStyle("-fx-border-radius: 40px;-fx-background-radius:40px");
 
@@ -615,7 +619,7 @@ public class XCYMain extends Stage {
         mainGrid.add(buttonHBox, 1, 0);
         mainGrid.add(imageView, 1, 1);
 
-        mainGrid.setHgap(300);
+        mainGrid.setHgap(200);
         mainGrid.setVgap(40);
 
 
@@ -625,7 +629,7 @@ public class XCYMain extends Stage {
         mainGrid.setStyle("-fx-background-image: url(" + "file:src/Source/backcq.jpg" + ");");
         mainGrid.setMinWidth(1500);
 
-        leftTitles.setStyle("-fx-background-image: url(" + "file:Resource/JAVA.jpg " + ") ;");
+        leftTitles.setStyle("-fx-background-image: url(" + "file:src/Source/leftback.png " + ") ;");
         leftTitles.setMinWidth(300);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension dimension = kit.getScreenSize();
