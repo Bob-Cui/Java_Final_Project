@@ -49,8 +49,11 @@ public class XCYMain extends Stage {
     private static final String INTROJAVAPATH = "Resource/Javainfor.html";
     private static final String PRIMARY = "Java初级教程", MIDDLE = "Java中级教程", SENIOR = "Java高级教程";
 
+    /**
+     * 弹出框图片的大小
+     */
+    private static final double len = 60;
 
-    private TreeItem<String> treeItem;
 
     //三个listView使用的
     private ObservableList<NewTitleManager> priTitle, midTitle, senTitle;
@@ -58,8 +61,6 @@ public class XCYMain extends Stage {
 
     private VBox leftTitles, right;
 
-
-    private FlowPane leftFlowPane, mainFlowPane;
 
     /**
      * 所有数据的来源
@@ -80,22 +81,10 @@ public class XCYMain extends Stage {
 
 
     /**
-     * 有趣的关于查看学习进度的按钮
-     * 实际上这并不是一个严格意义上的按钮而是用两个圆叠加形成的效果
-     */
-    private Group checkProgress;
-    private Circle checkProgressCircleButtom, checkProgressCircleUp;
-    /**
-     *
-     */
-    private Group remainYouLearn;
-    private Circle remainYouCircleButtom, remainYouCircleUp;
-
-
-    /**
      * 用于盛放四个按钮的VBox
      */
     private HBox buttonHBox;
+
 
     /**
      * 初始化四个按钮
@@ -227,6 +216,24 @@ public class XCYMain extends Stage {
 
             updateJava.setTooltip(tooltip);
             updateJava.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+
+
+            updateJava.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+
+                    if (mouseEvent.getClickCount() == 2) {
+                        try {
+                            LastJava lastJava = new LastJava();
+                            lastJava.showAndWait();
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                }
+            });
 
             buttonHBox.getChildren().add(updateJava);
 
@@ -368,7 +375,6 @@ public class XCYMain extends Stage {
                 return new NewTitleCell();
             }
         });
-
         midListView.setCellFactory(new Callback<ListView<NewTitleManager>, ListCell<NewTitleManager>>() {
             @Override
             public ListCell<NewTitleManager> call(ListView<NewTitleManager> newTitleManagerListView) {
@@ -402,6 +408,9 @@ public class XCYMain extends Stage {
                 } else {
 
                     Alert fail = new Alert(Alert.AlertType.WARNING);
+
+                    Image image = new Image("file:src/Source/icon.jpg", 25, 25, true, true);
+                    fail.setGraphic(new ImageView(image));
                     fail.setTitle("没有权限");
                     fail.setHeaderText("请学习之前的章节");
                     fail.setContentText("你没有完成之前章节的学习,不能学习这一章");
@@ -428,10 +437,10 @@ public class XCYMain extends Stage {
                 } else {
 
                     Alert fail = new Alert(Alert.AlertType.WARNING);
-                    Image image = new Image("file:src/Source/icon.jpg", 25, 25, true, true);
 
 
-                    Label dog = new Label("", new ImageView(image));
+                    Image image = new Image("file:src/Source/icon.jpg", len, len, true, true);
+                    fail.setGraphic(new ImageView(image));
                     // fail.setGraphic();
                     fail.setTitle("没有权限");
                     fail.setHeaderText("请学习之前的章节");
@@ -440,7 +449,6 @@ public class XCYMain extends Stage {
                 }
             }
         });
-
         senListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
@@ -458,6 +466,8 @@ public class XCYMain extends Stage {
                     }
                 } else {
                     Alert fail = new Alert(Alert.AlertType.WARNING);
+                    Image image = new Image("file:src/Source/icon.jpg", len, len, true, true);
+                    fail.setGraphic(new ImageView(image));
                     fail.setTitle("没有权限");
                     fail.setHeaderText("请学习之前的章节");
                     fail.setContentText("你没有完成之前章节的学习,不能学习这一章");
@@ -629,14 +639,14 @@ public class XCYMain extends Stage {
         mainGrid.setStyle("-fx-background-image: url(" + "file:src/Source/backcq.jpg" + ");");
         mainGrid.setMinWidth(1500);
 
-        leftTitles.setStyle("-fx-background-image: url(" + "file:src/Source/leftback.png " + ") ;");
+        leftTitles.setStyle("-fx-background-image: url(" + "file:src/Source/leftback.png " + ");");
         leftTitles.setMinWidth(300);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension dimension = kit.getScreenSize();
 
 
         main.setStyle("-fx-background-color: #6495ED");
-        Scene scene = new Scene(main, 3*dimension.width/4, dimension.height/2);
+        Scene scene = new Scene(main, 3 * dimension.width / 4, dimension.height / 2);
 
 
         this.setScene(scene);
@@ -753,6 +763,9 @@ public class XCYMain extends Stage {
         if (priFinished && midFinished) {
             newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get(SENIOR).setAbleToLearn(true);
             Alert success = new Alert(Alert.AlertType.INFORMATION);
+            Image image = new Image("file:src/Source/icon.jpg", len, len, true, true);
+
+            success.setGraphic(new ImageView(image));
             success.setTitle("进度更新");
             success.setHeaderText("解锁新的权限");
             success.setContentText("你可以学习Java高级教程了");
@@ -762,6 +775,12 @@ public class XCYMain extends Stage {
         } else if (priFinished) {
             newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get(MIDDLE).setAbleToLearn(true);
             Alert success = new Alert(Alert.AlertType.INFORMATION);
+
+            Image image = new Image("file:src/Source/icon.jpg", len, len, true, true);
+
+            success.setGraphic(new ImageView(image));
+
+
             success.setTitle("进度更新");
             success.setHeaderText("解锁新的权限");
             success.setContentText("你可以学习Java中级教程了");
@@ -778,6 +797,9 @@ public class XCYMain extends Stage {
             } else if (!midFinished) {
                 unFininshTitle = "Java中级教程";
             }
+
+            Image image = new Image("file:src/Source/icon.jpg", len, len, true, true);
+            fail.setGraphic(new ImageView(image));
             fail.setHeaderText("未能解锁新的权限");
             fail.setContentText("请继续认真学习" + unFininshTitle + "内的其他章节");
             fail.showAndWait();

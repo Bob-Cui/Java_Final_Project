@@ -4,6 +4,8 @@ import DataManager.Data.NewSelectProblem;
 import DataManager.Data.NewTitleManager;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -75,18 +77,6 @@ public class ProblemVBox extends VBox {
 
     }
 
-    /**
-     * 修改四个选项的内容
-     *
-     * @param A
-     * @param B
-     * @param C
-     * @param D
-     */
-    public void setSelectItemText(String A, String B, String C, String D) {
-
-
-    }
 
     /**
      * 实际运行需要调用的构造函数的
@@ -154,6 +144,7 @@ public class ProblemVBox extends VBox {
             });
 
             c.setText("C");
+
             c.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -208,7 +199,13 @@ public class ProblemVBox extends VBox {
         }
 
         selectvBox = new VBox(aHBox, bHBox, cHBox, dHBox);
-        selectvBox.setStyle("-fx-spacing: 20px");
+
+        selectvBox.setSpacing(5);
+
+
+
+
+        selectvBox.setStyle("-fx-spacing: 20px;-fx-border-width: 5px;-fx-border-color: hotpink;-fx-border-radius: 10px");
 
         a.setToggleGroup(toggleGroup);
         b.setToggleGroup(toggleGroup);
@@ -218,13 +215,15 @@ public class ProblemVBox extends VBox {
         for (Map.Entry<Integer, NewSelectProblem> item : dataSource.getIntegerSelectProblemHashMap().entrySet()) {
             NewSelectProblem newSelectProblem = item.getValue();
             Button button = new Button();
+
+
             button.setText(String.valueOf(newSelectProblem.getId()));
 
-            button.setMinHeight(25);
-            button.setMinWidth(25);
+            button.setMinHeight(30);
+            button.setMinWidth(30);
             button.setUserData(newSelectProblem.getId());
 
-            button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;");
+            button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-border-width: 2px;-fx-border-color: lightpink;-fx-font-size: 12px;-fx-font-weight: bold;fx-text-fill: hotpink");
 
             button.setOnMouseClicked(mouseEvent -> {
 
@@ -247,15 +246,28 @@ public class ProblemVBox extends VBox {
 
         }
 
+        changeProblem.setHgap(12);
+        changeProblem.setVgap(5);
 
+        changeProblem.setStyle("-fx-border-width: 5px;-fx-border-color: hotpink;-fx-border-radius: 20px");
         initSubmitButton();
         VBox vBox = new VBox();
 
         vBox.getChildren().addAll(problemVBox, selectvBox);
+
+        vBox.setSpacing(15);
+
+
         this.getChildren().addAll(vBox, changeProblem, submit);
 
-        this.setMaxWidth(300);
-        this.setStyle("-fx-spacing: 60px;-fx-padding: 15px");
+        
+        
+        
+        this.setMaxWidth(500);
+        this.setStyle("-fx-spacing: 60px;-fx-padding: 15px;");
+        
+        
+        
     }
 
     /**
@@ -266,6 +278,14 @@ public class ProblemVBox extends VBox {
 
         submit = new Button();
         submit.setText("提交答案");
+
+        submit.setStyle("-fx-text-fill: coral;-fx-font-size: 20px;-fx-font-weight: bold");
+
+
+        Image image = new Image("file:src/Source/mlcq.jpg", 35, 35, true, true);
+        submit.setGraphic(new ImageView(image));
+
+
         submit.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

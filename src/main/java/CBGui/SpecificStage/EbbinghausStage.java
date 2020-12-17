@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -111,6 +112,8 @@ public class EbbinghausStage extends Stage {
     private ListView<EbbinghausItem> ebbinghausItemListView;
 
 
+    private GridPane mainGriPane;
+
     /**
      * 检查这个人需要进行复习的科目
      */
@@ -140,6 +143,8 @@ public class EbbinghausStage extends Stage {
                 return o1.getTimeSpan() - o2.getTimeSpan();
             }
         });
+
+
     }
 
     /**
@@ -179,20 +184,34 @@ public class EbbinghausStage extends Stage {
                 return new EbbinghausItemCell();
             }
         });
-
-
         {
-            mainHBox.getChildren().add(imageView);
-            mainHBox.getChildren().add(ebbinghausItemListView);
 
-            mainHBox.setSpacing(10);
-            mainHBox.setStyle("-fx-background-image: url(" + "file:src/Source/backcq.jpg" + ")");
+
+            mainGriPane = new GridPane();
+
+            mainGriPane.add(ebbinghausItemListView, 1, 1);
+            mainGriPane.add(imageView, 0, 1);
+
+            mainGriPane.setVgap(50);
+            mainGriPane.setHgap(20);
+
+            mainGriPane.setStyle("-fx-background-image: url(" + "file:src/Source/backcq.jpg" + ")");
+
         }
+
+
+//        {
+//            mainHBox.getChildren().add(imageView);
+//            mainHBox.getChildren().add(ebbinghausItemListView);
+//
+//            mainHBox.setSpacing(10);
+//            mainHBox.setStyle("-fx-background-image: url(" + "file:src/Source/backcq.jpg" + ")");
+//        }
 
 
         {
             this.setWidth(width / 2);
-            this.setHeight(height / 2);
+            this.setHeight(2 * height / 3);
             ebbinghausItemListView.setMaxWidth(width / 6);
             ebbinghausItemListView.setMinWidth(width / 6);
             ebbinghausItemListView.setMinHeight(height / 2);
@@ -206,6 +225,12 @@ public class EbbinghausStage extends Stage {
             ebbinghausItemListView.setTooltip(tooltip);
         }
         {
+
+
+
+
+        }
+        {
             this.getIcons().add(new Image("file:src/Source/midcq.png"));
             this.setTitle("艾宾浩斯曲线复习界面");
         }
@@ -214,7 +239,8 @@ public class EbbinghausStage extends Stage {
  * 打开这个窗体的时候是不能打开其他窗体的
  */
         this.initModality(Modality.APPLICATION_MODAL);
-        this.setScene(new Scene(mainHBox));
+        this.setResizable(false);
+        this.setScene(new Scene(mainGriPane));
     }
 
     private static class EbbinghausItemCell extends ListCell<EbbinghausItem> {

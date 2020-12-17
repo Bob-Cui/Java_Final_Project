@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -34,7 +35,7 @@ public class LearnStage extends Stage {
 
     private Scene scene;
     //这个Stage用到的Scene
-    private HBox hBox;
+    private HBox mainHBox;
     private VBox rVbox;
     private VBox quest;
     //右侧用于题目展示
@@ -51,23 +52,7 @@ public class LearnStage extends Stage {
     private ObservableList<SelectProblem> selectProblems;
     private ListView<SelectProblem> selectProblemListView;
 
-    private void initProblemList() {
-        problemObservableList = FXCollections.observableArrayList();
 
-        for (int i = 0; i < 10; i++) {
-
-            problemObservableList.add(new Problem("今天天气怎么样"));
-        }
-
-        problemListView = new ListView<>(problemObservableList);
-
-        problemListView.setCellFactory(new Callback<ListView<Problem>, ListCell<Problem>>() {
-            @Override
-            public ListCell<Problem> call(ListView<Problem> problemListView) {
-                return new ProCell();
-            }
-        });
-    }
 
     /**
      * 根据传来的题目来构建相应的 listview
@@ -99,7 +84,7 @@ public class LearnStage extends Stage {
      */
     private void setStageTitle(String titleName) {
         this.setTitle(titleName);
-        this.getIcons().add(new Image("file:Resource/icon.jpg"));
+        this.getIcons().add(new Image("file:src/Source/sencq.png"));
     }
 
     /**
@@ -109,22 +94,29 @@ public class LearnStage extends Stage {
      * @throws MalformedURLException 不需要知道原因的异常
      */
     public LearnStage(NewTitleManager newTitleManager) throws MalformedURLException {
+
         WebView webView = new WebView();
         File file = new File(newTitleManager.getResource() + ".html");
         System.out.println(newTitleManager.getResource());
         URL url = file.toURI().toURL();
         webView.getEngine().load(url.toString());
-        Text text = new Text("请回答以下的问题");
+
+
+        Image image = new Image("file:src/Source/sencq.png",50,50,true,true);
+        Label text = new Label("请回答以下的问题",new ImageView(image));
         text.setStyle("-fx-font-size: 30px");
-        HBox hBox = new HBox();
+
+
+
         setStageTitle(newTitleManager.getName());
 
         ProblemVBox problemVBox = new ProblemVBox(newTitleManager);
 
 
         rVbox = new VBox(text, problemVBox);
-        hBox = new HBox(webView, rVbox);
-        scene = new Scene(hBox);
+        mainHBox = new HBox(webView, rVbox);
+
+        scene = new Scene(mainHBox);
         // problemVBox.setMinWidth(scene.getWidth()/2);
         //problemVBox.setMaxWidth(scene.getWidth()/2);
         this.setScene(scene);
@@ -139,13 +131,12 @@ public class LearnStage extends Stage {
                 checkProgress();
             }
         });
+
+    
     }
 
 
-    public LearnStage(String address) {
-
-
-    }
+    
 
     private class SelectProblemCell extends ListCell<SelectProblem> {
         private HBox content;
