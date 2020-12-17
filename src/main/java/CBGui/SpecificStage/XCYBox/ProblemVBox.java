@@ -3,10 +3,7 @@ package main.java.CBGui.SpecificStage.XCYBox;
 import DataManager.Data.NewSelectProblem;
 import DataManager.Data.NewTitleManager;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -33,18 +30,18 @@ public class ProblemVBox extends VBox {
 
     private HBox aHBox, bHBox, cHBox, dHBox;
 
-    private final RadioButton a;
-    private final RadioButton b;
-    private final RadioButton c;
-    private final RadioButton d;
+    private RadioButton a;
+    private RadioButton b;
+    private RadioButton c;
+    private RadioButton d;
     //每一个选项对应的内容
-    private final Text textA;
-    private final Text textB;
-    private final Text textC;
-    private final Text textD;
+    private Label textA;
+    private Label textB;
+    private Label textC;
+    private Label textD;
 
     private VBox problemVBox;
-    private Text problemContent;
+    private Label problemContent;
 
 
     private VBox selectvBox;
@@ -52,7 +49,7 @@ public class ProblemVBox extends VBox {
 
     private Button submit;
 
-    private final static int step=25;
+    private final static int step = 25;
     /**
      * private Map<int, SelectProblem>这个东西会报错
      */
@@ -110,14 +107,20 @@ public class ProblemVBox extends VBox {
         {
             nowQuestion = 1;
         }
-        problemContent = new Text();
-        problemContent.setText(dealTitle(dataSource.getIntegerSelectProblemHashMap().get(1).getProblem(),step));
-        problemContent.setStyle("-fx-font-size: 25px");
+
+        {
+            problemContent = new Label();
+            problemContent.setText(dataSource.getIntegerSelectProblemHashMap().get(1).getProblem());
+            problemContent.setWrapText(true);
+            problemContent.setStyle("-fx-font-size: 25px");
+        }
+
+
         {
             proID = new Button();
             proID.setText("1");
             proID.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-font-size: 18px");
-           // proID.setDisable(true);
+            // proID.setDisable(true);
             problemVBox = new VBox(proID, problemContent);
             problemVBox.setStyle("-fx-spacing: 15px");
         }
@@ -167,11 +170,16 @@ public class ProblemVBox extends VBox {
                     newSelectProblem.setYourAnswer('D');
                 }
             });
-            textA = new Text(dealTitle(dataSource.getIntegerSelectProblemHashMap().get(1).getA(),step));
-
-            textB = new Text(dealTitle(dataSource.getIntegerSelectProblemHashMap().get(1).getB(),step));
-            textC = new Text(dataSource.getIntegerSelectProblemHashMap().get(1).getC());
-            textD = new Text(dataSource.getIntegerSelectProblemHashMap().get(1).getD());
+            {
+                textA = new Label(dataSource.getIntegerSelectProblemHashMap().get(1).getA());
+                textB = new Label(dataSource.getIntegerSelectProblemHashMap().get(1).getB());
+                textC = new Label(dataSource.getIntegerSelectProblemHashMap().get(1).getC());
+                textD = new Label(dataSource.getIntegerSelectProblemHashMap().get(1).getD());
+                textA.setWrapText(true);
+                textB.setWrapText(true);
+                textC.setWrapText(true);
+                textD.setWrapText(true);
+            }
 
 
             a.setStyle("-fx-font-size: 20px");
@@ -224,14 +232,12 @@ public class ProblemVBox extends VBox {
                 proID.setText(String.valueOf(id));
 
                 NewSelectProblem choosedOne = dataSource.getIntegerSelectProblemHashMap().get(id);
-                problemContent.setText(dealTitle(choosedOne.getProblem(), step));
-             //  System.out.println(choosedOne.getProblem());
-                textA.setText(dealTitle(choosedOne.getA(), step));
-                textB.setText(dealTitle(choosedOne.getB(), step));
-                textC.setText(dealTitle(choosedOne.getC(), step));
-                textD.setText(dealTitle(choosedOne.getD(), step));
-                System.out.println(dealTitle(choosedOne.getA(), step));
-                System.out.println(dealTitle(choosedOne.getB(), step));
+                problemContent.setText(choosedOne.getProblem());
+                //  System.out.println(choosedOne.getProblem());
+                textA.setText(choosedOne.getA());
+                textB.setText(choosedOne.getB());
+                textC.setText(choosedOne.getC());
+                textD.setText(choosedOne.getD());
                 a.setSelected(false);
                 b.setSelected(false);
                 c.setSelected(false);
@@ -242,18 +248,13 @@ public class ProblemVBox extends VBox {
         }
 
 
-//        problemHBox.setMinHeight(200);
-//        selectvBox.setMinHeight(200);
-
         initSubmitButton();
         VBox vBox = new VBox();
-//        FlowPane flowPane = new FlowPane(problemHBox, selectvBox);
 
         vBox.getChildren().addAll(problemVBox, selectvBox);
-//        flowPane.setMinHeight(500);
         this.getChildren().addAll(vBox, changeProblem, submit);
 
-
+        this.setMaxWidth(300);
         this.setStyle("-fx-spacing: 60px;-fx-padding: 15px");
     }
 
@@ -304,126 +305,104 @@ public class ProblemVBox extends VBox {
         });
     }
 
-    public static String dealTitle(String input, int step) {
-        if (input.length() <= step) {
-            String ans=input;
-            for (int i = 0; i <step-input.length() ; i++) {
-              ans += ' ';
-            }
-            return ans;
-        }
-        String ans = "";
-        for (int i = 0; i < input.length(); i++) {
-            ans += input.charAt(i);
-            if ((i+1) % step == 0) {
-                ans += '\n';
-            }
 
-        }
-        return ans;
-    }
-    public ProblemVBox() {
-        problemContent = new Text();
-        problemContent.setText("这是一个问题");
-        problemContent.setStyle("-fx-font-size: 25px");
+//    public ProblemVBox() {
+//        problemContent = new Label();
+//        problemContent.setText("这是一个问题");
+//        problemContent.setStyle("-fx-font-size: 25px");
+//
+//
+//        //设计关于题目的内容的content
+//        {
+//            Button button = new Button();
+//            button.setText("1");
+//            button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-font-size: 20px");
+//            button.setDisable(true);
+//            problemVBox = new VBox(button, problemContent);
+//            problemVBox.setStyle("-fx-spacing: 15px");
+//        }
+//
+//
+//        {
+//            toggleGroup = new ToggleGroup();
+//
+//
+//            a = new RadioButton();
+//            b = new RadioButton();
+//            c = new RadioButton();
+//            d = new RadioButton();
+//
+//
+//            a.setText("A");
+//
+//            a.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
+//
+//
+//                }
+//            });
+//            b.setText("B");
+//            b.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//
+//                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
+//
+//                }
+//            });
+//
+//            c.setText("C");
+//            c.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
+//
+//                }
+//            });
+//
+//            d.setText("D");
+//            d.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
+//
+//                }
+//            });
+//            textA = new Text("选项dsfdsaf dsafsda fsdaf das f\nA");
+//            textB = new Text("sad");
+//            textC = new Text("选项C");
+//            textD = new Text("选项D");
+//
+//
+//            a.setStyle("-fx-font-size: 20px");
+//            b.setStyle("-fx-font-size: 20px");
+//            c.setStyle("-fx-font-size: 20px");
+//            d.setStyle("-fx-font-size: 20px");
+//
+//
+//            textA.setStyle("-fx-font-size: 18px;");
+//            textB.setStyle("-fx-font-size: 18px;");
+//            textC.setStyle("-fx-font-size: 18px;");
+//            textD.setStyle("-fx-font-size: 18px;");
+//
+//            //构建四个水平盒子 左边是选项 右边是选项的内容
+//            aHBox = new HBox(a, textA);
+//            bHBox = new HBox(b, textB);
+//            cHBox = new HBox(c, textC);
+//            dHBox = new HBox(d, textD);
+//
+//
+//            //设置单选按钮和选项内容的间隔
+//            aHBox.setStyle("-fx-spacing: 25px");
+//            bHBox.setStyle("-fx-spacing: 25px");
+//            cHBox.setStyle("-fx-spacing: 25px");
+//            dHBox.setStyle("-fx-spacing: 25px");
+//        }
+//
+//
+//}
 
-
-        //设计关于题目的内容的content
-        {
-            Button button = new Button();
-            button.setText("1");
-            button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-font-size: 20px");
-            button.setDisable(true);
-            problemVBox = new VBox(button, problemContent);
-            problemVBox.setStyle("-fx-spacing: 15px");
-        }
-
-
-        {
-            toggleGroup = new ToggleGroup();
-
-
-            a = new RadioButton();
-            b = new RadioButton();
-            c = new RadioButton();
-            d = new RadioButton();
-
-
-            a.setText("A");
-
-            a.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
-
-
-                }
-            });
-            b.setText("B");
-            b.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-
-                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
-
-                }
-            });
-
-            c.setText("C");
-            c.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
-
-                }
-            });
-
-            d.setText("D");
-            d.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
-
-                }
-            });
-            textA = new Text("选项dsfdsaf dsafsda fsdaf das f\nA");
-            textB = new Text("sad");
-            textC = new Text("选项C");
-            textD = new Text("选项D");
-
-
-            a.setStyle("-fx-font-size: 20px");
-            b.setStyle("-fx-font-size: 20px");
-            c.setStyle("-fx-font-size: 20px");
-            d.setStyle("-fx-font-size: 20px");
-
-
-            textA.setStyle("-fx-font-size: 18px;");
-            textB.setStyle("-fx-font-size: 18px;");
-            textC.setStyle("-fx-font-size: 18px;");
-            textD.setStyle("-fx-font-size: 18px;");
-
-            //构建四个水平盒子 左边是选项 右边是选项的内容
-            aHBox = new HBox(a, textA);
-            bHBox = new HBox(b, textB);
-            cHBox = new HBox(c, textC);
-            dHBox = new HBox(d, textD);
-
-
-            //设置单选按钮和选项内容的间隔
-            aHBox.setStyle("-fx-spacing: 25px");
-            bHBox.setStyle("-fx-spacing: 25px");
-            cHBox.setStyle("-fx-spacing: 25px");
-            dHBox.setStyle("-fx-spacing: 25px");
-        }
-
-
-}
-
-    public static void main(String[] args) {
-
-        String a = "一个类可同时定义许多同名的方法，这些方法的形式参数个数、类型或顺序各不相同，传回的值也可以不相同，这种特性称为（ ";
-        System.out.println(dealTitle(a,5));
-    }
 }
 

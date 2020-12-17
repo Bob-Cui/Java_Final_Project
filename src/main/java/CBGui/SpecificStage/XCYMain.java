@@ -129,7 +129,7 @@ public class XCYMain extends Stage {
                     checkProgress.setScaleY(1);
                 }
             });
-            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你进行复习");
+            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你更新学习的进度");
             Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
             tooltip.setGraphic(new ImageView(image));
             tooltip.setFont(new Font(20));
@@ -633,11 +633,10 @@ public class XCYMain extends Stage {
         leftTitles.setMinWidth(300);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension dimension = kit.getScreenSize();
-        introJavaWebView.setMinWidth(dimension.width / 2);
 
 
         main.setStyle("-fx-background-color: #6495ED");
-        Scene scene = new Scene(main, dimension.width / 2, dimension.height);
+        Scene scene = new Scene(main, 3*dimension.width/4, dimension.height/2);
 
 
         this.setScene(scene);
