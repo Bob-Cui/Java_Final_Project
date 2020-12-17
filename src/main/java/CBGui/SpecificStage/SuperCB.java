@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -37,11 +38,53 @@ import java.util.Map;
 
 import static DataManager.DataProcess.JsonManager.getNewBigTitleManager;
 
+
+/**
+ * 随机调没学过的进行推荐功能
+ * 笔记
+ * 记录的功能
+ */
 public class SuperCB extends Stage {
 
 
-    private static final int DAY = 24 * 60 * 60;
+    private static class TreeTitle {
 
+        private int type;
+
+        private String name;
+
+        private NewTitleManager newTitleManager;
+
+        public TreeTitle(int type, String name, NewTitleManager newTitleManager) {
+            this.type = type;
+            this.name = name;
+            this.newTitleManager = newTitleManager;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public NewTitleManager getNewTitleManager() {
+            return newTitleManager;
+        }
+
+        public void setNewTitleManager(NewTitleManager newTitleManager) {
+            this.newTitleManager = newTitleManager;
+        }
+    }
 
     private TreeView<String> newTitleManagerTreeView;
     /**
@@ -97,9 +140,16 @@ public class SuperCB extends Stage {
 
 
     private void initTreeView() {
+        Image image = new Image("file:src/Source/rootItem.jpg", 25, 25, true, true);
+
         TreeItem<String> rootItem = new TreeItem<>("快乐的Java快乐学");
+        rootItem.setGraphic(new ImageView(image));
+
+
         for (Map.Entry<String, NewSubTitleManager> stringNewSubTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
             TreeItem<String> item = new TreeItem<>(stringNewSubTitleManagerEntry.getKey());
+
+
             for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : stringNewSubTitleManagerEntry.getValue().getIntegerNewTitleManagerHashMap().entrySet()) {
                 TreeItem<String> item1 = new TreeItem<>(integerNewTitleManagerEntry.getValue().getName());
                 item.getChildren().add(item1);
@@ -151,7 +201,7 @@ public class SuperCB extends Stage {
 
         //HBox mainhBox = new HBox(leftTitles, mainGrid);
         initTreeView();
-        HBox hBox = new HBox(mainGrid,newTitleManagerTreeView);
+        HBox hBox = new HBox(mainGrid, newTitleManagerTreeView);
 //        mainFlowPane = new FlowPane(leftFlowPane, hBox);
         HBox main = new HBox(hBox);
 
