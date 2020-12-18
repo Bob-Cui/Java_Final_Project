@@ -15,7 +15,6 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import main.java.CBGui.SpecificStage.CBBox.ProblemVBox;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -103,8 +102,8 @@ public class LearnStage extends Stage {
         Text text = new Text("请回答以下的问题");
         text.setStyle("-fx-font-size: 30px");
         HBox hBox = new HBox();
-        ProblemVBox problemVBox = new ProblemVBox(newTitleManager);
-        rVbox = new VBox(text, problemVBox);
+       // ProblemVBox problemVBox = new ProblemVBox(newTitleManager);
+//        rVbox = new VBox(text, problemVBox);
         hBox = new HBox(webView, rVbox);
         scene = new Scene(hBox);
         this.setScene(scene);
@@ -127,8 +126,8 @@ public class LearnStage extends Stage {
 
         HBox hBox = new HBox();
         //控制传入ProblemVBox中的参数是切换需要展示的问题的关键
-        ProblemVBox problemVBox = new ProblemVBox();
-        rVbox = new VBox(text, problemVBox);
+       // ProblemVBox problemVBox = new ProblemVBox();
+     //   rVbox = new VBox(text, problemVBox);
         hBox = new HBox(webView, rVbox);
         scene = new Scene(hBox);
         this.setScene(scene);

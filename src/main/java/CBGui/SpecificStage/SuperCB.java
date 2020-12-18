@@ -4,6 +4,7 @@ package main.java.CBGui.SpecificStage;
 import DataManager.Data.*;
 import DataManager.Data.OldData.BigTitleManager;
 import DataManager.DataProcess.JsonManager;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -34,6 +35,7 @@ import java.awt.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.Map;
 
 import static DataManager.DataProcess.JsonManager.getNewBigTitleManager;
@@ -61,6 +63,7 @@ public class SuperCB extends Stage {
             this.newTitleManager = newTitleManager;
         }
 
+
         public int getType() {
             return type;
         }
@@ -86,7 +89,10 @@ public class SuperCB extends Stage {
         }
     }
 
-    private TreeView<String> newTitleManagerTreeView;
+    private TreeView<TreeTitle> newTitleManagerTreeView;
+
+    private TreeTableView<TreeTitle> treeTitleTreeTableView;
+
     /**
      * Java介绍网页的相对地址
      */
@@ -98,8 +104,25 @@ public class SuperCB extends Stage {
      */
     private static NewBigTitleManager newBigTitleManager;
 
-    static {
+    public static LinkedList<String> enableTitles;
 
+    /**
+     * 确定这个人要学的功能
+     *
+     * @param dataStructure 是否需要学数据结构
+     */
+    public static void initEnableTitles(boolean dataStructure) {
+        enableTitles = new LinkedList<>();
+        enableTitles.add("Java初级教程");
+        enableTitles.add("Java中级教程");
+        enableTitles.add("Java高级教程");
+        if (dataStructure) {
+            enableTitles.add("数据结构");
+        }
+    }
+
+
+    static {
         try {
             newBigTitleManager = getNewBigTitleManager();
         } catch (IOException e) {
@@ -138,25 +161,126 @@ public class SuperCB extends Stage {
         this.getIcons().add(new Image("file:Resource/icon.jpg"));
     }
 
+    private void initNewTreeView() {
+        initEnableTitles(false);
 
-    private void initTreeView() {
-        Image image = new Image("file:src/Source/rootItem.jpg", 25, 25, true, true);
-
-        TreeItem<String> rootItem = new TreeItem<>("快乐的Java快乐学");
-        rootItem.setGraphic(new ImageView(image));
+        TreeItem<TreeTitle> rootItem = new TreeItem<>(new TreeTitle(1, "快乐学Java", null));
 
 
-        for (Map.Entry<String, NewSubTitleManager> stringNewSubTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
-            TreeItem<String> item = new TreeItem<>(stringNewSubTitleManagerEntry.getKey());
+        for (String titleName : enableTitles) {
 
 
-            for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : stringNewSubTitleManagerEntry.getValue().getIntegerNewTitleManagerHashMap().entrySet()) {
-                TreeItem<String> item1 = new TreeItem<>(integerNewTitleManagerEntry.getValue().getName());
-                item.getChildren().add(item1);
+            TreeItem<TreeTitle> subTreeItem = new TreeItem<>(new TreeTitle(2, titleName, null));
+            for (Map.Entry<Integer, NewTitleManager> stringNewTitleManagerEntry : newBigTitleManager.getStringNewSubTitleManagerHashMap().get(titleName).getIntegerNewTitleManagerHashMap().entrySet()) {
+                TreeItem<TreeTitle> littleTitle = new TreeItem<>(new TreeTitle(3, stringNewTitleManagerEntry.getValue().getName(), stringNewTitleManagerEntry.getValue()));
+                subTreeItem.getChildren().add(littleTitle);
             }
-            rootItem.getChildren().add(item);
+            rootItem.getChildren().add(subTreeItem);
         }
         newTitleManagerTreeView = new TreeView<>(rootItem);
+        newTitleManagerTreeView.setCellFactory(new Callback<TreeView<TreeTitle>, TreeCell<TreeTitle>>() {
+            @Override
+            public TreeCell<TreeTitle> call(TreeView<TreeTitle> treeTitleTreeView) {
+
+                TreeCell<TreeTitle> treeTitleTreeCell = new TreeCell<>() {
+
+                    private HBox mainHBox;
+
+                    @Override
+                    protected void updateItem(TreeTitle treeTitle, boolean b) {
+                        super.updateItem(treeTitle, b);
+
+                        if (treeTitle != null && !b) {
+                            Label label = new Label();
+                            label.setText(treeTitle.getName());
+
+                            /**
+                             * 设置一下label的类型
+                             */
+                            switch (treeTitle.getType()) {
+                                case 1: {
+                                    Image image = new Image("file:src/Source/javafa.jpg", 45, 45, true, true);
+                                    label.setGraphic(new ImageView(image));
+                                    label.setStyle("-fx-font-size: 28px;-fx-font-weight: bold;-fx-text-fill: hotpink");
+
+                                    break;
+                                }
+                                case 2:
+                                    label.setStyle("-fx-font-size: 23px");
+                                    break;
+                                case 3: {
+                                    Image image = new Image("file:src/Source/javasmall (2).jpg", 23, 23, true, true);
+                                    label.setGraphic(new ImageView(image));
+                                    label.setStyle("-fx-font-weight: bold;-fx-font-size: 17px;-fx-text-fill: lightskyblue");
+
+                                    double big = 1.2;
+                                    label.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                                        @Override
+                                        public void handle(MouseEvent mouseEvent) {
+
+                                            label.setScaleY(big);
+                                            label.setScaleX(big);
+
+                                        }
+                                    });
+
+                                    label.setOnMouseExited(new EventHandler<MouseEvent>() {
+                                        @Override
+                                        public void handle(MouseEvent mouseEvent) {
+
+                                            label.setScaleX(1);
+                                            label.setScaleY(1);
+
+                                        }
+                                    });
+                                    label.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                        @Override
+                                        public void handle(MouseEvent mouseEvent) {
+
+                                            //双击两次进去
+                                            if (mouseEvent.getClickCount() == 2) {
+
+
+                                            }
+                                        }
+                                    });
+
+                                    break;
+                                }
+                                default:
+                                    break;
+
+                            }
+                            mainHBox = new HBox();
+                            mainHBox.getChildren().add(label);
+                            setGraphic(mainHBox);
+                        } else {
+                            setGraphic(null);
+                        }
+
+                    }
+                };
+
+
+                return treeTitleTreeCell;
+            }
+
+
+        });
+
+
+/**
+ * 设置一下点击事件
+ */
+        newTitleManagerTreeView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+
+
+            }
+        });
+        newTitleManagerTreeView.setMinHeight(800);
+
     }
 
     public SuperCB() throws IOException {
@@ -165,9 +289,16 @@ public class SuperCB extends Stage {
         initWebPage();
 
 
-        Image image = new Image("file:Resource/JAVA.jpg", 250, 250.0, false, false);
+        Image image = new Image("file:src/Source/javatx.png", 650, 650, false, false);
         ImageView imageView = new ImageView(image);
 
+
+        /**
+         * 这个地方可以添加一个线程
+         */
+//        imageView.setStyle("-fx-border-width: 15px;-fx-border-color: lightblue;-fx-border-radius: 10px");
+        
+        
         Text text2 = new Text("fd");
 
         GridPane mainGrid = new GridPane();
@@ -177,33 +308,30 @@ public class SuperCB extends Stage {
         button.setText("更新我的学习进度");
         button.setStyle("-fx-font-size: 30px");
 
-        Button button1 = new Button();
-        //  button.setText("查看我的得分");
 
         Button button2 = new Button();
         button2.setText("查看我的笔记");
 
-        //VBox vBox = new VBox(button);
+        initNewTreeView();
+        mainGrid.add(imageView, 2, 1);
+        mainGrid.add(newTitleManagerTreeView, 1, 1);
 
-        mainGrid.add(text2, 1, 0);
-        //  mainGrid.add(vBox, 1, 2);
-        mainGrid.add(button, 0, 2);
-        mainGrid.add(button1, 1, 2);
-        mainGrid.add(button2, 2, 2);
+        
+        
+        
 
+        mainGrid.setHgap(50);
 
-        mainGrid.add(imageView, 1, 1);
-
-
-        mainGrid.setHgap(30);
-        mainGrid.setVgap(40);
+        mainGrid.setVgap(50);
 
 
-        //HBox mainhBox = new HBox(leftTitles, mainGrid);
-        initTreeView();
-        HBox hBox = new HBox(mainGrid, newTitleManagerTreeView);
+
+
+
+
+//        HBox hBox = new HBox(mainGrid);
 //        mainFlowPane = new FlowPane(leftFlowPane, hBox);
-        HBox main = new HBox(hBox);
+//        HBox main = new HBox(hBox);
 
 
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -211,97 +339,17 @@ public class SuperCB extends Stage {
         introJavaWebView.setMinWidth(dimension.width / 2);
 
 
-        Scene scene = new Scene(main, 3 * dimension.width / 4, dimension.height);
-
-        //主窗体的大小是不可以更改的
-        //  this.setResizable(false);
+        Scene scene = new Scene(mainGrid, 3 * dimension.width / 4, 3*dimension.height/4);
 
 
         this.setScene(scene);
     }
 
     /**
-     * 设置新的listView的样式专用类
-     */
-
-    private class NewTitleCell extends ListCell<NewTitleManager> {
-        private Text name;
-        private HBox mainHBox;
-        private CheckBox finished;
-
-        //        private Checkbox
-        public NewTitleCell() {
-            super();
-            name = new Text();
-            name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';-fx-text-fill: blue");
-
-
-            {//实现字体放大 变小的特效
-                name.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-
-                        //鼠标进入的特效
-                        name.setStyle("-fx-font-family: '黑体';-fx-font-size: 20;");
-                        name.setFill(Color.RED);
-                    }
-                });
-                name.setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';");
-                        name.setFill(Color.BLACK);
-                    }
-                });
-            }
-
-            finished = new CheckBox();
-            finished.setStyle("-fx-background-color:red");//这个红色体现不出来
-            finished.setText("已完成");
-
-
-            finished.setSelected(true);
-            finished.setStyle("-fx-font-size: 15;-fx-text-fill: blue");
-
-
-            finished.setDisable(true);
-
-
-            mainHBox = new HBox(name, finished);
-
-        }
-
-        @Override
-        protected void finalize() throws Throwable {
-            super.finalize();
-        }
-
-        @Override
-        protected void updateItem(NewTitleManager newTitleManager, boolean b) {
-            super.updateItem(newTitleManager, b);
-            if (newTitleManager != null && !b) {
-
-                if (newTitleManager.isLearned()) {
-                    finished.setSelected(true);
-                } else {
-                    finished.setSelected(false);
-                }
-                name.setText(newTitleManager.getName());
-                setGraphic(mainHBox);
-            } else {
-                setGraphic(null);
-            }
-        }
-    }
-
-
-    /**
      * 检查是否有需要复习的章节
      */
     private void reviewOrNot() {
         for (Map.Entry<String, NewSubTitleManager> item1 : newBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
-
-//            for ()
 
 
         }
