@@ -11,6 +11,23 @@ import java.util.Map;
 public class Test {
     private Map<String, User> stringUserMap;
 
+    public static class s {
+
+        private String a;
+
+        public s(String a) {
+            this.a = a;
+        }
+
+        public String getA() {
+            return a;
+        }
+
+        public void setA(String a) {
+            this.a = a;
+        }
+    }
+
     public Test() {
 
         stringUserMap = new HashMap<>();
@@ -21,19 +38,22 @@ public class Test {
         stringUserMap.put("张as辉", new User(21, "张辉的巴dfs巴"));
 
 
-
     }
 
     public static void main(String[] args) throws IOException {
 
         Test test = new Test();
         Gson gson = new Gson();
+        s f = new s("dfas");
+        System.out.println(f.a);
+
 
 //        gson.toJson()
 
         FileWriter fileWriter = new FileWriter("fuck.json");
         fileWriter.write(gson.toJson(test));
         fileWriter.close();
+
 
     }
 
