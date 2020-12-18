@@ -37,6 +37,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
 
+import static DataManager.DataProcess.JsonManager.*;
+
 public class XCYMain extends Stage {
 
     /**
@@ -85,6 +87,11 @@ public class XCYMain extends Stage {
      */
     private HBox buttonHBox;
 
+
+    /**
+     * 三个重要的布尔变量，分别表示相应的考试是否通过
+     */
+    public static boolean priPassed, midPassed, SenPassed;
 
     /**
      * 初始化四个按钮
@@ -304,11 +311,72 @@ public class XCYMain extends Stage {
 
     }
 
+    /**
+     * 检查这个考试是否通过,我们通过返回的数字的大小来对这件事进行判断
+     * 在返回之前，顺便修改本类中的静态布尔变量
+     * 初
+     * 中
+     * 高
+     *
+     * @param name
+     * @return 正确的答案的数量
+     * @throws IOException
+     */
+    public static int passOrNot(String name) throws IOException {
+        int right = 0;
+        String address = null;
+        switch (name) {
+            case "初":
+                address = PRITEST;
+                break;
+            case "中":
+                address = MIDTEST;
+                break;
+            case "高":
+                address = SENTEST;
+                break;
+        }
+        for (NewSelectProblem newSelectProblem : getNewProblems(address).getIntegerNewSelectProblemHashMap().values()) {
+            if (newSelectProblem.getAnswer() == newSelectProblem.getYourAnswer())
+                right++;
+        }
+        /**
+         * 大于十五个就认为这个人考过了
+         */
+        if (right >= 15) {
+            switch (name) {
+                case "初":
+                    priPassed = true;
+                    break;
+                case "中":
+                    priPassed = true;
+                    break;
+                case "高":
+                    priPassed = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return right;
+    }
 
     /**
      * 初始化所有的数据来源
      */
     static {
+        {
+            /**
+             * 这是一种比较低效的初始化方式，但是实现起来非常的简单
+             */
+            try {
+                passOrNot("初");
+                passOrNot("中");
+                passOrNot("高");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         try {
             newNewBigTitleManager = JsonManager.getNewNewBigTitleManager();
         } catch (IOException e) {
@@ -592,8 +660,26 @@ public class XCYMain extends Stage {
             ImageView imageView1 = new ImageView(image1);
             priTest = new Button();
             priTest.setText("初级考核测试");
-            priTest.setStyle("-fx-font-size: 23px");
+            priTest.setStyle("-fx-font-size: 23px;-fx-min-width: 150px");
             priTest.setGraphic(imageView1);
+            priTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    //双击会显示
+                    if (mouseEvent.getClickCount() == 2) {
+                        try {
+                            TestStage testStage = new TestStage("初", getNewProblems(MIDTEST));
+                            testStage.showAndWait();
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }
+            });
 
 
             Image image2 = new Image("file:src/Source/test.png", len, len, false, false);
@@ -602,15 +688,45 @@ public class XCYMain extends Stage {
             midTest.setText("中级考核测试");
             midTest.setStyle("-fx-font-size: 23px");
             midTest.setGraphic(imageView2);
+            midTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (mouseEvent.getClickCount() == 2) {
+                        try {
+                            TestStage testStage = new TestStage("中", getNewProblems(MIDTEST));
+                            testStage.showAndWait();
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                }
+            });
 
 
             Image image3 = new Image("file:src/Source/test.png", len, len, false, false);
             ImageView imageView3 = new ImageView(image3);
             senTest = new Button();
             senTest.setText("高级考核测试");
-
             senTest.setStyle("-fx-font-size: 23px");
             senTest.setGraphic(imageView3);
+            senTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (mouseEvent.getClickCount() == 2) {
+                        try {
+                            TestStage testStage = new TestStage("高", getNewProblems(MIDTEST));
+                            testStage.showAndWait();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+
 
         }
         leftTitles = new VBox(priAccordion, priTest, midAccordion, midTest, senAccordion, senTest);
