@@ -22,8 +22,6 @@ import java.net.URL;
 import java.util.Objects;
 
 public class TestNewStage extends Application {
-
-
     /**
      * 运行时调用start
      * @param primaryStage
@@ -31,11 +29,8 @@ public class TestNewStage extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-
-//        LoginStage loginStage = new LoginStage();
-//        loginStage.showAndWait();
-
+        LoginStage loginStage = new LoginStage();
+        loginStage.showAndWait();
 
 
         primaryStage = new XCYMain();
