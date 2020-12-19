@@ -22,12 +22,14 @@ import java.util.Map;
  * 并且用圆形的按钮切换每一个问题
  */
 public class ProblemVBox extends VBox {
-
-
+    /**
+     *放置四个选项的管理器 只能选择一个选项
+     */
     private ToggleGroup toggleGroup;
 
     //用来存放选项按钮和选项对应的内容的 text的HBox
     //四个单选框
+
 
 
     private HBox aHBox, bHBox, cHBox, dHBox;
@@ -87,6 +89,7 @@ public class ProblemVBox extends VBox {
 
 /**
  *初始化属于这个页面的数据来源
+ * 把titleManager变成这个类的成员，可以随便访问
  */
         dataSource = newTitleManager;
 
@@ -101,7 +104,7 @@ public class ProblemVBox extends VBox {
         {
             problemContent = new Label();
             problemContent.setText(dataSource.getIntegerSelectProblemHashMap().get(1).getProblem());
-            problemContent.setWrapText(true);
+            problemContent.setWrapText(true);//换行
             problemContent.setStyle("-fx-font-size: 25px");
         }
 
@@ -212,21 +215,31 @@ public class ProblemVBox extends VBox {
         c.setToggleGroup(toggleGroup);
         d.setToggleGroup(toggleGroup);
         changeProblem = new FlowPane();
+
+        /**
+         * 加上按钮
+         */
         for (Map.Entry<Integer, NewSelectProblem> item : dataSource.getIntegerSelectProblemHashMap().entrySet()) {
             NewSelectProblem newSelectProblem = item.getValue();
             Button button = new Button();
-
-
             button.setText(String.valueOf(newSelectProblem.getId()));
 
             button.setMinHeight(30);
             button.setMinWidth(30);
+
+
+
             button.setUserData(newSelectProblem.getId());
+
+
+
 
             button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-border-width: 2px;-fx-border-color: lightpink;-fx-font-size: 12px;-fx-font-weight: bold;fx-text-fill: hotpink");
 
             button.setOnMouseClicked(mouseEvent -> {
-
+/**
+ * 换题 点击后得到按钮的id然后进行切换
+ */
                 int id = (int) button.getUserData();
                 proID.setText(String.valueOf(id));
 
@@ -237,6 +250,11 @@ public class ProblemVBox extends VBox {
                 textB.setText(choosedOne.getB());
                 textC.setText(choosedOne.getC());
                 textD.setText(choosedOne.getD());
+
+
+                /**
+                 * 对新打开的题目进行初始化，否则选择选项后之后的每一道题都会被选择该选项
+                 */
                 a.setSelected(false);
                 b.setSelected(false);
                 c.setSelected(false);
@@ -298,7 +316,7 @@ public class ProblemVBox extends VBox {
                         count++;
                     }
                 }
-                if (count > total) {
+                if (count > total/2) {
 
 
                     Alert fail = new Alert(Alert.AlertType.WARNING);

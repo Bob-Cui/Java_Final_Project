@@ -5,6 +5,7 @@ import org.w3c.dom.Text;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,14 +27,12 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
 
-        Test test = new Test();
-        Gson gson = new Gson();
+        Date date = new Date();
+        Date date1 = new Date("Dec 5, 2020, 6:53:36 PM");
+        System.out.println(date.getTime());
 
-//        gson.toJson()
+//int a=
 
-        FileWriter fileWriter = new FileWriter("fuck.json");
-        fileWriter.write(gson.toJson(test));
-        fileWriter.close();
 
     }
 

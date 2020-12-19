@@ -6,6 +6,10 @@ public class NewSelectProblem {
     private String A, B, C, D;
     private char answer;
     private char yourAnswer;
+
+
+
+
     public NewSelectProblem(int id, String problem, String a, String b, String c, String d, char answer) {
         this.id = id;
         this.problem = problem;

@@ -102,6 +102,9 @@ public class LearnStage extends Stage {
         webView.getEngine().load(url.toString());
 
 
+
+
+
         Image image = new Image("file:src/Source/sencq.png",50,50,true,true);
         Label text = new Label("请回答以下的问题",new ImageView(image));
         text.setStyle("-fx-font-size: 30px");

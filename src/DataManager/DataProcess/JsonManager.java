@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 public class JsonManager {
 
@@ -16,8 +15,20 @@ public class JsonManager {
      * 总数据的地址
      */
     public static final String XCYCONFIGFILE = "final_test.json";
+
+    /**
+     * 初级考试
+     */
     public static final String PRITEST = "src/Source/pritest.json";
+
+    /**
+     * 中级考试
+     */
     public static final String MIDTEST = "src/Source/midtest.json";
+
+    /**
+     * 高级考试
+     */
     public static final String SENTEST = "src/Source/sentest.json";
 
 
@@ -31,7 +42,6 @@ public class JsonManager {
 
     /**
      * 返回一个用于操纵所有数据的NewBigTitleManager类
-     *
      * @return
      * @throws IOException
      */
@@ -97,7 +107,7 @@ public class JsonManager {
     /**
      * 把所有题的答案全部都换成A
      *
-     * @throws IOException
+     * @throws IOException 文件读写异常
      */
     public static void preDealAnswer() throws IOException {
         BigTitleManager bigTitleManager = getBigTitleManager();
@@ -218,12 +228,8 @@ public class JsonManager {
  * 依然是熟悉的Gson转换器
  */
         Gson gson = new Gson();
-
         String str = gson.toJson(data);
-
         fileWriter.write(str);
-
-
         //要记住关掉这个文件写入器
         fileWriter.close();
 
@@ -261,7 +267,7 @@ public class JsonManager {
 
         NewBigTitleManager newBigTitleManager = getNewBigTitleManager();
 
-        NewNewBigTitleManager newNewBigTitleManager = new NewNewBigTitleManager();
+        AllData newNewBigTitleManager = new AllData();
 
         newNewBigTitleManager.setStringNewSubTitleManagerHashMap(newBigTitleManager.getStringNewSubTitleManagerHashMap());
         newNewBigTitleManager.setPriNewProblems(getNewProblems(PRITEST));
@@ -294,12 +300,12 @@ public class JsonManager {
      * 目前用这个函数
      * @return
      */
-    public static NewNewBigTitleManager getNewNewBigTitleManager() throws IOException {
+    public static AllData getNewNewBigTitleManager() throws IOException {
 
         XCYFileManager cbFileManager = new XCYFileManager();
         Gson gson = new Gson();
         String t = XCYFileManager.readJson("src/Source/data_with_test.json");
-        return gson.fromJson(t, NewNewBigTitleManager.class);
+        return gson.fromJson(t, AllData.class);
     }
 
 

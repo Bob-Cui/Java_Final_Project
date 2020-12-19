@@ -8,7 +8,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -16,12 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
@@ -68,7 +65,7 @@ public class XCYMain extends Stage {
      * 所有数据的来源
      * 我们将这个变量变成静态变量其目的就是为了能在不同的类中自由的访问这个变量，并进行数据的修改
      */
-    public static NewNewBigTitleManager newNewBigTitleManager;
+    public static AllData newNewBigTitleManager;
 
     /**
      * 用来展示有关Java的介绍
@@ -417,10 +414,12 @@ public class XCYMain extends Stage {
         midTitle = FXCollections.observableArrayList();
         senTitle = FXCollections.observableArrayList();
 
-
+        /**
+         *拿到所有数据的json文件里的java某教程的花括号，get键值对，得到集合
+         */
         for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             priTitle.add(integerNewTitleManagerEntry.getValue());
-            System.out.println(integerNewTitleManagerEntry.getValue().getName());
+            //   System.out.println(integerNewTitleManagerEntry.getValue().getName());
         }
 
         for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
@@ -463,12 +462,17 @@ public class XCYMain extends Stage {
 
                 if (newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").isAbleToLearn()) {
                     try {
-
-
+/**
+ * 确定是哪一类被点到了
+ */
                         NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
 
 
+
                         LearnStage learnStage = new LearnStage(newTitleManager);
+
+
+
                         learnStage.showAndWait();
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
@@ -549,7 +553,7 @@ public class XCYMain extends Stage {
      * 修改窗体的图标
      */
     private void setStageTitle() {
-//        this.setTitle("谢哈哈的Java学习网站");
+        this.setTitle("谢哈哈的Java学习网站");
         this.getIcons().add(new Image("file:src/Source/cqyj.png"));
     }
 
@@ -733,7 +737,7 @@ public class XCYMain extends Stage {
         leftTitles.setStyle("-fx-spacing: 5px;");
 
 
-        Image imag1e = new Image("file:Resource/JAVA.jpg", 500, 500.0, false, false);
+        Image imag1e = new Image("file:Resource/JAVA.jpg", 200, 200.0, false, false);
         ImageView imageView = new ImageView(imag1e);
 //        imageView.setStyle("-fx-border-radius: 40px;-fx-background-radius:40px");
 
@@ -771,20 +775,21 @@ public class XCYMain extends Stage {
 
     /**
      * 设置新的listView的样式专用类
+     * newTitleCell设计章节的框框的样式的
      */
 
     private class NewTitleCell extends ListCell<NewTitleManager> {
         private Text name;
         private HBox mainHBox;
         private CheckBox finished;
-        private boolean hasDog;
+        //  private boolean hasDog;
         private Label aDog;
 
         //        private Checkbox
         public NewTitleCell() {
             super();
 
-            hasDog = false;
+            //     hasDog = false;
             name = new Text();
             name.setStyle("-fx-font-size: 18;-fx-font-family: '黑体';-fx-text-fill: blue");
 
@@ -842,12 +847,12 @@ public class XCYMain extends Stage {
 
                     Image image = new Image("file:src/Source/icon.jpg", 25, 25, true, true);
 
-                    if (!hasDog) {
-                        Label dog = new Label("", new ImageView(image));
-                        mainHBox.getChildren().add(dog);
-                        hasDog = true;
-
-                    }
+//                    if (!hasDog) {
+//                        Label dog = new Label("", new ImageView(image));
+//                        mainHBox.getChildren().add(dog);
+//                        hasDog = true;
+//
+//                    }
 
                 } else {
                     finished.setSelected(false);

@@ -137,12 +137,12 @@ public class EbbinghausStage extends Stage {
 
             }
         }
-        ebbinghausItemLinkedList.sort(new Comparator<EbbinghausItem>() {
-            @Override
-            public int compare(EbbinghausItem o1, EbbinghausItem o2) {
-                return o1.getTimeSpan() - o2.getTimeSpan();
-            }
-        });
+//        ebbinghausItemLinkedList.sort(new Comparator<EbbinghausItem>() {
+//            @Override
+//            public int compare(EbbinghausItem o1, EbbinghausItem o2) {
+//                return o1.getTimeSpan() - o2.getTimeSpan();
+//            }
+//        });
 
 
     }
@@ -300,7 +300,9 @@ public class EbbinghausStage extends Stage {
         @Override
         protected void updateItem(EbbinghausItem ebbinghausItem, boolean b) {
             super.updateItem(ebbinghausItem, b);
-
+/**
+ * ebbinghausItem放了想要显示的信息，updateItem将其显示出来
+ */
             if (ebbinghausItem != null && !b) {
 /**
  * 这个项目的名字
