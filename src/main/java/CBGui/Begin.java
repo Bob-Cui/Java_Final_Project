@@ -1,8 +1,6 @@
 package main.java.CBGui;
 
 import javafx.application.Application;
-import main.java.CBGui.Learn.LearnHTMLEditor;
-import main.java.CBGui.Learn.LearnPie;
 
 
 /**
@@ -10,7 +8,6 @@ import main.java.CBGui.Learn.LearnPie;
  */
 public class Begin {
     public static void main(String[] args) {
-        Application.launch(LearnHTMLEditor.class, args);
+        Application.launch(TestNewStage.class, args);
     }
-
 }

@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import main.java.CBGui.SpecificStage.SuperCB;
+import main.java.CBGui.CbStage.SuperCB;
 
 import java.io.*;
 import java.io.IOException;

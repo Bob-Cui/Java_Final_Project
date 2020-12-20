@@ -14,6 +14,11 @@ public class NewProblems {
         integerNewSelectProblemHashMap = new HashMap<>();
     }
 
+
+
+
+
+
     public NewProblems(HashMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap) {
         this.integerNewSelectProblemHashMap = integerNewSelectProblemHashMap;
     }
