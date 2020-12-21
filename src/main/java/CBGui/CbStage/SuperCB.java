@@ -291,7 +291,7 @@ public class SuperCB extends Stage {
         initWebPage();
 
 
-        Image image = new Image("file:src/Source/javatx.png", 650, 650, false, false);
+        Image image = new Image("file:src/Source/javatx.png", 430, 430, false, false);
         ImageView imageView = new ImageView(image);
 
 
@@ -315,6 +315,22 @@ public class SuperCB extends Stage {
         Button myLearnHistory = new Button();
         Button changeRole = new Button();//更换角色
         Button seeMyNote = new Button();
+
+        checkProgress.setText("检查进度");
+        upDateJava.setText("Java最新");
+        myLearnHistory.setText("学习记录");
+        changeRole.setText("更换角色");
+        seeMyNote.setText("查看笔记");
+
+
+        checkProgress.setStyle("-fx-font-weight: bold;-fx-font-size: 20px;-fx-text-fill: blue;");
+        upDateJava.setStyle("-fx-font-weight: bold;-fx-font-size: 20px");
+        myLearnHistory.setStyle("-fx-font-weight: bold;-fx-font-size: 20px");
+        changeRole.setStyle("-fx-font-weight: bold;-fx-font-size: 20px");
+        seeMyNote.setStyle("-fx-font-weight: bold;-fx-font-size: 20px");
+
+
+
 
         checkProgress.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -424,16 +440,16 @@ public class SuperCB extends Stage {
         });
 
 
-
         functionButtons.getChildren().addAll(checkProgress, upDateJava, seeMyNote, changeRole, myLearnHistory);
 
         mainGrid.add(imageView, 2, 1);
         mainGrid.add(newTitleManagerTreeView, 1, 1);
+        mainGrid.add(functionButtons, 3, 1);
 
         mainGrid.setStyle("-fx-background-image: url(" + "file:src/Source/javaback.jpg" + ")");
-        mainGrid.setHgap(50);
+        mainGrid.setHgap(30);
 
-        mainGrid.setVgap(50);
+        mainGrid.setVgap(30);
 
 
         Toolkit kit = Toolkit.getDefaultToolkit();
