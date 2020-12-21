@@ -28,13 +28,6 @@ public class AllData {
     private NewProblems priNewProblems, midNewProblems, senNewProblems;
 
 
-
-
-
-
-
-
-
     public NewProblems getPriNewProblems() {
         return priNewProblems;
     }

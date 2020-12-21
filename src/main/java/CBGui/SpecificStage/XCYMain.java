@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -21,7 +22,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
@@ -29,9 +29,6 @@ import javafx.util.Callback;
 import java.awt.*;
 import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.Map;
 
 import static DataManager.DataProcess.JsonManager.*;
@@ -65,12 +62,9 @@ public class XCYMain extends Stage {
      * 所有数据的来源
      * 我们将这个变量变成静态变量其目的就是为了能在不同的类中自由的访问这个变量，并进行数据的修改
      */
-    public static AllData newNewBigTitleManager;
+    public static AllData allData;
 
-    /**
-     * 用来展示有关Java的介绍
-     */
-    private WebView introJavaWebView;
+
 
 
     /**
@@ -274,36 +268,7 @@ public class XCYMain extends Stage {
             buttonHBox.getChildren().add(learningData);
 
         }
-//        {
-//            /**
-//             * 打死我,这就是最后一个功能不能继续增加了
-//             */
-//            Image myNoteBookImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
-//            Button myNoteBook = new Button();
-//            myNoteBook.setGraphic(new ImageView(myNoteBookImage));
-//
-//            myNoteBook.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent mouseEvent) {
-//                    myNoteBook.setScaleX(changeScale);
-//                    myNoteBook.setScaleY(changeScale);
-//                }
-//            });
-//            myNoteBook.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent mouseEvent) {
-//                    myNoteBook.setScaleX(1);
-//                    myNoteBook.setScaleY(1);
-//                }
-//            });
-//            Tooltip tooltip = new Tooltip("点击按钮系统会帮助你查看统计并查看自己在该平台学习过程中所记录的笔记");
-//            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
-//            tooltip.setGraphic(new ImageView(image));
-//            tooltip.setFont(new Font(20));
-//            myNoteBook.setTooltip(tooltip);
-//            myNoteBook.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
-//            buttonHBox.getChildren().add(myNoteBook);
-//        }
+
         buttonHBox.setSpacing(60);
 
     }
@@ -375,33 +340,21 @@ public class XCYMain extends Stage {
             }
         }
         try {
-            newNewBigTitleManager = JsonManager.getNewNewBigTitleManager();
+            allData = JsonManager.getNewNewBigTitleManager();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
     /**
-     * 目前还没有什么用
-     *
-     * @throws MalformedURLException
+     * 设置界面数据的来源
+     * @param input  AllData数据源
      */
-    private void initWebPage() throws MalformedURLException {
-        introJavaWebView = new WebView();
-        File file = new File(INTROJAVAPATH);
-        URL url = file.toURI().toURL();
-        introJavaWebView.getEngine().load(url.toString());
-
-
+    public static void setAllData(AllData input)
+    {
+        allData = input;
     }
-
-
-    /**
-     *
-     */
-
 
     /**
      * 初始化用于展示三个级别的listView
@@ -417,15 +370,15 @@ public class XCYMain extends Stage {
         /**
          *拿到所有数据的json文件里的java某教程的花括号，get键值对，得到集合
          */
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             priTitle.add(integerNewTitleManagerEntry.getValue());
             //   System.out.println(integerNewTitleManagerEntry.getValue().getName());
         }
 
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             midTitle.add(integerNewTitleManagerEntry.getValue());
         }
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java高级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             senTitle.add(integerNewTitleManagerEntry.getValue());
         }
 
@@ -460,7 +413,7 @@ public class XCYMain extends Stage {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
 
-                if (newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java初级教程").isAbleToLearn()) {
+                if (allData.getStringNewSubTitleManagerHashMap().get("Java初级教程").isAbleToLearn()) {
                     try {
 /**
  * 确定是哪一类被点到了
@@ -468,9 +421,7 @@ public class XCYMain extends Stage {
                         NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
 
 
-
                         LearnStage learnStage = new LearnStage(newTitleManager);
-
 
 
                         learnStage.showAndWait();
@@ -494,7 +445,7 @@ public class XCYMain extends Stage {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
 
-                if (newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java中级教程").isAbleToLearn()) {
+                if (allData.getStringNewSubTitleManagerHashMap().get("Java中级教程").isAbleToLearn()) {
                     try {
 
 
@@ -524,7 +475,7 @@ public class XCYMain extends Stage {
         senListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                if (newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get("Java高级教程").isAbleToLearn()) {
+                if (allData.getStringNewSubTitleManagerHashMap().get("Java高级教程").isAbleToLearn()) {
                     try {
 
 
@@ -547,6 +498,11 @@ public class XCYMain extends Stage {
                 }
             }
         });
+
+
+        priListView.setStyle("-fx-border-radius: 20px;-fx-background-radius: 20px;");
+
+
     }
 
     /**
@@ -564,7 +520,7 @@ public class XCYMain extends Stage {
         closeAndWrite();
         setStageTitle();
         initTitleListView();
-        initWebPage();
+
         //初级教程题目的标签
         Label labelJavaPri = new Label(" Java  ");
         Label labelPri = new Label("初级教程");
@@ -612,6 +568,8 @@ public class XCYMain extends Stage {
         //手风琴布局尝试
         TitledPane priTitledPane = new TitledPane("Java  初级教程", priListView);
         priTitledPane.setStyle("-fx-font-size: 18px;-fx-font-weight: bolder;-fx-text-fill: blueviolet");
+//        setStyle("-fx-border-radius: 20px;-fx-background-radius: 20px;");
+
 
         TitledPane midTitlePane = new TitledPane("Java   中级教程", midListView);
         midTitlePane.setStyle("-fx-font-size: 18px;-fx-font-weight: bolder;-fx-text-fill: blueviolet");
@@ -625,17 +583,13 @@ public class XCYMain extends Stage {
             Label dogPri = new Label("", new ImageView(imagePri));
             priTitledPane.setGraphic(dogPri);
 
-
             Image imageMid = new Image("file:src/Source/midcq.png", len, len, true, true);
             Label dogMid = new Label("", new ImageView(imageMid));
             midTitlePane.setGraphic(dogMid);
 
-
             Image imageSen = new Image("file:src/Source/sencq.png", len, len, true, true);
             Label dogSen = new Label("", new ImageView(imageSen));
             senTitlePane.setGraphic(dogSen);
-
-
         }
         Accordion priAccordion = new Accordion();
         Accordion midAccordion = new Accordion();
@@ -648,7 +602,13 @@ public class XCYMain extends Stage {
         priAccordion.getPanes().addAll(priTitledPane);
         priAccordion.setExpandedPane(priTitledPane);
         midAccordion.getPanes().addAll(midTitlePane);
-//        midAccordion.setExpandedPane(midTitlePane);
+
+//        {
+//            priAccordion.setStyle("-fx-background-radius: 20px;-fx-border-radius: 20px;-fx-border-width: 5px;-fx-border-color: hotpink");
+//            midAccordion.setStyle("-fx-background-radius: 20px;-fx-border-radius: 20px;-fx-border-width: 5px;-fx-border-color: hotpink");
+//            senAccordion.setStyle("-fx-background-radius: 20px;-fx-border-radius: 20px;-fx-border-width: 5px;-fx-border-color: hotpink");
+//        }
+
 
         senAccordion.getPanes().addAll(senTitlePane);
 //        senAccordion.setExpandedPane(senTitlePane);
@@ -664,7 +624,11 @@ public class XCYMain extends Stage {
             ImageView imageView1 = new ImageView(image1);
             priTest = new Button();
             priTest.setText("初级考核测试");
-            priTest.setStyle("-fx-font-size: 23px;-fx-min-width: 150px");
+
+            priTest.setMinWidth(2 * priListView.getMinWidth());
+
+
+            priTest.setStyle("-fx-font-size: 23px;-fx-background-radius:25px ");
             priTest.setGraphic(imageView1);
             priTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -690,7 +654,7 @@ public class XCYMain extends Stage {
             ImageView imageView2 = new ImageView(image2);
             midTest = new Button();
             midTest.setText("中级考核测试");
-            midTest.setStyle("-fx-font-size: 23px");
+            midTest.setStyle("-fx-font-size: 23px;-fx-background-radius:25px");
             midTest.setGraphic(imageView2);
             midTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -715,7 +679,7 @@ public class XCYMain extends Stage {
             ImageView imageView3 = new ImageView(image3);
             senTest = new Button();
             senTest.setText("高级考核测试");
-            senTest.setStyle("-fx-font-size: 23px");
+            senTest.setStyle("-fx-font-size: 23px;-fx-background-radius:25px");
             senTest.setGraphic(imageView3);
             senTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -733,11 +697,13 @@ public class XCYMain extends Stage {
 
 
         }
+        //   VBox.setMargin(senTest, new Insets(10, 20, 10, 30));
+
         leftTitles = new VBox(priAccordion, priTest, midAccordion, midTest, senAccordion, senTest);
-        leftTitles.setStyle("-fx-spacing: 5px;");
+        leftTitles.setStyle("-fx-spacing: 20px;");
+        leftTitles.setAlignment(Pos.BOTTOM_CENTER);
 
-
-        Image imag1e = new Image("file:Resource/JAVA.jpg", 200, 200.0, false, false);
+        Image imag1e = new Image("file:Resource/JAVA.jpg", 500, 500.0, false, false);
         ImageView imageView = new ImageView(imag1e);
 //        imageView.setStyle("-fx-border-radius: 40px;-fx-background-radius:40px");
 
@@ -747,16 +713,14 @@ public class XCYMain extends Stage {
 
 
         mainGrid.add(buttonHBox, 1, 0);
-        mainGrid.add(imageView, 1, 1);
 
         mainGrid.setHgap(200);
         mainGrid.setVgap(40);
 
 
-        HBox hBox = new HBox(mainGrid);
         HBox main = new HBox(leftTitles, mainGrid);
 
-        mainGrid.setStyle("-fx-background-image: url(" + "file:src/Source/backcq.jpg" + ");");
+        mainGrid.setStyle("-fx-background-image: url(" + "file:src/Source/newnewcq.png" + ");");
         mainGrid.setMinWidth(1500);
 
         leftTitles.setStyle("-fx-background-image: url(" + "file:src/Source/leftback.png " + ");");
@@ -765,7 +729,7 @@ public class XCYMain extends Stage {
         Dimension dimension = kit.getScreenSize();
 
 
-        main.setStyle("-fx-background-color: #6495ED");
+        //   main.setStyle("-fx-background-color: #6495ED");
         Scene scene = new Scene(main, 3 * dimension.width / 4, dimension.height / 2);
 
 
@@ -882,7 +846,7 @@ public class XCYMain extends Stage {
 //        if (checkFinishedTitle(PRIMARY) && checkFinishedTitle(MIDDLE))
 
         if (priFinished && midFinished) {
-            newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get(SENIOR).setAbleToLearn(true);
+            allData.getStringNewSubTitleManagerHashMap().get(SENIOR).setAbleToLearn(true);
             Alert success = new Alert(Alert.AlertType.INFORMATION);
             Image image = new Image("file:src/Source/icon.jpg", len, len, true, true);
 
@@ -894,7 +858,7 @@ public class XCYMain extends Stage {
 
 
         } else if (priFinished) {
-            newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get(MIDDLE).setAbleToLearn(true);
+            allData.getStringNewSubTitleManagerHashMap().get(MIDDLE).setAbleToLearn(true);
             Alert success = new Alert(Alert.AlertType.INFORMATION);
 
             Image image = new Image("file:src/Source/icon.jpg", len, len, true, true);
@@ -927,49 +891,6 @@ public class XCYMain extends Stage {
         }
     }
 
-    /**
-     * 检查是否有需要复习的章节
-     */
-    private int reviewTheLearner() {
-        boolean flag = false;
-
-        LinkedList<NewTitleManager> remainList = new LinkedList<>();
-
-
-        for (Map.Entry<String, NewSubTitleManager> stringNewSubTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
-            if (!stringNewSubTitleManagerEntry.getValue().isAbleToLearn()) {
-                continue;
-            }
-            for (Map.Entry<String, NewTitleManager> stringNewTitleManagerEntry : stringNewSubTitleManagerEntry.getValue().getStringNewTitleManagerTreeMap().entrySet()) {
-
-                /**
-                 * 如果这个人没有学的话是不需要提醒的
-                 */
-
-                if (!stringNewTitleManagerEntry.getValue().isLearned()) {
-                    continue;
-                }
-                Date now = new Date();
-                long span = now.getTime() - stringNewTitleManagerEntry.getValue().getDate().getTime();
-//                System.out.println(c/DAY);
-//if()
-
-
-            }
-        }
-        /**
-         * 经过遍历之后仍然是负值
-         */
-        if (!flag) {
-            Alert nothing = new Alert(Alert.AlertType.INFORMATION);
-            nothing.setTitle("无需复习");
-            nothing.setHeaderText("");
-            nothing.setContentText("请开始进一步的学习");
-            nothing.showAndWait();
-            return 0;
-        }
-        return 0;
-    }
 
     /**
      * 关闭的时候将内容写入配置文件中
@@ -993,7 +914,7 @@ public class XCYMain extends Stage {
      * @return
      */
     public static boolean checkFinishedTitle(String name) {
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().get(name).getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get(name).getIntegerNewTitleManagerTreeMap().entrySet()) {
             if (!integerNewTitleManagerEntry.getValue().isLearned())
                 return false;
         }

@@ -7,7 +7,7 @@ public class NewSubTitleManager {
 
     private boolean ableToLearn;
 
-    private TreeMap<String, NewTitleManager> stringNewTitleManagerTreeMap;
+  //  private TreeMap<String, NewTitleManager> stringNewTitleManagerTreeMap;
 
 
 
@@ -19,9 +19,6 @@ public class NewSubTitleManager {
 
     }
 
-    public TreeMap<String, NewTitleManager> getStringNewTitleManagerTreeMap() {
-        return stringNewTitleManagerTreeMap;
-    }
 
     public TreeMap<Integer, NewTitleManager> getIntegerNewTitleManagerTreeMap() {
         return integerNewTitleManagerTreeMap;
@@ -29,7 +26,7 @@ public class NewSubTitleManager {
 
     public NewSubTitleManager(boolean ableToLearn) {
         this.ableToLearn = ableToLearn;
-        this.stringNewTitleManagerTreeMap = new TreeMap<>();
+    //    this.stringNewTitleManagerTreeMap = new TreeMap<>();
         this.integerNewTitleManagerTreeMap = new TreeMap<>();    }
 
     public boolean isAbleToLearn() {

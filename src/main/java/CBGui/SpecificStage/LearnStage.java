@@ -1,10 +1,6 @@
 package main.java.CBGui.SpecificStage;
 
 import DataManager.Data.NewTitleManager;
-import DataManager.Data.OldData.Problem;
-import DataManager.Data.OldData.SelectProblem;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -14,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -47,35 +42,11 @@ public class LearnStage extends Stage {
     }
 
 
-    private ObservableList<Problem> problemObservableList;
-    private ListView<Problem> problemListView;
-    private ObservableList<SelectProblem> selectProblems;
-    private ListView<SelectProblem> selectProblemListView;
 
 
 
-    /**
-     * 根据传来的题目来构建相应的 listview
-     *
-     * @param selectProblemLinkedList
-     */
-    private void initSelectList(LinkedList<SelectProblem> selectProblemLinkedList) {
-        selectProblems = FXCollections.observableArrayList();
-        selectProblems.addAll(selectProblemLinkedList);
 
 
-        selectProblemListView = new ListView<>(selectProblems);
-
-
-        selectProblemListView.setCellFactory(new Callback<ListView<SelectProblem>, ListCell<SelectProblem>>() {
-            @Override
-            public ListCell<SelectProblem> call(ListView<SelectProblem> selectProblemListView) {
-                return null;
-            }
-
-        });
-
-    }
 
     /**
      * 修改窗体的名字，设置窗体的图标
@@ -141,124 +112,6 @@ public class LearnStage extends Stage {
 
     
 
-    private class SelectProblemCell extends ListCell<SelectProblem> {
-        private HBox content;
-        private VBox mainConten;
-        private Text name;
-        ToggleGroup select;
 
-        public SelectProblemCell() {
-            super();
-            select = new ToggleGroup();
-            RadioButton A = new RadioButton("A");
-            RadioButton B = new RadioButton("B");
-            RadioButton C = new RadioButton("C");
-            RadioButton D = new RadioButton("D");
-            A.setToggleGroup(select);
-            B.setToggleGroup(select);
-            C.setToggleGroup(select);
-            D.setToggleGroup(select);
-
-            A.setUserData("A");//这可真是神奇的获取数据的方式
-            B.setUserData("A");
-            C.setUserData("A");
-            D.setUserData("A");
-
-
-            select.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-                @Override
-                public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                    if (select.getSelectedToggle() != null) {
-
-
-                        System.out.println(select.getSelectedToggle().getUserData());
-                    }
-                }
-            });
-
-            name = new Text("这是一道题");
-            content = new HBox(A, B, C, D);
-            content.setSpacing(20);
-            mainConten = new VBox(name, content);
-            mainConten.setPrefHeight(100);
-
-        }
-
-        @Override
-        protected void updateItem(SelectProblem selectProblem, boolean b) {
-            super.updateItem(selectProblem, b);
-            if (selectProblem != null && !b) {
-
-                name.setText(selectProblem.getContent());
-                content.applyCss();
-                setGraphic(mainConten);
-
-            } else {
-                setGraphic(null);
-            }
-
-        }
-    }
-
-    private class ProCell extends ListCell<Problem> {
-        private HBox content;
-        private VBox mainConten;
-        private Text name;
-        ToggleGroup select;
-
-
-        public ProCell() {
-            super();
-            select = new ToggleGroup();
-            RadioButton A = new RadioButton("A");
-            RadioButton B = new RadioButton("B");
-            RadioButton C = new RadioButton("C");
-            RadioButton D = new RadioButton("D");
-            A.setToggleGroup(select);
-            B.setToggleGroup(select);
-            C.setToggleGroup(select);
-            D.setToggleGroup(select);
-
-            A.setUserData("A");//这可真是神奇的获取数据的方式
-            B.setUserData("A");
-            C.setUserData("A");
-            D.setUserData("A");
-
-
-            select.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-                @Override
-                public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                    if (select.getSelectedToggle() != null) {
-
-
-                        System.out.println(select.getSelectedToggle().getUserData());
-                    }
-                }
-            });
-
-            name = new Text("这是一道题");
-            content = new HBox(A, B, C, D);
-            content.setSpacing(20);
-            mainConten = new VBox(name, content);
-            mainConten.setPrefHeight(100);
-
-        }
-
-        @Override
-        protected void updateItem(Problem problem, boolean b) {
-            super.updateItem(problem, b);
-            if (problem != null && !b) {
-
-                name.setText(problem.getContent());
-                content.applyCss();
-                setGraphic(mainConten);
-
-            } else {
-                setGraphic(null);
-            }
-
-
-        }
-    }
 
 }

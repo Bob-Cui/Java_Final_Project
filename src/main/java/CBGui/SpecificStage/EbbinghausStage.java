@@ -1,7 +1,5 @@
 package main.java.CBGui.SpecificStage;
 
-import DataManager.Data.NewProblems;
-import DataManager.Data.NewSelectProblem;
 import DataManager.Data.NewSubTitleManager;
 import DataManager.Data.NewTitleManager;
 import javafx.collections.FXCollections;
@@ -21,12 +19,11 @@ import javafx.util.Callback;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
 
-import static main.java.CBGui.SpecificStage.XCYMain.newNewBigTitleManager;
+import static main.java.CBGui.SpecificStage.XCYMain.allData;
 
 
 /**
@@ -119,7 +116,7 @@ public class EbbinghausStage extends Stage {
      */
     private void initTimeList() {
 
-        for (Map.Entry<String, NewSubTitleManager> stringNewProblemsEntry : newNewBigTitleManager.getStringNewSubTitleManagerHashMap().entrySet()) {
+        for (Map.Entry<String, NewSubTitleManager> stringNewProblemsEntry : allData.getStringNewSubTitleManagerHashMap().entrySet()) {
 //            if(!stringNewProblemsEntry.getValue().isAbleToLearn())
 //                continue;
             for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : stringNewProblemsEntry.getValue().getIntegerNewTitleManagerTreeMap().entrySet()) {
