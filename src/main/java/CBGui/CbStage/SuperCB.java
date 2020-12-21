@@ -310,122 +310,122 @@ public class SuperCB extends Stage {
 
 
         VBox functionButtons = new VBox();
-        {
-            Button checkProgress = new Button();
-            Button upDateJava = new Button();
-            Button myLearnHistory = new Button();
-            Button changeRole = new Button();//更换角色
-            Button seeMyNote = new Button();
+        Button checkProgress = new Button();
+        Button upDateJava = new Button();
+        Button myLearnHistory = new Button();
+        Button changeRole = new Button();//更换角色
+        Button seeMyNote = new Button();
 
-            checkProgress.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
+        checkProgress.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
 
-                }
-            });
-            checkProgress.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
+            }
+        });
+        checkProgress.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
 
-                }
-            });
-            checkProgress.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getClickCount() == 2) {
-
-                    }
-                }
-            });
-
-
-            upDateJava.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
+            }
+        });
+        checkProgress.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
 
                 }
-            });
-            upDateJava.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+
+        upDateJava.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+        upDateJava.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+        upDateJava.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
 
                 }
-            });
-            upDateJava.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getClickCount() == 2) {
+            }
+        });
 
-                    }
-                }
-            });
+        myLearnHistory.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
 
-            myLearnHistory.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
+            }
+        });
+        myLearnHistory.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
 
-                }
-            });
-            myLearnHistory.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-
-                }
-            });
-            myLearnHistory.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getClickCount() == 2) {
-
-                    }
-                }
-            });
-
-            changeRole.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
+            }
+        });
+        myLearnHistory.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
 
                 }
-            });
-            changeRole.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+        changeRole.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+        changeRole.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+        changeRole.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
 
                 }
-            });
-            changeRole.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getClickCount() == 2) {
+            }
+        });
 
-                    }
+
+        seeMyNote.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+        seeMyNote.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+        seeMyNote.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
+
                 }
-            });
+            }
+        });
 
 
-            seeMyNote.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
 
-                }
-            });
-            seeMyNote.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-
-                }
-            });
-            seeMyNote.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getClickCount() == 2) {
-
-                    }
-                }
-            });
-
-        }
-
+        functionButtons.getChildren().addAll(checkProgress, upDateJava, seeMyNote, changeRole, myLearnHistory);
 
         mainGrid.add(imageView, 2, 1);
         mainGrid.add(newTitleManagerTreeView, 1, 1);
