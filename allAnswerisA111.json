@@ -5757,7 +5757,7 @@
         "3": {
           "name": "Java运算符",
           "resource": "src\\pages\\Java运算符",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -8510,6 +8510,60 @@
           }
         }
       }
+    },
+    "数据结构": {
+      "ableToLearn": false,
+      "integerNewTitleManagerTreeMap": {
+        "1": {
+          "name": "JavaBitset类",
+          "resource": "src\\pages\\JavaBitset类",
+          "learned": false,
+          "remind": false,
+          "date": "Dec 8, 2020, 5:05:53 PM"
+        },
+        "2": {
+          "name": "JavaDictionary类",
+          "resource": "src\\pages\\JavaDictionary类",
+          "learned": false,
+          "remind": false,
+          "date": "Dec 8, 2020, 5:05:53 PM"
+        },
+        "3": {
+          "name": "JavaEnumeration接口",
+          "resource": "src\\pages\\JavaEnumeration接口",
+          "learned": false,
+          "remind": false,
+          "date": "Dec 8, 2020, 5:05:53 PM"
+        },
+        "4": {
+          "name": "JavaHashtable类",
+          "resource": "src\\pages\\JavaHashtable类",
+          "learned": false,
+          "remind": false,
+          "date": "Dec 8, 2020, 5:05:53 PM"
+        },
+        "5": {
+          "name": "JavaProperties类",
+          "resource": "src\\pages\\JavaProperties类",
+          "learned": false,
+          "remind": false,
+          "date": "Dec 8, 2020, 5:05:53 PM"
+        },
+        "6": {
+          "name": "JavaStack类",
+          "resource": "src\\pages\\JavaStack类",
+          "learned": false,
+          "remind": false,
+          "date": "Dec 8, 2020, 5:05:53 PM"
+        },
+        "7": {
+          "name": "JavaVector类",
+          "resource": "src\\pages\\JavaVector类",
+          "learned": false,
+          "remind": false,
+          "date": "Dec 8, 2020, 5:05:53 PM"
+        }
+      }
     }
   },
   "priNewProblems": {
@@ -9144,4 +9198,4 @@
       },
       "13": {
         "id": 13,
-        "problem": "有如下程序段，执行完该程序段后total的值为：( )int total \u003d 0; for ( int i \u003d 0; i \u003c 4; i++ ){     if ( i \u003d\u003d 1) continue;        if ( i \u003d\u003d 2)
+        "problem": "有如下程序段，执行完该程序段后total的值为：( )int total \u003d 0; for ( int i \u003d 0; i \u003c 4; i++ ){     if ( i \u003d\u003d 1) continue;        if ( i \u003d\u003d 2)}

@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
+import main.java.CBGui.XCYApplication;
 
 import java.awt.*;
 import java.io.*;
@@ -54,7 +55,7 @@ public class XCYMain extends Stage {
     private ObservableList<NewTitleManager> priTitle, midTitle, senTitle;
     private ListView<NewTitleManager> priListView, midListView, senListView;
 
-    private VBox leftTitles, right;
+    private VBox leftTitles;
 
 
     /**
@@ -64,19 +65,25 @@ public class XCYMain extends Stage {
     public static AllData allData;
 
 
-
-
-
     /**
      * 用于盛放四个按钮的VBox
      */
     private HBox buttonHBox;
 
 
+    public static boolean dataStructure = false;
+
+
     /**
-     * 三个重要的布尔变量，分别表示相应的考试是否通过
+     * 让这个人学数据结构或者是不学
+     * @param data
      */
-    public static boolean priPassed, midPassed, SenPassed;
+    public static void learnDataStructure(boolean data) {
+
+        dataStructure = data;
+
+    }
+
 
     /**
      * 初始化四个按钮
@@ -87,7 +94,7 @@ public class XCYMain extends Stage {
  * 用于实现鼠标移入缩放的效果
  */
         double changeScale = 1.2;
-        Image checkProgressImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+        Image checkProgressImage = new Image("file:src/Source/tu1.png", 50, 50, true, true);
 
         {//检查进度按钮
             Button checkProgress = new Button();
@@ -115,7 +122,7 @@ public class XCYMain extends Stage {
             tooltip.setGraphic(new ImageView(image));
             tooltip.setFont(new Font(20));
             checkProgress.setTooltip(tooltip);
-            checkProgress.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            checkProgress.setStyle("-fx-background-color: white;-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: #FFB6C1");
 
             buttonHBox.getChildren().add(checkProgress);
 
@@ -125,7 +132,7 @@ public class XCYMain extends Stage {
              * 提醒这个人去学习的
              */
 
-            Image remindYouLearnImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+            Image remindYouLearnImage = new Image("file:src/Source/tu2.png", 50, 50, true, true);
             Button remindYouLearn = new Button();
             remindYouLearn.setGraphic(new ImageView(remindYouLearnImage));
             /**
@@ -169,7 +176,7 @@ public class XCYMain extends Stage {
             tooltip.setGraphic(new ImageView(image));
             tooltip.setFont(new Font(20));
             remindYouLearn.setTooltip(tooltip);
-            remindYouLearn.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            remindYouLearn.setStyle("-fx-background-color: white;-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color:#FFB6C1");
             buttonHBox.getChildren().add(remindYouLearn);
 
 
@@ -178,7 +185,7 @@ public class XCYMain extends Stage {
             /**
              * 最新的Java进度按钮
              */
-            Image updateJavaImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+            Image updateJavaImage = new Image("file:src/Source/tu3.png", 50, 50, true, true);
             Button updateJava = new Button();
 
             updateJava.setGraphic(new ImageView(updateJavaImage));
@@ -207,7 +214,7 @@ public class XCYMain extends Stage {
             tooltip.setFont(new Font(20));
 
             updateJava.setTooltip(tooltip);
-            updateJava.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            updateJava.setStyle("-fx-background-color: white;-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color:#FFB6C1");
 
 
             updateJava.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -234,7 +241,7 @@ public class XCYMain extends Stage {
             /**
              * 学习数据统计功能
              */
-            Image learningDataImage = new Image("file:src/Source/timg.jpg", 50, 50, true, true);
+            Image learningDataImage = new Image("file:src/Source/tu4.png", 50, 50, true, true);
             Button learningData = new Button();
             learningData.setGraphic(new ImageView(learningDataImage));
 
@@ -256,9 +263,8 @@ public class XCYMain extends Stage {
             learningData.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getClickCount()==2)
-                    {
-                        LearnStatistics learnStatistics = new LearnStatistics();
+                    if (mouseEvent.getClickCount() == 2) {
+                        LearnHistory learnStatistics = new LearnHistory();
                         learnStatistics.showAndWait();
                     }
                 }
@@ -270,7 +276,7 @@ public class XCYMain extends Stage {
             tooltip.setGraphic(new ImageView(image));
             tooltip.setFont(new Font(20));
             learningData.setTooltip(tooltip);
-            learningData.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            learningData.setStyle("-fx-background-color: white;-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color:#FFB6C1");
             buttonHBox.getChildren().add(learningData);
 
         }
@@ -300,8 +306,7 @@ public class XCYMain extends Stage {
             haveATest.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    if(mouseEvent.getClickCount()==2)
-                    {
+                    if (mouseEvent.getClickCount() == 2) {
 
                         HaveTest haveTest = new HaveTest();
                         haveTest.showAndWait();
@@ -311,20 +316,48 @@ public class XCYMain extends Stage {
             });
 
 
-
             Tooltip tooltip = new Tooltip("参加测验");
             Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
             tooltip.setGraphic(new ImageView(image));
             tooltip.setFont(new Font(20));
             haveATest.setTooltip(tooltip);
-            haveATest.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            haveATest.setStyle("-fx-background-color: white;-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color:#FFB6C1");
             buttonHBox.getChildren().add(haveATest);
-
         }
+        {
+            /**
+             * 显示这个人在该软件上一共花了多少时间
+             */
+            Image showTimeImage = new Image("file:src/Source/shalou.png", 50, 50, true, true);
+            Button showTime = new Button();
+            showTime.setGraphic(new ImageView(showTimeImage));
 
 
+            showTime.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    showTime.setScaleX(changeScale);
+                    showTime.setScaleY(changeScale);
+                }
+            });
+            showTime.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    showTime.setScaleX(1);
+                    showTime.setScaleY(1);
+                }
+            });
 
 
+            String timeShow = String.format("你已经累计在该软件上用时%d小时", 100);
+            Tooltip tooltip = new Tooltip(timeShow);
+            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
+            tooltip.setGraphic(new ImageView(image));
+            tooltip.setFont(new Font(20));
+            showTime.setTooltip(tooltip);
+            showTime.setStyle("-fx-background-color: white;-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: #FFB6C1");
+            buttonHBox.getChildren().add(showTime);
+        }
 
         buttonHBox.setSpacing(60);
 
@@ -384,17 +417,10 @@ public class XCYMain extends Stage {
      * 初始化所有的数据来源
      */
     static {
-         /**
-             * 这是一种比较低效的初始化方式，但是实现起来非常的简单
-             */
-//            try {
-//                passOrNot("初");
-//                passOrNot("中");
-//                passOrNot("高");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        /**
+         * 这是一种比较低效的初始化方式，但是实现起来非常的简单
+         */
+
         try {
             allData = JsonManager.getNewNewBigTitleManager();
         } catch (IOException e) {
@@ -428,7 +454,6 @@ public class XCYMain extends Stage {
          */
         for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             priTitle.add(integerNewTitleManagerEntry.getValue());
-            //   System.out.println(integerNewTitleManagerEntry.getValue().getName());
         }
 
         for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
@@ -556,7 +581,10 @@ public class XCYMain extends Stage {
         });
 
 
-        priListView.setStyle("-fx-border-radius: 20px;-fx-background-radius: 20px;");
+
+
+
+
 
 
     }
@@ -659,21 +687,22 @@ public class XCYMain extends Stage {
         priAccordion.setExpandedPane(priTitledPane);
         midAccordion.getPanes().addAll(midTitlePane);
 
-//        {
-//            priAccordion.setStyle("-fx-background-radius: 20px;-fx-border-radius: 20px;-fx-border-width: 5px;-fx-border-color: hotpink");
-//            midAccordion.setStyle("-fx-background-radius: 20px;-fx-border-radius: 20px;-fx-border-width: 5px;-fx-border-color: hotpink");
-//            senAccordion.setStyle("-fx-background-radius: 20px;-fx-border-radius: 20px;-fx-border-width: 5px;-fx-border-color: hotpink");
-//        }
+
 
 
         senAccordion.getPanes().addAll(senTitlePane);
-//        senAccordion.setExpandedPane(senTitlePane);
 
 
-
-        //   VBox.setMargin(senTest, new Insets(10, 20, 10, 30));
 
         leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
+
+
+//        if()
+
+
+
+
+
 
 
 
@@ -687,7 +716,6 @@ public class XCYMain extends Stage {
 //        testVBox.getChildren().add();
 
 
-
         Image imag1e = new Image("file:Resource/JAVA.jpg", 500, 500.0, false, false);
         ImageView imageView = new ImageView(imag1e);
 //        imageView.setStyle("-fx-border-radius: 40px;-fx-background-radius:40px");
@@ -697,7 +725,7 @@ public class XCYMain extends Stage {
         initButtonHBox();
 
 
-        mainGrid.add(buttonHBox, 1, 0);
+        mainGrid.add(buttonHBox, 1, 1);
 
         mainGrid.setHgap(200);
         mainGrid.setVgap(40);

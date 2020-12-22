@@ -11306,7 +11306,7 @@
         "JavaCharacter类": {
           "name": "JavaCharacter类",
           "resource": "src\\pages\\JavaCharacter类",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -11515,7 +11515,7 @@
         "JavaNumber\u0026Math类": {
           "name": "JavaNumber\u0026Math类",
           "resource": "src\\pages\\JavaNumber\u0026Math类",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -11724,7 +11724,7 @@
         "JavaScanner类": {
           "name": "JavaScanner类",
           "resource": "src\\pages\\JavaScanner类",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -11933,7 +11933,7 @@
         "JavaStream、File、IO": {
           "name": "JavaStream、File、IO",
           "resource": "src\\pages\\JavaStream、File、IO",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -12142,7 +12142,7 @@
         "JavaStringBuffer": {
           "name": "JavaStringBuffer",
           "resource": "src\\pages\\JavaStringBuffer",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -14161,7 +14161,7 @@
         "1": {
           "name": "Java变量类型",
           "resource": "src\\pages\\Java变量类型",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -14220,7 +14220,7 @@
         "2": {
           "name": "Java修饰符",
           "resource": "src\\pages\\Java修饰符",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -14259,7 +14259,7 @@
         "3": {
           "name": "Java运算符",
           "resource": "src\\pages\\Java运算符",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {
@@ -14278,7 +14278,7 @@
         "4": {
           "name": "Java循环结构",
           "resource": "src\\pages\\Java循环结构",
-          "learned": false,
+          "learned": true,
           "remind": false,
           "date": "Dec 8, 2020, 5:05:53 PM",
           "integerSelectProblemHashMap": {

@@ -43,6 +43,9 @@ public class AfterLoginStage extends Stage {
             XX = new Label("学校学习", new ImageView(image));
             XX.setContentDisplay(ContentDisplay.TOP);
             XX.setStyle("-fx-font-size: 25px;-fx-font-weight: bold;-fx-text-fill: white");
+            /**
+             * 鼠标移进移出时变化大小
+             */
             XX.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {

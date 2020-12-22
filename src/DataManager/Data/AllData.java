@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 
 /**
- * 他娘的我竟然又要在写一个新的操纵数据的类
+
  */
 public class AllData {
 

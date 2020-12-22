@@ -16,8 +16,6 @@ public class XCYApplication extends Application {
 
     static {
         thisUser = null;
-
-
     }
 
     /**
@@ -37,34 +35,29 @@ public class XCYApplication extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage = new XCYMain();
-        primaryStage.show();
-        LoginStage loginStage = new LoginStage();
-        loginStage.showAndWait();
+//
+//        LoginStage loginStage = new LoginStage();
+//        loginStage.showAndWait();
+
         /**
          * 这里用比较简单的方法，比较好理解
          */
+//
+//
+        primaryStage = new XCYMain();
+        primaryStage.showAndWait();
 
 
-        if (thisUser != null) {
-
+//        if (thisUser != null) {
 /**
  * 这一步很重要
  */
             XCYMain.setAllData(thisUser.getUserData());
-
-
             AfterLoginStage afterLoginStage = new AfterLoginStage();
             afterLoginStage.showAndWait();
-
-
             /**
              * 判断要不要学数据结构
              */
-
-
-        }
-
 
     }
 }

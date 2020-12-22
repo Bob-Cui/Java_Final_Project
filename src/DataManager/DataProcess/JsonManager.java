@@ -212,4 +212,13 @@ public class JsonManager {
         String t = XCYFileManager.readJson("src/Source/data_with_test.json");
         return gson.fromJson(t, AllData.class);
     }
+
+    public static void main(String[] args) throws IOException {
+
+        AllData allData = getNewNewBigTitleManager();
+//for(Map.Entry<Integer,NewTitleManager>integerNewTitleManagerEntry:allData.getStringNewSubTitleManagerHashMap().)
+
+
+
+    }
 }

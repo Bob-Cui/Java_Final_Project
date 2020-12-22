@@ -32,16 +32,66 @@ public class LoginStage extends Stage {
         this.getIcons().add(new Image("file:src/Source/icon.jpg"));
 
 
-        Label l_name = new Label("账号");
-        Label l_password = new Label("密码");
+        Label name = new Label("账号");
+        Label lPassword = new Label("密码");
+
+
+        name.setStyle("-fx-font-size: 20px;-fx-text-fill: #9400D3;-fx-font-weight: bolder");
+        lPassword.setStyle("-fx-font-size: 20px;-fx-text-fill: #9400D3;-fx-font-weight: bolder");
 
 
         TextField userName = new TextField();
 
         PasswordField password = new PasswordField();
 
+
+        double len = 30;
+        double big = 1.2;
+
+
         Button login = new Button("登录");
-        Button clear = new Button("注册");
+        login.setStyle("-fx-border-radius: 30px;-fx-border-color: white;-fx-border-width: 3px;-fx-background-color: #FFB6C1;-fx-font-size: 20px;-fx-font-weight: bold;-fx-text-fill: #FF1493;-fx-background-radius: 30px");
+        Image imageLogin = new Image("file:src/Source/smy.jpg", len, len, true, true);
+        login.setGraphic(new ImageView(imageLogin));
+
+        login.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                login.setScaleX(big);
+                login.setScaleY(big);
+            }
+        });
+        login.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                login.setScaleX(1);
+                login.setScaleY(1);
+            }
+        });
+
+
+        Button register = new Button("注册");
+        register.setStyle("-fx-border-radius: 30px;-fx-border-color: white;-fx-border-width: 3px;-fx-background-color: #FFB6C1;-fx-font-size: 20px;-fx-font-weight: bold;-fx-text-fill: #FF1493;-fx-background-radius: 30px");
+        Image imageRegister = new Image("file:src/Source/smy.jpg", len, len, true, true);
+        register.setGraphic(new ImageView(imageRegister));
+
+
+        register.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                register.setScaleX(big);
+                register.setScaleY(big);
+            }
+        });
+        register.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                register.setScaleX(1);
+                register.setScaleY(1);
+            }
+        });
+
 
         login.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -106,11 +156,11 @@ public class LoginStage extends Stage {
         GridPane gr = new GridPane();
 
 
-        gr.add(l_name, 0, 0);
+        gr.add(name, 0, 0);
         gr.add(userName, 1, 0);
-        gr.add(l_password, 0, 1);
+        gr.add(lPassword, 0, 1);
         gr.add(password, 1, 1);
-        gr.add(clear, 0, 2);
+        gr.add(register, 0, 2);
         gr.add(login, 1, 2);
 
 
