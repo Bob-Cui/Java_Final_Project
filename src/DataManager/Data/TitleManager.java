@@ -1,10 +1,9 @@
 package DataManager.Data;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.TreeMap;
 
-public class NewTitleManager {
+public class TitleManager {
 
 
     private String name;
@@ -38,12 +37,12 @@ public class NewTitleManager {
     /**
      * 每一个章节对应一个题库
      */
-    private TreeMap<Integer, NewSelectProblem> integerSelectProblemHashMap;
+    private TreeMap<Integer, SelectProblem> integerSelectProblemHashMap;
 
 
 
 
-    public NewTitleManager(String name, String resource, boolean learned) {
+    public TitleManager(String name, String resource, boolean learned) {
         this.name = name;
         this.resource = resource;
         this.learned = learned;
@@ -85,11 +84,11 @@ public class NewTitleManager {
         this.date = date;
     }
 
-    public TreeMap<Integer, NewSelectProblem> getIntegerSelectProblemHashMap() {
+    public TreeMap<Integer, SelectProblem> getIntegerSelectProblemHashMap() {
         return integerSelectProblemHashMap;
     }
 
-    public void setIntegerSelectProblemHashMap(TreeMap<Integer, NewSelectProblem> integerSelectProblemHashMap) {
+    public void setIntegerSelectProblemHashMap(TreeMap<Integer, SelectProblem> integerSelectProblemHashMap) {
         this.integerSelectProblemHashMap = integerSelectProblemHashMap;
     }
 }

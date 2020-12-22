@@ -1,7 +1,7 @@
 package main.java.CBGui.SpecificStage;
 
-import DataManager.Data.NewProblems;
-import DataManager.Data.NewSelectProblem;
+import DataManager.Data.Problems;
+import DataManager.Data.SelectProblem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -17,14 +17,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 //import javax.swing.text.html.ListView;
 import java.awt.*;
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -32,7 +30,7 @@ import java.util.Map;
  * 这个界面可以复用
  */
 public class TestStage extends Stage {
-    private ListView<NewSelectProblem> mainListView;
+    private ListView<SelectProblem> mainListView;
 
     /**
      * 提交试卷
@@ -43,22 +41,22 @@ public class TestStage extends Stage {
      * @param title       这个参数的类型只能是 初 中 高
      * @param newProblems
      */
-    public TestStage(String title, NewProblems newProblems) {
+    public TestStage(String title, Problems newProblems) {
 
         {
             this.getIcons().add(new Image("file:src/Source/icon.jpg"));
             this.setTitle(String.format("欢迎参加这场激动人心的%s级考试", title));
         }
         {
-            ObservableList<NewSelectProblem> newSelectProblemObservableList = FXCollections.observableArrayList();
-            for (Map.Entry<Integer, NewSelectProblem> integerNewSelectProblemEntry : newProblems.getIntegerNewSelectProblemHashMap().entrySet()) {
+            ObservableList<SelectProblem> newSelectProblemObservableList = FXCollections.observableArrayList();
+            for (Map.Entry<Integer, SelectProblem> integerNewSelectProblemEntry : newProblems.getIntegerNewSelectProblemHashMap().entrySet()) {
                 newSelectProblemObservableList.add(integerNewSelectProblemEntry.getValue());
             }
             mainListView = new ListView<>(newSelectProblemObservableList);
 
-            mainListView.setCellFactory(new Callback<ListView<NewSelectProblem>, ListCell<NewSelectProblem>>() {
+            mainListView.setCellFactory(new Callback<ListView<SelectProblem>, ListCell<SelectProblem>>() {
                 @Override
-                public ListCell<NewSelectProblem> call(ListView<NewSelectProblem> newSelectProblemListView) {
+                public ListCell<SelectProblem> call(ListView<SelectProblem> newSelectProblemListView) {
                     return new TestProblemCell();
                 }
             });
@@ -81,7 +79,7 @@ public class TestStage extends Stage {
 
                     int right = 0;
 
-                    for (Map.Entry<Integer, NewSelectProblem> integerNewSelectProblemEntry : newProblems.getIntegerNewSelectProblemHashMap().entrySet()) {
+                    for (Map.Entry<Integer, SelectProblem> integerNewSelectProblemEntry : newProblems.getIntegerNewSelectProblemHashMap().entrySet()) {
                         if (integerNewSelectProblemEntry.getValue().getYourAnswer() == ' ') {
                             Alert fail = new Alert(Alert.AlertType.WARNING);
                             Image image = new Image("file:src/Source/icon.jpg", 50, 50, true, true);
@@ -154,7 +152,7 @@ public class TestStage extends Stage {
         this.initModality(Modality.APPLICATION_MODAL);
     }
 
-    private static class TestProblemCell extends ListCell<NewSelectProblem> {
+    private static class TestProblemCell extends ListCell<SelectProblem> {
         private VBox mainVBox;
         private HBox a, b, c, d, problem;
         private Label labelA, labelB, labelC, labelD, content, labelCount;
@@ -233,7 +231,7 @@ public class TestStage extends Stage {
         }
 
         @Override
-        protected void updateItem(NewSelectProblem newSelectProblem, boolean b) {
+        protected void updateItem(SelectProblem newSelectProblem, boolean b) {
             super.updateItem(newSelectProblem, b);
             if (newSelectProblem != null && !b) {
                 {//每一个item的内容都是不同的
@@ -243,6 +241,30 @@ public class TestStage extends Stage {
                     labelB.setText(newSelectProblem.getB());
                     labelC.setText(newSelectProblem.getC());
                     labelD.setText(newSelectProblem.getD());
+
+                    radioButtonA.setSelected(false);
+                    radioButtonB.setSelected(false);
+                    radioButtonC.setSelected(false);
+                    radioButtonD.setSelected(false);
+                    if (newSelectProblem.getYourAnswer() != ' ') {
+                        switch (newSelectProblem.getYourAnswer()) {
+                            case 'A':
+                                radioButtonA.setSelected(true);
+                                break;
+                            case 'B':
+                                radioButtonB.setSelected(true);
+                                break;
+                            case 'C':
+                                radioButtonC.setSelected(true);
+                                break;
+                            case 'D':
+                                radioButtonD.setSelected(true);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
 
                     setGraphic(mainVBox);
                 }
@@ -278,7 +300,6 @@ public class TestStage extends Stage {
                     radioButtonD.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
-
                             newSelectProblem.setYourAnswer('D');
                         }
                     });

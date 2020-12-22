@@ -69,30 +69,6 @@ public class LoginStage extends Stage {
                 login.setScaleY(1);
             }
         });
-
-
-        Button register = new Button("注册");
-        register.setStyle("-fx-border-radius: 30px;-fx-border-color: white;-fx-border-width: 3px;-fx-background-color: #FFB6C1;-fx-font-size: 20px;-fx-font-weight: bold;-fx-text-fill: #FF1493;-fx-background-radius: 30px");
-        Image imageRegister = new Image("file:src/Source/smy.jpg", len, len, true, true);
-        register.setGraphic(new ImageView(imageRegister));
-
-
-        register.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                register.setScaleX(big);
-                register.setScaleY(big);
-            }
-        });
-        register.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                register.setScaleX(1);
-                register.setScaleY(1);
-            }
-        });
-
-
         login.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -148,6 +124,38 @@ public class LoginStage extends Stage {
 
                 }
 
+            }
+        });
+
+
+        Button register = new Button("注册");
+        register.setStyle("-fx-border-radius: 30px;-fx-border-color: white;-fx-border-width: 3px;-fx-background-color: #FFB6C1;-fx-font-size: 20px;-fx-font-weight: bold;-fx-text-fill: #FF1493;-fx-background-radius: 30px");
+        Image imageRegister = new Image("file:src/Source/smy.jpg", len, len, true, true);
+        register.setGraphic(new ImageView(imageRegister));
+
+
+        register.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                register.setScaleX(big);
+                register.setScaleY(big);
+            }
+        });
+        register.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                register.setScaleX(1);
+                register.setScaleY(1);
+            }
+        });
+
+        register.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
+                    RegisterStage registerStage = new RegisterStage();
+                    registerStage.showAndWait();
+                }
             }
         });
 

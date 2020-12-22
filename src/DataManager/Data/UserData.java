@@ -3,7 +3,6 @@ package DataManager.Data;
 public class UserData {
     private String name;
     private String password;
-    private String config;
 
 
     private AllData userData;
@@ -12,11 +11,9 @@ public class UserData {
      */
     private long timeSpan;
 
-
-    public UserData(String name, String password, String config, long timeSpan) {
+    public UserData(String name, String password, long timeSpan) {
         this.name = name;
         this.password = password;
-        this.config = config;
         this.timeSpan = timeSpan;
     }
 
@@ -36,12 +33,12 @@ public class UserData {
         this.password = password;
     }
 
-    public String getConfig() {
-        return config;
+    public AllData getUserData() {
+        return userData;
     }
 
-    public void setConfig(String config) {
-        this.config = config;
+    public void setUserData(AllData userData) {
+        this.userData = userData;
     }
 
     public long getTimeSpan() {
@@ -50,13 +47,5 @@ public class UserData {
 
     public void setTimeSpan(long timeSpan) {
         this.timeSpan = timeSpan;
-    }
-
-    public AllData getUserData() {
-        return userData;
-    }
-
-    public void setUserData(AllData userData) {
-        this.userData = userData;
     }
 }

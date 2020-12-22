@@ -7,43 +7,44 @@ import java.util.HashMap;
 
  */
 public class AllData {
+    /**
+     * 这是哈希表
+     * 感觉应该不会被问到哈希表的原理
+     */
+    private HashMap<String, SubTitleManager> stringNewSubTitleManagerHashMap;
+    private Problems priNewProblems, midNewProblems, senNewProblems;
 
-    public HashMap<String, NewSubTitleManager> getStringNewSubTitleManagerHashMap() {
-        return stringNewSubTitleManagerHashMap;
-    }
-
-    public void setStringNewSubTitleManagerHashMap(HashMap<String, NewSubTitleManager> stringNewSubTitleManagerHashMap) {
-        this.stringNewSubTitleManagerHashMap = stringNewSubTitleManagerHashMap;
-    }
 
     public AllData() {
         stringNewSubTitleManagerHashMap = new HashMap<>();
     }
 
-    /**
-     * 这是哈希表
-     * 感觉应该不会被问到哈希表的原理
-     */
-    private HashMap<String, NewSubTitleManager> stringNewSubTitleManagerHashMap;
-    private NewProblems priNewProblems, midNewProblems, senNewProblems;
+
+    public HashMap<String, SubTitleManager> getStringNewSubTitleManagerHashMap() {
+        return stringNewSubTitleManagerHashMap;
+    }
+
+    public void setStringNewSubTitleManagerHashMap(HashMap<String, SubTitleManager> stringNewSubTitleManagerHashMap) {
+        this.stringNewSubTitleManagerHashMap = stringNewSubTitleManagerHashMap;
+    }
 
 
-    public NewProblems getPriNewProblems() {
+    public Problems getPriNewProblems() {
         return priNewProblems;
     }
-    public void setPriNewProblems(NewProblems priNewProblems) {
+    public void setPriNewProblems(Problems priNewProblems) {
         this.priNewProblems = priNewProblems;
     }
-    public NewProblems getMidNewProblems() {
+    public Problems getMidNewProblems() {
         return midNewProblems;
     }
-    public void setMidNewProblems(NewProblems midNewProblems) {
+    public void setMidNewProblems(Problems midNewProblems) {
         this.midNewProblems = midNewProblems;
     }
-    public NewProblems getSenNewProblems() {
+    public Problems getSenNewProblems() {
         return senNewProblems;
     }
-    public void setSenNewProblems(NewProblems senNewProblems) {
+    public void setSenNewProblems(Problems senNewProblems) {
         this.senNewProblems = senNewProblems;
     }
 }

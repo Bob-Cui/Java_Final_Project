@@ -1,7 +1,7 @@
 package main.java.CBGui.SpecificStage;
 
-import DataManager.Data.NewSubTitleManager;
-import DataManager.Data.NewTitleManager;
+import DataManager.Data.SubTitleManager;
+import DataManager.Data.TitleManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -116,10 +116,10 @@ public class EbbinghausStage extends Stage {
      */
     private void initTimeList() {
 
-        for (Map.Entry<String, NewSubTitleManager> stringNewProblemsEntry : allData.getStringNewSubTitleManagerHashMap().entrySet()) {
+        for (Map.Entry<String, SubTitleManager> stringNewProblemsEntry : allData.getStringNewSubTitleManagerHashMap().entrySet()) {
 //            if(!stringNewProblemsEntry.getValue().isAbleToLearn())
 //                continue;
-            for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : stringNewProblemsEntry.getValue().getIntegerNewTitleManagerTreeMap().entrySet()) {
+            for (Map.Entry<Integer, TitleManager> integerNewTitleManagerEntry : stringNewProblemsEntry.getValue().getIntegerNewTitleManagerTreeMap().entrySet()) {
 //                if(!integerNewTitleManagerEntry.getValue().isLearned()) continue;
                 EbbinghausItem ebbinghausItem = new EbbinghausItem(stringNewProblemsEntry.getKey(), integerNewTitleManagerEntry.getValue().getName(), integerNewTitleManagerEntry.getValue().getDate());
 

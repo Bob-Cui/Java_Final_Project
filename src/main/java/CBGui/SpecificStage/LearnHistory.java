@@ -1,8 +1,8 @@
 package main.java.CBGui.SpecificStage;
 
-import DataManager.Data.NewSelectProblem;
-import DataManager.Data.NewSubTitleManager;
-import DataManager.Data.NewTitleManager;
+import DataManager.Data.SelectProblem;
+import DataManager.Data.SubTitleManager;
+import DataManager.Data.TitleManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -143,11 +143,11 @@ public class LearnHistory extends Stage {
      * @param newTitleManager 需要被检查的title
      * @return 此人回答的正确答案的数量
      */
-    private int countRight(NewTitleManager newTitleManager) {
+    private int countRight(TitleManager newTitleManager) {
         int right = 0;
 
 
-        for (Map.Entry<Integer, NewSelectProblem> integerNewSelectProblemEntry : newTitleManager.getIntegerSelectProblemHashMap().entrySet()) {
+        for (Map.Entry<Integer, SelectProblem> integerNewSelectProblemEntry : newTitleManager.getIntegerSelectProblemHashMap().entrySet()) {
             if (integerNewSelectProblemEntry.getValue().getYourAnswer() == integerNewSelectProblemEntry.getValue().getAnswer()) {
                 right++;
             }
@@ -161,13 +161,13 @@ public class LearnHistory extends Stage {
      */
     private void dealAllData() {
         observableList = FXCollections.observableArrayList();
-        for (Map.Entry<String, NewSubTitleManager> stringNewSubTitleManagerEntry : XCYMain.allData.getStringNewSubTitleManagerHashMap().entrySet()) {
+        for (Map.Entry<String, SubTitleManager> stringNewSubTitleManagerEntry : XCYMain.allData.getStringNewSubTitleManagerHashMap().entrySet()) {
             String subTitleName = stringNewSubTitleManagerEntry.getKey();//这里指的是名字
 
             if (!stringNewSubTitleManagerEntry.getValue().isAbleToLearn())
                 continue;
             //     System.out.println("fuck");
-            for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : stringNewSubTitleManagerEntry.getValue().getIntegerNewTitleManagerTreeMap().entrySet()) {
+            for (Map.Entry<Integer, TitleManager> integerNewTitleManagerEntry : stringNewSubTitleManagerEntry.getValue().getIntegerNewTitleManagerTreeMap().entrySet()) {
                 System.out.println(integerNewTitleManagerEntry.getValue().getName());
 //                System.out.println(integerNewTitleManagerEntry.getValue().isLearned());
 

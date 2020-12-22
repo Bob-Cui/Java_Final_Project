@@ -25,7 +25,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
-import main.java.CBGui.XCYApplication;
 
 import java.awt.*;
 import java.io.*;
@@ -42,7 +41,6 @@ public class XCYMain extends Stage {
     /**
      * Java介绍网页的相对地址
      */
-    private static final String INTROJAVAPATH = "Resource/Javainfor.html";
     private static final String PRIMARY = "Java初级教程", MIDDLE = "Java中级教程", SENIOR = "Java高级教程";
 
     /**
@@ -52,8 +50,8 @@ public class XCYMain extends Stage {
 
 
     //三个listView使用的
-    private ObservableList<NewTitleManager> priTitle, midTitle, senTitle;
-    private ListView<NewTitleManager> priListView, midListView, senListView;
+    private ObservableList<TitleManager> priTitle, midTitle, senTitle;
+    private ListView<TitleManager> priListView, midListView, senListView;
 
     private VBox leftTitles;
 
@@ -452,14 +450,14 @@ public class XCYMain extends Stage {
         /**
          *拿到所有数据的json文件里的java某教程的花括号，get键值对，得到集合
          */
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, TitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java初级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             priTitle.add(integerNewTitleManagerEntry.getValue());
         }
 
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, TitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java中级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             midTitle.add(integerNewTitleManagerEntry.getValue());
         }
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java高级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, TitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get("Java高级教程").getIntegerNewTitleManagerTreeMap().entrySet()) {
             senTitle.add(integerNewTitleManagerEntry.getValue());
         }
 
@@ -470,21 +468,21 @@ public class XCYMain extends Stage {
         /**
          *        设置样式
          */
-        priListView.setCellFactory(new Callback<ListView<NewTitleManager>, ListCell<NewTitleManager>>() {
+        priListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
             @Override
-            public ListCell<NewTitleManager> call(ListView<NewTitleManager> newTitleManagerListView) {
+            public ListCell<TitleManager> call(ListView<TitleManager> newTitleManagerListView) {
                 return new NewTitleCell();
             }
         });
-        midListView.setCellFactory(new Callback<ListView<NewTitleManager>, ListCell<NewTitleManager>>() {
+        midListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
             @Override
-            public ListCell<NewTitleManager> call(ListView<NewTitleManager> newTitleManagerListView) {
+            public ListCell<TitleManager> call(ListView<TitleManager> newTitleManagerListView) {
                 return new NewTitleCell();
             }
         });
-        senListView.setCellFactory(new Callback<ListView<NewTitleManager>, ListCell<NewTitleManager>>() {
+        senListView.setCellFactory(new Callback<ListView<TitleManager>, ListCell<TitleManager>>() {
             @Override
-            public ListCell<NewTitleManager> call(ListView<NewTitleManager> newTitleManagerListView) {
+            public ListCell<TitleManager> call(ListView<TitleManager> newTitleManagerListView) {
                 return new NewTitleCell();
             }
         });
@@ -499,7 +497,7 @@ public class XCYMain extends Stage {
 /**
  * 确定是哪一类被点到了
  */
-                        NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
+                        TitleManager newTitleManager = priListView.getItems().get(t1.intValue());
 
 
                         LearnStage learnStage = new LearnStage(newTitleManager);
@@ -530,7 +528,7 @@ public class XCYMain extends Stage {
                     try {
 
 
-                        NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
+                        TitleManager newTitleManager = priListView.getItems().get(t1.intValue());
 
 
                         LearnStage learnStage = new LearnStage(newTitleManager);
@@ -560,7 +558,7 @@ public class XCYMain extends Stage {
                     try {
 
 
-                        NewTitleManager newTitleManager = priListView.getItems().get(t1.intValue());
+                        TitleManager newTitleManager = priListView.getItems().get(t1.intValue());
 
 
                         LearnStage learnStage = new LearnStage(newTitleManager);
@@ -755,7 +753,7 @@ public class XCYMain extends Stage {
      * newTitleCell设计章节的框框的样式的
      */
 
-    private class NewTitleCell extends ListCell<NewTitleManager> {
+    private class NewTitleCell extends ListCell<TitleManager> {
         private Text name;
         private HBox mainHBox;
         private CheckBox finished;
@@ -815,7 +813,7 @@ public class XCYMain extends Stage {
         }
 
         @Override
-        protected void updateItem(NewTitleManager newTitleManager, boolean b) {
+        protected void updateItem(TitleManager newTitleManager, boolean b) {
             super.updateItem(newTitleManager, b);
             if (newTitleManager != null && !b) {
 
@@ -927,7 +925,7 @@ public class XCYMain extends Stage {
      * @return
      */
     public static boolean checkFinishedTitle(String name) {
-        for (Map.Entry<Integer, NewTitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get(name).getIntegerNewTitleManagerTreeMap().entrySet()) {
+        for (Map.Entry<Integer, TitleManager> integerNewTitleManagerEntry : allData.getStringNewSubTitleManagerHashMap().get(name).getIntegerNewTitleManagerTreeMap().entrySet()) {
             if (!integerNewTitleManagerEntry.getValue().isLearned())
                 return false;
         }

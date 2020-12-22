@@ -1,6 +1,6 @@
 package DataManager.Data;
 
-public class NewSelectProblem {
+public class SelectProblem {
     private int id;
     private String problem;
     private String A, B, C, D;
@@ -10,7 +10,7 @@ public class NewSelectProblem {
 
 
 
-    public NewSelectProblem(int id, String problem, String a, String b, String c, String d, char answer) {
+    public SelectProblem(int id, String problem, String a, String b, String c, String d, char answer) {
         this.id = id;
         this.problem = problem;
         A = a;

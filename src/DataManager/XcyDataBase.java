@@ -67,7 +67,7 @@ public class XcyDataBase {
                 /**
                  * 说明用户名与密码是吻合的
                  */
-                UserData userData = new UserData(name, password, resultSet.getString("config"), resultSet.getLong("timespan"));
+                UserData userData = new UserData(name, password, resultSet.getLong("timespan"));
                 Gson gson = new Gson();
                 AllData allData = gson.fromJson(resultSet.getString("config"), AllData.class);
                 userData.setUserData(allData);

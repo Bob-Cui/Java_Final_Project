@@ -1,8 +1,6 @@
 package main.java.CBGui.SpecificStage;
 
-import DataManager.Data.NewTitleManager;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import DataManager.Data.TitleManager;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,13 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Callback;
 import main.java.CBGui.SpecificStage.XCYBox.ProblemVBox;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedList;
 
 import static main.java.CBGui.SpecificStage.XCYMain.checkProgress;
 
@@ -64,7 +60,7 @@ public class LearnStage extends Stage {
      * @param newTitleManager 这个窗体在建立的时候所需要的数据
      * @throws MalformedURLException 不需要知道原因的异常
      */
-    public LearnStage(NewTitleManager newTitleManager) throws MalformedURLException {
+    public LearnStage(TitleManager newTitleManager) throws MalformedURLException {
 
         WebView webView = new WebView();
         File file = new File(newTitleManager.getResource() + ".html");

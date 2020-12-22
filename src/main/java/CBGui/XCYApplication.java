@@ -10,7 +10,7 @@ import main.java.CBGui.SpecificStage.XCYMain;
 public class XCYApplication extends Application {
 
     /**
-     * 这个成了所有数据的来源
+     * 项目的总数据源
      */
     public static UserData thisUser;
 
@@ -36,8 +36,8 @@ public class XCYApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 //
-//        LoginStage loginStage = new LoginStage();
-//        loginStage.showAndWait();
+        LoginStage loginStage = new LoginStage();
+        loginStage.showAndWait();
 
         /**
          * 这里用比较简单的方法，比较好理解
@@ -48,7 +48,7 @@ public class XCYApplication extends Application {
         primaryStage.showAndWait();
 
 
-//        if (thisUser != null) {
+        if (thisUser != null) {
 /**
  * 这一步很重要
  */
@@ -58,6 +58,6 @@ public class XCYApplication extends Application {
             /**
              * 判断要不要学数据结构
              */
-
+        }
     }
 }

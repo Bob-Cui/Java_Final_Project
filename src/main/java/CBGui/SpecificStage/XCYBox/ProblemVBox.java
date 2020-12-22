@@ -1,7 +1,7 @@
 package main.java.CBGui.SpecificStage.XCYBox;
 
-import DataManager.Data.NewSelectProblem;
-import DataManager.Data.NewTitleManager;
+import DataManager.Data.SelectProblem;
+import DataManager.Data.TitleManager;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -23,13 +22,12 @@ import java.util.Map;
  */
 public class ProblemVBox extends VBox {
     /**
-     *放置四个选项的管理器 只能选择一个选项
+     * 放置四个选项的管理器 只能选择一个选项
      */
     private ToggleGroup toggleGroup;
 
     //用来存放选项按钮和选项对应的内容的 text的HBox
     //四个单选框
-
 
 
     private HBox aHBox, bHBox, cHBox, dHBox;
@@ -62,11 +60,11 @@ public class ProblemVBox extends VBox {
     /**
      * 决定你现在正在做哪一道题
      */
-    private int nowQuestion;
+    public static int nowQuestion;
     private HashMap<Integer, Character> answer;
 
 
-    private NewTitleManager dataSource;
+    private TitleManager dataSource;
 
     /**
      * 修改题目的内容
@@ -85,7 +83,7 @@ public class ProblemVBox extends VBox {
      *
      * @param newTitleManager
      */
-    public ProblemVBox(NewTitleManager newTitleManager) {
+    public ProblemVBox(TitleManager newTitleManager) {
 
 /**
  *初始化属于这个页面的数据来源
@@ -132,7 +130,7 @@ public class ProblemVBox extends VBox {
             a.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    NewSelectProblem newSelectProblem = dataSource.getIntegerSelectProblemHashMap().get(nowQuestion);
+                    SelectProblem newSelectProblem = dataSource.getIntegerSelectProblemHashMap().get(nowQuestion);
                     newSelectProblem.setYourAnswer('A');
                 }
             });
@@ -140,7 +138,7 @@ public class ProblemVBox extends VBox {
             b.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    NewSelectProblem newSelectProblem = dataSource.getIntegerSelectProblemHashMap().get(nowQuestion);
+                    SelectProblem newSelectProblem = dataSource.getIntegerSelectProblemHashMap().get(nowQuestion);
                     newSelectProblem.setYourAnswer('B');
 
                 }
@@ -151,7 +149,7 @@ public class ProblemVBox extends VBox {
             c.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    NewSelectProblem newSelectProblem = dataSource.getIntegerSelectProblemHashMap().get(nowQuestion);
+                    SelectProblem newSelectProblem = dataSource.getIntegerSelectProblemHashMap().get(nowQuestion);
                     newSelectProblem.setYourAnswer('C');
                 }
             });
@@ -160,7 +158,7 @@ public class ProblemVBox extends VBox {
             d.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    NewSelectProblem newSelectProblem = dataSource.getIntegerSelectProblemHashMap().get(nowQuestion);
+                    SelectProblem newSelectProblem = dataSource.getIntegerSelectProblemHashMap().get(nowQuestion);
                     newSelectProblem.setYourAnswer('D');
                 }
             });
@@ -206,8 +204,6 @@ public class ProblemVBox extends VBox {
         selectvBox.setSpacing(5);
 
 
-
-
         selectvBox.setStyle("-fx-spacing: 20px;-fx-border-width: 5px;-fx-border-color: hotpink;-fx-border-radius: 10px");
 
         a.setToggleGroup(toggleGroup);
@@ -219,8 +215,8 @@ public class ProblemVBox extends VBox {
         /**
          * 加上按钮
          */
-        for (Map.Entry<Integer, NewSelectProblem> item : dataSource.getIntegerSelectProblemHashMap().entrySet()) {
-            NewSelectProblem newSelectProblem = item.getValue();
+        for (Map.Entry<Integer, SelectProblem> item : dataSource.getIntegerSelectProblemHashMap().entrySet()) {
+            SelectProblem newSelectProblem = item.getValue();
             Button button = new Button();
             button.setText(String.valueOf(newSelectProblem.getId()));
 
@@ -228,10 +224,7 @@ public class ProblemVBox extends VBox {
             button.setMinWidth(30);
 
 
-
             button.setUserData(newSelectProblem.getId());
-
-
 
 
             button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-border-width: 2px;-fx-border-color: lightpink;-fx-font-size: 12px;-fx-font-weight: bold;fx-text-fill: hotpink");
@@ -243,24 +236,39 @@ public class ProblemVBox extends VBox {
                 int id = (int) button.getUserData();
                 proID.setText(String.valueOf(id));
 
-                NewSelectProblem choosedOne = dataSource.getIntegerSelectProblemHashMap().get(id);
+                SelectProblem choosedOne = dataSource.getIntegerSelectProblemHashMap().get(id);
+
+
+                nowQuestion = id;
+
+
                 problemContent.setText(choosedOne.getProblem());
-                //  System.out.println(choosedOne.getProblem());
+                //
+                // System.out.println(choosedOne.getProblem());
                 textA.setText(choosedOne.getA());
                 textB.setText(choosedOne.getB());
                 textC.setText(choosedOne.getC());
                 textD.setText(choosedOne.getD());
 
-
-                /**
-                 * 对新打开的题目进行初始化，否则选择选项后之后的每一道题都会被选择该选项
-                 */
-                a.setSelected(false);
-                b.setSelected(false);
-                c.setSelected(false);
-                d.setSelected(false);
+                switch (newSelectProblem.getYourAnswer()) {
+                    case 'A':
+                        a.setSelected(true);
+                        break;
+                    case 'B':
+                        b.setSelected(true);
+                        break;
+                    case 'C':
+                        c.setSelected(true);
+                        break;
+                    case 'D':
+                        d.setSelected(true);
+                        break;
+                    default:
+                        break;
+                }
             });
             changeProblem.getChildren().add(button);
+
 
         }
 
@@ -278,14 +286,11 @@ public class ProblemVBox extends VBox {
 
         this.getChildren().addAll(vBox, changeProblem, submit);
 
-        
-        
-        
+
         this.setMaxWidth(500);
         this.setStyle("-fx-spacing: 60px;-fx-padding: 15px;");
-        
-        
-        
+
+
     }
 
     /**
@@ -311,12 +316,12 @@ public class ProblemVBox extends VBox {
                 int count = 0;
                 int total = dataSource.getIntegerSelectProblemHashMap().size();
 
-                for (Map.Entry<Integer, NewSelectProblem> item : dataSource.getIntegerSelectProblemHashMap().entrySet()) {
+                for (Map.Entry<Integer, SelectProblem> item : dataSource.getIntegerSelectProblemHashMap().entrySet()) {
                     if (item.getValue().getYourAnswer() != item.getValue().getAnswer()) {
                         count++;
                     }
                 }
-                if (count > total/2) {
+                if (count > total / 2) {
 
 
                     Alert fail = new Alert(Alert.AlertType.WARNING);
@@ -343,104 +348,6 @@ public class ProblemVBox extends VBox {
         });
     }
 
-
-//    public ProblemVBox() {
-//        problemContent = new Label();
-//        problemContent.setText("这是一个问题");
-//        problemContent.setStyle("-fx-font-size: 25px");
-//
-//
-//        //设计关于题目的内容的content
-//        {
-//            Button button = new Button();
-//            button.setText("1");
-//            button.setStyle("-fx-background-radius: 25px;-fx-border-radius: 25px;-fx-font-size: 20px");
-//            button.setDisable(true);
-//            problemVBox = new VBox(button, problemContent);
-//            problemVBox.setStyle("-fx-spacing: 15px");
-//        }
-//
-//
-//        {
-//            toggleGroup = new ToggleGroup();
-//
-//
-//            a = new RadioButton();
-//            b = new RadioButton();
-//            c = new RadioButton();
-//            d = new RadioButton();
-//
-//
-//            a.setText("A");
-//
-//            a.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent mouseEvent) {
-//                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
-//
-//
-//                }
-//            });
-//            b.setText("B");
-//            b.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent mouseEvent) {
-//
-//                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
-//
-//                }
-//            });
-//
-//            c.setText("C");
-//            c.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent mouseEvent) {
-//                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
-//
-//                }
-//            });
-//
-//            d.setText("D");
-//            d.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent mouseEvent) {
-//                    System.out.println(toggleGroup.getSelectedToggle().getUserData().toString());
-//
-//                }
-//            });
-//            textA = new Text("选项dsfdsaf dsafsda fsdaf das f\nA");
-//            textB = new Text("sad");
-//            textC = new Text("选项C");
-//            textD = new Text("选项D");
-//
-//
-//            a.setStyle("-fx-font-size: 20px");
-//            b.setStyle("-fx-font-size: 20px");
-//            c.setStyle("-fx-font-size: 20px");
-//            d.setStyle("-fx-font-size: 20px");
-//
-//
-//            textA.setStyle("-fx-font-size: 18px;");
-//            textB.setStyle("-fx-font-size: 18px;");
-//            textC.setStyle("-fx-font-size: 18px;");
-//            textD.setStyle("-fx-font-size: 18px;");
-//
-//            //构建四个水平盒子 左边是选项 右边是选项的内容
-//            aHBox = new HBox(a, textA);
-//            bHBox = new HBox(b, textB);
-//            cHBox = new HBox(c, textC);
-//            dHBox = new HBox(d, textD);
-//
-//
-//            //设置单选按钮和选项内容的间隔
-//            aHBox.setStyle("-fx-spacing: 25px");
-//            bHBox.setStyle("-fx-spacing: 25px");
-//            cHBox.setStyle("-fx-spacing: 25px");
-//            dHBox.setStyle("-fx-spacing: 25px");
-//        }
-//
-//
-//}
 
 }
 
