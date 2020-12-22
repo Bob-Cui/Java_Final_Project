@@ -31,7 +31,6 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.util.Map;
 
-import static DataManager.DataProcess.JsonManager.*;
 
 public class XCYMain extends Stage {
 
@@ -66,11 +65,6 @@ public class XCYMain extends Stage {
 
 
 
-
-    /**
-     * 有关三个考试的按钮
-     */
-    private Button priTest, midTest, senTest;
 
 
     /**
@@ -259,6 +253,18 @@ public class XCYMain extends Stage {
                     learningData.setScaleY(1);
                 }
             });
+            learningData.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (mouseEvent.getClickCount()==2)
+                    {
+                        LearnStatistics learnStatistics = new LearnStatistics();
+                        learnStatistics.showAndWait();
+                    }
+                }
+            });
+
+
             Tooltip tooltip = new Tooltip("点击按钮系统会帮助你查看统计并查看自己在该平台上学习Java的数据");
             Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
             tooltip.setGraphic(new ImageView(image));
@@ -268,77 +274,127 @@ public class XCYMain extends Stage {
             buttonHBox.getChildren().add(learningData);
 
         }
+        {
+            /**
+             * 学习数据统计功能
+             */
+            Image haveTestImage = new Image("file:src/Source/mf.jpg", 50, 50, true, true);
+            Button haveATest = new Button();
+            haveATest.setGraphic(new ImageView(haveTestImage));
+
+
+            haveATest.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    haveATest.setScaleX(changeScale);
+                    haveATest.setScaleY(changeScale);
+                }
+            });
+            haveATest.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    haveATest.setScaleX(1);
+                    haveATest.setScaleY(1);
+                }
+            });
+            haveATest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if(mouseEvent.getClickCount()==2)
+                    {
+
+                        HaveTest haveTest = new HaveTest();
+                        haveTest.showAndWait();
+                    }
+
+                }
+            });
+
+
+
+            Tooltip tooltip = new Tooltip("参加测验");
+            Image image = new Image("file:src/Source/testcq.png", 30, 30, true, true);
+            tooltip.setGraphic(new ImageView(image));
+            tooltip.setFont(new Font(20));
+            haveATest.setTooltip(tooltip);
+            haveATest.setStyle("-fx-background-radius: 100px;-fx-border-radius: 100px;-fx-border-width: 5px;-fx-border-color: white");
+            buttonHBox.getChildren().add(haveATest);
+
+        }
+
+
+
+
 
         buttonHBox.setSpacing(60);
 
     }
 
-    /**
-     * 检查这个考试是否通过,我们通过返回的数字的大小来对这件事进行判断
-     * 在返回之前，顺便修改本类中的静态布尔变量
-     * 初
-     * 中
-     * 高
-     *
-     * @param name
-     * @return 正确的答案的数量
-     * @throws IOException
-     */
-    public static int passOrNot(String name) throws IOException {
-        int right = 0;
-        String address = null;
-        switch (name) {
-            case "初":
-                address = PRITEST;
-                break;
-            case "中":
-                address = MIDTEST;
-                break;
-            case "高":
-                address = SENTEST;
-                break;
-        }
-        for (NewSelectProblem newSelectProblem : getNewProblems(address).getIntegerNewSelectProblemHashMap().values()) {
-            if (newSelectProblem.getAnswer() == newSelectProblem.getYourAnswer())
-                right++;
-        }
-        /**
-         * 大于十五个就认为这个人考过了
-         */
-        if (right >= 15) {
-            switch (name) {
-                case "初":
-                    priPassed = true;
-                    break;
-                case "中":
-                    priPassed = true;
-                    break;
-                case "高":
-                    priPassed = true;
-                    break;
-                default:
-                    break;
-            }
-        }
-        return right;
-    }
+//    /**
+//     * 检查这个考试是否通过,我们通过返回的数字的大小来对这件事进行判断
+//     * 在返回之前，顺便修改本类中的静态布尔变量
+//     * 初
+//     * 中
+//     * 高
+//     *
+//     * @param name
+//     * @return 正确的答案的数量
+//     * @throws IOException
+//     */
+//    public static int passOrNot(String name) throws IOException {
+//        int right = 0;
+//        String address = null;
+//        switch (name) {
+//            case "初":
+//                address = PRITEST;
+//                break;
+//            case "中":
+//                address = MIDTEST;
+//                break;
+//            case "高":
+//                address = SENTEST;
+//                break;
+//        }
+//        for (NewSelectProblem newSelectProblem : getNewProblems(address).getIntegerNewSelectProblemHashMap().values()) {
+//            if (newSelectProblem.getAnswer() == newSelectProblem.getYourAnswer())
+//                right++;
+//        }
+//        /**
+//         * 大于十五个就认为这个人考过了
+//         */
+//        if (right >= 15) {
+//            switch (name) {
+//                case "初":
+//                    priPassed = true;
+//                    break;
+//                case "中":
+//                    priPassed = true;
+//                    break;
+//                case "高":
+//                    priPassed = true;
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//        return right;
+//    }
 
     /**
      * 初始化所有的数据来源
      */
     static {
-        {
-            /**
+         /**
              * 这是一种比较低效的初始化方式，但是实现起来非常的简单
              */
-            try {
-                passOrNot("初");
-                passOrNot("中");
-                passOrNot("高");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//            try {
+//                passOrNot("初");
+//                passOrNot("中");
+//                passOrNot("高");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
         try {
             allData = JsonManager.getNewNewBigTitleManager();
         } catch (IOException e) {
@@ -349,10 +405,10 @@ public class XCYMain extends Stage {
 
     /**
      * 设置界面数据的来源
-     * @param input  AllData数据源
+     *
+     * @param input AllData数据源
      */
-    public static void setAllData(AllData input)
-    {
+    public static void setAllData(AllData input) {
         allData = input;
     }
 
@@ -614,94 +670,23 @@ public class XCYMain extends Stage {
 //        senAccordion.setExpandedPane(senTitlePane);
 
 
-        {
 
-/**
- * 有趣的是三个按钮不能只用一个图，必须用三张图
- */
-            double len = 38;
-            Image image1 = new Image("file:src/Source/test.png", len, len, false, false);
-            ImageView imageView1 = new ImageView(image1);
-            priTest = new Button();
-            priTest.setText("初级考核测试");
-
-            priTest.setMinWidth(2 * priListView.getMinWidth());
-
-
-            priTest.setStyle("-fx-font-size: 23px;-fx-background-radius:25px ");
-            priTest.setGraphic(imageView1);
-            priTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    //双击会显示
-                    if (mouseEvent.getClickCount() == 2) {
-                        try {
-                            TestStage testStage = new TestStage("初", getNewProblems(MIDTEST));
-                            testStage.showAndWait();
-
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                }
-            });
-
-
-            Image image2 = new Image("file:src/Source/test.png", len, len, false, false);
-            ImageView imageView2 = new ImageView(image2);
-            midTest = new Button();
-            midTest.setText("中级考核测试");
-            midTest.setStyle("-fx-font-size: 23px;-fx-background-radius:25px");
-            midTest.setGraphic(imageView2);
-            midTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getClickCount() == 2) {
-                        try {
-                            TestStage testStage = new TestStage("中", getNewProblems(MIDTEST));
-                            testStage.showAndWait();
-
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
-                }
-            });
-
-
-            Image image3 = new Image("file:src/Source/test.png", len, len, false, false);
-            ImageView imageView3 = new ImageView(image3);
-            senTest = new Button();
-            senTest.setText("高级考核测试");
-            senTest.setStyle("-fx-font-size: 23px;-fx-background-radius:25px");
-            senTest.setGraphic(imageView3);
-            senTest.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getClickCount() == 2) {
-                        try {
-                            TestStage testStage = new TestStage("高", getNewProblems(MIDTEST));
-                            testStage.showAndWait();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            });
-
-
-        }
         //   VBox.setMargin(senTest, new Insets(10, 20, 10, 30));
 
-        leftTitles = new VBox(priAccordion, priTest, midAccordion, midTest, senAccordion, senTest);
+        leftTitles = new VBox(priAccordion, midAccordion, senAccordion);
+
+
+
         leftTitles.setStyle("-fx-spacing: 20px;");
         leftTitles.setAlignment(Pos.BOTTOM_CENTER);
+
+
+        VBox testVBox = new VBox();
+
+
+//        testVBox.getChildren().add();
+
+
 
         Image imag1e = new Image("file:Resource/JAVA.jpg", 500, 500.0, false, false);
         ImageView imageView = new ImageView(imag1e);

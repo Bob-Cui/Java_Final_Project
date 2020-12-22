@@ -84,7 +84,7 @@ public class XcyDataBase {
     }
 
     /**
-     * 修改用户的配置文件，我他妈真是个天才
+     * 修改用户的配置文件
      * @param userData
      * @throws SQLException
      * @throws ClassNotFoundException

@@ -9,6 +9,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 //import javax.swing.text.html.ListView;
+import java.awt.*;
 import java.io.IOException;
 import java.util.Map;
 
@@ -75,6 +78,9 @@ public class TestStage extends Stage {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getClickCount() == 2) {
+
+                    int right = 0;
+
                     for (Map.Entry<Integer, NewSelectProblem> integerNewSelectProblemEntry : newProblems.getIntegerNewSelectProblemHashMap().entrySet()) {
                         if (integerNewSelectProblemEntry.getValue().getYourAnswer() == ' ') {
                             Alert fail = new Alert(Alert.AlertType.WARNING);
@@ -85,18 +91,17 @@ public class TestStage extends Stage {
                             fail.setContentText("你有没有完成的题目吗,请完成后在提交");
                             fail.showAndWait();
                             return;
+                        } else if (integerNewSelectProblemEntry.getValue().getAnswer() == integerNewSelectProblemEntry.getValue().getYourAnswer()) {
+                            right++;
                         }
-
                     }
 
 
-                    int right = 0;
-                    try {
-                        right = XCYMain.passOrNot(title);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
+//                    try {
+//                        right = XCYMain.passOrNot(title);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
 
 
                     if (right < 15) {
@@ -114,7 +119,11 @@ public class TestStage extends Stage {
                         success.setGraphic(new ImageView(image));
                         success.setTitle("考试通过");
                         success.setHeaderText("恭喜");
+
+
                         success.setContentText("请继续下一章的学习吧");
+
+
                         success.showAndWait();
                     }
                 }
@@ -124,13 +133,24 @@ public class TestStage extends Stage {
 
         GridPane gridPane = new GridPane();
         gridPane.add(mainListView, 1, 1);
+
         gridPane.add(submit, 1, 2);
         gridPane.add(new Label(), 2, 1);
+
+
         GridPane.setHalignment(submit, HPos.CENTER);
         gridPane.setHgap(10);
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension dimension = toolkit.getScreenSize();
 
+        Scene scene = new Scene(gridPane);
+        mainListView.setMinHeight(27 * dimension.getHeight() / 40);
 
-        this.setScene(new Scene(gridPane));
+        submit.setStyle("-fx-text-fill: hotpink;-fx-font-size: 20px;-fx-font-weight: bold");
+
+        this.setHeight(31 * dimension.getHeight() / 40);
+        this.setResizable(false);
+        this.setScene(scene);
         this.initModality(Modality.APPLICATION_MODAL);
     }
 

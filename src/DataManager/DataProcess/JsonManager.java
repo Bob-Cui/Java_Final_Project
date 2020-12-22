@@ -207,15 +207,9 @@ public class JsonManager {
      */
     public static AllData getNewNewBigTitleManager() throws IOException {
 
-        XCYFileManager cbFileManager = new XCYFileManager();
+//        XCYFileManager cbFileManager = new XCYFileManager();
         Gson gson = new Gson();
         String t = XCYFileManager.readJson("src/Source/data_with_test.json");
         return gson.fromJson(t, AllData.class);
-    }
-
-
-    public static void main(String[] args) throws IOException {
-
-        checkAllAnswerToA();
     }
 }

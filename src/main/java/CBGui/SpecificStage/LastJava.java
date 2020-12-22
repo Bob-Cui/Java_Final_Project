@@ -30,7 +30,6 @@ public class LastJava extends Stage {
         introJavaWebView.getEngine().load(url.toString());
 
 
-        VBox vBox = new VBox();
         GridPane gridPane = new GridPane();
 
         gridPane.add(introJavaWebView, 1, 1);
@@ -43,18 +42,12 @@ public class LastJava extends Stage {
             this.getIcons().add(image);
             this.setTitle("Java最新特性");
         }
-
-
-        // vBox.getChildren().add(label);
-
-
         {
             Toolkit toolkit = Toolkit.getDefaultToolkit();
             Dimension dimension = toolkit.getScreenSize();
-            this.setWidth(dimension.getWidth() / 2);
-            this.setHeight(dimension.getHeight() / 2);
+            this.setWidth(dimension.getWidth());
+            this.setHeight(dimension.getHeight() );
             this.setResizable(false);
-
         }
 
         gridPane.setStyle("-fx-background-image: url(" + "file:src/Source/leftback.png" + ")");
