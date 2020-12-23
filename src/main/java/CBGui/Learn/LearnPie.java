@@ -22,6 +22,8 @@ public class LearnPie extends Application {
 
         PieChart pieChart = new PieChart(pieChartData);
 
+//        pieChartData.get(1).setPieValue(100);
+
         pieChart.setTitle("学习画饼图");
         pieChart.setClockwise(true);
         pieChart.setLabelLineLength(60);

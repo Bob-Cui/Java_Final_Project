@@ -11,28 +11,13 @@ public class LearnMenu extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Menus");
-
-        HBox root = new HBox();
-        Scene scene = new Scene(root, 300, 250);
-
-        MenuBar menuBar = new MenuBar();
-
-        Menu menu = new Menu("File");
-        menu.getItems().add(new MenuItem("New"));
-        menu.getItems().add(new MenuItem("Save"));
-        menu.getItems().add(new SeparatorMenuItem());
-        menu.getItems().add(new MenuItem("Exit"));
-
-        CustomMenuItem customMenuItem = new CustomMenuItem(new Slider());
-        customMenuItem.setHideOnClick(false);
-        menu.getItems().add(customMenuItem);
-
-        menuBar.getMenus().add(menu);
-
-        menuBar.prefWidthProperty().bind(stage.widthProperty());
-
-        root.getChildren().add(menuBar);
+        HBox hBox = new HBox();
+        ProgressIndicator p1 = new ProgressIndicator();
+        p1.setProgress(0.75F);
+        hBox.getChildren().add(p1);
+        Scene scene = new Scene(hBox);
         stage.setScene(scene);
         stage.show();
+
     }
 }

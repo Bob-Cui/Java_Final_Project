@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class NewProblems {
 
 
-    private HashMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap;
+    private HashMap<Integer, SelectProblem> integerNewSelectProblemHashMap;
 
     public NewProblems() {
         integerNewSelectProblemHashMap = new HashMap<>();
@@ -19,15 +19,15 @@ public class NewProblems {
 
 
 
-    public NewProblems(HashMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap) {
+    public NewProblems(HashMap<Integer, SelectProblem> integerNewSelectProblemHashMap) {
         this.integerNewSelectProblemHashMap = integerNewSelectProblemHashMap;
     }
 
-    public HashMap<Integer, NewSelectProblem> getIntegerNewSelectProblemHashMap() {
+    public HashMap<Integer, SelectProblem> getIntegerNewSelectProblemHashMap() {
         return integerNewSelectProblemHashMap;
     }
 
-    public void setIntegerNewSelectProblemHashMap(HashMap<Integer, NewSelectProblem> integerNewSelectProblemHashMap) {
+    public void setIntegerNewSelectProblemHashMap(HashMap<Integer, SelectProblem> integerNewSelectProblemHashMap) {
         this.integerNewSelectProblemHashMap = integerNewSelectProblemHashMap;
     }
 }

@@ -1,0 +1,1150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title></title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+/* noto-sans-sc-300 - latin */
+/* noto-sans-sc-300 - latin */
+  /* noto-sans-sc-regular - latin */
+    /* noto-sans-sc-500 - latin */
+    /* noto-sans-sc-700 - latin */
+    /* noto-sans-sc-900 - latin */
+      
+
+/*** Custom fonts ***/
+@import url('file:///C://Users//DELL//AppData//Roaming//Typora/themes/');
+
+/*** Color setting ***/
+:root {
+    --side-bar-bg-color: #183055;
+    --active-file-bg-color: #2f4566;
+    --active-file-text-color: #ffffff;
+    --active-file-border-color: #757575;
+    --active-search-item-bg-color: #23242b;
+    --item-hover-bg-color: #ececec;
+    --item-hover-text-color: #f5f7f9;
+    --control-text-color: #ddd;
+    --window-border: 1px solid #183055;
+    --code-cursor: #f0f0f0;
+}
+
+/****** #write basic ******/
+#write {
+    position: static;
+    width: 90%;
+    max-width: 700px;
+    line-height: 1.6;
+    transform: none;
+    height: auto;
+}
+
+/****** #write h1-h6 ******/
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre {
+    width: auto;
+  }
+  
+#write h1::before, #write h2::before, #write h3::before, #write h4::before, #write h5::before, #write h6::before {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 0;
+  color: #b4b4b4;
+  font-size: 1rem;
+  font-weight: bold;
+  font-variant: 'small-caps';
+  border: 0;
+  border-radius: 0;
+  left: auto;
+  float: none;
+  padding: 0;
+}
+
+#write h1 {
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h1::before {
+  content: 'H1';
+  bottom: 1rem;
+}
+
+#write h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h2::before {
+  content: 'H2';
+  bottom: .85rem;
+}
+
+#write h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h3::before {
+  content: 'H3';
+  top: .44rem;
+  padding: 3px 0 3px 0;
+}
+
+#write h4 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h4::before {
+  content: 'H4';
+  top: .4rem;
+}
+
+#write h5, #write h6 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h5::before, #write h6::before {
+  top: .2rem;
+}
+
+#write h5::before {
+  content: 'H5';
+}
+
+#write h6::before {
+  content: 'H6';
+}
+
+h3.md-focus:before, h4.md-focus:before, h5.md-focus:before, h6.md-focus:before {
+  color: #ddd;
+  color: var(--heading-char-color);
+  border: 1px solid;
+  border-radius: 3px;
+  position: absolute;
+  left: -1.642857143rem;
+  top: .357142857rem;
+  float: left;
+  font-size: 9px;
+  padding-left: 2px;
+  padding-right: 2px;
+  vertical-align: bottom;
+  font-weight: 400;
+  line-height: 2;
+}
+
+/****** Global Style ******/
+body {
+  margin: 0;
+  font-family: 'Glow Sans SC', -apple-system, sans-serif;
+  font-weight: 500;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%
+}
+
+html, 
+body {
+  color: #242A31;
+  /* width: 100%; */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  background: #ffffff;
+  box-sizing: border-box;
+  line-height: 1rem ;
+  text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+} 
+
+hr {
+  border-color: #e6ecf1;
+  height: 2px;
+  border-top: 2px solid #e6ecf1;
+}
+
+img {
+  max-width: 80%;
+  margin-top: 0.2rem ;
+  margin-bottom: 0.2rem ;
+}
+
+/****** ul ol Style ******/
+
+ul>li>ul>li {
+  list-style-type: circle;
+}
+
+ul>li>ul>li>ul>li {
+  list-style-type: square;
+}
+
+ol,
+ul {
+  padding-left: 2rem ;
+  line-height: 1;
+}
+
+ol>li {
+  list-style-type: decimal
+}
+
+ol>li>ol>li {
+  list-style-type: lower-alpha
+}
+
+ol>li>ol>li>ol>li {
+  list-style-type: lower-roman
+}
+
+/****** Table Style ******/
+
+table {
+  padding: 0;
+  word-break: initial;
+}
+
+table tr {
+  border-top: 1px solid #dfe2e5;
+  margin: 0;
+  padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+  background-color: #f5f7f9;
+}
+table tr th {
+  font-weight: bold;
+  border: 1px solid #dfe2e5;
+  border-bottom: 0;
+  margin: 0;
+  padding: 6px 13px;
+}
+table tr td {
+  border: 1px solid #dfe2e5;
+  margin: 0;
+  padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+  margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+  margin-bottom: 0;
+}
+
+
+/****** YAML Style ******/
+pre.md-meta-block {
+  font-size: .75rem !important;
+  color: #5d5d5d;
+  min-height: .8rem ;
+  white-space: pre-wrap;
+  background: #f5f7f9;
+  display: block;
+  overflow-x: hidden;
+  padding: 1rem ;
+  border-radius: 8px;
+}
+
+
+
+/****** Global Text ******/
+p {
+  font-size: 16px;
+  font-family: "Glow Sans SC", -apple-system, sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+  font-style: normal;
+  color: rgb(59, 69, 78);
+}
+
+a {
+  /* color: rgb(164, 78, 237); */
+  color: rgb(56, 132, 254);
+  font-weight: 500;
+  text-decoration: none;
+  text-decoration-style: none;
+  cursor: pointer;
+  padding: 0 3px 0 3px;
+}
+
+#write a:hover {
+  color: rgb(56, 132, 254);
+  text-decoration: underline;
+  text-decoration-style: solid;
+}
+
+strong {
+  font-weight: 700;
+}
+
+mark {
+  background: #87CEFA;
+  padding: 0 2px 0 2px;
+  margin: 0 2px 0 2px;
+}
+
+h1 {
+  font-size: 2rem ;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+h2 {
+  font-size: 1.8rem ;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+h3 {
+  font-size: 1.6rem ;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+h4 {
+  font-size: 1.2rem ;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+h5,  h6 {
+  font-size: 1rem ;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+
+/****** Print header ******/
+@media print {
+  .typora-export * {
+    -webkit-print-color-adjust: exact;
+  }
+  #write h1::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h2::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h3::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h4::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h5::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h6::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+
+}
+
+
+/****** #write Code Fences ******/
+#write .md-fences {
+    -webkit-font-smoothing: initial;
+    margin: 1rem 0 1rem 0 !important;
+    line-height: 1.43rem ;
+    border-radius: 3px;
+    font-size: 0.95rem ;
+    word-wrap: normal;
+}
+
+
+#write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+    line-height: 1.55rem ;
+}
+  
+#write .CodeMirror-cursors .CodeMirror-cursor {
+    border-left: 2px solid var(--code-cursor);
+}
+  
+#write code,
+  tt {
+    margin: 0 2px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    font-size: 0.92rem ;
+    background: #f5f7f9;
+    display: inline;
+    vertical-align: bottom;
+    line-height: 1.8;
+}
+  
+#write .md-footnote {
+    color: var(--main-5);
+    background-color: var(--main-1);
+}
+
+.cm-s-inner.CodeMirror, .cm-s-inner .CodeMirror-gutters {
+  padding: 0.75rem 0.15rem 0.75rem 0.15rem ;
+  background-color: #183055 !important;
+  color: #f8f8f2 !important;
+  border: none;
+  border-radius: 6px;
+}
+
+
+.code-tooltip {
+  box-shadow: 0 1px 1px 0 rgba(0, 28, 36, .3);
+  border-top: 1px solid #eef2f2;
+  background: #183055;
+  border-radius: 6px;
+}
+
+.md-fences {
+  font-size: .9rem;
+  position: relative!important;
+  display: block;
+  page-break-inside: avoid;
+  text-align: left;
+  overflow: visible;
+  white-space: pre;
+  background: inherit;
+}
+
+.md-fences {
+  background-color: #f8f8f8;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding-top: 8px;
+  padding-bottom: 6px;
+}
+
+.md-fences, tt {
+  border-radius: 3px;
+  /* color: #f0f0f0; */
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/****** Sidebar ******/
+#typora-sidebar * {
+  color: #f0f0f0;
+}
+
+#typora-sidebar .file-tree-node.file-library-file-node.active .file-node-background {
+  border-left: 5px solid #3884ff;
+  height: 2.2rem;
+}
+
+#sidebar-files-menu {
+  border: 1px solid rgba(0, 2, 3, 0.7);
+}
+
+.file-list-item {
+  border-bottom: var(--window-border);
+}
+
+.file-list-item {
+  overflow: hidden;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  border-bottom: var(--window-border);
+  cursor: pointer;
+  padding-right: 8px;
+  padding-top: 12px;
+  padding-left: 24px;
+  transition: top .5s;
+  -webkit-transition: top .5s;
+}
+
+.file-list-item.active {
+  background: #2f4566;
+  /* background: var(--active-file-bg-color); */
+  color: var(--active-file-text-color);
+  border-radius: 12px;
+}
+
+.file-list-item:not(.active) {
+  opacity: .9;
+}
+
+.file-node-content {
+  padding-top: 6px;
+  margin: 0 0 8px 0;
+  cursor: default;
+  color: var(--control-text-color);
+  white-space: nowrap;
+  height: 2.2rem;
+  line-height: 1.5;
+}
+
+.ty-on-drag-enter {
+  background-color: #2f4566;
+  color: var(--item-hover-text-color);
+}
+
+.file-node-content:active {
+  border-radius: 0px!important;
+  background: #2f4566;
+}
+
+.active .file-node-content {
+  font-weight: bold;
+}
+
+.file-node-content:hover {
+  cursor: pointer;
+  border-radius: 0px!important;
+}
+
+.file-node-icon, .file-node-open-state {
+  display: block;
+  float: left;
+  line-height: 1.5;
+  min-height: 15px;
+}
+
+.file-node-icon {
+  margin-right: 6px;
+}
+
+.sidebar-footer {
+background: var(--side-bar-bg-color);
+border-top: 1px #555 solid;
+}
+
+.html-for-mac #file-library-search-input {
+border: 0;
+border-bottom: 1px solid #ccc;
+line-height: 16px;
+margin: 5px 16px 0px 0;
+width: 0;
+/* -webkit-flex: 1; */
+flex: 1;
+background: 0 0;
+color: #bbc0ca!important;
+/* transform: translateY(-3px); */
+/* overflow: auto; */
+padding-top: 6px;
+}
+
+#typora-sidebar #ty-sidebar-footer .sidebar-footer-item:hover {
+background: #021d43;
+}
+
+#typora-sidebar #outline-content .outline-item:hover {
+background: #202020;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu .show + .menuitem-group-label.show {
+border-color: #202020;
+}
+
+#typora-sidebar #ty-sidebar-footer {
+border-top: 1px solid #19191c;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu li > a:hover {
+background: #021d43;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu .ty-side-sort-btn.active, #typora-sidebar #ty-sidebar-footer #sidebar-files-menu .ty-side-sort-btn:hover {
+color: #3884FF;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu .ty-side-sort-btn.active {
+background: #001129;
+}
+
+#typora-sidebar .file-list-item.file-library-node:not(.active):hover {
+  background: #243959;
+  border-radius: 12px;
+}
+
+#typora-sidebar .file-tree-node.file-library-file-node:not(.active):hover .file-node-background {
+  background: #243959;
+  border-radius: 12px;
+  height: 2.2rem;
+}
+
+/****** Quote style ******/
+blockquote {
+    position: relative;
+  /*  margin: 1rem 1 1rem 2rem; */
+    padding: 1rem;
+    color: #827676;
+    background-color: #f5f7f9;
+    border-radius: 6px;
+    line-height: 1;
+}
+  
+blockquote::before {
+    content: '';
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    height: 100%;
+    width: .30rem;
+    background: #3884ff;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+/****** task list style ******/
+.task-list{
+	padding-left: 0;
+}
+
+.md-task-list-item > input{
+	top: -0.2rem;
+	margin-left: -1.6rem;
+	margin-top: calc(1rem + 1px);
+    -webkit-appearance: initial;
+}
+
+.md-task-list-item > input:before{
+	border: 1px solid#0185ff;
+	border-radius: 1rem;
+	width: 1rem;
+	height: 1rem;
+	background: #fff;
+	content: ' ';
+	transition: background-color 200ms ease-in-out;
+	display: block;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	background: #0185ff;
+	border-width: 1px;
+	transition: background-color 200ms ease-in-out;
+}
+
+.md-task-list-item > input:checked:after,
+.md-task-list-item > input[checked]:after {
+	opacity: 1;
+}
+
+.md-task-list-item > input:after {
+	opacity: 1;
+	-webkit-transition: opacity 0.05s ease-in-out;
+	-moz-transition: opacity 0.05s ease-in-out;
+	transition: opacity 0.05s ease-in-out;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 0.25rem;
+	left: 0.19rem;
+	width: 0.6rem;
+	height: 0.375rem;
+	border: 2px solid #fff;
+	border-top: 0;
+	border-right: 0;
+	content: ' ';
+	opacity: 0;
+}
+
+
+
+/****** Code style ******/
+code {
+    font-size: .9rem; 
+  /*   color: #333333; /*  #537AA2;  
+      border: 1px solid #d0d0d0;  */
+    font-family: 'Cascadia Code', Consolas, 'Noto Sans SC','Courier New', monospace;
+    padding: .2rem .2rem;
+    border-radius: 3px;
+    background: #f5f7f9 !important;
+    display: inline;
+    vertical-align: bottom;
+    line-height: 1.8;
+}
+  
+code,
+pre{
+    font-size: 90% !important;
+    font-weight: normal;
+    font-family: 'Cascadia Code', Consolas, 'Noto Sans SC','Courier New', monospace;
+    -webkit-font-smoothing: initial;
+    -moz-osx-font-smoothing: initial
+}
+
+/****** The flow chart ******/
+pre.md-fences[lang=sequence].md-focus .md-diagram-panel, pre.md-fences[lang=flow].md-focus .md-diagram-panel, pre.md-fences[lang=mermaid].md-focus .md-diagram-panel {
+  position: absolute;
+  border: px solid #777
+}
+
+
+
+/****** Windows contral ******/
+.megamenu-menu-list li a.active, .megamenu-menu-list:not(.saved) li a:hover {
+  background-color: #285e8e;
+}
+
+/****** Fix ******/
+.md-tab {
+  display: inline-block;
+  white-space: pre;
+  font-family: initial;
+}
+
+div.md-mathjax-preview.mathjax-candidate.mathjax-candidate-show {
+  background-color: white !important;
+  -webkit-user-modify: read-only;
+}
+
+.mathjax-candidate {
+  text-align: center;
+  padding-top: inherit;
+  overflow-x: auto;
+  padding: 10px 0;
+  background-color: white;
+}
+
+input {
+  font-weight: bold;
+  background-color: inherit;
+  background-color: var(--bg-color);
+  color: var(--text-color)!important;
+  transform: translateY(-8px);
+}
+
+.task-list{
+	padding-left: 0;
+}
+
+.md-task-list-item > input{
+	top: -0.2rem;
+	margin-left: -1.6rem;
+	margin-top: calc(1rem + 1px);
+}
+
+/****** Code highlight ******/
+.cm-s-inner .CodeMirror-guttermarker, .cm-s-inner .CodeMirror-guttermarker-subtle, .cm-s-inner .CodeMirror-linenumber { color: #596774; }
+.cm-s-inner .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
+.cm-s-inner div.CodeMirror-selected { background: rgba(255, 255, 255, 0.15); }
+.cm-s-inner.CodeMirror-focused div.CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }
+.cm-s-inner .CodeMirror-line::selection, .cm-s-inner .CodeMirror-line > span::selection, .cm-s-inner .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }
+.cm-s-inner .CodeMirror-line::-moz-selection, .cm-s-inner .CodeMirror-line > span::-moz-selection, .cm-s-inner .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }
+
+.cm-s-inner .CodeMirror-activeline-background { background: rgba(0, 0, 0, 0); }
+.cm-s-inner .cm-keyword { color: rgba(199, 146, 234, 1); }
+.cm-s-inner .cm-operator { color: rgba(233, 237, 237, 1); }
+.cm-s-inner .cm-variable-2 { color: #80CBC4; }
+.cm-s-inner .cm-variable-3 { color: #82B1FF; }
+.cm-s-inner .cm-builtin { color: #DECB6B; }
+.cm-s-inner .cm-atom { color: #F77669; }
+.cm-s-inner .cm-number { color: #F77669; }
+.cm-s-inner .cm-def { color: rgba(233, 237, 237, 1); }
+.cm-s-inner .cm-string { color: #C3E88D; }
+.cm-s-inner .cm-string-2 { color: #80CBC4; }
+.cm-s-inner .cm-comment { color: #969fa3; }
+.cm-s-inner .cm-variable { color: #82B1FF; }
+.cm-s-inner .cm-tag { color: #80CBC4; }
+.cm-s-inner .cm-meta { color: #80CBC4; }
+.cm-s-inner .cm-attribute { color: #FFCB6B; }
+.cm-s-inner .cm-property { color: #80CBAE; }
+.cm-s-inner .cm-qualifier { color: #DECB6B; }
+.cm-s-inner .cm-variable-3 { color: #DECB6B; }
+.cm-s-inner .cm-tag { color: rgba(255, 83, 112, 1); }
+.cm-s-inner .cm-error {
+  color: rgba(255, 255, 255, 1.0);
+  background-color: #EC5F67;
+}
+.cm-s-inner .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
+
+.md-fences .code-tooltip {
+  background-color: #263238;
+}
+
+
+
+/** initialize css counter */
+#write, .sidebar-content,.md-toc-content {
+    counter-reset: h1
+}
+
+#write h1, .outline-h1, .md-toc-item.md-toc-h1  {
+    counter-reset: h2
+}
+
+#write h2, .outline-h2, .md-toc-item.md-toc-h2 {
+    counter-reset: h3
+}
+
+#write h3, .outline-h3, .md-toc-item.md-toc-h3 {
+    counter-reset: h4
+}
+
+#write h4, .outline-h4, .md-toc-item.md-toc-h4 {
+    counter-reset: h5
+}
+
+#write h5, .outline-h5, .md-toc-item.md-toc-h5 {
+    counter-reset: h6
+}
+
+/** put counter result into headings */
+#write h1:before, 
+h1.md-focus.md-heading:before,
+.outline-h1>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h1>.md-toc-inner:before{
+    counter-increment: h1;
+    content: counter(h1) " "
+}
+
+#write h2:before, 
+h2.md-focus.md-heading:before,
+.outline-h2>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h2>.md-toc-inner:before{
+    counter-increment: h2;
+    content: counter(h1) "." counter(h2) " "
+}
+
+#write h3:before,
+h3.md-focus.md-heading:before,
+.outline-h3>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h3>.md-toc-inner:before {
+    counter-increment: h3;
+    content: counter(h1) "." counter(h2) "." counter(h3) " "
+}
+
+#write h4:before,
+h4.md-focus.md-heading:before,
+.outline-h4>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h4>.md-toc-inner:before  {
+    counter-increment: h4;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) " "
+}
+
+#write h5:before,
+h5.md-focus.md-heading:before,
+.outline-h5>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h5>.md-toc-inner:before  {
+    counter-increment: h5;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) " "
+}
+
+#write h6:before,
+h6.md-focus.md-heading:before,
+.outline-h6>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h6>.md-toc-inner:before {
+    counter-increment: h6;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) " "
+}
+
+/** override the default style for focused headings */
+#write>h3.md-focus:before,
+#write>h4.md-focus:before,
+#write>h5.md-focus:before,
+#write>h6.md-focus:before,
+h3.md-focus:before,
+h4.md-focus:before,
+h5.md-focus:before,
+h6.md-focus:before {
+    color: inherit;
+    border: inherit;
+    border-radius: inherit;
+    position: inherit;
+    left:initial;
+    float: none;
+    top:initial;
+    font-size: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+    vertical-align: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+ :root {--mermaid-font-zoom:1.25em ;} 
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="java11最新特性" class="md-header-anchor"></a><span>Java11最新特性</span></h1><p><span>Java 11 已于 2018 年 9 月 25 日正式发布，之前在 </span><a href='https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-10/index.html'><span>Java 10 新特性介绍</span></a><span>中介绍过，为了加快的版本迭代、跟进社区反馈，Java 的版本发布周期调整为每六个月一次——即每半年发布一个大版本，每个季度发布一个中间特性版本，并且做出不会跳票的承诺。通过这样的方式，Java 开发团队能够将一些重要特性尽早的合并到 Java Release 版本中，以便快速得到开发者的反馈，避免出现类似 Java 9 发布时的两次延期的情况。</span></p><p><span>按照官方介绍，新的版本发布周期将会严格按照时间节点，于每年的 3 月和 9 月发布，Java 11 发布的时间节点也正好处于 Java 8 免费更新到期的前夕。与 Java 9 和 Java 10 这两个被称为&quot;功能性的版本&quot;不同，Java 11 仅将提供长期支持服务（LTS, Long-Term-Support），还将作为 Java 平台的默认支持版本，并且会提供技术支持直至 2023 年 9 月，对应的补丁和安全警告等支持将持续至 2026 年。</span></p><p><span>本文主要针对 Java 11 中的新特性展开介绍，让您快速了解 Java 11 带来的变化。</span></p><h2><a name="基于嵌套的访问控制" class="md-header-anchor"></a><span>基于嵌套的访问控制</span></h2><p><span>与 Java 语言中现有的嵌套类型概念一致, 嵌套访问控制是一种控制上下文访问的策略，允许逻辑上属于同一代码实体，但被编译之后分为多个分散的 class 文件的类，无需编译器额外的创建可扩展的桥接访问方法，即可访问彼此的私有成员，并且这种改进是在 Java 字节码级别的。</span></p><p><span>在 Java 11 之前的版本中，编译之后的 class 文件中通过 InnerClasses 和 Enclosing Method 两种属性来帮助编译器确认源码的嵌套关系，每一个嵌套的类会编译到自己所在的 class 文件中，不同类的文件通过上面介绍的两种属性的来相互连接。这两种属性对于编译器确定相互之间的嵌套关系已经足够了，但是并不适用于访问控制。这里大家可以写一段包含内部类的代码，并将其编译成 class 文件，然后通过 </span><code>javap</code><span> 命令行来分析，碍于篇幅，这里就不展开讨论了。</span></p><p><span>Java 11 中引入了两个新的属性：一个叫做 NestMembers 的属性，用于标识其它已知的静态 nest 成员；另外一个是每个 nest 成员都包含的 NestHost 属性，用于标识出它的 nest 宿主类。</span></p><p><span> </span></p><h2><a name="标准-http-client-升级" class="md-header-anchor"></a><span>标准 HTTP Client 升级</span></h2><p><span>Java 11 对 Java 9 中引入并在 Java 10 中进行了更新的 Http Client API 进行了标准化，在前两个版本中进行孵化的同时，Http Client 几乎被完全重写，并且现在完全支持异步非阻塞。</span></p><p><span>新版 Java 中，Http Client 的包名由 jdk.incubator.http 改为 java.net.http，该 API 通过 CompleteableFutures 提供非阻塞请求和响应语义，可以联合使用以触发相应的动作，并且 </span><em><span>RX Flo**w</span></em><span> 的概念也在 Java 11 中得到了实现。现在，在用户层请求发布者和响应发布者与底层套接字之间追踪数据流更容易了。这降低了复杂性，并最大程度上提高了 HTTP / 1 和 HTTP / 2 之间的重用的可能性。</span></p><p><span>Java 11 中的新 Http Client API，提供了对 HTTP/2 等业界前沿标准的支持，同时也向下兼容 HTTP/1.1，精简而又友好的 API 接口，与主流开源 API（如：Apache HttpClient、Jetty、OkHttp 等）类似甚至拥有更高的性能。与此同时它是 Java 在 Reactive-Stream 方面的第一个生产实践，其中广泛使用了 Java Flow API，终于让 Java 标准 HTTP 类库在扩展能力等方面，满足了现代互联网的需求，是一个难得的现代 Http/2 Client API 标准的实现，Java 工程师终于可以摆脱老旧的 HttpURLConnection 了。下面模拟 Http GET 请求并打印返回内容：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">HttpClient</span> <span class="cm-variable">client</span> <span class="cm-operator">=</span> <span class="cm-variable">HttpClient</span>.<span class="cm-variable">newHttpClient</span>();</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">HttpRequest</span> <span class="cm-variable">request</span> <span class="cm-operator">=</span> <span class="cm-variable">HttpRequest</span>.<span class="cm-variable">newBuilder</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  .<span class="cm-variable">uri</span>(<span class="cm-variable">URI</span>.<span class="cm-variable">create</span>(<span class="cm-string">"http://openjdk.java.net/"</span>))</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  .<span class="cm-variable">build</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">client</span>.<span class="cm-variable">sendAsync</span>(<span class="cm-variable">request</span>, <span class="cm-variable">BodyHandlers</span>.<span class="cm-variable">ofString</span>())</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  .<span class="cm-variable">thenApply</span>(<span class="cm-variable">HttpResponse</span>::<span class="cm-variable">body</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  .<span class="cm-variable">thenAccept</span>(<span class="cm-variable">System</span>.<span class="cm-variable">out</span>::<span class="cm-variable">println</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  .<span class="cm-variable">join</span>();</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 173px;"></div><div class="CodeMirror-gutters" style="display: none; height: 173px;"></div></div></div></pre><h2><a name="epsilon低开销垃圾回收器" class="md-header-anchor"></a><span>Epsilon：低开销垃圾回收器</span></h2><p><span>Epsilon 垃圾回收器的目标是开发一个控制内存分配，但是不执行任何实际的垃圾回收工作。它提供一个完全消极的 GC 实现，分配有限的内存资源，最大限度的降低内存占用和内存吞吐延迟时间。</span></p><p><span>Java 版本中已经包含了一系列的高度可配置化的 GC 实现。各种不同的垃圾回收器可以面对各种情况。但是有些时候使用一种独特的实现，而不是将其堆积在其他 GC 实现上将会是事情变得更加简单。</span></p><p><span>下面是 no-op GC 的几个使用场景：</span></p><ul><li><span>性能测试：什么都不执行的 GC 非常适合用于 GC 的差异性分析。no-op （无操作）GC 可以用于过滤掉 GC 诱发的性能损耗，比如 GC 线程的调度，GC 屏障的消耗，GC 周期的不合适触发，内存位置变化等。此外有些延迟者不是由于 GC 引起的，比如 scheduling hiccups, compiler transition hiccups，所以去除 GC 引发的延迟有助于统计这些延迟。</span></li><li><span>内存压力测试：在测试 Java 代码时，确定分配内存的阈值有助于设置内存压力常量值。这时 no-op 就很有用，它可以简单地接受一个分配的内存分配上限，当内存超限时就失败。例如：测试需要分配小于 1G 的内存，就使用-Xmx1g 参数来配置 no-op GC，然后当内存耗尽的时候就直接 crash。</span></li><li><span>VM 接口测试：以 VM 开发视角，有一个简单的 GC 实现，有助于理解 VM-GC 的最小接口实现。它也用于证明 VM-GC 接口的健全性。</span></li><li><span>极度短暂 job 任务：一个短声明周期的 job 任务可能会依赖快速退出来释放资源，这个时候接收 GC 周期来清理 heap 其实是在浪费时间，因为 heap 会在退出时清理。并且 GC 周期可能会占用一会时间，因为它依赖 heap 上的数据量。</span></li><li><span>延迟改进：对那些极端延迟敏感的应用，开发者十分清楚内存占用，或者是几乎没有垃圾回收的应用，此时耗时较长的 GC 周期将会是一件坏事。</span></li><li><span>吞吐改进：即便对那些无需内存分配的工作，选择一个 GC 意味着选择了一系列的 GC 屏障，所有的 OpenJDK GC 都是分代的，所以他们至少会有一个写屏障。避免这些屏障可以带来一点点的吞吐量提升。</span></li></ul><p><span>Epsilon 垃圾回收器和其他 OpenJDK 的垃圾回收器一样，可以通过参数 </span><code>-XX:+UseEpsilonGC</code><span>开启。</span></p><p><span>Epsilon 线性分配单个连续内存块。可复用现存 VM 代码中的 TLAB 部分的分配功能。非 TLAB 分配也是同一段代码，因为在此方案中，分配 TLAB 和分配大对象只有一点点的不同。Epsilon 用到的 barrier 是空的(或者说是无操作的)。因为该 GC</span></p><p><span>执行任何的 GC 周期，不用关系对象图，对象标记，对象复制等。引进一种新的 barrier-set 实现可能是该 GC 对 JVM 最大的变化。</span></p><h2><a name="简化启动单个源代码文件的方法" class="md-header-anchor"></a><span>简化启动单个源代码文件的方法</span></h2><p><span>Java 11 版本中最令人兴奋的功能之一是增强 Java 启动器，使之能够运行单一文件的 Java 源代码。此功能允许使用 Java 解释器直接执行 Java 源代码。源代码在内存中编译，然后由解释器执行。唯一的约束在于所有相关的类必须定义在同一个 Java 文件中。</span></p><p><span>此功能对于开始学习 Java 并希望尝试简单程序的人特别有用，并且能与 jshell 一起使用，将成为任何初学者学习语言的一个很好的工具集。不仅初学者会受益，专业人员还可以利用这些工具来探索新的语言更改或尝试未知的 API。</span></p><p><span>如今单文件程序在编写小实用程序时很常见，特别是脚本语言领域。从中开发者可以省去用 Java 编译程序等不必要工作，以及减少新手的入门障碍。在基于 Java 10 的程序实现中可以通过三种方式启动：</span></p><ul><li><span>作为 * .class 文件</span></li><li><span>作为 * .jar 文件中的主类</span></li><li><span>作为模块中的主类</span></li></ul><p><span>而在最新的 Java 11 中新增了一个启动方式，即可以在源代码中声明类，例如：如果名为 HelloWorld.java 的文件包含一个名为 hello.World 的类，那么该命令：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">$ java HelloWorld.java</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>也等同于：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">$</span> <span class="cm-variable">javac</span> <span class="cm-variable">HelloWorld</span>.<span class="cm-variable">java</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">$</span> <span class="cm-variable">java</span> <span class="cm-operator">-</span><span class="cm-variable">cp</span> . <span class="cm-variable">hello</span>.<span class="cm-variable">World</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 194px;"></div><div class="CodeMirror-gutters" style="display: none; height: 194px;"></div></div></div></pre><h2><a name="用于-lambda-参数的局部变量语法" class="md-header-anchor"></a><span>用于 Lambda 参数的局部变量语法</span></h2><p><span>在 Lambda 表达式中使用局部变量类型推断是 Java 11 引入的唯一与语言相关的特性，这一节，我们将探索这一新特性。</span></p><p><span>从 Java 10 开始，便引入了局部变量类型推断这一关键特性。类型推断允许使用关键字 var 作为局部变量的类型而不是实际类型，编译器根据分配给变量的值推断出类型。这一改进简化了代码编写、节省了开发者的工作时间，因为不再需要显式声明局部变量的类型，而是可以使用关键字 var，且不会使源代码过于复杂。</span></p><p><span>可以使用关键字 var 声明局部变量，如下所示：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">var</span> <span class="cm-variable">s</span> <span class="cm-operator">=</span> <span class="cm-string">"Hello Java 11"</span>;</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-variable">s</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 108px;"></div><div class="CodeMirror-gutters" style="display: none; height: 108px;"></div></div></div></pre><p><span>但是在 Java 10 中，还有下面几个限制：</span></p><ul><li><span>只能用于局部变量上</span></li><li><span>声明时必须初始化</span></li><li><span>不能用作方法参数</span></li><li><span>不能在 Lambda 表达式中使用</span></li></ul><p><span>Java 11 与 Java 10 的不同之处在于允许开发者在 Lambda 表达式中使用 var 进行参数声明。乍一看，这一举措似乎有点多余，因为在写代码过程中可以省略 Lambda 参数的类型，并通过类型推断确定它们。但是，添加上类型定义同时使用 </span><code>@Nonnull</code><span> 和 </span><code>@Nullable</code><span> 等类型注释还是很有用的，既能保持与局部变量的一致写法，也不丢失代码简洁。</span></p><p><span>Lambda 表达式使用隐式类型定义，它形参的所有类型全部靠推断出来的。隐式类型 Lambda 表达式如下：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(x, y) -&gt; x.process(y)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>Java 10 为局部变量提供隐式定义写法如下：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">var</span> <span class="cm-variable">x</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">Foo</span>();</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> (<span class="cm-variable">var</span> <span class="cm-variable">x</span> : <span class="cm-variable">xs</span>) { ... }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">try</span> (<span class="cm-variable">var</span> <span class="cm-variable">x</span> <span class="cm-operator">=</span> ...) { ... } <span class="cm-keyword">catch</span> ...</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 194px;"></div><div class="CodeMirror-gutters" style="display: none; height: 194px;"></div></div></div></pre><p><span>为了 Lambda 类型表达式中正式参数定义的语法与局部变量定义语法的不一致，且为了保持与其他局部变量用法上的一致性，希望能够使用关键字 var 隐式定义 Lambda 表达式的形参：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(<span class="cm-variable">var</span> <span class="cm-variable">x</span>, <span class="cm-variable">var</span> <span class="cm-variable">y</span>) <span class="cm-operator">-&gt;</span> <span class="cm-variable">x</span>.<span class="cm-variable">process</span>(<span class="cm-variable">y</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>于是在 Java 11 中将局部变量和 Lambda 表达式的用法进行了统一，并且可以将注释应用于局部变量和 Lambda 表达式：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">@Nonnull</span> <span class="cm-variable">var</span> <span class="cm-variable">x</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">Foo</span>();</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(<span class="cm-meta">@Nonnull</span> <span class="cm-variable">var</span> <span class="cm-variable">x</span>, <span class="cm-meta">@Nullable</span> <span class="cm-variable">var</span> <span class="cm-variable">y</span>) <span class="cm-operator">-&gt;</span> <span class="cm-variable">x</span>.<span class="cm-variable">process</span>(<span class="cm-variable">y</span>)</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 108px;"></div><div class="CodeMirror-gutters" style="display: none; height: 108px;"></div></div></div></pre><h2><a name="低开销的-heap-profiling" class="md-header-anchor"></a><span>低开销的 Heap Profiling</span></h2><p><span>Java 11 中提供一种低开销的 Java 堆分配采样方法，能够得到堆分配的 Java 对象信息，并且能够通过 JVMTI 访问堆信息。</span></p><p><span>引入这个低开销内存分析工具是为了达到如下目的：</span></p><ul><li><span>足够低的开销，可以默认且一直开启</span></li><li><span>能通过定义好的程序接口访问</span></li><li><span>能够对所有堆分配区域进行采样</span></li><li><span>能给出正在和未被使用的 Java 对象信息</span></li></ul><p><span>对用户来说，了解它们堆里的内存分布是非常重要的，特别是遇到生产环境中出现的高 CPU、高内存占用率的情况。目前有一些已经开源的工具，允许用户分析应用程序中的堆使用情况，比如：Java Flight Recorder、jmap、YourKit 以及 VisualVM tools.。但是这些工具都有一个明显的不足之处：无法得到对象的分配位置，headp dump 以及 heap histogram 中都没有包含对象分配的具体信息，但是这些信息对于调试内存问题至关重要，因为它能够告诉开发人员他们的代码中发生的高内存分配的确切位置，并根据实际源码来分析具体问题，这也是 Java 11 中引入这种低开销堆分配采样方法的原因。</span></p><p><span> </span></p><h2><a name="支持-tls-13-协议" class="md-header-anchor"></a><span>支持 TLS 1.3 协议</span></h2><p><span>Java 11 中包含了传输层安全性（TLS）1.3 规范（RFC 8446）的实现，替换了之前版本中包含的 TLS，包括 TLS 1.2，同时还改进了其他 TLS 功能，例如 OCSP 装订扩展（RFC 6066，RFC 6961），以及会话散列和扩展主密钥扩展（RFC 7627），在安全性和性能方面也做了很多提升。</span></p><p><span>新版本中包含了 Java 安全套接字扩展（JSSE）提供 SSL，TLS 和 DTLS 协议的框架和 Java 实现。目前，JSSE API 和 JDK 实现支持 SSL 3.0，TLS 1.0，TLS 1.1，TLS 1.2，DTLS 1.0 和 DTLS 1.2。</span></p><p><span>同时 Java 11 版本中实现的 TLS 1.3，重新定义了以下新标准算法名称：</span></p><ol><li><span>TLS 协议版本名称：TLSv1.3</span></li><li><span>SSLContext 算法名称：TLSv1.3</span></li><li><span>TLS 1.3 的 TLS 密码套件名称：TLS_AES_128_GCM_SHA256，TLS_AES_256_GCM_SHA384</span></li><li><span>用于 X509KeyManager 的 keyType：RSASSA-PSS</span></li><li><span>用于 X509TrustManager 的 authType：RSASSA-PSS</span></li></ol><p><span>还为 TLS 1.3 添加了一个新的安全属性 jdk.tls.keyLimits。当处理了特定算法的指定数据量时，触发握手后，密钥和 IV 更新以导出新密钥。还添加了一个新的系统属性 jdk.tls.server.protocols，用于在 SunJSSE 提供程序的服务器端配置默认启用的协议套件。</span></p><p><span>之前版本中使用的 KRB5密码套件实现已从 Java 11 中删除，因为该算法已不再安全。同时注意，TLS 1.3 与以前的版本不直接兼容。</span></p><p><span>升级到 TLS 1.3 之前，需要考虑如下几个兼容性问题：</span></p><ol><li><span>TLS 1.3 使用半关闭策略，而 TLS 1.2 以及之前版本使用双工关闭策略，对于依赖于双工关闭策略的应用程序，升级到 TLS 1.3 时可能存在兼容性问题。</span></li><li><span>TLS 1.3 使用预定义的签名算法进行证书身份验证，但实际场景中应用程序可能会使用不被支持的签名算法。</span></li><li><span>TLS 1.3 再支持 DSA 签名算法，如果在服务器端配置为仅使用 DSA 证书，则无法升级到 TLS 1.3。</span></li><li><span>TLS 1.3 支持的加密套件与 TLS 1.2 和早期版本不同，若应用程序硬编码了加密算法单元，则在升级的过程中需要修改相应代码才能升级使用 TLS 1.3。</span></li><li><span>TLS 1.3 版本的 session 用行为及秘钥更新行为与 1.2 及之前的版本不同，若应用依赖于 TLS 协议的握手过程细节，则需要注意。</span></li></ol><h2><a name="zgc可伸缩低延迟垃圾收集器" class="md-header-anchor"></a><span>ZGC：可伸缩低延迟垃圾收集器</span></h2><p><span>ZGC 即 Z Garbage Collector（垃圾收集器或垃圾回收器），这应该是 Java 11 中最为瞩目的特性，没有之一。ZGC 是一个可伸缩的、低延迟的垃圾收集器，主要为了满足如下目标进行设计：</span></p><ul><li><span>GC 停顿时间不超过 10ms</span></li><li><span>即能处理几百 MB 的小堆，也能处理几个 TB 的大堆</span></li><li><span>应用吞吐能力不会下降超过 15%（与 G1 回收算法相比）</span></li><li><span>方便在此基础上引入新的 GC 特性和利用 colord</span></li><li><span>针以及 Load barriers 优化奠定基础</span></li><li><span>当前只支持 Linux/x64 位平台</span></li></ul><p><span>停顿时间在 10ms 以下，10ms 其实是一个很保守的数据，即便是 10ms 这个数据，也是 GC 调优几乎达不到的极值。根据 SPECjbb 2015 的基准测试，128G 的大堆下最大停顿时间才 1.68ms，远低于 10ms，和 G1 算法相比，改进非常明显。</span></p><p><span>图 1. 回收算法停顿时间对比</span></p><p><img src="https://www.ibm.com/developerworks/cn/java/the-new-features-of-Java-11/image001.png" referrerpolicy="no-referrer" alt="img"></p><p><span>不过目前 ZGC 还处于实验阶段，目前只在 Linux/x64 上可用，如果有足够的需求，将来可能会增加对其他平台的支持。同时作为实验性功能的 ZGC 将不会出现在 JDK 构建中，除非在编译时使用 configure 参数：</span><code>--with-jvm-features=zgc</code><span> 显式启用。</span></p><p><span>在实验阶段，编译完成之后，已经迫不及待的想试试 ZGC，需要配置以下 JVM 参数，才能使用 ZGC，具体启动 ZGC 参数如下：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">-XX：+ UnlockExperimentalVMOptions -XX：+ UseZGC -Xmx10g</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>其中参数：</span><code>-Xmx</code><span>是 ZGC 收集器中最重要的调优选项，大大解决了程序员在 JVM 参数调优上的困扰。ZGC 是一个并发收集器，必须要设置一个最大堆的大小，应用需要多大的堆，主要有下面几个考量：</span></p><ul><li><span>对象的分配速率，要保证在 GC 的时候，堆中有足够的内存分配新对象。</span></li><li><span>一般来说，给 ZGC 的内存越多越好，但是也不能浪费内存，所以要找到一个平衡。</span></li></ul><h2><a name="飞行记录器" class="md-header-anchor"></a><span>飞行记录器</span></h2><p><span>飞行记录器之前是商业版 JDK 的一项分析工具，但在 Java 11 中，其代码被包含到公开代码库中，这样所有人都能使用该功能了。</span></p><p><span>Java 语言中的飞行记录器类似飞机上的黑盒子，是一种低开销的事件信息收集框架，主要用于对应用程序和 JVM 进行故障检查、分析。飞行记录器记录的主要数据源于应用程序、JVM 和 OS，这些事件信息保存在单独的事件记录文件中，故障发生后，能够从事件记录文件中提取出有用信息对故障进行分析。</span></p><p><span>启用飞行记录器参数如下：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="tcl"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="tcl"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">-</span>XX:StartFlightRecording</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>也可以使用 bin/jcmd 工具启动和配置飞行记录器：</span></p><p><span>清单 2. 飞行记录器启动、配置参数示例</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="powershell"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="powershell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-error">$</span> <span class="cm-identifier">jcmd</span> <span class="cm-operator">&lt;</span><span class="cm-identifier">pid</span><span class="cm-operator">&gt;</span> <span class="cm-identifier">JFR</span><span class="cm-punctuation">.</span><span class="cm-builtin">start</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-error">$</span> <span class="cm-identifier">jcmd</span> <span class="cm-operator">&lt;</span><span class="cm-identifier">pid</span><span class="cm-operator">&gt;</span> <span class="cm-identifier">JFR</span><span class="cm-punctuation">.</span><span class="cm-identifier">dump</span> <span class="cm-identifier">filename</span><span class="cm-operator">=</span><span class="cm-identifier">recording</span><span class="cm-punctuation">.</span><span class="cm-identifier">jfr</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-error">$</span> <span class="cm-identifier">jcmd</span> <span class="cm-operator">&lt;</span><span class="cm-identifier">pid</span><span class="cm-operator">&gt;</span> <span class="cm-identifier">JFR</span><span class="cm-punctuation">.</span><span class="cm-identifier">stop</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 65px;"></div><div class="CodeMirror-gutters" style="display: none; height: 65px;"></div></div></div></pre><p><span>JFR 使用测试：</span></p><p><span>清单 3. JFR 使用示例</span></p><p><span> </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">class</span> <span class="cm-def">FlightRecorderTest</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Event</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-meta">@Label</span>(<span class="cm-string">"Hello World"</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-meta">@Description</span>(<span class="cm-string">"Helps the programmer getting started"</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">class</span> <span class="cm-def">HelloWorld</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Event</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-meta">@Label</span>(<span class="cm-string">"Message"</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable-3">String</span> <span class="cm-variable">message</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-keyword">static</span> <span class="cm-variable-3">void</span> <span class="cm-variable">main</span>(<span class="cm-variable-3">String</span>[] <span class="cm-variable">args</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">HelloWorld</span> <span class="cm-variable">event</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">HelloWorld</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">event</span>.<span class="cm-variable">message</span> <span class="cm-operator">=</span> <span class="cm-string">"hello, world!"</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">event</span>.<span class="cm-variable">commit</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 302px;"></div><div class="CodeMirror-gutters" style="display: none; height: 302px;"></div></div></div></pre><p><span> </span></p><p><span>在运行时加上如下参数：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">java -XX:StartFlightRecording=duration=1s, filename=recording.jfr</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>下面读取上一步中生成的 JFR 文件：</span><code>recording.jfr</code></p><p><span>清单 4. 飞行记录器分析示例</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 14.1px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-variable-3">void</span> <span class="cm-def">readRecordFile</span>() <span class="cm-keyword">throws</span> <span class="cm-variable">IOException</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">final</span> <span class="cm-variable">Path</span> <span class="cm-variable">path</span> <span class="cm-operator">=</span> <span class="cm-variable">Paths</span>.<span class="cm-variable">get</span>(<span class="cm-string">"D:\\ java \\recording.jfr"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">final</span> <span class="cm-variable">List</span><span class="cm-operator">&lt;</span><span class="cm-variable">RecordedEvent</span><span class="cm-operator">&gt;</span> <span class="cm-variable">recordedEvents</span> <span class="cm-operator">=</span> <span class="cm-variable">RecordingFile</span>.<span class="cm-variable">readAllEvents</span>(<span class="cm-variable">path</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">for</span> (<span class="cm-variable">RecordedEvent</span> <span class="cm-variable">event</span> : <span class="cm-variable">recordedEvents</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-variable">event</span>.<span class="cm-variable">getStartTime</span>() <span class="cm-operator">+</span> <span class="cm-string">","</span> <span class="cm-operator">+</span> <span class="cm-variable">event</span>.<span class="cm-variable">getValue</span>(<span class="cm-string">"message"</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 151px;"></div><div class="CodeMirror-gutters" style="display: none; height: 151px;"></div></div></div></pre><h2><a name="动态类文件常量" class="md-header-anchor"></a><span>动态类文件常量</span></h2><p><span>为了使 JVM 对动态语言更具吸引力，Java 的第七个版本已将 invokedynamic 引入其指令集。</span></p><p><span>过 Java 开发人员通常不会注意到此功能，因为它隐藏在 Java 字节代码中。通过使用 invokedynamic，可以延迟方法调用的绑定，直到第一次调用。例如，Java 语言使用该技术来实现 Lambda 表达式，这些表达式仅在首次使用时才显示出来。这样做，invokedynamic 已经演变成一种必不可少的语言功能。</span></p><p><span>Java 11 引入了类似的机制，扩展了 Java 文件格式，以支持新的常量池：CONSTANT_Dynamic，它在初始化的时候，像 invokedynamic</span></p><p><span>令生成代理方法一样，委托给 bootstrap 方法进行初始化创建，对上层软件没有很大的影响，降低开发新形式的可实现类文件约束带来的成本和干扰。</span></p><h2><a name="结束语" class="md-header-anchor"></a><span>结束语</span></h2><p><span>Java 在更新发布周期为每半年发布一次之后，在合并关键特性、快速得到开发者反馈等方面，做得越来越好。Java 11 版本的发布也带来了不少新特性和功能增强、性能提升、基础能力的全面进步和突破，本文针对其中对使用人员影响重大的以及主要的特性做了介绍。Java 12 即将到来，您准备好了吗？</span></p><p><span>本文仅代表作者个人观点，不代表其所在单位的意见，如有不足之处，还望您能够海涵。希望您能够反馈意见，交流心得，一同进步。</span></p></div>
+</body>
+</html>

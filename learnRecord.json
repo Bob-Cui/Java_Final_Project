@@ -1,0 +1,84 @@
+{
+  "integerTimeItemTreeMap": {
+    "0": {
+      "beginDate": "Dec 24, 2020, 8:21:47 AM",
+      "endDate": "Dec 25, 2020, 6:35:07 AM"
+    },
+    "1": {
+      "beginDate": "Dec 24, 2020, 6:41:47 AM",
+      "endDate": "Dec 24, 2020, 10:15:07 PM"
+    },
+    "2": {
+      "beginDate": "Dec 24, 2020, 6:08:27 AM",
+      "endDate": "Dec 24, 2020, 7:28:27 PM"
+    },
+    "3": {
+      "beginDate": "Dec 24, 2020, 4:11:47 AM",
+      "endDate": "Dec 24, 2020, 9:45:07 AM"
+    },
+    "4": {
+      "beginDate": "Dec 24, 2020, 5:01:47 AM",
+      "endDate": "Dec 24, 2020, 1:55:07 PM"
+    },
+    "5": {
+      "beginDate": "Dec 24, 2020, 3:21:47 AM",
+      "endDate": "Dec 24, 2020, 5:35:07 AM"
+    },
+    "6": {
+      "beginDate": "Dec 24, 2020, 3:05:07 AM",
+      "endDate": "Dec 24, 2020, 4:11:47 AM"
+    },
+    "7": {
+      "beginDate": "Dec 24, 2020, 5:18:27 AM",
+      "endDate": "Dec 24, 2020, 3:18:27 PM"
+    },
+    "8": {
+      "beginDate": "Dec 24, 2020, 8:21:47 AM",
+      "endDate": "Dec 25, 2020, 6:35:07 AM"
+    },
+    "9": {
+      "beginDate": "Dec 24, 2020, 8:55:07 AM",
+      "endDate": "Dec 25, 2020, 9:21:47 AM"
+    },
+    "10": {
+      "beginDate": "Dec 24, 2020, 5:35:07 AM",
+      "endDate": "Dec 24, 2020, 4:41:47 PM"
+    },
+    "11": {
+      "beginDate": "Dec 24, 2020, 4:45:07 AM",
+      "endDate": "Dec 24, 2020, 12:31:47 PM"
+    },
+    "12": {
+      "beginDate": "Dec 24, 2020, 5:35:07 AM",
+      "endDate": "Dec 24, 2020, 4:41:47 PM"
+    },
+    "13": {
+      "beginDate": "Dec 24, 2020, 7:31:47 AM",
+      "endDate": "Dec 25, 2020, 2:25:07 AM"
+    },
+    "14": {
+      "beginDate": "Dec 24, 2020, 3:05:07 AM",
+      "endDate": "Dec 24, 2020, 4:11:47 AM"
+    },
+    "15": {
+      "beginDate": "Dec 24, 2020, 3:55:07 AM",
+      "endDate": "Dec 24, 2020, 8:21:47 AM"
+    },
+    "16": {
+      "beginDate": "Dec 24, 2020, 2:48:27 AM",
+      "endDate": "Dec 24, 2020, 2:48:27 AM"
+    },
+    "17": {
+      "beginDate": "Dec 24, 2020, 2:48:27 AM",
+      "endDate": "Dec 24, 2020, 2:48:27 AM"
+    },
+    "18": {
+      "beginDate": "Dec 24, 2020, 7:31:47 AM",
+      "endDate": "Dec 25, 2020, 2:25:07 AM"
+    },
+    "19": {
+      "beginDate": "Dec 24, 2020, 6:58:27 AM",
+      "endDate": "Dec 24, 2020, 11:38:27 PM"
+    }
+  }
+}
