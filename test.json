@@ -1,0 +1,418 @@
+{
+  "ableToLearn": false,
+  "integerNewTitleManagerTreeMap": {
+    "1": {
+      "name": "JavaBitset类",
+      "resource": "src\\pages\\JavaBitset类",
+      "learned": false,
+      "remind": false,
+      "date": "Dec 8, 2020, 5:05:53 PM",
+      "integerSelectProblemHashMap": {
+        "1": {
+          "id": 1,
+          "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+          "A": "0",
+          "B": "5",
+          "C": "10",
+          "D": "其他",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "2": {
+          "id": 2,
+          "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+          "A": "16",
+          "B": "12",
+          "C": "28",
+          "D": "21",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "3": {
+          "id": 3,
+          "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+          "A": "System.out.println(a.i)",
+          "B": "a.method1()",
+          "C": "A.method1()",
+          "D": "A.method2()",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "4": {
+          "id": 4,
+          "problem": "算术表达式1+2/3-4*5的值为( )",
+          "A": "1",
+          "B": "-19",
+          "C": "-5",
+          "D": "0",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "5": {
+          "id": 5,
+          "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+          "A": "求最大数",
+          "B": "求最小数",
+          "C": "找到数组最后一个元素",
+          "D": "编译出错",
+          "answer": "A",
+          "yourAnswer": "A"
+        }
+      }
+    },
+    "2": {
+      "name": "JavaDictionary类",
+      "resource": "src\\pages\\JavaDictionary类",
+      "learned": false,
+      "remind": false,
+      "date": "Dec 8, 2020, 5:05:53 PM",
+      "integerSelectProblemHashMap": {
+        "1": {
+          "id": 1,
+          "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+          "A": "0",
+          "B": "5",
+          "C": "10",
+          "D": "其他",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "2": {
+          "id": 2,
+          "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+          "A": "16",
+          "B": "12",
+          "C": "28",
+          "D": "21",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "3": {
+          "id": 3,
+          "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+          "A": "System.out.println(a.i)",
+          "B": "a.method1()",
+          "C": "A.method1()",
+          "D": "A.method2()",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "4": {
+          "id": 4,
+          "problem": "算术表达式1+2/3-4*5的值为( )",
+          "A": "1",
+          "B": "-19",
+          "C": "-5",
+          "D": "0",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "5": {
+          "id": 5,
+          "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+          "A": "求最大数",
+          "B": "求最小数",
+          "C": "找到数组最后一个元素",
+          "D": "编译出错",
+          "answer": "A",
+          "yourAnswer": "A"
+        }
+      }
+    },
+    "3": {
+      "name": "JavaEnumeration接口",
+      "resource": "src\\pages\\JavaEnumeration接口",
+      "learned": false,
+      "remind": false,
+      "date": "Dec 8, 2020, 5:05:53 PM",
+      "integerSelectProblemHashMap": {
+        "1": {
+          "id": 1,
+          "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+          "A": "0",
+          "B": "5",
+          "C": "10",
+          "D": "其他",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "2": {
+          "id": 2,
+          "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+          "A": "16",
+          "B": "12",
+          "C": "28",
+          "D": "21",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "3": {
+          "id": 3,
+          "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+          "A": "System.out.println(a.i)",
+          "B": "a.method1()",
+          "C": "A.method1()",
+          "D": "A.method2()",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "4": {
+          "id": 4,
+          "problem": "算术表达式1+2/3-4*5的值为( )",
+          "A": "1",
+          "B": "-19",
+          "C": "-5",
+          "D": "0",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "5": {
+          "id": 5,
+          "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+          "A": "求最大数",
+          "B": "求最小数",
+          "C": "找到数组最后一个元素",
+          "D": "编译出错",
+          "answer": "A",
+          "yourAnswer": "A"
+        }
+      }
+    },
+    "4": {
+      "name": "JavaHashtable类",
+      "resource": "src\\pages\\JavaHashtable类",
+      "learned": false,
+      "remind": false,
+      "date": "Dec 8, 2020, 5:05:53 PM",
+      "integerSelectProblemHashMap": {
+        "1": {
+          "id": 1,
+          "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+          "A": "0",
+          "B": "5",
+          "C": "10",
+          "D": "其他",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "2": {
+          "id": 2,
+          "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+          "A": "16",
+          "B": "12",
+          "C": "28",
+          "D": "21",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "3": {
+          "id": 3,
+          "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+          "A": "System.out.println(a.i)",
+          "B": "a.method1()",
+          "C": "A.method1()",
+          "D": "A.method2()",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "4": {
+          "id": 4,
+          "problem": "算术表达式1+2/3-4*5的值为( )",
+          "A": "1",
+          "B": "-19",
+          "C": "-5",
+          "D": "0",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "5": {
+          "id": 5,
+          "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+          "A": "求最大数",
+          "B": "求最小数",
+          "C": "找到数组最后一个元素",
+          "D": "编译出错",
+          "answer": "A",
+          "yourAnswer": "A"
+        }
+      }
+    },
+    "5": {
+      "name": "JavaProperties类",
+      "resource": "src\\pages\\JavaProperties类",
+      "learned": false,
+      "remind": false,
+      "date": "Dec 8, 2020, 5:05:53 PM",
+      "integerSelectProblemHashMap": {
+        "1": {
+          "id": 1,
+          "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+          "A": "0",
+          "B": "5",
+          "C": "10",
+          "D": "其他",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "2": {
+          "id": 2,
+          "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+          "A": "16",
+          "B": "12",
+          "C": "28",
+          "D": "21",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "3": {
+          "id": 3,
+          "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+          "A": "System.out.println(a.i)",
+          "B": "a.method1()",
+          "C": "A.method1()",
+          "D": "A.method2()",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "4": {
+          "id": 4,
+          "problem": "算术表达式1+2/3-4*5的值为( )",
+          "A": "1",
+          "B": "-19",
+          "C": "-5",
+          "D": "0",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "5": {
+          "id": 5,
+          "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+          "A": "求最大数",
+          "B": "求最小数",
+          "C": "找到数组最后一个元素",
+          "D": "编译出错",
+          "answer": "A",
+          "yourAnswer": "A"
+        }
+      }
+    },
+    "6": {
+      "name": "JavaStack类",
+      "resource": "src\\pages\\JavaStack类",
+      "learned": false,
+      "remind": false,
+      "date": "Dec 8, 2020, 5:05:53 PM",
+      "integerSelectProblemHashMap": {
+        "1": {
+          "id": 1,
+          "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+          "A": "0",
+          "B": "5",
+          "C": "10",
+          "D": "其他",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "2": {
+          "id": 2,
+          "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+          "A": "16",
+          "B": "12",
+          "C": "28",
+          "D": "21",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "3": {
+          "id": 3,
+          "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+          "A": "System.out.println(a.i)",
+          "B": "a.method1()",
+          "C": "A.method1()",
+          "D": "A.method2()",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "4": {
+          "id": 4,
+          "problem": "算术表达式1+2/3-4*5的值为( )",
+          "A": "1",
+          "B": "-19",
+          "C": "-5",
+          "D": "0",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "5": {
+          "id": 5,
+          "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+          "A": "求最大数",
+          "B": "求最小数",
+          "C": "找到数组最后一个元素",
+          "D": "编译出错",
+          "answer": "A",
+          "yourAnswer": "A"
+        }
+      }
+    },
+    "7": {
+      "name": "JavaVector类",
+      "resource": "src\\pages\\JavaVector类",
+      "learned": false,
+      "remind": false,
+      "date": "Dec 8, 2020, 5:05:53 PM",
+      "integerSelectProblemHashMap": {
+        "1": {
+          "id": 1,
+          "problem": "下列输出结果是( )int  a \u003d 0;   while ( a \u003c 5 ) {        switch(a){              case 0 :                   case 3 : a \u003d a + 2;              case 1 :                   case 2 : a \u003d a + 3;              default : a \u003d a + 5;                  }   }    System.out.print ( a );",
+          "A": "0",
+          "B": "5",
+          "C": "10",
+          "D": "其他",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "2": {
+          "id": 2,
+          "problem": "下面代码输出结果是( )int i\u003d0,s\u003d0; do{                     if ( i%2 \u003d\u003d 0 ){                    i++;           continue;                 }                            i++;                            s \u003d s + i;              } while (i\u003c7);              System.out.println(s);",
+          "A": "16",
+          "B": "12",
+          "C": "28",
+          "D": "21",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "3": {
+          "id": 3,
+          "problem": "假设A类有如下定义，设a是A类的一个实例，下列语句调用( )是错误的。class A { int i; static String s;     void method1() {   }     static void method2()  {   } }",
+          "A": "System.out.println(a.i)",
+          "B": "a.method1()",
+          "C": "A.method1()",
+          "D": "A.method2()",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "4": {
+          "id": 4,
+          "problem": "算术表达式1+2/3-4*5的值为( )",
+          "A": "1",
+          "B": "-19",
+          "C": "-5",
+          "D": "0",
+          "answer": "A",
+          "yourAnswer": "A"
+        },
+        "5": {
+          "id": 5,
+          "problem": "score是一个整数数组，有五个元素，已经正确初始化并赋值，仔细阅读下面代码，temp运行结果是( )temp \u003d score[0];  for (int index \u003d 1;index \u003c 5;index++) {       if (score[index] \u003c temp) {             temp \u003d score[index];       } } ",
+          "A": "求最大数",
+          "B": "求最小数",
+          "C": "找到数组最后一个元素",
+          "D": "编译出错",
+          "answer": "A",
+          "yourAnswer": "A"
+        }
+      }
+    }
+  }
+}

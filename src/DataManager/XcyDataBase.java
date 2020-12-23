@@ -2,9 +2,7 @@ package DataManager;
 
 import DataManager.Data.AllData;
 import DataManager.Data.UserData;
-import DataManager.DataProcess.JsonManager;
 import com.google.gson.Gson;
-import com.mysql.cj.x.protobuf.MysqlxSession;
 
 import java.io.IOException;
 import java.sql.*;
@@ -27,22 +25,14 @@ public class XcyDataBase {
         Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
         PreparedStatement statement;
         Class.forName(JDBC_DRIVER);
-
         String sql = "insert into xcyfinal.user_data(username, password, config, timespan)VALUES(?,?,?,?)";
-
         statement = connection.prepareStatement(sql);
         statement.setString(1, userData.getName());
         statement.setString(2, userData.getPassword());
-
         Gson gson = new Gson();
-
         statement.setString(3, gson.toJson(userData.getUserData()));
         statement.setLong(4, userData.getTimeSpan());
-
-
         statement.executeUpdate();//更新并执行这一条语句
-
-        System.out.println("成功插入用户的信息");
     }
 
 
