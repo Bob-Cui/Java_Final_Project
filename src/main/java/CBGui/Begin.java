@@ -1,6 +1,7 @@
 package main.java.CBGui;
 
 import javafx.application.Application;
+import main.java.CBGui.Learn.LearnMenu;
 
 
 /**
@@ -8,6 +9,6 @@ import javafx.application.Application;
  */
 public class Begin {
     public static void main(String[] args) {
-        Application.launch(TestNewStage.class, args);
+        Application.launch(LearnMenu.class, args);
     }
 }
