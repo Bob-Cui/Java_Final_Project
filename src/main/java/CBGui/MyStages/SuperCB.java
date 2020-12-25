@@ -3,6 +3,7 @@ package main.java.CBGui.MyStages;
 
 import DataManager.Data.*;
 import DataManager.DataProcess.JsonManager;
+import com.sun.javafx.collections.MappingChange;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -116,11 +117,6 @@ public class SuperCB extends Stage {
             e.printStackTrace();
         }
     }
-
-    /**
-     * 用来展示有关Java的介绍
-     */
-    private WebView introJavaWebView;
 
 
     /**
@@ -262,6 +258,21 @@ public class SuperCB extends Stage {
         mainTreeView.setStyle("-fx-border-width: 10px;-fx-border-color: #4183C4;-fx-border-radius: 10px");
     }
 
+
+    private float progressCaculation() {
+        float sum = 0;
+        float progress = 0;
+        for (Map.Entry<String, SubTitle> stringSubTitleEntry : bigTitle.getStringNewSubTitleManagerHashMap().entrySet()) {
+            for (Map.Entry<Integer, Title> integerTitleEntry : stringSubTitleEntry.getValue().getIntegerNewTitleManagerHashMap().entrySet()) {
+                sum++;
+                if (integerTitleEntry.getValue().isLearned())
+                    progress++;
+            }
+        }
+        return progress / sum;
+    }
+
+
     public SuperCB() throws IOException {
 
         setStageTitle();
@@ -308,9 +319,7 @@ public class SuperCB extends Stage {
         MenuItem menuItem = new MenuItem();
         progress.getItems().add(menuItem);
         ProgressIndicator progressIndicator = new ProgressIndicator();
-        progressIndicator.setProgress(.5f);
-
-
+        progressIndicator.setProgress(progressCaculation());//进度计算
 
 
         progressIndicator.setMinWidth(300);
@@ -318,6 +327,59 @@ public class SuperCB extends Stage {
         menuItem.setGraphic(progressIndicator);
 
 
+        Menu review = new Menu("我的复习");
+
+        MenuItem classReview = new MenuItem("课程复习");
+        review.getItems().add(classReview);
+
+
+        MenuItem errorCount = new MenuItem("错题统计");
+
+
+        Menu myNote = new Menu("我的笔记");
+        review.getItems().add(myNote);
+
+
+        /**
+         * 笔记items
+         */
+        for (Map.Entry<String, SubTitle> stringSubTitleEntry : bigTitle.getStringNewSubTitleManagerHashMap().entrySet()) {
+
+            Menu menu = new Menu(stringSubTitleEntry.getKey());
+            for (Map.Entry<Integer, Title> integerTitleEntry : stringSubTitleEntry.getValue().getIntegerNewTitleManagerHashMap().entrySet()) {
+                MenuItem menuItem1 = new MenuItem(integerTitleEntry.getValue().getName());
+
+                menuItem1.setUserData(integerTitleEntry.getValue().getName());
+
+
+                menuItem1.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        String fileAddress = String.format("%s.html", "src/notes/" + menuItem1.getUserData());
+                        // String address = String.format();
+                        File file = new File(fileAddress);
+                        if (!file.exists()) {
+                            Alert fail = new Alert(Alert.AlertType.INFORMATION);
+                            Image image = new Image("file:src/Source/javafa.jpg", 60, 60, true, true);
+                            fail.setGraphic(new ImageView(image));
+                            fail.setTitle("操作失败");
+                            fail.setHeaderText("你没有记录这一章的笔记");
+                            fail.setContentText("回去记笔记吧");
+                            fail.showAndWait();
+                            return;
+                        }
+                        try {
+                            ShowHtml showHtml = new ShowHtml((String) menuItem1.getUserData() + "笔记", fileAddress);
+                            showHtml.showAndWait();
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                menu.getItems().add(menuItem1);
+            }
+            myNote.getItems().add(menu);
+        }
         SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
 
         MenuItem exit = new MenuItem("退出");
@@ -325,7 +387,7 @@ public class SuperCB extends Stage {
         exit.setOnAction(actionEvent -> Platform.exit());
 
 
-        project.getItems().addAll(date, progress, separatorMenuItem, exit);
+        project.getItems().addAll(date, progress, review, separatorMenuItem, exit);
         mainMenuBar.getMenus().add(project);
 
 
@@ -386,29 +448,13 @@ public class SuperCB extends Stage {
 
         Menu professionalLearning = new Menu("专业学习");
 
+        MenuItem operatorSystem = new MenuItem("操作系统");
 
-        Menu ds = new Menu("数据结构");
-        MenuItem ds1 = new MenuItem("Java Bitset类");
-        ds1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-                try {
-                    ShowHtml showHtml = new ShowHtml("Java Bitset类", "src/pages/DS/Java Bitset类.html");
-                    showHtml.showAndWait();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
-        MenuItem ds2 = new MenuItem("Java BitSet类");
-        ds2.setOnAction(new EventHandler<ActionEvent>() {
+        operatorSystem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
-                    ShowHtml showHtml = new ShowHtml("Java BitSet类", "src/pages/DS/Java Bitset类.html");
+                    ShowHtml showHtml = new ShowHtml("操作系统", "src/pages/操作系统.html");
                     showHtml.showAndWait();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -416,82 +462,126 @@ public class SuperCB extends Stage {
             }
         });
 
+        professionalLearning.getItems().add(operatorSystem);
 
-        MenuItem ds3 = new MenuItem("Java LinkedList");
-        ds3.setOnAction(new EventHandler<ActionEvent>() {
+        MenuItem jvm = new MenuItem("Java虚拟机原理");
+        jvm.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+
                 try {
-                    ShowHtml showHtml = new ShowHtml("Java LinkedList", "src/pages/DS/Java集合 LinkedList的原理及使用.html");
+                    ShowHtml showHtml = new ShowHtml("Java虚拟机原理", "src/pages/理解Java虚拟机.html");
                     showHtml.showAndWait();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
             }
         });
+        professionalLearning.getItems().add(jvm);
 
+        {
+            Menu ds = new Menu("数据结构");
+            MenuItem ds1 = new MenuItem("Java Bitset类");
+            ds1.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
 
-        MenuItem ds4 = new MenuItem("Java HashTable类");
-        ds4.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    ShowHtml showHtml = new ShowHtml("Java HashTable类", "src/pages/DS/Java Hashtable 类.html");
-                    showHtml.showAndWait();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
+                    try {
+                        ShowHtml showHtml = new ShowHtml("Java Bitset类", "src/pages/DS/Java Bitset类.html");
+                        showHtml.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+
                 }
-            }
-        });
+            });
 
-        MenuItem ds5 = new MenuItem("Java Stack类");
-        ds5.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    ShowHtml showHtml = new ShowHtml("Java Stack类", "src/pages/DS/Java Stack类.html");
-                    showHtml.showAndWait();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
+            MenuItem ds2 = new MenuItem("Java BitSet类");
+            ds2.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try {
+                        ShowHtml showHtml = new ShowHtml("Java BitSet类", "src/pages/DS/Java Bitset类.html");
+                        showHtml.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
-        MenuItem ds6 = new MenuItem("Java Vector类");
-        ds6.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    ShowHtml showHtml = new ShowHtml("Java Vector类", "src/pages/DS/Java Vector 类.html");
-                    showHtml.showAndWait();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        MenuItem ds7 = new MenuItem("Java Sort方法");
-        ds7.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    ShowHtml showHtml = new ShowHtml("Java Sort方法", "src/pages/DS/JavaSort.html");
-                    showHtml.showAndWait();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+            });
 
 
-        ds.getItems().addAll(ds1, ds2, ds3, ds4, ds5, ds6, ds7);
-        professionalLearning.getItems().add(ds);
+            MenuItem ds3 = new MenuItem("Java LinkedList");
+            ds3.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try {
+                        ShowHtml showHtml = new ShowHtml("Java LinkedList", "src/pages/DS/Java集合 LinkedList的原理及使用.html");
+                        showHtml.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+            MenuItem ds4 = new MenuItem("Java HashTable类");
+            ds4.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try {
+                        ShowHtml showHtml = new ShowHtml("Java HashTable类", "src/pages/DS/Java Hashtable 类.html");
+                        showHtml.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            MenuItem ds5 = new MenuItem("Java Stack类");
+            ds5.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try {
+                        ShowHtml showHtml = new ShowHtml("Java Stack类", "src/pages/DS/Java Stack类.html");
+                        showHtml.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            MenuItem ds6 = new MenuItem("Java Vector类");
+            ds6.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try {
+                        ShowHtml showHtml = new ShowHtml("Java Vector类", "src/pages/DS/Java Vector 类.html");
+                        showHtml.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            MenuItem ds7 = new MenuItem("Java Sort方法");
+            ds7.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try {
+                        ShowHtml showHtml = new ShowHtml("Java Sort方法", "src/pages/DS/JavaSort.html");
+                        showHtml.showAndWait();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            ds.getItems().addAll(ds1, ds2, ds3, ds4, ds5, ds6, ds7);
+            professionalLearning.getItems().add(ds);
+        }
         mainMenuBar.getMenus().add(professionalLearning);
 
 
         Menu learningRecord = new Menu("学习数据");
         MenuItem timeRecord = new MenuItem("历史记录");//这个人一共在软件上用时多少
-        MenuItem review = new MenuItem("我的复习");
-        MenuItem errorCount = new MenuItem("错题统计");
-        MenuItem myNote = new MenuItem("我的笔记");
 
 
         timeRecord.setOnAction(new EventHandler<ActionEvent>() {
@@ -524,7 +614,7 @@ public class SuperCB extends Stage {
         });
 
 
-        learningRecord.getItems().addAll(timeRecord, review, errorCount, myNote);
+        learningRecord.getItems().addAll(timeRecord, errorCount);
 
 
         mainMenuBar.getMenus().add(learningRecord);
@@ -538,7 +628,7 @@ public class SuperCB extends Stage {
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension dimension = kit.getScreenSize();
-        Scene scene = new Scene(mainVBox, 3 * dimension.width / 4, 3 * dimension.height / 4);
+        Scene scene = new Scene(mainVBox, dimension.width / 3, 3 * dimension.height / 4);
 
 
         this.setScene(scene);

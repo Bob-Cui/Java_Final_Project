@@ -35,8 +35,6 @@ public class ShowHtml extends Stage {
         mainWebView.getEngine().load(url.toString());
 
 
-
-
         GridPane gridPane = new GridPane();
         gridPane.add(mainWebView, 1, 1);
 
@@ -52,9 +50,9 @@ public class ShowHtml extends Stage {
             Toolkit toolkit = Toolkit.getDefaultToolkit();
             Dimension dimension = toolkit.getScreenSize();
             //     mainWebView.setMinWidth(dimension.getWidth());
-            this.setWidth(dimension.getWidth());
-            this.setHeight(dimension.getHeight());
-            this.setResizable(false);
+            this.setWidth(3 * dimension.getWidth() / 4);
+            this.setHeight(5 * dimension.getHeight() / 6);
+//          、、  this.setResizable(false);
         }
         //   gridPane.setStyle("-fx-background-image: url(" + "file:src/Source/javaback.png" + ")");
         HBox mainHBox = new HBox(mainWebView);

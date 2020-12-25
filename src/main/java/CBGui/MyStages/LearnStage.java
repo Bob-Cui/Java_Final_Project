@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -34,22 +35,20 @@ public class LearnStage extends Stage {
     private HBox hBox;
 
 
-
-
     /**
      * 新的构造函数，真是有趣的紧
      *
-     * @param newTitleManager
+     * @param title
      * @throws MalformedURLException
      */
-    public LearnStage(Title newTitleManager) throws MalformedURLException {
+    public LearnStage(Title title) throws MalformedURLException {
         this.getIcons().add(new Image("file:src/Source/javafa.jpg"));
-        this.setTitle("快乐学" + newTitleManager.getName());
+        this.setTitle("快乐学" + title.getName());
 
 
         WebView webView = new WebView();
-        File file = new File(newTitleManager.getResource() + ".html");
-        System.out.println(newTitleManager.getResource());
+        File file = new File(title.getResource() + ".html");
+        System.out.println(title.getResource());
         URL url = file.toURI().toURL();
         webView.getEngine().load(url.toString());
         Text text = new Text("请回答以下的问题");
@@ -84,7 +83,12 @@ public class LearnStage extends Stage {
             myNote.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-
+                    try {
+                        MyNoteStage myNoteStage = new MyNoteStage(title.getName());
+                        myNoteStage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
@@ -116,7 +120,7 @@ public class LearnStage extends Stage {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     if (mouseEvent.getClickCount() == 2) {
-                        CBQuizStage cbQuizStage = new CBQuizStage(newTitleManager.getName(), new NewProblems(newTitleManager.getIntegerSelectProblemHashMap()));
+                        CBQuizStage cbQuizStage = new CBQuizStage(title.getName(), new NewProblems(title.getIntegerSelectProblemHashMap()));
                         cbQuizStage.showAndWait();
                     }
                 }
@@ -148,7 +152,6 @@ public class LearnStage extends Stage {
 
         this.setScene(new Scene(gridPane));
     }
-
 
 
 }

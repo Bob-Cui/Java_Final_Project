@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class SubTitle {
 
-    private boolean ableToLearn;
 
     private HashMap<String, Title> stringNewTitleManagerHashMap;
     private HashMap<Integer, Title> integerNewTitleManagerHashMap;
@@ -17,24 +16,16 @@ public class SubTitle {
         this.integerNewTitleManagerHashMap = integerNewTitleManagerHashMap;
     }
 
-    public SubTitle(boolean ableToLearn, HashMap<String, Title> stringNewTitleManagerHashMap) {
-        this.ableToLearn = ableToLearn;
+    public SubTitle(HashMap<String, Title> stringNewTitleManagerHashMap, HashMap<Integer, Title> integerNewTitleManagerHashMap) {
         this.stringNewTitleManagerHashMap = stringNewTitleManagerHashMap;
+        this.integerNewTitleManagerHashMap = integerNewTitleManagerHashMap;
     }
 
     public SubTitle(boolean ableToLearn) {
-        this.ableToLearn = ableToLearn;
         this.stringNewTitleManagerHashMap = new HashMap<>();
         this.integerNewTitleManagerHashMap = new HashMap<>();
     }
 
-    public boolean isAbleToLearn() {
-        return ableToLearn;
-    }
-
-    public void setAbleToLearn(boolean ableToLearn) {
-        this.ableToLearn = ableToLearn;
-    }
 
     public HashMap<String, Title> getStringNewTitleManagerHashMap() {
         return stringNewTitleManagerHashMap;

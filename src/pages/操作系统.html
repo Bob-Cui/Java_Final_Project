@@ -1,0 +1,1077 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>未命名</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+
+
+/* noto-sans-sc-300 - latin */
+/* noto-sans-sc-300 - latin */
+  /* noto-sans-sc-regular - latin */
+    /* noto-sans-sc-500 - latin */
+    /* noto-sans-sc-700 - latin */
+    /* noto-sans-sc-900 - latin */
+      
+
+/*** Custom fonts ***/
+@import url('file:///C://Users//DELL//AppData//Roaming//Typora/themes/');
+
+/*** Color setting ***/
+:root {
+    --side-bar-bg-color: #183055;
+    --active-file-bg-color: #2f4566;
+    --active-file-text-color: #ffffff;
+    --active-file-border-color: #757575;
+    --active-search-item-bg-color: #23242b;
+    --item-hover-bg-color: #ececec;
+    --item-hover-text-color: #f5f7f9;
+    --control-text-color: #ddd;
+    --window-border: 1px solid #183055;
+    --code-cursor: #f0f0f0;
+}
+
+/****** #write basic ******/
+#write {
+    position: static;
+    width: 90%;
+    max-width: 700px;
+    line-height: 1.6;
+    transform: none;
+    height: auto;
+}
+
+/****** #write h1-h6 ******/
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre {
+    width: auto;
+  }
+  
+#write h1::before, #write h2::before, #write h3::before, #write h4::before, #write h5::before, #write h6::before {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 0;
+  color: #b4b4b4;
+  font-size: 1rem;
+  font-weight: bold;
+  font-variant: 'small-caps';
+  border: 0;
+  border-radius: 0;
+  left: auto;
+  float: none;
+  padding: 0;
+}
+
+#write h1 {
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h1::before {
+  content: 'H1';
+  bottom: 1rem;
+}
+
+#write h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h2::before {
+  content: 'H2';
+  bottom: .85rem;
+}
+
+#write h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h3::before {
+  content: 'H3';
+  top: .44rem;
+  padding: 3px 0 3px 0;
+}
+
+#write h4 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h4::before {
+  content: 'H4';
+  top: .4rem;
+}
+
+#write h5, #write h6 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+#write h5::before, #write h6::before {
+  top: .2rem;
+}
+
+#write h5::before {
+  content: 'H5';
+}
+
+#write h6::before {
+  content: 'H6';
+}
+
+h3.md-focus:before, h4.md-focus:before, h5.md-focus:before, h6.md-focus:before {
+  color: #ddd;
+  color: var(--heading-char-color);
+  border: 1px solid;
+  border-radius: 3px;
+  position: absolute;
+  left: -1.642857143rem;
+  top: .357142857rem;
+  float: left;
+  font-size: 9px;
+  padding-left: 2px;
+  padding-right: 2px;
+  vertical-align: bottom;
+  font-weight: 400;
+  line-height: 2;
+}
+
+/****** Global Style ******/
+body {
+  margin: 0;
+  font-family: 'Glow Sans SC', -apple-system, sans-serif;
+  font-weight: 500;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%
+}
+
+html, 
+body {
+  color: #242A31;
+  /* width: 100%; */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  background: #ffffff;
+  box-sizing: border-box;
+  line-height: 1rem ;
+  text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+} 
+
+hr {
+  border-color: #e6ecf1;
+  height: 2px;
+  border-top: 2px solid #e6ecf1;
+}
+
+img {
+  max-width: 80%;
+  margin-top: 0.2rem ;
+  margin-bottom: 0.2rem ;
+}
+
+/****** ul ol Style ******/
+
+ul>li>ul>li {
+  list-style-type: circle;
+}
+
+ul>li>ul>li>ul>li {
+  list-style-type: square;
+}
+
+ol,
+ul {
+  padding-left: 2rem ;
+  line-height: 1;
+}
+
+ol>li {
+  list-style-type: decimal
+}
+
+ol>li>ol>li {
+  list-style-type: lower-alpha
+}
+
+ol>li>ol>li>ol>li {
+  list-style-type: lower-roman
+}
+
+/****** Table Style ******/
+
+table {
+  padding: 0;
+  word-break: initial;
+}
+
+table tr {
+  border-top: 1px solid #dfe2e5;
+  margin: 0;
+  padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+  background-color: #f5f7f9;
+}
+table tr th {
+  font-weight: bold;
+  border: 1px solid #dfe2e5;
+  border-bottom: 0;
+  margin: 0;
+  padding: 6px 13px;
+}
+table tr td {
+  border: 1px solid #dfe2e5;
+  margin: 0;
+  padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+  margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+  margin-bottom: 0;
+}
+
+
+/****** YAML Style ******/
+pre.md-meta-block {
+  font-size: .75rem !important;
+  color: #5d5d5d;
+  min-height: .8rem ;
+  white-space: pre-wrap;
+  background: #f5f7f9;
+  display: block;
+  overflow-x: hidden;
+  padding: 1rem ;
+  border-radius: 8px;
+}
+
+
+
+/****** Global Text ******/
+p {
+  font-size: 16px;
+  font-family: "Glow Sans SC", -apple-system, sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+  font-style: normal;
+  color: rgb(59, 69, 78);
+}
+
+a {
+  /* color: rgb(164, 78, 237); */
+  color: rgb(56, 132, 254);
+  font-weight: 500;
+  text-decoration: none;
+  text-decoration-style: none;
+  cursor: pointer;
+  padding: 0 3px 0 3px;
+}
+
+#write a:hover {
+  color: rgb(56, 132, 254);
+  text-decoration: underline;
+  text-decoration-style: solid;
+}
+
+strong {
+  font-weight: 700;
+}
+
+mark {
+  background: #87CEFA;
+  padding: 0 2px 0 2px;
+  margin: 0 2px 0 2px;
+}
+
+h1 {
+  font-size: 2rem ;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+h2 {
+  font-size: 1.8rem ;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+h3 {
+  font-size: 1.6rem ;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+h4 {
+  font-size: 1.2rem ;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+h5,  h6 {
+  font-size: 1rem ;
+  font-weight: 800;
+  line-height: 2;
+  font-style: normal;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+
+/****** Print header ******/
+@media print {
+  .typora-export * {
+    -webkit-print-color-adjust: exact;
+  }
+  #write h1::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h2::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h3::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h4::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h5::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+  #write h6::before {
+    content: '';
+    bottom: 1rem ;
+  }
+
+
+}
+
+
+/****** #write Code Fences ******/
+#write .md-fences {
+    -webkit-font-smoothing: initial;
+    margin: 1rem 0 1rem 0 !important;
+    line-height: 1.43rem ;
+    border-radius: 3px;
+    font-size: 0.95rem ;
+    word-wrap: normal;
+}
+
+
+#write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+    line-height: 1.55rem ;
+}
+  
+#write .CodeMirror-cursors .CodeMirror-cursor {
+    border-left: 2px solid var(--code-cursor);
+}
+  
+#write code,
+  tt {
+    margin: 0 2px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    font-size: 0.92rem ;
+    background: #f5f7f9;
+    display: inline;
+    vertical-align: bottom;
+    line-height: 1.8;
+}
+  
+#write .md-footnote {
+    color: var(--main-5);
+    background-color: var(--main-1);
+}
+
+.cm-s-inner.CodeMirror, .cm-s-inner .CodeMirror-gutters {
+  padding: 0.75rem 0.15rem 0.75rem 0.15rem ;
+  background-color: #183055 !important;
+  color: #f8f8f2 !important;
+  border: none;
+  border-radius: 6px;
+}
+
+
+.code-tooltip {
+  box-shadow: 0 1px 1px 0 rgba(0, 28, 36, .3);
+  border-top: 1px solid #eef2f2;
+  background: #183055;
+  border-radius: 6px;
+}
+
+.md-fences {
+  font-size: .9rem;
+  position: relative!important;
+  display: block;
+  page-break-inside: avoid;
+  text-align: left;
+  overflow: visible;
+  white-space: pre;
+  background: inherit;
+}
+
+.md-fences {
+  background-color: #f8f8f8;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding-top: 8px;
+  padding-bottom: 6px;
+}
+
+.md-fences, tt {
+  border-radius: 3px;
+  /* color: #f0f0f0; */
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/****** Sidebar ******/
+#typora-sidebar * {
+  color: #f0f0f0;
+}
+
+#typora-sidebar .file-tree-node.file-library-file-node.active .file-node-background {
+  border-left: 5px solid #3884ff;
+  height: 2.2rem;
+}
+
+#sidebar-files-menu {
+  border: 1px solid rgba(0, 2, 3, 0.7);
+}
+
+.file-list-item {
+  border-bottom: var(--window-border);
+}
+
+.file-list-item {
+  overflow: hidden;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  border-bottom: var(--window-border);
+  cursor: pointer;
+  padding-right: 8px;
+  padding-top: 12px;
+  padding-left: 24px;
+  transition: top .5s;
+  -webkit-transition: top .5s;
+}
+
+.file-list-item.active {
+  background: #2f4566;
+  /* background: var(--active-file-bg-color); */
+  color: var(--active-file-text-color);
+  border-radius: 12px;
+}
+
+.file-list-item:not(.active) {
+  opacity: .9;
+}
+
+.file-node-content {
+  padding-top: 6px;
+  margin: 0 0 8px 0;
+  cursor: default;
+  color: var(--control-text-color);
+  white-space: nowrap;
+  height: 2.2rem;
+  line-height: 1.5;
+}
+
+.ty-on-drag-enter {
+  background-color: #2f4566;
+  color: var(--item-hover-text-color);
+}
+
+.file-node-content:active {
+  border-radius: 0px!important;
+  background: #2f4566;
+}
+
+.active .file-node-content {
+  font-weight: bold;
+}
+
+.file-node-content:hover {
+  cursor: pointer;
+  border-radius: 0px!important;
+}
+
+.file-node-icon, .file-node-open-state {
+  display: block;
+  float: left;
+  line-height: 1.5;
+  min-height: 15px;
+}
+
+.file-node-icon {
+  margin-right: 6px;
+}
+
+.sidebar-footer {
+background: var(--side-bar-bg-color);
+border-top: 1px #555 solid;
+}
+
+.html-for-mac #file-library-search-input {
+border: 0;
+border-bottom: 1px solid #ccc;
+line-height: 16px;
+margin: 5px 16px 0px 0;
+width: 0;
+/* -webkit-flex: 1; */
+flex: 1;
+background: 0 0;
+color: #bbc0ca!important;
+/* transform: translateY(-3px); */
+/* overflow: auto; */
+padding-top: 6px;
+}
+
+#typora-sidebar #ty-sidebar-footer .sidebar-footer-item:hover {
+background: #021d43;
+}
+
+#typora-sidebar #outline-content .outline-item:hover {
+background: #202020;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu .show + .menuitem-group-label.show {
+border-color: #202020;
+}
+
+#typora-sidebar #ty-sidebar-footer {
+border-top: 1px solid #19191c;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu li > a:hover {
+background: #021d43;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu .ty-side-sort-btn.active, #typora-sidebar #ty-sidebar-footer #sidebar-files-menu .ty-side-sort-btn:hover {
+color: #3884FF;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu .ty-side-sort-btn.active {
+background: #001129;
+}
+
+#typora-sidebar .file-list-item.file-library-node:not(.active):hover {
+  background: #243959;
+  border-radius: 12px;
+}
+
+#typora-sidebar .file-tree-node.file-library-file-node:not(.active):hover .file-node-background {
+  background: #243959;
+  border-radius: 12px;
+  height: 2.2rem;
+}
+
+/****** Quote style ******/
+blockquote {
+    position: relative;
+  /*  margin: 1rem 1 1rem 2rem; */
+    padding: 1rem;
+    color: #827676;
+    background-color: #f5f7f9;
+    border-radius: 6px;
+    line-height: 1;
+}
+  
+blockquote::before {
+    content: '';
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    height: 100%;
+    width: .30rem;
+    background: #3884ff;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+/****** task list style ******/
+.task-list{
+	padding-left: 0;
+}
+
+.md-task-list-item > input{
+	top: -0.2rem;
+	margin-left: -1.6rem;
+	margin-top: calc(1rem + 1px);
+    -webkit-appearance: initial;
+}
+
+.md-task-list-item > input:before{
+	border: 1px solid#0185ff;
+	border-radius: 1rem;
+	width: 1rem;
+	height: 1rem;
+	background: #fff;
+	content: ' ';
+	transition: background-color 200ms ease-in-out;
+	display: block;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	background: #0185ff;
+	border-width: 1px;
+	transition: background-color 200ms ease-in-out;
+}
+
+.md-task-list-item > input:checked:after,
+.md-task-list-item > input[checked]:after {
+	opacity: 1;
+}
+
+.md-task-list-item > input:after {
+	opacity: 1;
+	-webkit-transition: opacity 0.05s ease-in-out;
+	-moz-transition: opacity 0.05s ease-in-out;
+	transition: opacity 0.05s ease-in-out;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 0.25rem;
+	left: 0.19rem;
+	width: 0.6rem;
+	height: 0.375rem;
+	border: 2px solid #fff;
+	border-top: 0;
+	border-right: 0;
+	content: ' ';
+	opacity: 0;
+}
+
+
+
+/****** Code style ******/
+code {
+    font-size: .9rem; 
+  /*   color: #333333; /*  #537AA2;  
+      border: 1px solid #d0d0d0;  */
+    font-family: 'Cascadia Code', Consolas, 'Noto Sans SC','Courier New', monospace;
+    padding: .2rem .2rem;
+    border-radius: 3px;
+    background: #f5f7f9 !important;
+    display: inline;
+    vertical-align: bottom;
+    line-height: 1.8;
+}
+  
+code,
+pre{
+    font-size: 90% !important;
+    font-weight: normal;
+    font-family: 'Cascadia Code', Consolas, 'Noto Sans SC','Courier New', monospace;
+    -webkit-font-smoothing: initial;
+    -moz-osx-font-smoothing: initial
+}
+
+/****** The flow chart ******/
+pre.md-fences[lang=sequence].md-focus .md-diagram-panel, pre.md-fences[lang=flow].md-focus .md-diagram-panel, pre.md-fences[lang=mermaid].md-focus .md-diagram-panel {
+  position: absolute;
+  border: px solid #777
+}
+
+
+
+/****** Windows contral ******/
+.megamenu-menu-list li a.active, .megamenu-menu-list:not(.saved) li a:hover {
+  background-color: #285e8e;
+}
+
+/****** Fix ******/
+.md-tab {
+  display: inline-block;
+  white-space: pre;
+  font-family: initial;
+}
+
+div.md-mathjax-preview.mathjax-candidate.mathjax-candidate-show {
+  background-color: white !important;
+  -webkit-user-modify: read-only;
+}
+
+.mathjax-candidate {
+  text-align: center;
+  padding-top: inherit;
+  overflow-x: auto;
+  padding: 10px 0;
+  background-color: white;
+}
+
+input {
+  font-weight: bold;
+  background-color: inherit;
+  background-color: var(--bg-color);
+  color: var(--text-color)!important;
+  transform: translateY(-8px);
+}
+
+.task-list{
+	padding-left: 0;
+}
+
+.md-task-list-item > input{
+	top: -0.2rem;
+	margin-left: -1.6rem;
+	margin-top: calc(1rem + 1px);
+}
+
+/****** Code highlight ******/
+.cm-s-inner .CodeMirror-guttermarker, .cm-s-inner .CodeMirror-guttermarker-subtle, .cm-s-inner .CodeMirror-linenumber { color: #596774; }
+.cm-s-inner .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
+.cm-s-inner div.CodeMirror-selected { background: rgba(255, 255, 255, 0.15); }
+.cm-s-inner.CodeMirror-focused div.CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }
+.cm-s-inner .CodeMirror-line::selection, .cm-s-inner .CodeMirror-line > span::selection, .cm-s-inner .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }
+.cm-s-inner .CodeMirror-line::-moz-selection, .cm-s-inner .CodeMirror-line > span::-moz-selection, .cm-s-inner .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }
+
+.cm-s-inner .CodeMirror-activeline-background { background: rgba(0, 0, 0, 0); }
+.cm-s-inner .cm-keyword { color: rgba(199, 146, 234, 1); }
+.cm-s-inner .cm-operator { color: rgba(233, 237, 237, 1); }
+.cm-s-inner .cm-variable-2 { color: #80CBC4; }
+.cm-s-inner .cm-variable-3 { color: #82B1FF; }
+.cm-s-inner .cm-builtin { color: #DECB6B; }
+.cm-s-inner .cm-atom { color: #F77669; }
+.cm-s-inner .cm-number { color: #F77669; }
+.cm-s-inner .cm-def { color: rgba(233, 237, 237, 1); }
+.cm-s-inner .cm-string { color: #C3E88D; }
+.cm-s-inner .cm-string-2 { color: #80CBC4; }
+.cm-s-inner .cm-comment { color: #969fa3; }
+.cm-s-inner .cm-variable { color: #82B1FF; }
+.cm-s-inner .cm-tag { color: #80CBC4; }
+.cm-s-inner .cm-meta { color: #80CBC4; }
+.cm-s-inner .cm-attribute { color: #FFCB6B; }
+.cm-s-inner .cm-property { color: #80CBAE; }
+.cm-s-inner .cm-qualifier { color: #DECB6B; }
+.cm-s-inner .cm-variable-3 { color: #DECB6B; }
+.cm-s-inner .cm-tag { color: rgba(255, 83, 112, 1); }
+.cm-s-inner .cm-error {
+  color: rgba(255, 255, 255, 1.0);
+  background-color: #EC5F67;
+}
+.cm-s-inner .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
+
+.md-fences .code-tooltip {
+  background-color: #263238;
+}
+
+
+
+/** initialize css counter */
+#write, .sidebar-content,.md-toc-content {
+    counter-reset: h1
+}
+
+#write h1, .outline-h1, .md-toc-item.md-toc-h1  {
+    counter-reset: h2
+}
+
+#write h2, .outline-h2, .md-toc-item.md-toc-h2 {
+    counter-reset: h3
+}
+
+#write h3, .outline-h3, .md-toc-item.md-toc-h3 {
+    counter-reset: h4
+}
+
+#write h4, .outline-h4, .md-toc-item.md-toc-h4 {
+    counter-reset: h5
+}
+
+#write h5, .outline-h5, .md-toc-item.md-toc-h5 {
+    counter-reset: h6
+}
+
+/** put counter result into headings */
+#write h1:before, 
+h1.md-focus.md-heading:before,
+.outline-h1>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h1>.md-toc-inner:before{
+    counter-increment: h1;
+    content: counter(h1) " "
+}
+
+#write h2:before, 
+h2.md-focus.md-heading:before,
+.outline-h2>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h2>.md-toc-inner:before{
+    counter-increment: h2;
+    content: counter(h1) "." counter(h2) " "
+}
+
+#write h3:before,
+h3.md-focus.md-heading:before,
+.outline-h3>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h3>.md-toc-inner:before {
+    counter-increment: h3;
+    content: counter(h1) "." counter(h2) "." counter(h3) " "
+}
+
+#write h4:before,
+h4.md-focus.md-heading:before,
+.outline-h4>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h4>.md-toc-inner:before  {
+    counter-increment: h4;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) " "
+}
+
+#write h5:before,
+h5.md-focus.md-heading:before,
+.outline-h5>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h5>.md-toc-inner:before  {
+    counter-increment: h5;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) " "
+}
+
+#write h6:before,
+h6.md-focus.md-heading:before,
+.outline-h6>.outline-item>.outline-label:before,
+.md-toc-item.md-toc-h6>.md-toc-inner:before {
+    counter-increment: h6;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) " "
+}
+
+/** override the default style for focused headings */
+#write>h3.md-focus:before,
+#write>h4.md-focus:before,
+#write>h5.md-focus:before,
+#write>h6.md-focus:before,
+h3.md-focus:before,
+h4.md-focus:before,
+h5.md-focus:before,
+h6.md-focus:before {
+    color: inherit;
+    border: inherit;
+    border-radius: inherit;
+    position: inherit;
+    left:initial;
+    float: none;
+    top:initial;
+    font-size: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+    vertical-align: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+ :root {--mermaid-font-zoom:1.25em ;} 
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="深入理解操作系统" class="md-header-anchor"></a><span>深入理解操作系统</span></h1><ol start='' ><li><code>操作系统（Operating System，OS）</code><span>：是管理计算机硬件与软件资源的系统</span><code>软件</code><span>，同时也是计算机系统的</span><code>内核与基石</code><span>。操作系统需要处理</span><strong><span>管理与配置内存、决定系统资源供需的优先次序、控制输入与输出设备、操作网络与管理文件系统等基本事务</span></strong><span>。操作系统也提供一个让用户与系统交互的操作界面。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTMzNTU2Ny05ODcxNTM2OTYucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>shell</code><span>：它是一个程序，可从键盘获取命令并将其提供给操作系统以执行。 在过去，它是类似 Unix 的系统上唯一可用的用户界面。 如今，除了命令行界面（CLI）外，我们还具有图形用户界面（GUI）。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTM0MzM2NS0yMDgyNjIzOTQ2LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>GUI (Graphical User Interface)</code><span>：是一种</span><code>用户界面</code><span>，允许用户通过图形图标和音频指示符与电子设备进行交互。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTM1NDQ1MC0xODE3MzQwNzc1LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>内核模式(kernel mode)</code><span>: 通常也被称为 </span><code>超级模式（supervisor mode）</code><span>，在内核模式下，正在执行的代码具有对底层硬件的完整且不受限制的访问。 它可以执行任何 CPU 指令并引用任何内存地址。 内核模式通常保留给操作系统的最低级别，最受信任的功能。 内核模式下的崩溃是灾难性的； 他们将停止整个计算机。 超级用户模式是计算机开机时选择的自动模式。</span></li><li><code>用户模式(user node)</code><span>：当操作系统运行用户应用程序（例如处理文本编辑器）时，系统处于用户模式。 当应用程序请求操作系统的帮助或发生中断或系统调用时，就会发生从用户模式到内核模式的转换。在用户模式下，模式位设置为1。 从用户模式切换到内核模式时，它从1更改为0。</span></li><li><code>计算机架构(computer architecture)</code><span> ： 在计算机工程中，计算机体系结构是描述计算机系统功能，组织和实现的一组规则和方法。它主要包括指令集、内存管理、I/O 和总线结构</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTQwMjg2OC0xODEyNDM5MTQ4LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>SATA(Serial ATA)</code><span>：串行 ATA (Serial Advanced Technology Attachment)，它是一种电脑总线，负责主板和大容量存储设备（如硬盘及光盘驱动器）之间的数据传输，主要用于个人电脑。</span></li><li><code>复用(multiplexing)</code><span>：也称为共享，在操作系统中主要指示了时间和空间的管理。对资源进行复用时，不同的程序或用户轮流使用它。 他们中的第一个开始使用资源，然后再使用另一个，依此类推。</span></li><li><code>大型机(mainframes)</code><span>：大型机是一类计算机，通常以其大尺寸，存储量，处理能力和高度的可靠性而著称。它们主要由大型组织用于需要大量数据处理的关键任务应用程序。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTQxMTc2NS0xMzU1ODMyODE0LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>批处理(batch system)</code><span>: 批处理操作系统的用户不直接与计算机进行交互。 每个用户都在打孔卡等脱机设备上准备工作，并将其提交给计算机操作员。 为了加快处理速度，将具有类似需求的作业一起批处理并成组运行。 程序员将程序留给操作员，然后操作员将具有类似要求的程序分批处理。</span></li><li><code>OS/360</code><span>： OS/360，正式称为IBM System / 360操作系统，是由 IBM 为 1964 年发布的其当时新的System/360 大型机开发的已停产的批处理操作系统。</span></li><li><code>多处理系统(Computer multitasking)</code><span>：是指计算机同时运行多个程序的能力。多任务的一般方法是运行第一个程序的一段代码，保存工作环境；再运行第二个程序的一段代码，保存环境；……恢复第一个程序的工作环境，执行第一个程序的下一段代码。</span></li><li><code>分时系统(Time-sharing)</code><span>：在计算中，分时是通过多程序和多任务同时在许多用户之间共享计算资源的一种系统</span></li><li><code>相容分时系统(Compatible Time-Sharing System)</code><span>：最早的分时操作系统，由美国麻省理工学院计算机中心设计与实作。</span></li><li><code>云计算(cloud computing)</code><span>：云计算是计算机系统资源（尤其是数据存储和计算能力）的按需可用性，而无需用户直接进行主动管理。这个术语通常用于描述 Internet 上可供许多用户使用的数据中心。 如今占主导地位的大型云通常具有从中央服务器分布在多个位置的功能。 如果与用户的连接相对较近，则可以将其指定为边缘服务器。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTUwMDI1Mi05NjgxODIwNDkucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>UNIX 操作系统</code><span>：UNIX 操作系统，是一个强大的多用户、多任务操作系统，支持多种处理器架构，按照操作系统的分类，属于分时操作系统。</span></li><li><code>UNIX System V</code><span>：是 UNIX 操作系统的一个分支。</span></li><li><code>BSD(Berkeley Software Distribution)</code><span>：UNIX 的衍生系统。</span></li><li><code>POSIX</code><span>：可移植操作系统接口，是 IEEE 为要在各种 UNIX 操作系统上运行软件，而定义API的一系列互相关联的标准的总称。</span></li><li><code>MINIX</code><span>：Minix，是一个迷你版本的类 UNIX 操作系统。</span></li><li><code>Linux</code><span>：终于到了大名鼎鼎的 Linux 操作系统了，太强大了，不予以解释了，大家都懂。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTUxMjUwOC0xODQyMzE2MDY3LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>DOS (Disk Operating System)</code><span>：磁盘操作系统（缩写为DOS）是可以使用磁盘存储设备（例如软盘，硬盘驱动器或光盘）的计算机操作系统。</span></li><li><code>MS-DOS(MicroSoft Disk Operating System)</code><span> ：一个由美国微软公司发展的操作系统，运行在Intel x86个人电脑上。它是DOS操作系统家族中最著名的一个，在Windows 95以前，DOS是IBM PC及兼容机中的最基本配备，而MS-DOS则是个人电脑中最普遍使用的DOS操作系统。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTUyMDM1OC0xMjgxNDYwMDU3LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>MacOS X</code><span>，怎能少的了苹果操作系统？macOS 是苹果公司推出的基于图形用户界面操作系统，为 Macintosh 的主操作系统</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTUyODI5MC0xOTc5MDM4MjI1LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>Windows NT(Windows New Technology)</code><span>：是美国微软公司 1993 年推出的纯 32 位操作系统核心。</span></li><li><code>Service Pack(SP)</code><span>：是程序的更新、修复和（或）增强的集合，以一个独立的安装包的形式发布。许多公司，如微软或Autodesk，通常在为某一程序而做的修补程序达到一定数量时，就发布一个Service Pack。</span></li><li><code>数字版权管理（DRM）</code><span>：他是工具或技术保护措施（TPM）是一组访问控制技术，用于限制对专有硬件和受版权保护的作品的使用。</span></li><li><code>x86</code><span>：x86是一整套指令集体系结构，由 Intel 最初基于 Intel 8086 微处理器及其 8088 变体开发。采用内存分段作为解决方案，用于处理比普通 16 位地址可以覆盖的更多内存。32 位是 x86 默认的位数，除此之外，还有一个 x86-64 位，是x86架构的 64 位拓展，向后兼容于 16 位及 32 位的 x86架构。</span></li><li><code>FreeBSD</code><span>：FreeBSD 是一个类 UNIX 的操作系统，也是 FreeBSD 项目的发展成果。</span></li><li><code>X Window System</code><span>：X 窗口系统（X11，或简称X）是用于位图显示的窗口系统，在类 UNIX 操作系统上很常见。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTUzNjIyOC0xMDk4Nzk2MzUyLnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>Gnome</code><span>：GNOME 是一个完全由自由软件组成的桌面环境。它的目标操作系统是Linux，但是大部分的 BSD 系统亦支持 GNOME。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTU0NDI2My03MzE3OTM4MjcucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>网络操作系统(network operating systems)</code><span>：网络操作系统是用于网络设备（如路由器，交换机或防火墙）的专用操作系统。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTU1MTEyMi0zNzE4OTM0NzcucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>分布式网络系统(distributed operating systems)</code><span>：分布式操作系统是在独立，网络，通信和物理上独立计算节点的集合上的软件。 它们处理由多个CPU服务的作业。每个单独的节点都拥有全局集合操作系统的特定软件的一部分。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTYwMDA3Ni0xODAxMTY4OTEucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>程序计数器(Program counter)</code><span>：程序计数器 是一个 CPU 中的</span><code>寄存器</code><span>，用于指示计算机在其程序序列中的</span><code>位置</code><span>。</span></li><li><code>堆栈寄存器(stack pointer)</code><span>： 堆栈寄存器是计算机 CPU 中的寄存器，其目的是</span><code>跟踪调用堆栈</code><span>。</span></li><li><code>程序状态字(Program Status Word)</code><span>: 它是由操作系统维护的8个字节（或64位）长的数据的集合。它跟踪系统的当前状态。</span></li><li><code>流水线(Pipeline)</code><span>: 在计算世界中，管道是一组串联连接的数据处理元素，其中一个元素的输出是下一个元素的输入。 流水线的元素通常以并行或按时间分割的方式执行。 通常在元素之间插入一定数量的缓冲区存储。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE4NTYwODYzNS0yMjg0NzU3MTkucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>超标量(superscalar)</code><span>： 超标量 CPU 架构是指在一颗处理器内核中实行了指令级并发的一类并发运算。这种技术能够在相同的CPU主频下实现更高的 CPU 流量。</span></li><li><code>系统调用(system call)</code><span>: 指运行在用户空间的程序向操作系统内核请求需要更高权限运行的服务。系统调用提供用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态运行。如设备 IO 操作或者进程间通信。</span></li><li><code>多线程(multithreading)</code><span>：是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因为有硬件支持而能够在同一时间执行多个线程，进而提升整体处理性能。</span></li><li><code>CPU 核心(core)</code><span>：它是 CPU 的大脑，它接收指令，并执行计算或运算以满足这些指令。一个 CPU 可以有多个内核。</span></li><li><code>图形处理器(Graphics Processing Unit)</code><span>：又称显示核心、视觉处理器、显示芯片或绘图芯片；它是一种专门在个人电脑、工作站、游戏机和一些移动设备（如平板电脑、智能手机等）上运行绘图运算工作的微处理器。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDE1ODU1Mi01MzM1OTI2MzYucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><span>存储体系结构：顶层的存储器速度最高，但是容量最小，成本非常高，层级结构越向下，其访问效率越慢，容量越大，但是造价也就越便宜。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDIwNTA2OC0xNzI1MTQzNTc2LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>高速缓存行(cache lines)</code><span>：其实就是把高速缓存分割成了固定大小的块，其大小是以突发读或者突发写周期的大小为基础的。</span></li><li><code>缓存命中(cache hit)</code><span>：当应用程序或软件请求数据时，会首先发生缓存命中。 首先，中央处理单元（CPU）在其最近的内存位置（通常是主缓存）中查找数据。 如果在缓存中找到请求的数据，则将其视为缓存命中。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDIxMjYyNS0xOTEyNjU3MTcucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>L1 cache</code><span>：一级缓存是 CPU 芯片中内置的存储库。 L1缓存也称为</span><code>主缓存</code><span>，是计算机中</span><code>最快</code><span>的内存，并且最接近处理器。</span></li><li><code>L2 cache</code><span>: 二级缓存存储库，内置在 CPU 芯片中，包装在同一模块中，或者建在主板上。 L2 高速缓存提供给 L1 高速缓存，后者提供给处理器。 L2 内存比 L1 内存慢。</span></li><li><code>L3 cache</code><span>: 三级缓存内置在主板上或CPU模块内的存储库。 L3 高速缓存为 L2 高速缓存提供数据，其内存通常比 L2 内存慢，但比主内存快。 L3 高速缓存提供给 L2 高速缓存，后者又提供给 L1 高速缓存，后者又提供给处理器。</span></li><li><code>RAM((Random Access Memory)</code><span>：随机存取存储器，也叫主存，是与 CPU </span><code>直接交换数据</code><span>的内部存储器。它可以随时读写，而且速度很快，通常作为操作系统或其他正在运行中的程序的</span><code>临时</code><span>数据存储介质。RAM工作时可以随时从任何一个指定的地址写入（存入）或读出（取出）信息。它与 ROM 的最大区别是数据的</span><code>易失性</code><span>，即一旦断电所存储的数据将随之丢失。RAM 在计算机和数字系统中用来暂时存储程序、数据和中间结果。</span></li><li><code>ROM (Read Only Memory)</code><span>：只读存储器是一种半导体存储器，其特性是</span><strong><span>一旦存储数据就无法改变或删除</span></strong><span>，且内容不会因为电源关闭而</span><code>消失</code><span>。在电子或电脑系统中，通常用以存储不需经常变更的程序或数据。</span></li><li><code>EEPROM (Electrically Erasable PROM)</code><span>：电可擦除可编程只读存储器，是一种可以通过电子方式多次复写的半导体存储设备。</span></li><li><code>闪存(flash memory)</code><span>： 是一种电子式可清除程序化只读存储器的形式，允许在操作中被多次擦或写的存储器。这种科技主要用于一般性数据存储，以及在电脑与其他数字产品间交换传输数据，如储存卡与U盘。</span></li><li><code>SSD(Solid State Disks)</code><span>：固态硬盘，是一种主要以闪存作为永久性存储器的电脑存储设备。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDIyNDEzNi0yMDI5MjMxMzkxLnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>虚拟地址(virtual memory)</code><span>： 虚拟内存是计算机系统</span><code>内存管理</code><span>的一种机制。它使得应用程序认为它拥有连续可用的内存（一个连续完整的地址空间），而实际上，它通常是被分隔成多个物理内存碎片，还有部分暂时存储在外部磁盘存储器上，在需要时进行数据交换。与没有使用虚拟内存技术的系统相比，使用这种技术的系统使得大型程序的编写变得更容易，对真正的物理内存（例如RAM）的使用也更有效率。</span></li><li><code>MMU (Memory Management Unit)</code><span>：内存管理单元，有时称作分页内存管理单元。它是一种负责处理中央处理器（CPU）的内存访问请求的计算机硬件。它的功能包括</span><strong><span>虚拟地址到物理地址的转换（即虚拟内存管理）、内存保护、中央处理器高速缓存的控制等</span></strong><span>。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDI0MzI1Mi0xMDU0MzgyMTA2LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>context switch</code><span>：上下文切换，又称环境切换。是一个存储和重建 CPU 状态的机制。要交换 CPU 上的进程时，必需先行存储当前进程的状态，然后再将进程状态读回 CPU 中。</span></li><li><code>驱动程序(device driver)</code><span>：设备驱动程序，简称驱动程序（driver），是一个允许高级别电脑软件与硬件交互的程序，这种程序创建了一个硬件与硬件，或硬件与软件沟通的接口，经由主板上的总线或其它沟通子系统与硬件形成连接的机制，这样使得硬件设备上的数据交换成为可能。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDI1MDQ2My02OTAxMDA2My5wbmc?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>忙等(busy waiting)</code><span>：在软件工程中，忙碌等待</span><code>也称自旋</code><span>，是一种以进程反复检查一个条件是否为真的条件，这种机制可能为检查键盘输入或某个锁是否可用。</span></li><li><code>中断(Interrupt)</code><span>：通常，在接收到来自外围硬件（相对于中央处理器和内存）的异步信号，或来自软件的同步信号之后，处理器将会进行相应的硬件／软件处理。发出这样的信号称为进行</span><code>中断请求（interrupt request，IRQ）</code><span>。硬件中断导致处理器通过一个</span><code>运行信息切换（context switch）</code><span>来保存执行状态（以程序计数器和程序状态字等寄存器信息为主）；</span><code>软件中断则</code><span>通常作为 CPU 指令集中的一个指令，以可编程的方式直接指示这种运行信息切换，并将处理导向一段中断处理代码。中断在计算机多任务处理，尤其是即时系统中尤为有用。</span></li><li><code>中断向量(interrupt vector)</code><span>：中断向量位于中断向量表中。</span><code>中断向量表（IVT）</code><span>是将中断处理程序列表与中断向量表中的中断请求列表相关联的数据结构。 中断向量表的每个条目（称为中断向量）都是中断处理程序的地址。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDI1ODM1OC04ODYzMTI2MjAucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>DMA (Direct Memory Access)</code><span>：直接内存访问，直接内存访问是计算机科学中的一种内存访问技术。它允许某些电脑内部的硬件子系统（电脑外设），可以独立地直接读写系统内存，而不需中央处理器（CPU）介入处理 。</span></li><li><code>总线(Bus)</code><span>：总线（Bus）是指计算机组件间规范化的交换数据的方式，即以一种通用的方式为各组件提供数据传送和控制逻辑。</span></li><li><code>PCIe (Peripheral Component Interconnect Express)</code><span>：官方简称PCIe，是计算机总线的一个重要分支，它沿用现有的PCI编程概念及信号标准，并且构建了更加高速的串行通信系统标准。</span></li><li><code>DMI (Direct Media Interface)</code><span>：直接媒体接口，是英特尔专用的总线，用于电脑主板上南桥芯片和北桥芯片之间的连接。</span></li><li><code>USB(Universal Serial Bus)</code><span>：是连接计算机系统与外部设备的一种</span><code>串口总线</code><span>标准，也是一种输入输出接口的技术规范，被广泛地应用于个人电脑和移动设备等信息通讯产品，并扩展至摄影器材、数字电视（机顶盒）、游戏机等其它相关领域。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDMwNjQyMS02MjU5NzU0NS5wbmc?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>BIOS(Basic Input Output System)</code><span>：是在通电引导阶段运行硬件初始化，以及为操作系统提供运行时服务的固件。它是开机时运行的第一个软件。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDMxMjYxNC0xNTE1ODE0MjkyLnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>硬实时系统(hard real-time system)</code><span>：硬实时性意味着你必须绝对在每个截止日期前完成任务。 很少有系统有此要求。 例如核系统，一些医疗应用（例如起搏器），大量国防应用，航空电子设备等。</span></li><li><code>软实时系统(soft real-time system)</code><span>：软实时系统可能会错过某些截止日期，但是如果错过太多，最终性能将下降。 一个很好的例子是计算机中的声音系统。</span></li><li><code>进程(Process)</code><span>：程序本身只是指令、数据及其组织形式的描述，进程才是程序（那些指令和数据）的真正运行实例。若进程有可能与同一个程序相关系，且每个进程皆可以同步（循序）或异步的方式独立运行。</span></li><li><code>地址空间(address space)</code><span>：地址空间是内存中可供程序或进程使用的有效地址范围。 也就是说，它是程序或进程可以访问的内存。 存储器可以是物理的也可以是虚拟的，用于执行指令和存储数据。</span></li><li><code>进程表(process table)</code><span>：进程表是操作系统维护的</span><code>数据结构</code><span>，该表中的每个条目（通常称为上下文块）均包含有关</span><code>进程</code><span>的信息，例如进程名称和状态，优先级，寄存器以及它可能正在等待的信号灯。</span></li><li><code>命令行界面(command-line interpreter)</code><span>：是在图形用户界面得到普及之前使用最为广泛的用户界面，它通常不支持鼠标，用户通过键盘输入指令，计算机接收到指令后，予以执行。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDMyMDQ1MC0xODAzNDc4ODM4LnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>进程间通信(interprocess communication)</code><span>： 指至少两个进程或线程间传送数据或信号的一些技术或方法。</span></li><li><code>超级用户(superuser)</code><span>： 也被称为管理员帐户，在计算机操作系统领域中指一种用于进行系统管理的特殊用户，其在系统中的实际名称也因系统而异，如 root、administrator 与supervisor。</span></li><li><code>目录(directory)</code><span>: 在计算机或相关设备中，一个目录或文件夹就是一个装有数字文件系统的虚拟</span><code>容器</code><span>。在它里面保存着一组文件和其它一些目录。</span></li><li><code>路径(path name)</code><span>： 路径是一种电脑文件或目录的名称的通用表现形式，它指向文件系统上的一个唯一位置。</span></li><li><code>根目录(root directory)</code><span>：根目录指的就是计算机系统中的顶层目录，比如 Windows 中的 C 盘和 D 盘，Linux 中的 </span><code>/</code><span>。</span></li><li><code>工作目录(Working directory)</code><span>：它是一个计算机用语。用户在操作系统内所在的目录，用户可在此目录之下，用相对文件名访问文件。</span></li><li><code>文件描述符(file descriptor)</code><span>： 文件描述符是计算机科学中的一个术语，是一个用于表述指向文件的引用的抽象化概念。</span></li><li><code>inode</code><span>：索引节点的缩写，索引节点是 UNIX 系统中包含的信息，其中包含有关每个文件的详细信息，例如节点，所有者，文件，文件位置等。</span></li><li><code>共享库(shared library)</code><span>：共享库是一个包含目标代码的文件，执行过程中多个 a.out 文件可能会同时使用该目标代码。</span></li><li><code>DLLs (Dynamic-Link Libraries)</code><span>：动态链接库，它是微软公司在操作系统中实现</span><code>共享函数库</code><span>概念的一种实现方式。这些库函数的扩展名是 .DLL、.OCX（包含ActiveX控制的库）或者.DRV（旧式的系统驱动程序）。</span></li><li><code>客户端(clients)</code><span>：客户端是访问服务器提供的服务的计算机硬件或软件。</span></li><li><code>服务端(servers)</code><span>： 在计算中，服务器是为其他程序或设备提供功能的计算机程序或设备，称为</span><code>服务端</code></li><li><code>主从架构(client-server)</code><span>： 主从式架构也称</span><code>客户端/服务器</code><span>架构、</span><code>C/S</code><span> 架构，是一种网络架构，它把客户端与服务器区分开来。每一个客户端软件的实例都可以向一个服务器或应用程序服务器发出请求。有很多不同类型的服务器，例如文件服务器、游戏服务器等。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDMyOTU1My05NTExODg5MzQucG5n?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>虚拟机(Virtual Machines)</code><span>：在计算机科学中的体系结构里，是指一种特殊的软件，可以在计算机平台和终端用户之间创建一种环境，而终端用户则是基于虚拟机这个软件所创建的环境来操作其它软件。</span></li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDIwLmNuYmxvZ3MuY29tL2Jsb2cvMTUxNTExMS8yMDIwMDMvMTUxNTExMS0yMDIwMDMzMTE5MDMzNjM0NC0yMDkwNDc2NjgwLnBuZw?x-oss-process=image/format,png" referrerpolicy="no-referrer" alt="img"></p><ol start='' ><li><code>Java 虚拟机(Java virtual Machines)</code><span>：Java虚拟机有自己完善的硬体架构，如处理器、堆栈、寄存器等，还具有相应的指令系统。JVM屏蔽了与具体操作系统平台相关的信息，使得Java程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。</span></li><li><code>目标文件(object file)</code><span>：目标文件是包含</span><code>目标代码</code><span>的文件，这意味着通常无法直接执行的可重定位格式的机器代码。 目标文件有多种格式，相同的目标代码可以打包在不同的目标文件中。 目标文件也可以像共享库一样工作。</span></li><li><code>C preprocessor</code><span>： C 预处理å器是 C 语言、C++ 语言的预处理器。用于在编译器处理程序之前预扫描源代码，完成头文件的包含, 宏扩展, 条件编译, 行控制等操作。</span></li></ol></div>
+</body>
+</html>

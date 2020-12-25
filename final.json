@@ -1,7 +1,7 @@
 {
   "stringNewSubTitleManagerHashMap": {
     "Java初级教程": {
-      "ableToLearn": false,
+
       "stringNewTitleManagerHashMap": {
         "JavaStringBuffer": {
           "name": "JavaStringBuffer",
@@ -5680,7 +5680,7 @@
       }
     },
     "Java中级教程": {
-      "ableToLearn": false,
+
       "stringNewTitleManagerHashMap": {
         "Java接口": {
           "name": "Java接口",
@@ -8599,7 +8599,6 @@
       }
     },
     "Java高级教程": {
-      "ableToLearn": false,
       "stringNewTitleManagerHashMap": {
         "Java测验": {
           "name": "Java测验",
